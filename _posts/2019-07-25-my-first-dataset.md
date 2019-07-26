@@ -4,8 +4,6 @@ title: My first dataset
 image:
 ---
 
-Hello, world!
-
 My name is Daniel Jaouen and I am a student in Lambda School's part time Data
 Science program. I am excited to have this opportunity to learn Data Science
 and I look forward to updating all of you on my progress as I progress through
