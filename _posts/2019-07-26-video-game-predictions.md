@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Predicting Global Video Game Sales With a Linear Regression Model
