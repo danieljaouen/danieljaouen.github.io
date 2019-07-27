@@ -61,5 +61,6 @@ We see from our models that there is (as expected) a positive relationship
 between both critic and user scores and global sales. We also notice that
 critic score is the better predictor of the two features.
 
-And that's it! Hope you enjoyed this dive into simple linear regression. See
-you next time!
+And that's it! You can find the completed Google Colab notebook
+[here](https://colab.research.google.com/drive/1Jq1QLC9x7PoovRdJbLKi_Pj_pm9l-6No).
+Hope you enjoyed this dive into simple linear regression. See you next time!
