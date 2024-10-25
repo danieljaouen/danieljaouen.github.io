@@ -1,0 +1,16 @@
+---
+title: You Won't Relent by Jesus Culture (Music)
+date: 2024-10-25 18:09:40
+layout: post
+lang: en
+tags: [music, jesus culture]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a great music video by Jesus Culture.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="950" height="534" src="https://www.youtube.com/embed/D28raGL42gU" title="You Wont Relent (Live) | Jesus Culture | Chris Quilala &amp; Kim Walker-Smith | Your Love Never Fails" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
