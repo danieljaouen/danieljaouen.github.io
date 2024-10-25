@@ -1,0 +1,17 @@
+---
+title: Curses Ineffective Against Practicing Catholics (Catholic)
+date: 2024-10-25 17:56:31
+layout: post
+lang: en
+tags: []
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a YouTube Short detailing how Catholics have a Shield of Protection
+from Jesus from Satanic curses.
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/4hikn_RpCsA" title="&quot;I was told Satan was all powerful. I found out there was something more powerful than Satan&quot;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
