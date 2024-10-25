@@ -3,7 +3,7 @@ title: Curses Ineffective Against Practicing Catholics (Catholic)
 date: 2024-10-25 17:56:31
 layout: post
 lang: en
-tags: []
+tags: [shorts, catholic]
 draft: false
 ---
 #+OPTIONS: toc:nil num:nil
