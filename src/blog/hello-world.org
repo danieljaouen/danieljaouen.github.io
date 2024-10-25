@@ -15,6 +15,6 @@ As you can see, /italics/ and *bold* render as expected, and you can even use fo
 
 All of this is powered by [[https://github.com/niklasfasching/go-org][go-org]], btw.
 
-Let's look at YouTube video:
+Let's look at a YouTube video:
 
 [[yt:sY657h4iZlk][You Won't Relent by Jesus Culture]]
