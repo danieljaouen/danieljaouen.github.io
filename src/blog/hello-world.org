@@ -17,4 +17,4 @@ All of this is powered by [[https://github.com/niklasfasching/go-org][go-org]], 
 
 Let's look at a YouTube video:
 
-[[yt:sY657h4iZlk][You Won't Relent by Jesus Culture]]
+[[https://www.youtube.com/watch?v=sY657h4iZlk][You Won't Relent by Jesus Culture]]
