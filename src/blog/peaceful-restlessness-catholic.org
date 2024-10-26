@@ -1,0 +1,17 @@
+---
+title: Peaceful Restlessness (Catholic)
+date: 2024-10-26 07:36:13
+layout: post
+lang: en
+tags: [shorts, catholic]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a YouTube short of a Jesuit priest talking about "Peaceful
+Restlessness" in faith. Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/cFAtnH32y7M" title="Peaceful Restlessness #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
