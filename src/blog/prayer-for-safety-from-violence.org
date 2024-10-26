@@ -1,0 +1,16 @@
+---
+title: Prayer For Safety From Violence
+date: 2024-10-26 16:15:34
+layout: post
+lang: en
+tags: [prayer]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a quick YouTube Short that contains a prayer against violence.
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/br7zKcFZdIM" title="Prayer For Safety From Violence 🙏🏼 #prayer #prayers #pray #blessings #protection #safety #peace" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
