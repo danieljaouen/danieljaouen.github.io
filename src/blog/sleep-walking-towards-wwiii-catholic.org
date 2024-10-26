@@ -1,0 +1,17 @@
+---
+title: Sleep Walking Towards WWIII (Catholic)
+date: 2024-10-26 15:15:46
+layout: post
+lang: en
+tags: [catholic, world events]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+In this clip, Father Mark Goring talks about the dangers we face at the present
+time.
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i0rS0TL26ZA?si=oP9rV3r4GyVkgQ8I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
