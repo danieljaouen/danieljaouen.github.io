@@ -1,0 +1,16 @@
+---
+title: A Prayer to Break Bloodline Curses
+date: 2024-10-26 10:31:15
+layout: post
+lang: en
+tags: [prayer]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a YouTube Short I found to break generational curses.
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/fwN08SfDTL4" title="This prayer will BREAK EVERY CURSE on your life| Bloodline Curses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
