@@ -1,0 +1,16 @@
+---
+title: Top Prayer
+date: 2024-10-26 11:16:29
+layout: post
+lang: en
+tags: [prayer, christianity]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Top Prayer
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/3ssTjHqW-ac" title="Psalm 23 - The Lord Is My Shepherd" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
