@@ -1,0 +1,12 @@
+---
+title: Where They Have Failed...
+date: 2024-10-26 08:38:04
+layout: post
+lang: en
+tags: [christianity]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+...We Will Succeed!
