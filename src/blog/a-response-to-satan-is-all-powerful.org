@@ -1,0 +1,16 @@
+---
+title: A Response to 'Satan is All-Powerful'
+date: 2024-10-26 08:01:37
+layout: post
+lang: en
+tags: [christianity]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+My response to the phrase "Satan is All-Powerful".
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GM-e46xdcUo?si=sOttzipEtMUf6i8x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
