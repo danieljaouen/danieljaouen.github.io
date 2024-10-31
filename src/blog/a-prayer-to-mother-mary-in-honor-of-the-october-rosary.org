@@ -1,0 +1,16 @@
+---
+title: A Prayer to Mother Mary in Honor of the October Rosary
+date: 2024-10-30 20:18:46
+layout: post
+lang: en
+tags: [prayer, mary, intercession]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a short prayer to Mother Mary on this day.
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z9bifPY45h4?si=4NjHTtXnvPZ6qYhE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
