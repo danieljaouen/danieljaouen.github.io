@@ -1,0 +1,16 @@
+---
+title: Enjoy the Wondrous Beauty of God's Earth
+date: 2024-10-31 03:49:56
+layout: post
+lang: en
+tags: [meditation, gratitude]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a video displaying the wondrous beauty of God's Earth.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qsuXTyWbYn8?si=COifrBO5DRZJdWVy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
