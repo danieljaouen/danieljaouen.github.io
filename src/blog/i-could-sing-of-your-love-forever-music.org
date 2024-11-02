@@ -1,0 +1,17 @@
+---
+title: I Could Sing of Your Love Forever (Music)
+date: 2024-11-02 18:13:30
+layout: post
+lang: en
+tags: [praise, music]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a beautiful worship song called, "I Could Sing of Your Love Forever".
+Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MMWBnBMDkYw?si=Bk36e-szby8taL9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
