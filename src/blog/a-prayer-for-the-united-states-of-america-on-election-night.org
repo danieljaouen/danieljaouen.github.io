@@ -1,0 +1,16 @@
+---
+title: A Prayer For The United States of America On Election Night
+date: 2024-11-05 20:39:19
+layout: post
+lang: en
+tags: [prayer, politics]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a short prayer for the USA on its Election Night. Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tUrfCiGqjP4?si=NYailUdGkqSM30jF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
