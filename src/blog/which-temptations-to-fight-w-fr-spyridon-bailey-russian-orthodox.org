@@ -1,0 +1,16 @@
+---
+title: Which Temptations to Fight w/ Fr. Spyridon Bailey (Russian Orthodox)
+date: 2024-11-07 16:07:10
+layout: post
+lang: en
+tags: [russian orthodox, temptation]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a great video from a Russian Orthodox priest. Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VAOqjbtrqO0?si=F7oNwkEdlTXqFxVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
