@@ -1,0 +1,16 @@
+---
+title: This Prayer Fights Demons! (Catholic)
+date: 2024-11-07 21:51:02
+layout: post
+lang: en
+tags: [catholic, exorcism, prayer]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is an excellent prayer by Fr. Ripperger.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h1Fhix-bNi0?si=mrEWsZR_2P7AYzj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
