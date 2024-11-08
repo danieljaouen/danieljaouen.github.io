@@ -1,0 +1,16 @@
+---
+title: Demons & Chastity w, Fr. Ripperger (Catholic)
+date: 2024-11-07 21:34:23
+layout: post
+lang: en
+tags: [catholic, exorcisms]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a YouTube Short of Father Ripperger on Chastity & Demons. Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/_SB3HQKJ8GI" title="Exorcist Fr. Ripperger shares how demons attack chastity!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
