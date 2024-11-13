@@ -1,0 +1,15 @@
+---
+title: One Billion Souls Devotion
+date: 2024-11-13 00:01:53
+layout: post
+lang: en
+tags: [prayer]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+While I am not personally participating, I thought this might be helpful to
+some of you. It is a website dedicated to saving 1B souls from Purgatory.
+
+[[https://onebillionsoulsdevotion.com/][One Billion Souls Devotion]]
