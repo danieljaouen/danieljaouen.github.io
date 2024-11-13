@@ -1,0 +1,17 @@
+---
+title: St. Frances Xavier Cabrini Feast Day (11/13) (Catholic)
+date: 2024-11-13 00:45:48
+layout: post
+lang: en
+tags: [catholic, saints]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Today (11/13) is the Feast Day of St. Frances Xavier Cabrini, an American
+saint.  Here is a short video dedicated to her.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Rnb8pcag2MA?si=02_HUK1uY-llouDa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
