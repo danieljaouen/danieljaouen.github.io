@@ -1,0 +1,20 @@
+---
+title: Adorecast and Accompanying Soundtrack
+date: 2024-11-12 23:03:03
+layout: post
+lang: en
+tags: [catholic, adoration, music]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here are two great tastes which /definitely/ go together!  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/am72_e-h9d8?si=g5YfQ_oSkNiHaCd0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D28raGL42gU?si=uTGT44hH24DfI8fc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
