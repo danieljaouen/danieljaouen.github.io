@@ -1,0 +1,16 @@
+---
+title: A Prayer For Healing
+date: 2024-11-14 09:32:43
+layout: post
+lang: en
+tags: [prayer, spiritual warfare]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a great YouTube Short prayer for healing.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/fnN_xJ8Bu5w" title="This prayer will BREAK EVERY CURSE on your life| A Prayer for Healing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
