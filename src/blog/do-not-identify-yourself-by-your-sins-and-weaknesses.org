@@ -1,0 +1,17 @@
+---
+title: Do Not Identify Yourself By Your Sins and Weaknesses
+date: 2024-11-15 18:10:46
+layout: post
+lang: en
+tags: [eastern orthodox]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a great YouTube video from the Eastern Orthodox Father, Peter Heers.
+Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UdjHJasqimM?si=08_oAvJcRu_u_Sdq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
