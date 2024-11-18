@@ -1,0 +1,13 @@
+---
+title: GiveSendGo
+date: 2024-11-17 20:00:27
+layout: post
+lang: en
+tags: [site funds]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+I just started a GiveSendGo to help me work on this site full-time. You can
+find the link [[https://www.givesendgo.com/unite-the-church][here]]. But please don't feel obligated to give more than you can!
