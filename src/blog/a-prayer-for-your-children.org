@@ -1,0 +1,16 @@
+---
+title: A Prayer for Your Children
+date: 2024-11-22 15:22:05
+layout: post
+lang: en
+tags: [prayer]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a prayer that I pray blesses your children.  Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="393" height="699" src="https://www.youtube.com/embed/k9Coe2PhzT4" title="Prayer for my Child. Victory Against Temptations" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
