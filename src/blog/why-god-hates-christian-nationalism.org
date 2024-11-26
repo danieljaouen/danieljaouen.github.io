@@ -1,0 +1,17 @@
+---
+title: Why God Hates Christian Nationalism
+date: 2024-11-26 15:00:27
+layout: post
+lang: en
+tags: [sermon]
+draft: false
+---
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: en
+
+Here is a great video on why God hates Christian Nationalism by Pastor Ben
+Dixon. Enjoy!
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4aR_vtwI3h0?si=UVi6m8CzNSB8tlnF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#+END_EXPORT
