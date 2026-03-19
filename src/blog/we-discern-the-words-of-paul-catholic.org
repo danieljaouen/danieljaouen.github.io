@@ -1,9 +1,9 @@
 ---
-title: We Discern The Words Of Paul #catholic
+title: We Discern The Words Of Paul
 date: 2026-03-19 10:29:10
 layout: post
 lang: en
-tags: []
+tags: [catholic]
 draft: false
 ---
 #+OPTIONS: toc:nil num:nil
