@@ -27,6 +27,10 @@ To preview locally: `python3 -m http.server` in this directory, then open
 
 This repository is included in the Lepton repo as the `site/` submodule,
 over HTTPS and read-only. The Lepton tooling edits, commits and pushes a
-separate SSH clone next to it (`../danieljaouen.github.io`), and
-`mix lepton.publish` then moves the submodule to that commit.
+separate SSH clone next to it (`../danieljaouen.github.io`). However
+this repository's `main` changes (a local push, `mix lepton.publish` or an
+edit on github.com), the "Update Lepton's site submodule" workflow moves
+Lepton's `site/` submodule to the new commit. It pushes to Lepton with the
+`LEPTON_DEPLOY_KEY` secret, a deploy key with write access to that
+repository only.
 Written by Claude (Anthropic) at the direction of Daniel Jaouen.

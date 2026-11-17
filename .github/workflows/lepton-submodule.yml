@@ -1,0 +1,72 @@
+# Keeps danieljaouen/lepton's `site/` submodule pointing at this repository's
+# latest main commit, however the site was updated: a push from a local
+# clone, `mix lepton.publish`, or an edit on github.com.
+#
+# Pushes to Lepton with the LEPTON_DEPLOY_KEY secret: the private half of a
+# deploy key with write access to danieljaouen/lepton only.
+name: Update Lepton's site submodule
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One at a time, in order, so an older run never lands after a newer one.
+concurrency:
+  group: lepton-site-submodule
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Point Lepton's site/ at this commit
+        env:
+          DEPLOY_KEY: ${{ secrets.LEPTON_DEPLOY_KEY }}
+          SUBJECT: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          site_sha=$(git rev-parse HEAD)
+
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # GitHub's published host keys (https://api.github.com/meta), pinned.
+          cat > ~/.ssh/known_hosts <<'KEYS'
+          github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+          github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+          github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+          KEYS
+
+          git clone -q --depth 50 git@github.com:danieljaouen/lepton.git "$RUNNER_TEMP/lepton"
+          cd "$RUNNER_TEMP/lepton"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            current=$(git ls-tree HEAD site | awk '{print $3}')
+            if [ "$current" = "$site_sha" ]; then
+              echo "site/ already at $site_sha"; exit 0
+            fi
+            # Never move the submodule backwards (e.g. a re-run of an old push).
+            if [ -n "$current" ] && git -C "$GITHUB_WORKSPACE" merge-base --is-ancestor "$site_sha" "$current" 2>/dev/null; then
+              echo "site/ is at $current, which already includes $site_sha"; exit 0
+            fi
+            git update-index --cacheinfo "160000,$site_sha,site"
+            git commit -q -m "Update site submodule to danieljaouen.github.io@${site_sha:0:7}" \
+              -m "Site change: ${SUBJECT%%$'\n'*}"
+            if git push -q origin HEAD:main; then
+              echo "site/ -> $site_sha"; exit 0
+            fi
+            # Lepton moved on meanwhile: start again from its new main.
+            git fetch -q --depth 50 origin main
+            git reset -q --hard origin/main
+          done
+          exit 1
