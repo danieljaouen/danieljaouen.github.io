@@ -73,9 +73,9 @@
     <!-- Stats --------------------------------------------------------------->
     <section class="stats" aria-label="Project at a glance">
       <div class="wrap stats-grid">
-        <div class="stat"><span class="num" data-count="19950">19,950</span><span class="lbl">lines of Elixir in the OS</span></div>
-        <div class="stat"><span class="num" data-count="112">112</span><span class="lbl">commands</span></div>
-        <div class="stat"><span class="num" data-count="96">96</span><span class="lbl">self-tests, run inside the OS</span></div>
+        <div class="stat"><span class="num" data-count="21532">21,532</span><span class="lbl">lines of Elixir in the OS</span></div>
+        <div class="stat"><span class="num" data-count="115">115</span><span class="lbl">commands</span></div>
+        <div class="stat"><span class="num" data-count="105">105</span><span class="lbl">self-tests, run inside the OS</span></div>
         <div class="stat"><span class="num">~0.1&nbsp;s</span><span class="lbl">from PID 1 to userland</span></div>
         <div class="stat"><span class="num" data-iso-size>93&nbsp;MiB</span><span class="lbl">bootable hybrid ISO</span></div>
       </div>
@@ -131,7 +131,7 @@
           <article class="card">
             <div class="card-ico" aria-hidden="true">⏻</div>
             <h3>Behaves like a real machine</h3>
-            <p>PID 1 mounts filesystems, loads kernel modules from <code>modules.dep</code>, logs in every console, and shuts down cleanly when the virtual power button is pressed.</p>
+            <p>PID 1 mounts filesystems, loads kernel modules from <code>modules.dep</code> and logs in every console. <code>svc</code> (also <code>systemctl</code>) runs long-running apps like systemd does: unit files, restart on failure, start at boot, <code>svc logs -f</code>. Services stop cleanly when the virtual power button is pressed.</p>
           </article>
         </div>
       </div>
@@ -360,9 +360,10 @@ mix lepton.qemu --test  # headless: boot and run the self-tests</code></pre><but
             <h3><span class="n">3</span> Install and explore</h3>
             <p>Add a VirtIO drive, then inside Lepton:</p>
             <div class="copy-block"><pre><code>lepton-install          # GPT + EFI + ext2, all in Elixir
-lepton-tutorial         # a 10-lesson tour
+lepton-tutorial         # an 11-lesson tour
 lpm install jason       # packages from hex.pm
 lpm official            # signed updates for built-in apps
+svc start httpd         # services, like systemctl
 keys                    # bindings loaded from your dotfiles</code></pre><button class="copy" type="button">Copy</button></div>
           </div>
         </div>
@@ -374,7 +375,7 @@ keys                    # bindings loaded from your dotfiles</code></pre><button
       <div class="wrap">
         <h2>Roadmap</h2>
         <div class="roadmap">
-          <div class="rm done"><span class="tag">Done</span><h3>A complete CLI system</h3><p>Shell, editor, multiplexer, git &amp; GitHub, packages, installer, networking, graceful shutdown.</p></div>
+          <div class="rm done"><span class="tag">Done</span><h3>A complete CLI system</h3><p>Shell, editor, multiplexer, git &amp; GitHub, packages, services, installer, networking, graceful shutdown.</p></div>
           <div class="rm next"><span class="tag">Next</span><h3>Graphics</h3><p>Pixels to the framebuffer from Elixir, input from evdev, then a compositor where windows are processes.</p></div>
           <div class="rm later"><span class="tag">Later</span><h3>A real browser</h3><p><code>www</code> already fetches and lays out HTML as text. CSS, box layout and rendering to the compositor come next.</p></div>
           <div class="rm later"><span class="tag">Later</span><h3>Wi-Fi</h3><p>Credentials are saved today; joining networks needs a kernel with an 802.11 stack and a WPA client.</p></div>
