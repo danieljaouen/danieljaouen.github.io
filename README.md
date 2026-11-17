@@ -5,7 +5,12 @@ Unix-like operating system for ARM64 whose userland is written in Elixir.
 
 Plain HTML, CSS and JavaScript, with no build step. The only external
 request is the Google Tag Manager tag (`GTM-NXNK6NF7`) in every page's
-`<head>`; the docs pages get it from the generator in the Lepton repo:
+`<head>`. Its single source is `lib/lepton_build/site_head.html` in the
+Lepton repo, and `mix lepton.site.tags` (run automatically by
+`mix lepton.docs` and `mix lepton.publish`) adds it to any page that
+lacks it, so new pages are tagged without anyone remembering to. The
+"Site tags" GitHub check (`.github/workflows/site-tags.yml`) fails for
+any page pushed without it:
 
 - `index.html` - the page
 - `assets/style.css`, `assets/app.js` - styles (light/dark) and interactions

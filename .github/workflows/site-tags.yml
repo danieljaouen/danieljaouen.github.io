@@ -1,0 +1,42 @@
+# Every page must carry the site-wide <head> tags (Google Tag Manager).
+# The Lepton repo adds them automatically (mix lepton.site.tags, run by
+# mix lepton.docs and mix lepton.publish); this catches pages added any
+# other way, e.g. in the GitHub web editor. The expected block is read
+# from index.html, so changing the tag never requires editing this file.
+name: Site tags
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every page has the tags from index.html
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+
+          start, end = "<!-- Google Tag Manager -->", "<!-- End Google Tag Manager -->"
+          def block(text):
+              m = re.search(re.escape(start) + r".*?" + re.escape(end), text, re.S)
+              # Compare without indentation.
+              return m and "\n".join(l.strip() for l in m.group(0).splitlines())
+
+          expected = block(pathlib.Path("index.html").read_text())
+          if not expected:
+              sys.exit("index.html has no marked Google Tag Manager block")
+
+          missing = [str(p) for p in sorted(pathlib.Path(".").rglob("*.html"))
+                     if ".git" not in p.parts and block(p.read_text(errors="replace")) != expected]
+          if missing:
+              print("Pages without the site tags (in the Lepton repo, run: mix lepton.site.tags):")
+              print("\n".join("  " + m for m in missing))
+              sys.exit(1)
+          print("every page is tagged")
+          PY
