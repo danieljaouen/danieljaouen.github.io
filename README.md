@@ -25,5 +25,8 @@ any page pushed without it:
 To preview locally: `python3 -m http.server` in this directory, then open
 <http://localhost:8000>.
 
-This repository is included in the Lepton repo as the `site/` submodule.
+This repository is included in the Lepton repo as the `site/` submodule,
+over HTTPS and read-only. The Lepton tooling edits, commits and pushes a
+separate SSH clone next to it (`../danieljaouen.github.io`), and
+`mix lepton.publish` then moves the submodule to that commit.
 Written by Claude (Anthropic) at the direction of Daniel Jaouen.
