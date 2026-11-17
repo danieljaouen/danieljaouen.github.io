@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lepton OS</title>
+  <meta name="description" content="Lepton OS: a Unix-like operating system for ARM64 whose entire userland - init, shell, editor, multiplexer, git - is written in Elixir and runs on the BEAM as PID 1.">
+  <meta property="og:title" content="Lepton OS">
+  <meta property="og:description" content="A Unix-like OS for ARM64 with an Elixir userland running on the BEAM as PID 1.">
+  <meta property="og:image" content="assets/img/neofetch.png">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Lepton OS home">
+        <span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS
+      </a>
+      <nav aria-label="Sections">
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#dotfiles">Dotfiles</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#screens">Screens</a></li>
+          <li><a href="#start">Get started</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero ---------------------------------------------------------------->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">ARM64 · Linux kernel · BEAM as PID 1</p>
+          <h1>An operating system whose userland is <span class="accent">written in Elixir</span>.</h1>
+          <p class="lead">
+            Lepton boots on Apple Silicon virtual machines and runs everything you touch
+            &mdash; init, the shell, a Spacemacs-style editor, a tmux-compatible multiplexer,
+            git, a GitHub CLI and a package manager &mdash; as Erlang processes. It configures
+            itself from your dotfiles.
+          </p>
+          <div class="cta">
+            <a class="btn" href="#start">Get started</a>
+            <a class="btn btn-ghost" href="https://github.com/danieljaouen/lepton">View the source</a>
+          </div>
+        </div>
+
+        <div class="terminal" role="img" aria-label="Animated Lepton terminal session">
+          <div class="term-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="term-title">root@lepton: ~ (ttyAMA0)</span>
+            <button class="term-replay" id="replay" type="button" aria-label="Replay the terminal demo">↻</button>
+          </div>
+          <pre class="term-body" id="term" aria-hidden="true"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats --------------------------------------------------------------->
+    <section class="stats" aria-label="Project at a glance">
+      <div class="wrap stats-grid">
+        <div class="stat"><span class="num" data-count="19950">19,950</span><span class="lbl">lines of Elixir in the OS</span></div>
+        <div class="stat"><span class="num" data-count="112">112</span><span class="lbl">commands</span></div>
+        <div class="stat"><span class="num" data-count="82">82</span><span class="lbl">self-tests, run inside the OS</span></div>
+        <div class="stat"><span class="num">~0.1&nbsp;s</span><span class="lbl">from PID 1 to userland</span></div>
+        <div class="stat"><span class="num">93&nbsp;MiB</span><span class="lbl">bootable hybrid ISO</span></div>
+      </div>
+    </section>
+
+    <!-- Features ------------------------------------------------------------>
+    <section id="features" class="section">
+      <div class="wrap">
+        <h2>Everything above the kernel is Elixir</h2>
+        <p class="section-lead">Each program is a BEAM process with a Unix-style PID, connected by pipes that are Erlang I/O servers.</p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">$_</div>
+            <h3>lsh &mdash; the shell</h3>
+            <p>Pipes, redirection, globbing, <code>$(…)</code>, <code>if/for/while</code>, job control with <code>C-z</code>/<code>fg</code>, oh-my-zsh style emacs line editing, autosuggestions, syntax highlighting and a starship-compatible prompt.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">λ</div>
+            <h3>le &mdash; a Spacemacs-style editor</h3>
+            <p>Evil operators, motions and text objects, the <code>SPC</code> leader with which-key, helm-style pickers, splits, ex commands, Monokai, relative line numbers and a magit-style git screen.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">▤</div>
+            <h3>tmux, in Elixir</h3>
+            <p>Sessions that survive detach, splits, layouts, resize, zoom, vi copy mode and a themepack status line &mdash; all driven by your real <code>~/.tmux.conf</code>, including <code>if-shell</code>.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">⎇</div>
+            <h3>git and GitHub</h3>
+            <p>Format-compatible git (objects, packs, index v2) with clone, fetch, pull and push over smart HTTP. A <code>gh</code> CLI for repos, issues and PRs. Your gitconfig aliases just work.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">⬢</div>
+            <h3>lpm &mdash; packages from hex.pm</h3>
+            <p>Resolves dependencies, verifies checksums and compiles Elixir and Erlang packages <em>inside the OS</em>. Packages can ship new shell commands.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">⇩</div>
+            <h3>An installer that writes disks</h3>
+            <p><code>lepton-install</code> writes a GPT, a FAT16 EFI partition and an ext2 data partition &mdash; all in Elixir &mdash; so your home directory persists across reboots.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">⇄</div>
+            <h3>Networking without C</h3>
+            <p>Links, addresses and routes are configured over rtnetlink through <code>:socket</code>; a DHCP client runs at boot. <code>ping</code>, <code>curl</code>, <code>ip</code> and a text browser, <code>www</code>.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">✓</div>
+            <h3>Tested from the inside</h3>
+            <p><code>lepton-test</code> runs the same ExUnit suite inside the booted OS that runs on a laptop &mdash; mounts, drivers, DHCP, even cloning a repo from GitHub.</p>
+          </article>
+          <article class="card">
+            <div class="card-ico" aria-hidden="true">⏻</div>
+            <h3>Behaves like a real machine</h3>
+            <p>PID 1 mounts filesystems, loads kernel modules from <code>modules.dep</code>, logs in every console, and shuts down cleanly when the virtual power button is pressed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dotfiles ------------------------------------------------------------>
+    <section id="dotfiles" class="section alt">
+      <div class="wrap">
+        <h2>Configured by your dotfiles &mdash; not a copy of them</h2>
+        <p class="section-lead">The build installs a dotfiles repo into <code>/root</code>. Each program then reads its native config file at boot. <code>keys</code> shows exactly what was loaded.</p>
+
+        <div class="tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Dotfiles">
+            <button role="tab" aria-selected="true" aria-controls="tab-tmux" id="t-tmux">~/.tmux.conf</button>
+            <button role="tab" aria-selected="false" aria-controls="tab-emacs" id="t-emacs" tabindex="-1">Spacemacs</button>
+            <button role="tab" aria-selected="false" aria-controls="tab-zsh" id="t-zsh" tabindex="-1">~/.zshrc</button>
+            <button role="tab" aria-selected="false" aria-controls="tab-git" id="t-git" tabindex="-1">~/.gitconfig</button>
+            <button role="tab" aria-selected="false" aria-controls="tab-starship" id="t-starship" tabindex="-1">starship.toml</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="tab-tmux" aria-labelledby="t-tmux">
+            <div class="split">
+              <pre class="code"><span class="c"># Use ctrl-t instead of ctrl-b</span>
+<span class="k">unbind</span> C-b
+<span class="k">set</span> -g prefix C-t
+<span class="k">set-window-option</span> -g mode-keys vi
+<span class="k">bind</span> v split-window -h
+<span class="k">bind</span> s split-window -v
+<span class="k">bind</span> h select-pane -L
+<span class="k">bind-key</span> -r H resize-pane -L 5
+<span class="k">bind</span> + new-window -d -n tmux-zoom <span class="s">'clear &amp;&amp; echo TMUX ZOOM &amp;&amp; read'</span> \; swap-pane -s tmux-zoom.0 \; select-window -t tmux-zoom
+<span class="k">if-shell</span> <span class="s">"uname | grep -q Linux"</span> <span class="s">"source-file ~/.tmux.linux.conf"</span></pre>
+              <ul class="checks">
+                <li>Prefix <kbd>C-t</kbd>, every <code>bind</code>/<code>unbind</code>, <code>-r</code> repeat tables</li>
+                <li><code>\;</code> command chains &mdash; the zoom trick works as written</li>
+                <li><code>if-shell</code> runs its test in lsh, so the Linux branch is taken</li>
+                <li>vi copy mode with <kbd>v</kbd> / <kbd>y</kbd> / <kbd>Y</kbd> &rarr; <code>xclip</code></li>
+                <li><code>@themepack powerline/default/cyan</code> colours the status line</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="tab-emacs" aria-labelledby="t-emacs" hidden>
+            <div class="split">
+              <pre class="code">(<span class="k">define-key</span> evil-normal-state-map (kbd <span class="s">";"</span>) 'evil-ex)
+(<span class="k">define-key</span> evil-normal-state-map (kbd <span class="s">"C-h"</span>) 'evil-window-left)
+(<span class="k">define-key</span> evil-normal-state-map (kbd <span class="s">",w"</span>) 'delete-trailing-whitespace)
+(<span class="k">define-key</span> evil-visual-state-map (kbd <span class="s">",q"</span>) 'sort-lines)
+(<span class="k">define-key</span> evil-insert-state-map (kbd <span class="s">"C-y ,"</span>) 'my-tab-command)
+(<span class="k">setq-default</span> evil-escape-key-sequence <span class="s">"jk"</span>
+              display-line-numbers-type 'relative
+              display-fill-column-indicator-column 101)</pre>
+              <ul class="checks">
+                <li>An Emacs Lisp <em>reader</em> extracts <code>define-key</code>, <code>evil-define-key</code>, <code>setq</code>, <code>defalias</code></li>
+                <li><kbd>C-h/j/k/l</kbd> cross from editor windows into tmux panes (the tmux layer)</li>
+                <li><kbd>jk</kbd> escape, relative numbers, fill-column indicator at 101</li>
+                <li>Trailing whitespace removed on save, Monokai theme</li>
+                <li>Unsupported bindings are listed, never silently dropped</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="tab-zsh" aria-labelledby="t-zsh" hidden>
+            <div class="split">
+              <pre class="code"><span class="k">alias</span> l=<span class="s">'ls -lah'</span>
+<span class="k">alias</span> gc=<span class="s">'git commit -m'</span>
+<span class="k">alias</span> m=<span class="s">"mix"</span>
+<span class="k">export</span> EDITOR=vim
+<span class="k">export</span> LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+<span class="k">setopt</span> INTERACTIVE_COMMENTS
+<span class="k">if</span> [[ <span class="s">"x$OS"</span> == <span class="s">"xOSX"</span> ]] ... <span class="k">else</span>
+    <span class="k">alias</span> open=xdg-open
+<span class="k">fi</span></pre>
+              <ul class="checks">
+                <li>Aliases, simple exports and <code>setopt</code> are imported, not executed</li>
+                <li>macOS-only branches are skipped; the Linux branch is used</li>
+                <li><code>EDITOR=vim</code> makes <code>vim</code> open Lepton's editor</li>
+                <li>BSD <code>LSCOLORS</code> is honoured by <code>ls</code></li>
+                <li>oh-my-zsh <code>git</code> plugin aliases, overridable by yours</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="tab-git" aria-labelledby="t-git" hidden>
+            <div class="split">
+              <pre class="code">[include]
+    path = .gitconfig.local
+[alias]
+    gl  = log -n 10 --color=always --all --graph --topo-order --pretty=<span class="s">'format:%h %s %d%n(%cr by %cn)%n'</span>
+    st  = status
+    ci  = commit
+    co  = checkout
+    df  = diff
+    dc  = diff --cached
+[core]
+    pager = cat</pre>
+              <ul class="checks">
+                <li>Every alias works, including quoted <code>--pretty=format:</code> placeholders</li>
+                <li><code>[include]</code> is followed for machine-local settings</li>
+                <li>Identity, <code>core.excludesfile</code> and <code>http.sslVerify</code> are respected</li>
+                <li>Repositories are byte-compatible with upstream git</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="tab-starship" aria-labelledby="t-starship" hidden>
+            <div class="split">
+              <pre class="code">[username]
+format = <span class="s">"[$user]($style) "</span>
+show_always = true
+[hostname]
+ssh_only = false
+format = <span class="s">"on [$hostname](bold blue) "</span>
+[directory]
+truncation_length = 1
+format = <span class="s">"at [$path]($style)[$read_only]($read_only_style) "</span></pre>
+              <ul class="checks">
+                <li>A starship engine renders the format language: <code>[text]($style)</code>, <code>$vars</code>, <code>$all</code></li>
+                <li>username, hostname, directory, git branch/status, elixir, cmd duration, jobs</li>
+                <li>Falls back to <code>&gt;</code> on the Linux console, which lacks <code>❯</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -------------------------------------------------------->
+    <section id="architecture" class="section">
+      <div class="wrap">
+        <h2>How it fits together</h2>
+        <p class="section-lead">Lepton is honest about its foundations: a stock Linux kernel and the Erlang runtime sit below; everything that defines behaviour is Elixir.</p>
+
+        <div class="arch-grid">
+          <div class="stack" aria-label="System layers">
+            <div class="layer l-elixir">
+              <strong>Elixir userland</strong>
+              <span>lsh · coreutils · le · tmux · git · gh · lpm · www · installer</span>
+              <span>TTYs &amp; line discipline · VT emulator · netlink + DHCP · init</span>
+            </div>
+            <div class="layer l-otp"><strong>Erlang/OTP 29</strong><span>ERTS, kernel, stdlib, ssl, crypto, inets</span></div>
+            <div class="layer l-linux"><strong>Linux 6.18</strong><span>Alpine virt kernel · glibc · GRUB (UEFI)</span></div>
+            <div class="layer l-hw"><strong>ARM64 VM</strong><span>UTM · QEMU · Apple Silicon</span></div>
+          </div>
+
+          <ol class="timeline" aria-label="Boot sequence">
+            <li><b>UEFI</b> finds the El Torito image on the CD &mdash; or the GPT partition on the hybrid ISO when attached as a disk.</li>
+            <li><b>GRUB</b> loads the kernel and initramfs; both were packaged by Lepton's own Elixir cpio, FAT and ISO 9660 writers.</li>
+            <li><b>Linux</b> executes ERTS directly as <code>/init</code>; the kernel command line carries the runtime's flags.</li>
+            <li><b>Lepton.Init</b> (PID&nbsp;1) mounts <code>/proc</code>, <code>/sys</code>, <code>/dev</code>, loads drivers and mounts the persistent disk.</li>
+            <li><b>Sessions</b> open on the display and serial consoles, each a TTY process running lsh, configured from your dotfiles.</li>
+          </ol>
+        </div>
+
+        <details class="honest">
+          <summary>What isn't Elixir, and why</summary>
+          <table>
+            <thead><tr><th>Layer</th><th>Source</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Linux kernel + modules</td><td>Alpine <code>linux-virt</code></td><td>The BEAM needs a kernel.</td></tr>
+              <tr><td>ERTS / OTP 29</td><td>Hex.pm prebuilt</td><td>The runtime itself.</td></tr>
+              <tr><td>glibc &amp; libraries</td><td>Ubuntu 24.04</td><td>ERTS links against them.</td></tr>
+              <tr><td>GRUB (EFI)</td><td>Debian</td><td>Firmware-to-kernel loader.</td></tr>
+              <tr><td>busybox (static)</td><td>Alpine</td><td>A syscall shim for exactly <code>mount</code>, <code>finit_module</code> and termios ioctls, which ERTS cannot issue. Never exposed as a command.</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </section>
+
+    <!-- Screens ------------------------------------------------------------->
+    <section id="screens" class="section alt">
+      <div class="wrap">
+        <h2>Screens from the running system</h2>
+        <p class="section-lead">Captured from Lepton's display console under QEMU, on the same virtual hardware UTM uses. Click to enlarge.</p>
+        <div class="gallery">
+          <figure><button class="shot" type="button" data-full="assets/img/neofetch.png" data-caption="neofetch on the framebuffer console"><img src="assets/img/neofetch.png" alt="Lepton's neofetch output listing the OS, kernel, Elixir and OTP versions" loading="lazy" width="800" height="600"></button><figcaption><code>neofetch</code> on the display console</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/whichkey.png" data-caption="Pressing SPC opens the which-key menu"><img src="assets/img/whichkey.png" alt="The le editor showing the SPC which-key popup with buffers, files, git and windows prefixes" loading="lazy" width="800" height="600"></button><figcaption><kbd>SPC</kbd> opens which-key in <code>le</code></figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/editor.png" data-caption="Elixir in le with relative line numbers"><img src="assets/img/editor.png" alt="An Elixir module in le with syntax highlighting, relative line numbers and a Spacemacs-style mode line" loading="lazy" width="800" height="600"></button><figcaption>Relative numbers and the mode line</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/tmux.png" data-caption="tmux splits from prefix C-t v and C-t s"><img src="assets/img/tmux.png" alt="Three tmux panes running lsh, with a cyan status line" loading="lazy" width="800" height="600"></button><figcaption><kbd>C-t v</kbd>, <kbd>C-t s</kbd> &mdash; from your tmux.conf</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get started --------------------------------------------------------->
+    <section id="start" class="section">
+      <div class="wrap">
+        <h2>Get started</h2>
+        <div class="steps">
+          <div class="step">
+            <h3><span class="n">1</span> Build the ISO</h3>
+            <p>Needs Elixir on OTP&nbsp;29 and network access on the first build.</p>
+            <div class="copy-block"><pre><code>git clone --recursive https://github.com/danieljaouen/lepton
+cd lepton
+mix lepton.iso          # -&gt; out/lepton.iso</code></pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div class="step">
+            <h3><span class="n">2</span> Boot it</h3>
+            <p>In <strong>UTM</strong>: Virtualize &rarr; Linux &rarr; choose <code>lepton.iso</code>. Add a serial device to get a second console. Or use QEMU:</p>
+            <div class="copy-block"><pre><code>mix lepton.qemu         # window, like UTM
+mix lepton.qemu --test  # headless: boot and run the self-tests</code></pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div class="step">
+            <h3><span class="n">3</span> Install and explore</h3>
+            <p>Add a VirtIO drive, then inside Lepton:</p>
+            <div class="copy-block"><pre><code>lepton-install          # GPT + EFI + ext2, all in Elixir
+lepton-tutorial         # a 10-lesson tour
+lpm install jason       # packages from hex.pm
+keys                    # bindings loaded from your dotfiles</code></pre><button class="copy" type="button">Copy</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap ------------------------------------------------------------->
+    <section class="section alt">
+      <div class="wrap">
+        <h2>Roadmap</h2>
+        <div class="roadmap">
+          <div class="rm done"><span class="tag">Done</span><h3>A complete CLI system</h3><p>Shell, editor, multiplexer, git &amp; GitHub, packages, installer, networking, graceful shutdown.</p></div>
+          <div class="rm next"><span class="tag">Next</span><h3>Graphics</h3><p>Pixels to the framebuffer from Elixir, input from evdev, then a compositor where windows are processes.</p></div>
+          <div class="rm later"><span class="tag">Later</span><h3>A real browser</h3><p><code>www</code> already fetches and lays out HTML as text. CSS, box layout and rendering to the compositor come next.</p></div>
+          <div class="rm later"><span class="tag">Later</span><h3>Wi-Fi</h3><p>Credentials are saved today; joining networks needs a kernel with an 802.11 stack and a WPA client.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credits ------------------------------------------------------------->
+    <section class="section credits">
+      <div class="wrap">
+        <h2>Credits</h2>
+        <p>Lepton OS was designed and written by <strong>Claude</strong> (Anthropic's Claude Opus&nbsp;5.5, an AI model), working in Claude Code at the direction of <a href="https://github.com/danieljaouen">Daniel Jaouen</a>, whose dotfiles define how it behaves.</p>
+        <p class="muted">It stands on the shoulders of Linux, Erlang/OTP, Elixir, Alpine Linux, Debian, Ubuntu and Hex.pm.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>Lepton OS &middot; ARM64 &middot; Elixir all the way up</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+    <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    <img id="lightbox-img" alt="">
+    <p id="lightbox-caption"></p>
+  </dialog>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
