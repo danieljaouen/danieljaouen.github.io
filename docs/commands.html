@@ -50,6 +50,7 @@
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
@@ -68,7 +69,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 115 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 118 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -184,6 +185,9 @@
 <tr><td><span class="anchor-target" id="cmd-ip"></span><code>ip</code></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-nslookup"></span><code>nslookup</code> · also <code>host</code></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ping"></span><code>ping</code></td><td>send ICMP ECHO_REQUEST to a host</td><td><code>ping [-c COUNT] HOST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ssh"></span><code>ssh</code></td><td>OpenSSH-compatible client: remote shells and commands, keys from ~/.ssh</td><td><code>ssh [-p PORT] [-i KEY] [-l USER] [-o StrictHostKeyChecking=VALUE] [-T|-t] [USER@]HOST [COMMAND...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ssh-keygen"></span><code>ssh-keygen</code></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ssh-keyscan"></span><code>ssh-keyscan</code></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-www"></span><code>www</code> · also <code>lynx</code>, <code>browse</code></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
 </tbody></table></div>
 <h2 id="development">Development<a class="anchor" href="#development" aria-label="Link to this section">#</a></h2>
@@ -192,7 +196,7 @@
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-elixir"></span><code>elixir</code></td><td>run Elixir code</td><td><code>elixir [-e CODE] [FILE.exs] [ARGS...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-erl"></span><code>erl</code></td><td>Erlang version information</td><td><code>erl</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-gh"></span><code>gh</code></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-gh"></span><code>gh</code></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | ssh-key list|add | config get|set git_protocol | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-git"></span><code>git</code></td><td>the stupid content tracker (Elixir implementation)</td><td><code>git COMMAND [ARGS]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-iex"></span><code>iex</code></td><td>interactive Elixir (loads ~/.iex.exs)</td><td><code>iex</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-le"></span><code>le</code> · also <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [FILE...]</code></td></tr>
@@ -223,7 +227,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@4730828.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@1d63c0b.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

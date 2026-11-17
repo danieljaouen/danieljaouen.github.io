@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>SSH - Lepton OS docs</title>
+  <meta name="description" content="SSH keys, an ssh client, known hosts and ~/.ssh/config, for GitHub and your own servers.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html" aria-current="page">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="ssh">SSH<a class="anchor" href="#ssh" aria-label="Link to this section">#</a></h1>
+<p>Lepton has an SSH client built on OTP's <code>ssh</code>. Use it to clone and push private GitHub repositories with git, to log in to your own servers, and to run commands on them.</p>
+<h2 id="set-up-github-in-four-commands">Set up GitHub in four commands<a class="anchor" href="#set-up-github-in-four-commands" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">ssh-keygen                      # creates ~/.ssh/id_ed25519 and id_ed25519.pub
+gh ssh-key add                  # uploads the public key (or paste it at github.com/settings/ssh/new)
+ssh -T git@github.com           # &quot;Hi you! You've successfully authenticated...&quot;
+git clone git@github.com:you/private-repo.git</code></pre>
+<p><code>gh ssh-key add</code> needs a token with the <code>admin:public_key</code> scope (see <a href="git.html#gh">gh</a>). Without one, print the key with <code>cat ~/.ssh/id_ed25519.pub</code> and add it on GitHub's <a href="https://github.com/settings/ssh/new">SSH keys page</a>. <code>gh ssh-key list</code> shows the keys on your account.</p>
+<p>After that, <code>git fetch</code>, <code>pull</code> and <code>push</code> use the key for every <code>git@github.com:</code> remote. See <a href="git.html#ssh-remotes">git over SSH</a> for switching existing clones and for <code>gh repo clone</code>.</p>
+<p>On the live ISO your key disappears at shutdown, so add it to GitHub only from an <a href="getting-started.html#install-to-a-disk">installed</a> system, which keeps <code>/root/.ssh</code>. Give Lepton its own key rather than copying the one from your Mac. You can then remove it from GitHub on its own.</p>
+<h2 id="keys">Keys<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
+<p><code>ssh-keygen</code> creates an ed25519 key pair in OpenSSH format: the private key is mode 600 and the public key goes next to it with a <code>.pub</code> suffix.</p>
+<pre><code class="language-sh">ssh-keygen -C &quot;me@lepton&quot;           # comment (default root@HOSTNAME)
+ssh-keygen -f ~/.ssh/work_ed25519   # another file
+ssh-keygen -l -f ~/.ssh/id_ed25519  # fingerprint
+ssh-keygen -y -f ~/.ssh/id_ed25519  # print the public key</code></pre>
+<p><code>ssh</code> and git try <code>~/.ssh/id_ed25519</code>, <code>id_ecdsa</code> and <code>id_rsa</code>, plus any <code>IdentityFile</code> from <code>~/.ssh/config</code> or <code>-i FILE</code>. Keys made by OpenSSH elsewhere work too, as long as they have <strong>no passphrase</strong>: Lepton can't decrypt passphrase-protected keys yet, and says so when it finds one.</p>
+<h2 id="known-hosts">Known hosts<a class="anchor" href="#known-hosts" aria-label="Link to this section">#</a></h2>
+<p>Before sending your key, <code>ssh</code> checks the server's host key against:</p>
+<ul>
+<li><code>~/.ssh/known_hosts</code> (plain and hashed entries, <code>[host]:port</code> for other ports);</li>
+<li><code>/etc/ssh/ssh_known_hosts</code>, which ships with <a href="https://api.github.com/meta">GitHub's published keys</a>, so <code>github.com</code> is trusted out of the box.</li>
+</ul>
+<p>The first connection to any other host shows its fingerprint and asks before adding it, as OpenSSH does. git can't ask, so it stops with the fingerprint and two ways to trust the host: run <code>ssh HOST</code> once, or add the key yourself:</p>
+<pre><code class="language-sh">ssh-keyscan git.example.com &gt;&gt; ~/.ssh/known_hosts   # check the fingerprint first
+ssh-keygen -R git.example.com                       # forget a host</code></pre>
+<p>A host whose key has <strong>changed</strong> is always refused, with a warning.</p>
+<h2 id="the-ssh-command">The ssh command<a class="anchor" href="#the-ssh-command" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">ssh me@server                  # interactive shell on a remote terminal
+ssh server uptime              # run one command; its exit status is ssh's
+ssh -p 2222 -i ~/.ssh/work_ed25519 me@server
+echo hello | ssh server cat    # piped input goes to the remote command
+ssh -o StrictHostKeyChecking=accept-new server true</code></pre>
+<p>An interactive session uses the full terminal and follows window resizes (serial terminals too). Type <code>~.</code> at the start of a line to disconnect. <code>-T</code> skips the terminal, and <code>-t</code> asks for one even with a command.</p>
+<h2 id="sshconfig">~/.ssh/config<a class="anchor" href="#sshconfig" aria-label="Link to this section">#</a></h2>
+<p><code>Host</code> blocks with patterns (<code>*</code>, <code>?</code>, <code>!negation</code>) and the first value wins, as in OpenSSH. These keywords are read:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Keyword</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>HostName</code></td><td>the real host name or address (<code>%h</code> is the alias)</td></tr>
+<tr><td><code>User</code></td><td>login name (default <code>root</code>)</td></tr>
+<tr><td><code>Port</code></td><td>port (default 22)</td></tr>
+<tr><td><code>IdentityFile</code></td><td>a key to try; several add up</td></tr>
+<tr><td><code>StrictHostKeyChecking</code></td><td><code>ask</code> (default), <code>accept-new</code>/<code>no</code> to add new hosts silently, <code>yes</code> to refuse them</td></tr>
+<tr><td><code>UserKnownHostsFile</code></td><td>instead of <code>~/.ssh/known_hosts</code></td></tr>
+</tbody></table></div>
+<pre><code>Host gh
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_ed25519</code></pre>
+<p>Aliases work everywhere, including in git remotes: <code>git clone gh:you/repo.git</code>.</p>
+<h2 id="not-supported">Not supported<a class="anchor" href="#not-supported" aria-label="Link to this section">#</a></h2>
+<p>Logging in with a password (keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, <code>scp</code>/<code>sftp</code>, and running an SSH server on Lepton.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-ssh"><code>ssh</code></a></td><td>OpenSSH-compatible client: remote shells and commands, keys from ~/.ssh</td><td><code>ssh [-p PORT] [-i KEY] [-l USER] [-o StrictHostKeyChecking=VALUE] [-T|-t] [USER@]HOST [COMMAND...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-ssh-keygen"><code>ssh-keygen</code></a></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
+<tr><td><a href="commands.html#cmd-ssh-keyscan"><code>ssh-keyscan</code></a></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@1d63c0b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#set-up-github-in-four-commands">Set up GitHub in four commands</a></li>
+          <li><a href="#keys">Keys</a></li>
+          <li><a href="#known-hosts">Known hosts</a></li>
+          <li><a href="#the-ssh-command">The ssh command</a></li>
+          <li><a href="#sshconfig">~/.ssh/config</a></li>
+          <li><a href="#not-supported">Not supported</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

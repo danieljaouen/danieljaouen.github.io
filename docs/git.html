@@ -50,6 +50,7 @@
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html" aria-current="page">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
@@ -69,14 +70,25 @@
       <article class="prose">
 <h1 id="git-and-github">git and GitHub<a class="anchor" href="#git-and-github" aria-label="Link to this section">#</a></h1>
 <h2 id="git">git<a class="anchor" href="#git" aria-label="Link to this section">#</a></h2>
-<p>Lepton's <code>git</code> is format-compatible with upstream git: loose and packed objects, index v2, refs, packed-refs and <code>.gitignore</code>. It speaks smart HTTP to GitHub (side-band-64k packs, OFS/REF deltas).</p>
+<p>Lepton's <code>git</code> is format-compatible with upstream git: loose and packed objects, index v2, refs, packed-refs and <code>.gitignore</code>. It talks to GitHub and other servers over HTTPS (&quot;smart HTTP&quot;) and <a href="#ssh-remotes">SSH</a> (side-band-64k packs, OFS/REF deltas).</p>
 <p>Supported subcommands: <code>init clone fetch pull push status add rm restore reset commit log show diff branch checkout switch merge stash tag remote config rev-parse ls-files ls-remote cat-file hash-object version</code>.</p>
-<p><code>~/.gitconfig</code> is honoured: <code>[include] path = .gitconfig.local</code>, all your aliases (<code>gl</code>, <code>gll</code> with <code>--pretty=format:</code> placeholders, <code>st</code>, <code>ci</code>, <code>co</code>, <code>br</code>, <code>df</code>, <code>dc</code>, <code>lg</code>, …), <code>user.name</code> / <code>user.email</code>, <code>core.pager = cat</code>, <code>core.excludesfile</code> and <code>http.sslVerify</code>. The aliases are listed on the <a href="keybindings.html#git">key bindings page</a>.</p>
-<p>Limits: merges are fast-forward only (no three-way merge), there is no rebase, and remotes use HTTPS (no SSH transport).</p>
+<p><code>~/.gitconfig</code> is honoured: <code>[include] path = .gitconfig.local</code>, all your aliases (<code>gl</code>, <code>gll</code> with <code>--pretty=format:</code> placeholders, <code>st</code>, <code>ci</code>, <code>co</code>, <code>br</code>, <code>df</code>, <code>dc</code>, <code>lg</code>, …), <code>user.name</code> / <code>user.email</code>, <code>core.pager = cat</code>, <code>core.excludesfile</code>, <code>http.sslVerify</code> and <code>url.&lt;base&gt;.insteadOf</code> / <code>pushInsteadOf</code>. The aliases are listed on the <a href="keybindings.html#git">key bindings page</a>.</p>
+<p>Limits: merges are fast-forward only (no three-way merge) and there is no rebase.</p>
+<h2 id="ssh-remotes">SSH remotes<a class="anchor" href="#ssh-remotes" aria-label="Link to this section">#</a></h2>
+<p>Private repositories are easiest over SSH: create a key once and every clone, fetch and push uses it, with no token to paste. See <a href="ssh.html">SSH</a> for the details.</p>
+<pre><code class="language-sh">ssh-keygen &amp;&amp; gh ssh-key add          # once (or add the .pub on github.com)
+git clone git@github.com:you/private-repo.git
+cd private-repo &amp;&amp; git push</code></pre>
+<p>Remote URLs can be scp-like (<code>git@github.com:OWNER/REPO.git</code>), <code>ssh://[user@]host[:port]/path</code>, or an alias from <code>~/.ssh/config</code> (<code>gh:OWNER/REPO.git</code>). An existing HTTPS clone switches with <code>git remote set-url origin git@github.com:OWNER/REPO.git</code>. To use SSH for every GitHub URL, including ones you paste, add this to <code>~/.gitconfig</code>:</p>
+<pre><code class="language-ini">[url &quot;git@github.com:&quot;]
+	insteadOf = https://github.com/</code></pre>
+<p>GitHub's host key is built in. For other servers, connect once with <code>ssh HOST</code> to check and accept their key (git can't ask).</p>
 <h2 id="gh">gh<a class="anchor" href="#gh" aria-label="Link to this section">#</a></h2>
-<p><code>gh auth login</code> stores a token in the same <code>~/.config/gh/hosts.yml</code> format GitHub's own <code>gh</code> uses (or set <code>GH_TOKEN</code>), and <code>git push</code> uses it.</p>
+<p><code>gh auth login</code> stores a token in the same <code>~/.config/gh/hosts.yml</code> format GitHub's own <code>gh</code> uses (or set <code>GH_TOKEN</code>), and <code>git push</code> over HTTPS uses it. Scopes: <code>repo</code> and <code>read:org</code>, plus <code>admin:public_key</code> for <code>gh ssh-key</code>.</p>
 <pre><code class="language-sh">gh auth login
 gh repo view | list | clone OWNER/REPO | create NAME
+gh ssh-key list | add [~/.ssh/id_ed25519.pub] [-t TITLE]
+gh config set git_protocol ssh     # gh repo clone uses git@github.com: URLs
 gh issue list | view N | create
 gh pr list | view N
 gh browse
@@ -88,16 +100,17 @@ gh api /user</code></pre>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><a href="commands.html#cmd-git"><code>git</code></a></td><td>the stupid content tracker (Elixir implementation)</td><td><code>git COMMAND [ARGS]</code></td></tr>
-<tr><td><a href="commands.html#cmd-gh"><code>gh</code></a></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
+<tr><td><a href="commands.html#cmd-gh"><code>gh</code></a></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | ssh-key list|add | config get|set git_protocol | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@4730828. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@1d63c0b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#git">git</a></li>
+          <li><a href="#ssh-remotes">SSH remotes</a></li>
           <li><a href="#gh">gh</a></li>
           <li><a href="#from-the-editor">From the editor</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
