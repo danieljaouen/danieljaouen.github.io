@@ -3,7 +3,9 @@
 The showcase site, <https://trylepton.app/>, for [Lepton OS](https://github.com/danieljaouen/lepton), a
 Unix-like operating system for ARM64 whose userland is written in Elixir.
 
-Plain HTML, CSS and JavaScript, with no build step and no external requests:
+Plain HTML, CSS and JavaScript, with no build step. The only external
+request is the Google Tag Manager tag (`GTM-NXNK6NF7`) in every page's
+`<head>`; the docs pages get it from the generator in the Lepton repo:
 
 - `index.html` - the page
 - `assets/style.css`, `assets/app.js` - styles (light/dark) and interactions
