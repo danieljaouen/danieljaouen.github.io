@@ -1,7 +1,8 @@
 {
   "_comment": "Do not edit by hand: use `mix lepton.official` (the file is signed).",
   "schema": 1,
-  "serial": 1,
+  "serial": 2,
   "issued": "2026-11-17",
+  "maintainers": {"hex_organization": "lepton"},
   "apps": []
 }
