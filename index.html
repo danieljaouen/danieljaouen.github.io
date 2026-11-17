@@ -82,9 +82,9 @@
     <!-- Stats --------------------------------------------------------------->
     <section class="stats" aria-label="Project at a glance">
       <div class="wrap stats-grid">
-        <div class="stat"><span class="num" data-count="21546">21,546</span><span class="lbl">lines of Elixir in the OS</span></div>
-        <div class="stat"><span class="num" data-count="115">115</span><span class="lbl">commands</span></div>
-        <div class="stat"><span class="num" data-count="115">115</span><span class="lbl">self-tests, run inside the OS</span></div>
+        <div class="stat"><span class="num" data-count="23335">23,335</span><span class="lbl">lines of Elixir in the OS</span></div>
+        <div class="stat"><span class="num" data-count="118">118</span><span class="lbl">commands</span></div>
+        <div class="stat"><span class="num" data-count="120">120</span><span class="lbl">self-tests, run inside the OS</span></div>
         <div class="stat"><span class="num">~0.1&nbsp;s</span><span class="lbl">from PID 1 to userland</span></div>
         <div class="stat"><span class="num" data-iso-size>95&nbsp;MiB</span><span class="lbl">bootable hybrid ISO</span></div>
       </div>
@@ -300,7 +300,8 @@ format = <span class="s">"at [$path]($style)[$read_only]($read_only_style) "</sp
           <table>
             <thead><tr><th>Layer</th><th>Source</th><th>Why</th></tr></thead>
             <tbody>
-              <tr><td>Linux kernel + modules</td><td>Alpine <code>linux-virt</code></td><td>The BEAM needs a kernel.</td></tr>
+              <tr><td>Linux kernel + modules</td><td>Alpine <code>linux-lts</code></td><td>The BEAM needs a kernel.</td></tr>
+              <tr><td><code>wpa_supplicant</code></td><td>Alpine</td><td>WPA authentication for Wi-Fi; Lepton drives it over its control socket.</td></tr>
               <tr><td>ERTS / OTP 29</td><td>Hex.pm prebuilt</td><td>The runtime itself.</td></tr>
               <tr><td>glibc &amp; libraries</td><td>Ubuntu 24.04</td><td>ERTS links against them.</td></tr>
               <tr><td>GRUB (EFI)</td><td>Debian</td><td>Firmware-to-kernel loader.</td></tr>
@@ -386,9 +387,9 @@ keys                    # bindings loaded from your dotfiles</code></pre><button
         <h2>Roadmap</h2>
         <div class="roadmap">
           <div class="rm done"><span class="tag">Done</span><h3>A complete CLI system</h3><p>Shell, editor, multiplexer, git &amp; GitHub, packages, services, installer, networking, graceful shutdown.</p></div>
+          <div class="rm done"><span class="tag">Done</span><h3>Wi-Fi</h3><p><code>wifi scan</code> and <code>wifi connect</code> join WPA2 networks through USB adapters, with drivers loaded as soon as one is plugged in.</p></div>
           <div class="rm next"><span class="tag">Next</span><h3>Graphics</h3><p>Pixels to the framebuffer from Elixir, input from evdev, then a compositor where windows are processes.</p></div>
           <div class="rm later"><span class="tag">Later</span><h3>A real browser</h3><p><code>www</code> already fetches and lays out HTML as text. CSS, box layout and rendering to the compositor come next.</p></div>
-          <div class="rm later"><span class="tag">Later</span><h3>Wi-Fi</h3><p>Credentials are saved today; joining networks needs a kernel with an 802.11 stack and a WPA client.</p></div>
         </div>
       </div>
     </section>
