@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System - Lepton OS docs</title>
+  <meta name="description" content="Processes and jobs, storage and persistence, power, the clipboard, Elixir and the self-tests.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html" aria-current="page">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="system">System<a class="anchor" href="#system" aria-label="Link to this section">#</a></h1>
+<h2 id="processes-and-jobs">Processes and jobs<a class="anchor" href="#processes-and-jobs" aria-label="Link to this section">#</a></h2>
+<p>Every Lepton program is a BEAM process with a Unix-style PID, a parent, a terminal and a state. PID 1 is Lepton itself.</p>
+<ul>
+<li><code>ps</code> lists them, <code>top</code> shows them live (<code>q</code> quits), and <code>pgrep</code> / <code>pkill</code> find or signal them by name;</li>
+<li><code>kill PID</code> terminates a process, <code>kill -9</code> kills it, and <code>kill -STOP</code> / <code>kill -CONT</code> suspend and resume it;</li>
+<li>in the shell, <code>C-c</code> interrupts the foreground job, <code>C-z</code> suspends it, and <code>jobs</code>, <code>fg</code>, <code>bg</code> and <code>wait</code> manage background jobs.</li>
+</ul>
+<p>For long-running apps that should survive logouts and restart when they fail, use <a href="services.html">services</a>.</p>
+<h2 id="storage-and-persistence">Storage and persistence<a class="anchor" href="#storage-and-persistence" aria-label="Link to this section">#</a></h2>
+<p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/root</code> (your home) and <code>/var/lib/lepton</code> (packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot.</p>
+<p><code>df</code>, <code>du</code>, <code>free</code> and <code>mount</code> show filesystems and memory.</p>
+<h2 id="power">Power<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
+<p><code>poweroff</code> (also <code>halt</code>, <code>shutdown</code>) and <code>reboot</code> stop services, flush the data partition and remount it read-only first. UTM's <strong>Request power down</strong> does the same through the virtual power button.</p>
+<h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
+<p>Each console runs a login session as <code>root</code>. On a serial console, full-screen programs (<code>le</code>, <code>tmux</code>, <code>less</code>, <code>top</code>) follow the terminal window's size as you resize it; <code>resize</code> sets the size by hand. Colours follow your terminal; <code>NO_COLOR=1</code> turns them off.</p>
+<h2 id="clipboard">Clipboard<a class="anchor" href="#clipboard" aria-label="Link to this section">#</a></h2>
+<p><code>pbcopy</code> and <code>pbpaste</code> (also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code>, <code>wl-paste</code>) share one clipboard with tmux copy mode and editor yanks. Copies are also sent to your computer's terminal with OSC 52, so they can land in the Mac clipboard over a serial console.</p>
+<h2 id="elixir-and-erlang">Elixir and Erlang<a class="anchor" href="#elixir-and-erlang" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>iex</code> is interactive Elixir. It loads <code>~/.iex.exs</code>, so your helpers work: <code>sh &quot;ls&quot;</code> and <code>~x(ls -la)</code> run commands in <code>lsh</code>.</li>
+<li><code>elixir -e CODE</code>, or <code>elixir FILE.exs</code>; executable <code>*.exs</code> files on the path run as Elixir scripts.</li>
+<li><code>mix</code> runs in the project in the current directory.</li>
+<li>Commands can be added at runtime with <code>Lepton.Commands.register/2</code>, or by <a href="packages.html#packages-that-add-commands">packages</a>.</li>
+</ul>
+<h2 id="help-and-information">Help and information<a class="anchor" href="#help-and-information" aria-label="Link to this section">#</a></h2>
+<p><code>help</code> lists every command, and <code>man CMD</code> or <code>help CMD</code> describes one (the <a href="commands.html">command reference</a> has them all). <code>keys</code> shows the bindings loaded from your dotfiles, <code>neofetch</code> summarises the system, and <code>credits</code> says who made Lepton. The login message and <code>help</code> point here, to <a href="https://trylepton.app/docs/">https://trylepton.app/docs/</a>.</p>
+<h2 id="self-tests">Self-tests<a class="anchor" href="#self-tests" aria-label="Link to this section">#</a></h2>
+<p><code>lepton-test</code> runs Lepton's ExUnit test suite inside the running system: mounts, drivers, DHCP, the shell, editor, multiplexer, git, packages and services. <code>--only TAG</code> and file arguments pick tests.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-ps"><code>ps</code></a></td><td>report a snapshot of the current processes</td><td><code>ps [-e] [aux]</code></td></tr>
+<tr><td><a href="commands.html#cmd-top"><code>top</code></a></td><td>display Lepton processes (q to quit)</td><td><code>top</code></td></tr>
+<tr><td><a href="commands.html#cmd-kill"><code>kill</code></a></td><td>send a signal to a process</td><td><code>kill [-9|-STOP|-CONT|-TERM] PID...</code></td></tr>
+<tr><td><a href="commands.html#cmd-pgrep"><code>pgrep</code></a></td><td>look up processes by name</td><td><code>pgrep PATTERN</code></td></tr>
+<tr><td><a href="commands.html#cmd-pkill"><code>pkill</code></a></td><td>signal processes by name</td><td><code>pkill PATTERN</code></td></tr>
+<tr><td><a href="commands.html#cmd-df"><code>df</code></a></td><td>report file system space usage</td><td><code>df [-h]</code></td></tr>
+<tr><td><a href="commands.html#cmd-du"><code>du</code></a></td><td>estimate file space usage</td><td><code>du [-sh] [FILE...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-free"><code>free</code></a></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
+<tr><td><a href="commands.html#cmd-mount"><code>mount</code></a></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
+<tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first)</td><td><code>poweroff</code></td></tr>
+<tr><td><a href="commands.html#cmd-reboot"><code>reboot</code></a></td><td>reboot the machine</td><td><code>reboot</code></td></tr>
+<tr><td><a href="commands.html#cmd-resize"><code>resize</code></a></td><td>set the terminal size from the terminal emulator's window</td><td><code>resize</code></td></tr>
+<tr><td><a href="commands.html#cmd-pbcopy"><code>pbcopy</code></a></td><td>copy standard input to the clipboard</td><td><code>pbcopy [-o]</code></td></tr>
+<tr><td><a href="commands.html#cmd-pbpaste"><code>pbpaste</code></a></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
+<tr><td><a href="commands.html#cmd-iex"><code>iex</code></a></td><td>interactive Elixir (loads ~/.iex.exs)</td><td><code>iex</code></td></tr>
+<tr><td><a href="commands.html#cmd-elixir"><code>elixir</code></a></td><td>run Elixir code</td><td><code>elixir [-e CODE] [FILE.exs] [ARGS...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-mix"><code>mix</code></a></td><td>Elixir build tool (runs in the project in the current directory)</td><td><code>mix TASK [ARGS...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-help"><code>help</code></a></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
+<tr><td><a href="commands.html#cmd-man"><code>man</code></a></td><td>show the manual for a command</td><td><code>man COMMAND</code></td></tr>
+<tr><td><a href="commands.html#cmd-keys"><code>keys</code></a></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
+<tr><td><a href="commands.html#cmd-neofetch"><code>neofetch</code></a></td><td>show system information</td><td><code>neofetch</code></td></tr>
+<tr><td><a href="commands.html#cmd-lepton-test"><code>lepton-test</code></a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#processes-and-jobs">Processes and jobs</a></li>
+          <li><a href="#storage-and-persistence">Storage and persistence</a></li>
+          <li><a href="#power">Power</a></li>
+          <li><a href="#terminals">Terminals</a></li>
+          <li><a href="#clipboard">Clipboard</a></li>
+          <li><a href="#elixir-and-erlang">Elixir and Erlang</a></li>
+          <li><a href="#help-and-information">Help and information</a></li>
+          <li><a href="#self-tests">Self-tests</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

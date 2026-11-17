@@ -144,7 +144,8 @@
   box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
 
   // Scrollspy ------------------------------------------------------------------------
-  const links = [...document.querySelectorAll(".nav-links a")];
+  // In-page links only (the nav also links to other pages, like the docs).
+  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
   const sections = links.map((a) => document.querySelector(a.getAttribute("href")));
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((en) => {

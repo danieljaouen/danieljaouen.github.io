@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command reference - Lepton OS docs</title>
+  <meta name="description" content="Every built-in command, with its usage and aliases.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html" aria-current="page">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
+<p>All 115 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-basename"></span><code>basename</code></td><td>strip directory and suffix from filenames</td><td><code>basename NAME [SUFFIX]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-cat"></span><code>cat</code></td><td>concatenate files and print on the standard output</td><td><code>cat [-n] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-chmod"></span><code>chmod</code></td><td>change file mode bits</td><td><code>chmod MODE FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-chown"></span><code>chown</code></td><td>change file owner (single-user system: accepted, no-op)</td><td><code>chown OWNER FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-cp"></span><code>cp</code></td><td>copy files and directories</td><td><code>cp [-rv] SOURCE... DEST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-df"></span><code>df</code></td><td>report file system space usage</td><td><code>df [-h]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-dirname"></span><code>dirname</code></td><td>strip last component from file name</td><td><code>dirname NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-du"></span><code>du</code></td><td>estimate file space usage</td><td><code>du [-sh] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-echo"></span><code>echo</code></td><td>display a line of text</td><td><code>echo [-n] [-e] [STRING...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-expr"></span><code>expr</code></td><td>evaluate expressions</td><td><code>expr INT +|-|*|/|% INT</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-false"></span><code>false</code></td><td>do nothing, unsuccessfully</td><td><code>false</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-find"></span><code>find</code></td><td>search for files in a directory hierarchy</td><td><code>find [PATH...] [-name GLOB] [-type f|d] [-maxdepth N]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ln"></span><code>ln</code></td><td>make links between files</td><td><code>ln [-s] TARGET LINK</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ls"></span><code>ls</code></td><td>list directory contents</td><td><code>ls [-1aAlhRrtSdF] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mkdir"></span><code>mkdir</code></td><td>make directories</td><td><code>mkdir [-p] DIR...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mv"></span><code>mv</code></td><td>move (rename) files</td><td><code>mv [-v] SOURCE... DEST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-printf"></span><code>printf</code></td><td>format and print data</td><td><code>printf FORMAT [ARG...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-readlink"></span><code>readlink</code></td><td>print resolved symbolic links</td><td><code>readlink [-f] FILE</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-realpath"></span><code>realpath</code></td><td>print the resolved absolute file name</td><td><code>realpath PATH...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-rm"></span><code>rm</code></td><td>remove files or directories</td><td><code>rm [-rfv] FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-rmdir"></span><code>rmdir</code></td><td>remove empty directories</td><td><code>rmdir DIR...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-seq"></span><code>seq</code></td><td>print a sequence of numbers</td><td><code>seq [FIRST [INCR]] LAST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-stat"></span><code>stat</code></td><td>display file status</td><td><code>stat FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tee"></span><code>tee</code></td><td>read from standard input and write to standard output and files</td><td><code>tee [-a] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-test"></span><code>test</code> · also <code>[</code></td><td>check file types and compare values</td><td><code>test EXPRESSION   (also [ EXPRESSION ]: -e -f -d -L -s -x -z -n, = != -eq -ne -lt -le -gt -ge, !, -a)</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-touch"></span><code>touch</code></td><td>change file timestamps (creating files)</td><td><code>touch FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tree"></span><code>tree</code></td><td>list contents of directories in a tree-like format</td><td><code>tree [-a] [-L N] [DIR]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-true"></span><code>true</code></td><td>do nothing, successfully</td><td><code>true</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-yes"></span><code>yes</code></td><td>output a string repeatedly until killed</td><td><code>yes [STRING...]</code></td></tr>
+</tbody></table></div>
+<h2 id="text">Text<a class="anchor" href="#text" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-awk"></span><code>awk</code></td><td>pattern scanning (subset: print fields, -F, /re/, NR, NF)</td><td><code>awk [-F SEP] 'PROGRAM' [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-base64"></span><code>base64</code></td><td>base64 encode/decode data</td><td><code>base64 [-d] [FILE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-cut"></span><code>cut</code></td><td>remove sections from each line</td><td><code>cut -d DELIM -f FIELDS | -c CHARS [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-diff"></span><code>diff</code></td><td>compare files line by line (unified format)</td><td><code>diff [-u] FILE1 FILE2</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-grep"></span><code>grep</code></td><td>print lines that match patterns</td><td><code>grep [-ivnclrHhoqEFw] PATTERN [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-head"></span><code>head</code></td><td>output the first part of files</td><td><code>head [-n N] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-hexdump"></span><code>hexdump</code> · also <code>xxd</code></td><td>display file contents in hexadecimal</td><td><code>hexdump [FILE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-less"></span><code>less</code> · also <code>more</code></td><td>view text one screen at a time (vi keys)</td><td><code>less [FILE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-md5sum"></span><code>md5sum</code></td><td>compute MD5 message digest</td><td><code>md5sum [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-nl"></span><code>nl</code></td><td>number lines of files</td><td><code>nl [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-rev"></span><code>rev</code></td><td>reverse lines characterwise</td><td><code>rev [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sed"></span><code>sed</code></td><td>stream editor (s, d, p commands)</td><td><code>sed [-n] [-i] [-e] SCRIPT [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sha1sum"></span><code>sha1sum</code></td><td>compute SHA1 message digest</td><td><code>sha1sum [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sha256sum"></span><code>sha256sum</code></td><td>compute SHA256 message digest</td><td><code>sha256sum [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sha512sum"></span><code>sha512sum</code></td><td>compute SHA512 message digest</td><td><code>sha512sum [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sort"></span><code>sort</code></td><td>sort lines of text files</td><td><code>sort [-rnuf] [-k N] [-t SEP] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-strings"></span><code>strings</code></td><td>print printable character sequences in files</td><td><code>strings [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tac"></span><code>tac</code></td><td>concatenate and print files in reverse</td><td><code>tac [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tail"></span><code>tail</code></td><td>output the last part of files</td><td><code>tail [-n N] [-f] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tr"></span><code>tr</code></td><td>translate or delete characters</td><td><code>tr [-d] SET1 [SET2]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-uniq"></span><code>uniq</code></td><td>report or omit repeated lines</td><td><code>uniq [-cdu] [FILE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-wc"></span><code>wc</code></td><td>print newline, word, and byte counts</td><td><code>wc [-lwcm] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-xargs"></span><code>xargs</code></td><td>build and execute command lines from standard input</td><td><code>xargs [-n N] [CMD [ARG...]]</code></td></tr>
+</tbody></table></div>
+<h2 id="system">System<a class="anchor" href="#system" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-cal"></span><code>cal</code></td><td>display a calendar</td><td><code>cal</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-clear"></span><code>clear</code> · also <code>cls</code></td><td>clear the terminal screen</td><td><code>clear</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-date"></span><code>date</code></td><td>print the system date and time</td><td><code>date [+FORMAT] [-u]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-dmesg"></span><code>dmesg</code></td><td>print the kernel ring buffer</td><td><code>dmesg</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-env"></span><code>env</code></td><td>print the environment, or run a command in a modified one</td><td><code>env [NAME=VALUE...] [COMMAND [ARG...]]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-free"></span><code>free</code></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-help"></span><code>help</code></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-hostname"></span><code>hostname</code></td><td>show or set the system's host name</td><td><code>hostname [NAME]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-id"></span><code>id</code></td><td>print user and group information</td><td><code>id</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-keys"></span><code>keys</code></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-kill"></span><code>kill</code></td><td>send a signal to a process</td><td><code>kill [-9|-STOP|-CONT|-TERM] PID...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lsmod"></span><code>lsmod</code></td><td>show the status of modules in the Linux kernel</td><td><code>lsmod</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-man"></span><code>man</code></td><td>show the manual for a command</td><td><code>man COMMAND</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-modprobe"></span><code>modprobe</code></td><td>add a module (and its dependencies) to the kernel</td><td><code>modprobe MODULE [PARAM=VALUE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mount"></span><code>mount</code></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-neofetch"></span><code>neofetch</code> · also <code>fetch</code>, <code>about</code></td><td>show system information</td><td><code>neofetch</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-pbcopy"></span><code>pbcopy</code> · also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code></td><td>copy standard input to the clipboard</td><td><code>pbcopy [-o]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-pbpaste"></span><code>pbpaste</code> · also <code>wl-paste</code></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-pgrep"></span><code>pgrep</code></td><td>look up processes by name</td><td><code>pgrep PATTERN</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-pkill"></span><code>pkill</code></td><td>signal processes by name</td><td><code>pkill PATTERN</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-poweroff"></span><code>poweroff</code> · also <code>halt</code>, <code>shutdown</code></td><td>power off the machine (flushes the disk first)</td><td><code>poweroff</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-printenv"></span><code>printenv</code></td><td>print environment variables</td><td><code>printenv [NAME...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ps"></span><code>ps</code></td><td>report a snapshot of the current processes</td><td><code>ps [-e] [aux]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-reboot"></span><code>reboot</code></td><td>reboot the machine</td><td><code>reboot</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-reset"></span><code>reset</code></td><td>reset the terminal</td><td><code>reset</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-resize"></span><code>resize</code></td><td>set the terminal size from the terminal emulator's window</td><td><code>resize</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-rmmod"></span><code>rmmod</code></td><td>remove a module from the kernel</td><td><code>rmmod MODULE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sleep"></span><code>sleep</code></td><td>delay for a specified amount of time</td><td><code>sleep SECONDS</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-stty"></span><code>stty</code></td><td>show terminal settings (size)</td><td><code>stty [size | rows N cols M]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sync"></span><code>sync</code></td><td>flush filesystem buffers</td><td><code>sync</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-time"></span><code>time</code></td><td>run a command and report how long it took</td><td><code>time COMMAND [ARG...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-top"></span><code>top</code></td><td>display Lepton processes (q to quit)</td><td><code>top</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tty"></span><code>tty</code></td><td>print the file name of the terminal</td><td><code>tty</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-umount"></span><code>umount</code></td><td>unmount a filesystem</td><td><code>umount DIR...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-uname"></span><code>uname</code></td><td>print system information</td><td><code>uname [-asnrmo]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-uptime"></span><code>uptime</code></td><td>tell how long the system has been running</td><td><code>uptime</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-watch"></span><code>watch</code></td><td>execute a program periodically, showing output fullscreen</td><td><code>watch [-n SECS] COMMAND</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-whoami"></span><code>whoami</code></td><td>print effective user name</td><td><code>whoami</code></td></tr>
+</tbody></table></div>
+<h2 id="network">Network<a class="anchor" href="#network" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-curl"></span><code>curl</code> · also <code>wget</code>, <code>fetch</code></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-dhclient"></span><code>dhclient</code> · also <code>udhcpc</code>, <code>dhcpcd</code></td><td>configure an interface with DHCP</td><td><code>dhclient [IFACE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ifconfig"></span><code>ifconfig</code></td><td>show network interfaces</td><td><code>ifconfig</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ip"></span><code>ip</code></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-nslookup"></span><code>nslookup</code> · also <code>host</code></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ping"></span><code>ping</code></td><td>send ICMP ECHO_REQUEST to a host</td><td><code>ping [-c COUNT] HOST</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-www"></span><code>www</code> · also <code>lynx</code>, <code>browse</code></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
+</tbody></table></div>
+<h2 id="development">Development<a class="anchor" href="#development" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-elixir"></span><code>elixir</code></td><td>run Elixir code</td><td><code>elixir [-e CODE] [FILE.exs] [ARGS...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-erl"></span><code>erl</code></td><td>Erlang version information</td><td><code>erl</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-gh"></span><code>gh</code></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-git"></span><code>git</code></td><td>the stupid content tracker (Elixir implementation)</td><td><code>git COMMAND [ARGS]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-iex"></span><code>iex</code></td><td>interactive Elixir (loads ~/.iex.exs)</td><td><code>iex</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-le"></span><code>le</code> · also <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lepton-test"></span><code>lepton-test</code></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lsh"></span><code>lsh</code> · also <code>sh</code>, <code>zsh</code>, <code>bash</code></td><td>the Lepton shell</td><td><code>lsh [-c COMMANDS | SCRIPT [ARG...]]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mix"></span><code>mix</code></td><td>Elixir build tool (runs in the project in the current directory)</td><td><code>mix TASK [ARGS...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-tmux"></span><code>tmux</code></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td><td><code>tmux [new [-s NAME] | attach [-t NAME] | ls | kill-session -t NAME | list-keys]</code></td></tr>
+</tbody></table></div>
+<h2 id="administration">Administration<a class="anchor" href="#administration" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-credits"></span><code>credits</code></td><td>who made Lepton</td><td><code>credits</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lepton-install"></span><code>lepton-install</code></td><td>install Lepton from the ISO onto a disk</td><td><code>lepton-install [-y] [/dev/DISK]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lepton-tutorial"></span><code>lepton-tutorial</code> · also <code>tutorial</code></td><td>an interactive tour of Lepton</td><td><code>lepton-tutorial</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpm"></span><code>lpm</code></td><td>Lepton package manager (packages from hex.pm)</td><td><code>lpm search|info|install|list|remove|update|official|upgrade|revert ...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-wifi"></span><code>wifi</code></td><td>Wi-Fi status and credential setup</td><td><code>wifi [status | setup | forget]</code></td></tr>
+</tbody></table></div>
+<h2 id="services">Services<a class="anchor" href="#services" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-httpd"></span><code>httpd</code></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-journalctl"></span><code>journalctl</code></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td><td><code>journalctl -u NAME [-n N] [-f]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-svc"></span><code>svc</code> · also <code>systemctl</code></td><td>start, stop and restart long-running services (like systemctl)</td><td><code>svc [list|status|start|stop|restart|enable|disable|logs|cat|new|edit] ...</code></td></tr>
+</tbody></table></div>
+<h2 id="shell-builtins">Shell builtins<a class="anchor" href="#shell-builtins" aria-label="Link to this section">#</a></h2>
+<p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
+
+      </article>
+      <footer class="docs-foot">Generated from the source of lepton@8119a24.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#files-and-basics">Files and basics</a></li>
+          <li><a href="#text">Text</a></li>
+          <li><a href="#system">System</a></li>
+          <li><a href="#network">Network</a></li>
+          <li><a href="#development">Development</a></li>
+          <li><a href="#administration">Administration</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#shell-builtins">Shell builtins</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Networking - Lepton OS docs</title>
+  <meta name="description" content="DHCP, interfaces, DNS, HTTP clients, a text browser and a web server.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html" aria-current="page">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="networking">Networking<a class="anchor" href="#networking" aria-label="Link to this section">#</a></h1>
+<p>The network comes up by itself: at boot, Lepton brings up each ethernet interface and runs a DHCP client in the background. In UTM and QEMU the network card is virtio, configured this way automatically.</p>
+<p>Everything is done from Elixir: links, addresses and routes are set over rtnetlink through <code>:socket</code>, the DHCP client is written in Elixir, DNS uses Erlang's resolver, and TLS uses <code>:ssl</code> with the bundled CA certificates.</p>
+<h2 id="looking-around">Looking around<a class="anchor" href="#looking-around" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">ip addr               # addresses (also: ip link, ip route)
+ping -c 3 github.com
+nslookup github.com
+curl -sI https://trylepton.app/
+www https://trylepton.app/    # a text-mode web browser</code></pre>
+<p><code>dhclient</code> re-runs DHCP on an interface. <code>curl</code> (also <code>wget</code>) fetches over HTTP and HTTPS and can save to a file with <code>-o</code>.</p>
+<h2 id="serving">Serving<a class="anchor" href="#serving" aria-label="Link to this section">#</a></h2>
+<p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP. Run it as a <a href="services.html#httpd">service</a> to keep it running in the background.</p>
+<h2 id="wi-fi">Wi-Fi<a class="anchor" href="#wi-fi" aria-label="Link to this section">#</a></h2>
+<p>Lepton can't join Wi-Fi networks yet. The shipped kernel has no 802.11 stack or Wi-Fi drivers, and UTM/QEMU virtual machines have no wireless hardware (their network is virtio ethernet). So the automatic Wi-Fi prompt at startup is turned off.</p>
+<p>You can still save credentials for a future kernel: <code>wifi setup</code> asks for them, <code>wifi</code> shows the status and <code>wifi forget</code> clears them. They're stored in wpa_supplicant format in <code>/var/lib/lepton/wpa_supplicant.conf</code>, with the passphrase kept only as its WPA PSK.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-ip"><code>ip</code></a></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
+<tr><td><a href="commands.html#cmd-ifconfig"><code>ifconfig</code></a></td><td>show network interfaces</td><td><code>ifconfig</code></td></tr>
+<tr><td><a href="commands.html#cmd-dhclient"><code>dhclient</code></a></td><td>configure an interface with DHCP</td><td><code>dhclient [IFACE]</code></td></tr>
+<tr><td><a href="commands.html#cmd-ping"><code>ping</code></a></td><td>send ICMP ECHO_REQUEST to a host</td><td><code>ping [-c COUNT] HOST</code></td></tr>
+<tr><td><a href="commands.html#cmd-nslookup"><code>nslookup</code></a></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
+<tr><td><a href="commands.html#cmd-www"><code>www</code></a></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
+<tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
+<tr><td><a href="commands.html#cmd-wifi"><code>wifi</code></a></td><td>Wi-Fi status and credential setup</td><td><code>wifi [status | setup | forget]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#looking-around">Looking around</a></li>
+          <li><a href="#serving">Serving</a></li>
+          <li><a href="#wi-fi">Wi-Fi</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

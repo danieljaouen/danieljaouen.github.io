@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Packages (lpm) - Lepton OS docs</title>
+  <meta name="description" content="Install Elixir and Erlang packages from hex.pm, and official updates for built-in apps.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html" aria-current="page">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="packages-lpm">Packages: lpm<a class="anchor" href="#packages-lpm" aria-label="Link to this section">#</a></h1>
+<p><code>lpm</code> installs Elixir and Erlang packages directly from <a href="https://hex.pm">hex.pm</a>. It resolves version requirements and dependencies through the Hex API, downloads the tarballs, verifies them against the registry's SHA-256 checksum, and compiles them <em>inside Lepton</em> with the compilers in the image. Installed packages are loaded at every boot.</p>
+<pre><code class="language-sh">lpm search json
+lpm info jason
+lpm install jason           # or jason@~&gt;1.4, several at once
+elixir -e 'IO.puts Jason.encode!(%{hello: &quot;lepton&quot;})'
+lpm install ./my_tool       # a local Mix project
+lpm list
+lpm remove jason
+lpm update                  # reinstall your packages at their latest version</code></pre>
+<h2 id="packages-that-add-commands">Packages that add commands<a class="anchor" href="#packages-that-add-commands" aria-label="Link to this section">#</a></h2>
+<p>A package can add shell commands: any module that does <code>use Lepton.Command</code> and defines <code>defcmd</code>s becomes a command when the package loads, so a Lepton tool can be published to hex.pm like any other library.</p>
+<pre><code class="language-elixir">defmodule LeptonCowsay do
+  use Lepton.Command
+
+  defcmd &quot;cowsay&quot;, &quot;a talking cow&quot;, usage: &quot;cowsay TEXT...&quot; do
+    IO.puts(ctx, &quot;&lt; &quot; &lt;&gt; Enum.join(args, &quot; &quot;) &lt;&gt; &quot; &gt;&quot;)
+    0
+  end
+end</code></pre>
+<p>Packages built on Mix-specific features (compile-time config, application callbacks in <code>mix.exs</code>, NIFs) are not supported yet.</p>
+<h2 id="packages-cant-hijack-the-system">Packages can't hijack the system<a class="anchor" href="#packages-cant-hijack-the-system" aria-label="Link to this section">#</a></h2>
+<p>Anyone can publish to hex.pm, so <code>lpm</code> never lets a package silently take over part of the OS:</p>
+<ul>
+<li>a package command named like a built-in (<code>grep</code>, <code>git</code>, <code>poweroff</code>, …) is skipped, and the built-in keeps working;</li>
+<li>a package may not define <code>Lepton.*</code> modules or any module the system already has (Elixir, OTP, Lepton). This is checked before compiling and again after, and package code goes <em>after</em> the system's on the code path;</li>
+<li>only code compiled from the package's sources runs; prebuilt <code>.beam</code> files are discarded.</li>
+</ul>
+<p>Installing a package still runs its code, so only install packages you trust.</p>
+<h2 id="official-updates-for-built-in-apps">Official updates for built-in apps<a class="anchor" href="#official-updates-for-built-in-apps" aria-label="Link to this section">#</a></h2>
+<p>Built-in apps can be updated from hex.pm without a new ISO, but only by <strong>official updates</strong>.</p>
+<pre><code class="language-sh">lpm official          # what's available, and what's installed
+lpm upgrade grep      # install the official update for grep
+lpm upgrade           # refresh all of them (withdrawn ones are reverted)
+lpm revert grep       # back to the built-in grep
+builtin grep ...      # always runs the built-in, even when replaced</code></pre>
+<p>The project publishes a signed list, <a href="https://trylepton.app/official.json">https://trylepton.app/official.json</a> (Ed25519; the signature is in <code>official.json.sig</code>). Each entry names the exact hex package, version and tarball SHA-256, the built-in commands it may stand in for, and every pinned dependency. The public key is compiled into the OS, with a copy at <code>/etc/lepton/official-key.pub</code>.</p>
+<ul>
+<li>A look-alike package isn't in the list.</li>
+<li>A new release pushed from a compromised hex.pm account doesn't match the pinned checksum.</li>
+<li>A tampered list fails the signature, and an <em>older</em> list (a lower <code>serial</code>) is refused, so a withdrawn update can't come back.</li>
+<li>The built-in is never deleted: &quot;replacing&quot; only puts the update first in line. The last verified list is cached for offline use.</li>
+</ul>
+<p>Official updates are maintained by the <a href="https://hex.pm/orgs/lepton"><code>lepton</code> organization on hex.pm</a>, which the signed list names and <code>lpm official</code> shows.</p>
+<h3 id="for-maintainers-publishing-an-official-update">For maintainers: publishing an official update<a class="anchor" href="#for-maintainers-publishing-an-official-update" aria-label="Link to this section">#</a></h3>
+<p>Making a package official takes two things: every hex.pm owner of the package must be the <code>lepton</code> organization or one of its members, <em>and</em> the list must be signed with the Lepton key. After the first publish, hand the package to the organization with <code>mix hex.owner transfer PACKAGE lepton</code>.</p>
+<pre><code class="language-sh">mix hex.user auth        # once; the owner check reads the org's members
+mix lepton.official add lepton_grep 1.2.0 --replaces grep,egrep [--dep NAME@VERSION ...]
+cd site &amp;&amp; git commit -am &quot;Official: lepton_grep 1.2.0&quot; &amp;&amp; git push</code></pre>
+<p><code>add</code> pins the checksums from hex.pm and refuses unless the whole dependency closure is pinned; <code>list</code>, <code>remove</code> and <code>sign</code> manage the list. The signing key and the organization's API key live in the macOS Keychain (<code>lepton-official-signing-key</code> and <code>hex-lepton</code>), never in a repository.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-lpm"><code>lpm</code></a></td><td>Lepton package manager (packages from hex.pm)</td><td><code>lpm search|info|install|list|remove|update|official|upgrade|revert ...</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/packages.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#packages-that-add-commands">Packages that add commands</a></li>
+          <li><a href="#packages-cant-hijack-the-system">Packages can't hijack the system</a></li>
+          <li><a href="#official-updates-for-built-in-apps">Official updates for built-in apps</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

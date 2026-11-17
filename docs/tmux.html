@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The multiplexer (tmux) - Lepton OS docs</title>
+  <meta name="description" content="tmux sessions, windows and panes, driven by your ~/.tmux.conf.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html" aria-current="page">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="the-multiplexer-tmux">The multiplexer: tmux<a class="anchor" href="#the-multiplexer-tmux" aria-label="Link to this section">#</a></h1>
+<p><code>tmux</code> interprets your <code>~/.tmux.conf</code>:</p>
+<ul>
+<li><code>set -g prefix C-t</code> (your prefix) and every <code>bind</code> / <code>unbind</code>, including <code>-r</code> (repeat), <code>-n</code> (root table) and <code>-T copy-mode-vi</code>;</li>
+<li><code>\;</code> command chains;</li>
+<li><code>mode-keys vi</code>, <code>history-limit 100000</code>, <code>monitor-activity</code> and <code>set-titles</code>;</li>
+<li><code>if-shell &quot;uname | grep -q Linux&quot; &quot;source-file ~/.tmux.linux.conf&quot;</code>. The test runs in <code>lsh</code>, so the Linux branch is taken and <code>Y</code> in copy mode pipes to <code>xclip</code>.</li>
+</ul>
+<p>Your zoom hack (<code>+</code>/<code>-</code>, built on <code>new-window -d -n tmux-zoom</code> and cross-window <code>swap-pane</code>) works as written. <code>@themepack powerline/default/cyan</code> sets the status line colours. TPM and resurrect/continuum plugins are not run.</p>
+<h2 id="sessions">Sessions<a class="anchor" href="#sessions" aria-label="Link to this section">#</a></h2>
+<p>Sessions keep running after you detach with <code>prefix d</code>. Reattach with <code>tmux attach</code> (or <code>tmux attach -t NAME</code>); <code>tmux ls</code> lists them.</p>
+<h2 id="copy-mode">Copy mode<a class="anchor" href="#copy-mode" aria-label="Link to this section">#</a></h2>
+<p><code>prefix [</code> enters vi copy mode: move with the vi keys, <code>v</code> starts a selection and <code>y</code> copies it to the clipboard shared with the editor, <code>pbcopy</code> and <code>pbpaste</code> (and with your computer's clipboard over OSC 52).</p>
+<h2 id="moving-between-the-editor-and-panes">Moving between the editor and panes<a class="anchor" href="#moving-between-the-editor-and-panes" aria-label="Link to this section">#</a></h2>
+<p>With the Spacemacs <strong>tmux layer</strong> enabled, <code>C-h/j/k/l</code> in <code>le</code> moves between editor windows and, at an edge, on to the neighbouring tmux pane.</p>
+<p>Every binding loaded from your configuration is on the <a href="keybindings.html#tmux">key bindings page</a>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-tmux"><code>tmux</code></a></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td><td><code>tmux [new [-s NAME] | attach [-t NAME] | ls | kill-session -t NAME | list-keys]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tmux.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#sessions">Sessions</a></li>
+          <li><a href="#copy-mode">Copy mode</a></li>
+          <li><a href="#moving-between-the-editor-and-panes">Moving between the editor and panes</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

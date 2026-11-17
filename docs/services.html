@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services (svc) - Lepton OS docs</title>
+  <meta name="description" content="Start, stop and restart long-running apps, like systemd.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html" aria-current="page">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="services-svc">Services: svc<a class="anchor" href="#services-svc" aria-label="Link to this section">#</a></h1>
+<p><code>svc</code> (also <code>systemctl</code>) starts, stops and restarts long-running apps, restarts them when they fail, starts enabled ones at boot and keeps their logs.</p>
+<pre><code class="language-sh">svc                         # every service: state, PID, uptime
+svc start hello             # an example service that ships with Lepton
+svc status hello            # state, PID, restarts and the last log lines
+svc logs hello -f           # follow its output (also: journalctl -u hello -f)
+svc stop hello              # stops it and every process it started
+svc new clock 'while true; do date; sleep 60; done'
+svc enable --now clock      # start now and at every boot</code></pre>
+<h2 id="commands">Commands<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>svc</code> / <code>svc list</code></td><td>every service with its state, PID and uptime</td></tr>
+<tr><td><code>svc status NAME</code></td><td>details and the last 10 log lines</td></tr>
+<tr><td><code>svc start / stop / restart NAME…</code></td><td>control services</td></tr>
+<tr><td><code>svc enable / disable [--now] NAME</code></td><td>start at boot (<code>--now</code> also starts or stops it)</td></tr>
+<tr><td><code>svc logs NAME [-n N] [-f]</code></td><td>the log; <code>-f</code> follows it until <code>C-c</code></td></tr>
+<tr><td><code>svc cat NAME</code></td><td>show the unit file</td></tr>
+<tr><td><code>svc new NAME COMMAND…</code></td><td>create <code>~/.config/lepton/services/NAME.service</code></td></tr>
+<tr><td><code>svc edit NAME</code></td><td>edit a unit in <code>le</code>; editing a shipped unit makes your own copy</td></tr>
+<tr><td><code>svc is-active / is-enabled NAME</code></td><td>for scripts: exit status 0 means yes</td></tr>
+<tr><td><code>journalctl -u NAME [-n N] [-f]</code></td><td>the same log, systemd-style</td></tr>
+</tbody></table></div>
+<h2 id="unit-files">Unit files<a class="anchor" href="#unit-files" aria-label="Link to this section">#</a></h2>
+<p>A service is a unit file in systemd syntax, named <code>NAME.service</code>, in <code>~/.config/lepton/services/</code> (yours; it persists on an installed system) or <code>/etc/lepton/services/</code> (shipped with Lepton). Yours override a shipped unit with the same name. <code>ExecStart</code> is any <code>lsh</code> command line.</p>
+<pre><code class="language-ini">[Unit]
+Description=Static web server for ~/public (port 8080)
+
+[Service]
+ExecStart=mkdir -p ~/public &amp;&amp; httpd -p 8080 ~/public
+Restart=on-failure      # no (default) | on-failure | always
+RestartSec=2            # seconds before a restart (default 1)
+Environment=GREETING=hi &quot;NAME=a b&quot;
+WorkingDirectory=~      # default: your home
+TimeoutStopSec=5        # wait this long before killing on stop</code></pre>
+<p>Other keys are ignored, and <code>svc status</code> lists them.</p>
+<h2 id="how-services-behave">How services behave<a class="anchor" href="#how-services-behave" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Each run is a Lepton process tree under PID 1, so it shows in <code>ps</code>. Stopping a service ends the whole tree (a terminate signal, then a kill after <code>TimeoutStopSec</code>).</li>
+<li>A clean exit leaves the service <code>inactive</code>; a non-zero exit or a kill marks it <code>failed</code>, and <code>Restart=</code> decides whether it comes back. The restarts stop after 5 starts in 10 seconds, as in systemd; a manual <code>svc start</code> resets that.</li>
+<li>Output goes to <code>/var/lib/lepton/log/NAME.log</code> (rotated at 1 MiB), so on an installed system the log survives reboots.</li>
+<li>Enabled services start at boot, once the data partition is mounted; the list is kept in <code>/var/lib/lepton/services</code>. Every service is stopped cleanly before power-off and reboot.</li>
+</ul>
+<h2 id="shipped-services">Shipped services<a class="anchor" href="#shipped-services" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>hello</strong>: says hello every two seconds. The tutorial uses it.</li>
+<li><strong>httpd</strong>: serves <code>~/public</code> on port 8080 with <code>httpd</code>.</li>
+</ul>
+<h2 id="httpd">httpd<a class="anchor" href="#httpd" aria-label="Link to this section">#</a></h2>
+<p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP (static files only), using the web server built into Erlang/OTP. It makes a good first service:</p>
+<pre><code class="language-sh">mkdir -p ~/public &amp;&amp; echo 'hello' &gt; ~/public/index.html
+svc start httpd
+curl http://localhost:8080/</code></pre>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<p>Only simple services: no dependencies between services (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits. Everything runs as <code>root</code>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-svc"><code>svc</code></a></td><td>start, stop and restart long-running services (like systemctl)</td><td><code>svc [list|status|start|stop|restart|enable|disable|logs|cat|new|edit] ...</code></td></tr>
+<tr><td><a href="commands.html#cmd-journalctl"><code>journalctl</code></a></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td><td><code>journalctl -u NAME [-n N] [-f]</code></td></tr>
+<tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#commands">Commands</a></li>
+          <li><a href="#unit-files">Unit files</a></li>
+          <li><a href="#how-services-behave">How services behave</a></li>
+          <li><a href="#shipped-services">Shipped services</a></li>
+          <li><a href="#httpd">httpd</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

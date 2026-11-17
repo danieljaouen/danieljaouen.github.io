@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key bindings - Lepton OS docs</title>
+  <meta name="description" content="Everything Lepton loads from the dotfiles: editor, tmux, shell and git.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html" aria-current="page">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="key-bindings">Key bindings<a class="anchor" href="#key-bindings" aria-label="Link to this section">#</a></h1>
+<p>Generated from what Lepton actually loads from the <a href="dotfiles.html">dotfiles</a> the published ISO is built with, using the same commands you can run inside Lepton (<code>keys</code>, <code>bindkey</code>, <code>alias</code>). Built-in Spacemacs and tmux defaults are described on the <a href="editor.html">editor</a> and <a href="tmux.html">tmux</a> pages.</p>
+<h2 id="editor">Editor<a class="anchor" href="#editor" aria-label="Link to this section">#</a></h2>
+<p><code>keys editor</code>: bindings and settings read from <code>~/.spacemacs</code>.</p>
+<pre><code>Editor (le) - Spacemacs bindings from: ~/.spacemacs, ~/.spacemacs.d/editing.el, ~/.spacemacs.d/keybindings.el
+  theme: monokai   layers: ansible auto-completion c-c++ claude-code clojure colors common-lisp csv elixir emacs-lisp emoji erlang git helm html javascript lua markdown org osx python react ruby ruby-on-rails shell shell-scripts sql swift syntax-checking tmux typescript version-control vimscript yaml
+  global                             C-h      backward-delete-char
+  global                             C-w      evil-delete-backward-word
+  evil-normal-state-map              ;        evil-ex
+  evil-normal-state-map              C-h      evil-window-left
+  evil-normal-state-map              C-j      evil-window-down
+  evil-normal-state-map              C-k      evil-window-up
+  evil-normal-state-map              C-l      evil-window-right
+  evil-normal-state-map              ,w       delete-trailing-whitespace
+  evil-visual-state-map              ;        evil-ex
+  evil-visual-state-map              ,q       sort-lines
+  evil-visual-state-map              ,ah      align-repeat
+  evil-insert-state-map              C-n      next-line
+  evil-insert-state-map              C-p      previous-line
+  evil-insert-state-map              C-y      &lt;unbound&gt;
+  evil-insert-state-map              C-y ,    my-tab-command
+  evil-evilified-state-map           /        evil-ex-search-forward
+  evil-evilified-state-map           ?        evil-ex-search-backward
+  evil-evilified-state-map           n        evil-ex-search-next
+  evil-evilified-state-map           N        evil-ex-search-previous
+  isearch-mode-map                   C-h      backward-delete-char
+  isearch-mode-map                   C-w      evil-delete-backward-word
+  evil-motion-state-map              *        evil-ex-search-word-forward
+  evil-motion-state-map              #        evil-ex-search-word-backward
+  Buffer-menu-mode-map               k        evil-previous-line
+  helm-map                           C-h      delete-backward-char
+  helm-map                           C-w      evil-delete-backward-word
+  helm-find-files-map                C-w      evil-delete-backward-word
+  iedit-mode-keymap                  C-h      backward-delete-char
+  iedit-mode-occurrence-keymap       C-h      backward-delete-char
+  company-active-map                 C-n      company-select-next
+  company-active-map                 C-p      company-select-previous
+  company-active-map                 C-w      evil-delete-backward-word
+  company-active-map                 C-h      backward-delete-char
+  company-active-map                 C-d      &lt;unbound&gt;
+  company-active-map                 C-d o    insert-eex-statement
+  company-active-map                 C-d t    insert-eex-expression
+  magit-mode-map:normal              C-j      evil-window-down
+  magit-mode-map:normal              C-k      evil-window-up
+  magit-mode-map:normal              /        evil-ex-search-forward
+  magit-mode-map:normal              n        evil-ex-search-next
+  magit-mode-map:normal              N        evil-ex-search-previous
+  magit-mode-map:normal              z        &lt;unbound&gt;
+  magit-mode-map:normal              Z        magit-stash
+  magit-mode-map:normal              zt       evil-scroll-line-to-top
+  magit-mode-map:normal              zz       evil-scroll-line-to-center
+  variables: ahs-include=&quot;\\s_+&quot;, backup-by-copying=true, case-fold-search=nil, case-replace=nil, create-lockfiles=nil, dired-recursive-deletes=&quot;always&quot;, display-fill-column-indicator-column=101, display-line-numbers-type=&quot;relative&quot;, dotspacemacs-additional-packages=[&quot;exunit&quot;, &quot;hy-mode&quot;, &quot;lfe-mode&quot;], dotspacemacs-ask-for-lazy-installation=nil, dotspacemacs-default-font=[&quot;Menlo&quot;, &quot;:size&quot;, 12, &quot;:weight&quot;, &quot;normal&quot;, &quot;:width&quot;, &quot;normal&quot;, &quot;:powerline-scale&quot;, 1.1], dotspacemacs-elpa-subdirectory=nil, dotspacemacs-excluded-packages=[&quot;alchemist&quot;, &quot;evil-search-highlight-persist&quot;], dotspacemacs-maximized-at-startup=nil, evil-escape-delay=0.4, evil-escape-excluded-major-modes=[&quot;magit-status-mode&quot;, &quot;magit-revision-mode&quot;, &quot;magit-diff-mode&quot;, &quot;help-mode&quot;], evil-escape-key-sequence=&quot;jk&quot;, fill-column=79, helm-ag-use-grep-ignore-list=nil, inhibit-message=true, make-backup-files=nil, search-invisible=true, sentence-end-double-space=true</code></pre>
+<h2 id="tmux">tmux<a class="anchor" href="#tmux" aria-label="Link to this section">#</a></h2>
+<p><code>keys tmux</code>: the key tables from <code>~/.tmux.conf</code>.</p>
+<pre><code>Multiplexer (tmux) - from ~/.tmux.conf   prefix: C-t
+  copy-mode-vi  $                 send-keys -X end-of-line
+  copy-mode-vi  /                 command-prompt -p &quot;(search down)&quot; &quot;send -X search-forward '%%'&quot;
+  copy-mode-vi  0                 send-keys -X start-of-line
+  copy-mode-vi  &lt;down&gt;            send-keys -X cursor-down
+  copy-mode-vi  &lt;left&gt;            send-keys -X cursor-left
+  copy-mode-vi  &lt;right&gt;           send-keys -X cursor-right
+  copy-mode-vi  &lt;up&gt;              send-keys -X cursor-up
+  copy-mode-vi  ?                 command-prompt -p &quot;(search up)&quot; &quot;send -X search-backward '%%'&quot;
+  copy-mode-vi  C-b               send-keys -X page-up
+  copy-mode-vi  C-c               send-keys -X cancel
+  copy-mode-vi  C-d               send-keys -X halfpage-down
+  copy-mode-vi  C-f               send-keys -X page-down
+  copy-mode-vi  C-u               send-keys -X halfpage-up
+  copy-mode-vi  ESC               send-keys -X clear-selection
+  copy-mode-vi  G                 send-keys -X history-bottom
+  copy-mode-vi  H                 send-keys -X top-line
+  copy-mode-vi  L                 send-keys -X bottom-line
+  copy-mode-vi  M                 send-keys -X middle-line
+  copy-mode-vi  N                 send-keys -X search-reverse
+  copy-mode-vi  RET               send-keys -X copy-selection-and-cancel
+  copy-mode-vi  SPC               send-keys -X begin-selection
+  copy-mode-vi  V                 send-keys -X select-line
+  copy-mode-vi  Y                 send-keys -X copy-pipe-and-cancel 'xclip -sel clip -i'
+  copy-mode-vi  ^                 send-keys -X back-to-indentation
+  copy-mode-vi  b                 send-keys -X previous-word
+  copy-mode-vi  e                 send-keys -X next-word-end
+  copy-mode-vi  g                 send-keys -X history-top
+  copy-mode-vi  h                 send-keys -X cursor-left
+  copy-mode-vi  j                 send-keys -X cursor-down
+  copy-mode-vi  k                 send-keys -X cursor-up
+  copy-mode-vi  l                 send-keys -X cursor-right
+  copy-mode-vi  n                 send-keys -X search-again
+  copy-mode-vi  q                 send-keys -X cancel
+  copy-mode-vi  v                 send-keys -X begin-selection
+  copy-mode-vi  w                 send-keys -X next-word
+  copy-mode-vi  y                 send-keys -X copy-selection
+  prefix        !                 break-pane
+  prefix        &quot;                 split-window
+  prefix        #                 list-buffers
+  prefix        $                 command-prompt -I &quot;#S&quot; &quot;rename-session '%%'&quot;
+  prefix        %                 split-window -h
+  prefix        &amp;                 confirm-before -p &quot;kill-window #W? (y/n)&quot; kill-window
+  prefix        '                 command-prompt -p index &quot;select-window -t ':%%'&quot;
+  prefix        (                 switch-client -p
+  prefix        )                 switch-client -n
+  prefix        +                 new-window -d -n tmux-zoom 'clear &amp;&amp; echo TMUX ZOOM &amp;&amp; read' \; swap-pane -s tmux-zoom.0 \; select-window -t tmux-zoom
+  prefix        ,                 command-prompt 'rename-window '\''%%'\'''
+  prefix        -                 last-window \; swap-pane -s tmux-zoom.0 \; kill-window -t tmux-zoom
+  prefix        0                 select-window -t :=0
+  prefix        1                 select-window -t :=1
+  prefix        2                 select-window -t :=2
+  prefix        3                 select-window -t :=3
+  prefix        4                 select-window -t :=4
+  prefix        5                 select-window -t :=5
+  prefix        6                 select-window -t :=6
+  prefix        7                 select-window -t :=7
+  prefix        8                 select-window -t :=8
+  prefix        9                 select-window -t :=9
+  prefix        :                 command-prompt
+  prefix        ;                 last-pane
+  prefix        &lt;down&gt;            select-pane -D
+  prefix        &lt;left&gt;            select-pane -L
+  prefix        &lt;prior&gt;           copy-mode -u
+  prefix        &lt;right&gt;           select-pane -R
+  prefix        &lt;up&gt;              select-pane -U
+  prefix        =                 select-layout tiled
+  prefix        ?                 list-keys
+  prefix        C                 new-window
+  prefix        C-f               command-prompt 'switch-client -t %%'
+  prefix        C-h      (repeat) select-window -t :-
+  prefix        C-l      (repeat) select-window -t :+
+  prefix        C-o               rotate-window
+  prefix        C-t               send-prefix
+  prefix        C-w               split-window -p 25 'vim .' \; swap-pane -D
+  prefix        C-x               kill-pane
+  prefix        H        (repeat) resize-pane -L 5
+  prefix        J        (repeat) resize-pane -D 5
+  prefix        K        (repeat) resize-pane -U 5
+  prefix        L        (repeat) resize-pane -R 5
+  prefix        M-1               select-layout even-horizontal
+  prefix        M-2               select-layout even-vertical
+  prefix        M-5               select-layout tiled
+  prefix        R                 source-file ~/.tmux.conf \; display-message 'Config reloaded.'
+  prefix        S                 choose-session
+  prefix        SPC               next-layout
+  prefix        [                 copy-mode
+  prefix        ]                 paste-buffer
+  prefix        c                 new-window \; command-prompt 'rename-window '\''%%'\'''
+  prefix        d                 detach-client
+  prefix        h                 select-pane -L
+  prefix        i                 display-message
+  prefix        j                 select-pane -D
+  prefix        k                 select-pane -U
+  prefix        l                 select-pane -R
+  prefix        n                 next-window
+  prefix        o                 last-window
+  prefix        p                 paste-buffer
+  prefix        q                 display-panes
+  prefix        r                 refresh-client
+  prefix        s                 split-window -v
+  prefix        t                 clock-mode
+  prefix        v                 split-window -h
+  prefix        w                 choose-tree -w
+  prefix        x                 confirm-before -p &quot;kill-pane #P? (y/n)&quot; kill-pane
+  prefix        z                 resize-pane -Z
+  prefix        {                 swap-pane -U
+  prefix        }                 swap-pane -D</code></pre>
+<h2 id="shell-line-editor">Shell line editor<a class="anchor" href="#shell-line-editor" aria-label="Link to this section">#</a></h2>
+<p><code>bindkey</code>: the line editor's keys (oh-my-zsh emacs bindings).</p>
+<pre><code>&quot;C-a&quot; beginning_of_line
+&quot;&lt;home&gt;&quot; beginning_of_line
+&quot;C-e&quot; end_of_line
+&quot;&lt;end&gt;&quot; end_of_line
+&quot;C-b&quot; backward_char
+&quot;&lt;left&gt;&quot; backward_char
+&quot;C-f&quot; forward_char
+&quot;&lt;right&gt;&quot; forward_char
+&quot;M-b&quot; backward_word
+&quot;C-&lt;left&gt;&quot; backward_word
+&quot;M-f&quot; forward_word
+&quot;C-&lt;right&gt;&quot; forward_word
+&quot;DEL&quot; backward_delete_char
+&quot;C-h&quot; backward_delete_char
+&quot;C-d&quot; delete_char_or_eof
+&quot;&lt;deletechar&gt;&quot; delete_char
+&quot;C-k&quot; kill_line
+&quot;C-u&quot; kill_whole_line
+&quot;C-w&quot; backward_kill_word
+&quot;M-DEL&quot; backward_kill_word
+&quot;M-d&quot; kill_word
+&quot;C-y&quot; yank
+&quot;C-t&quot; transpose_chars
+&quot;C-l&quot; clear_screen
+&quot;C-p&quot; up_history
+&quot;&lt;up&gt;&quot; up_history
+&quot;C-n&quot; down_history
+&quot;&lt;down&gt;&quot; down_history
+&quot;C-r&quot; history_search
+&quot;TAB&quot; complete
+&quot;RET&quot; accept_line
+&quot;C-j&quot; accept_line
+&quot;C-c&quot; cancel
+&quot;C-g&quot; cancel
+&quot;M-.&quot; insert_last_word
+&quot;C-x&quot; prefix_ctrl_x</code></pre>
+<h2 id="shell-aliases">Shell aliases<a class="anchor" href="#shell-aliases" aria-label="Link to this section">#</a></h2>
+<p><code>alias</code>: from <code>~/.zshrc</code> and the oh-my-zsh git plugin.</p>
+<pre><code>a='ansible'
+ap='ansible-playbook'
+api='ansible-playbook -i'
+apik='ansible-playbook --ask-sudo-pass -i'
+apio='ansible-playbook -i ~/.ansible.d/inventories/osx'
+apios='ansible-playbook -i ~/.ansible.d/inventories/osx ~/.ansible.d/site.yml'
+apvi='ansible-playbook -vvvv -i'
+apvik='ansible-playbook -vvvv --ask-sudo-pass -i'
+b='bundle'
+be='bundle exec'
+bec='bundle exec cucumber'
+beg='bundle exec rails generate'
+ber='bundle exec rake'
+bers='bundle exec rspec'
+bi='bundle install'
+bu='bundle update'
+copy='xclip -sel clip -i'
+daspt='django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/archive/master.zip --extension=py,rst,html'
+dr='docker'
+dri='docker images'
+drpl='docker pull'
+drps='docker ps'
+drpu='docker push'
+drr='docker run'
+drs='docker search'
+e='emacsclient'
+fd='fab dev'
+gc='git commit -m'
+gp='git'
+gpu='git'
+gx='guix'
+gxd='guix describe'
+gxgc='guix gc'
+gxi='guix install'
+gxp='guix package'
+gxpi='guix show'
+gxpli='guix package --list-installed'
+gxprb='guix package --roll-back'
+gxr='guix remove'
+gxs='guix search'
+gxsh='guix shell'
+gxu='guix upgrade'
+h='hg'
+hc='hg commit -m'
+hm='hg commit -m 'merge.''
+hp='hg'
+hpu='hg'
+hqci='hg qci'
+hqf='hg qf'
+hqgl='hg qgl'
+hqi='hg qi'
+hqlog='hg gqlog'
+hqn='hg qn'
+hqpo='hg qpo'
+hqpoa='hg qpoa'
+hqpua='hg qpua'
+hqq='hg qq'
+hqr='hg qr'
+hqrm='hg qrm'
+hqst='hg qst'
+hup='hg up'
+hx='helix'
+l='ls -lah'
+m='mix'
+mc='mix compile'
+mcf='mix compile --all --force'
+mdg='mix deps.get'
+mn='mix new'
+mute='vol 0'
+nv='nvim'
+open='xdg-open'
+paste='xclip -o'
+pm='python manage.py'
+pmm='python manage.py migrate'
+pmr='python manage.py runserver'
+pmrp='python manage.py runserver_plus'
+pmrpg='python manage.py runserver_plus --adminmedia=`pwd`/media/admin'
+pms='python manage.py shell'
+pmsdb='python manage.py syncdb'
+pmsi='python manage.py schemamigration --initial'
+pmsm='python manage.py schemamigration --auto'
+pmsp='python manage.py shell_plus'
+re='rebar'
+rn='rails new'
+rr='rbenv rehash'
+rt='rake ctags'
+serve_this='python -m SimpleHTTPServer 8100'
+t='task'
+vim='le'</code></pre>
+<h2 id="git">git<a class="anchor" href="#git" aria-label="Link to this section">#</a></h2>
+<p><code>keys git</code>: aliases from <code>~/.gitconfig</code>.</p>
+<pre><code>git aliases - from ~/.gitconfig
+  git br     -&gt; git branch
+  git ci     -&gt; git commit
+  git co     -&gt; git checkout
+  git dc     -&gt; git diff --cached
+  git df     -&gt; git diff
+  git gl     -&gt; git log -n 10 --color=always --all --graph --topo-order --pretty='format:%h %s %d%n(%cr by %cn)%n'
+  git gll    -&gt; git log --color=always --all --graph --topo-order --pretty='format:%h %s %d%n(%cr by %cn)%n'
+  git ign    -&gt; git ls-files -o -i --exclude-standard
+  git lg     -&gt; git log -p
+  git ll     -&gt; git pull
+  git ls     -&gt; git ls-files
+  git sh     -&gt; git push
+  git st     -&gt; git status
+  git ull    -&gt; git pull
+  git ush    -&gt; git push</code></pre>
+
+      </article>
+      <footer class="docs-foot">Generated from the source of lepton@8119a24.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#editor">Editor</a></li>
+          <li><a href="#tmux">tmux</a></li>
+          <li><a href="#shell-line-editor">Shell line editor</a></li>
+          <li><a href="#shell-aliases">Shell aliases</a></li>
+          <li><a href="#git">git</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

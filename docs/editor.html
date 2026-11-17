@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The editor (le) - Lepton OS docs</title>
+  <meta name="description" content="A Spacemacs-style editor configured from your ~/.spacemacs.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html" aria-current="page">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="the-editor-le">The editor: le<a class="anchor" href="#the-editor-le" aria-label="Link to this section">#</a></h1>
+<p><code>le</code> is a Spacemacs work-alike. It also answers to <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code> and <code>edit</code>.</p>
+<h2 id="read-from-your-configuration">Read from your configuration<a class="anchor" href="#read-from-your-configuration" aria-label="Link to this section">#</a></h2>
+<p><code>le</code> reads <code>~/.spacemacs</code> and <code>~/.spacemacs.d/{editing,keybindings}.el</code> with an Emacs Lisp reader, extracting <code>define-key</code>, <code>global-set-key</code>, <code>evil-define-key</code>, <code>setq(-default)</code>, <code>defalias</code> and <code>defun</code> forms, including inside <code>with-eval-after-load</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>From your config</th><th>Effect in <code>le</code></th></tr></thead>
+<tbody>
+<tr><td><code>;</code> → <code>evil-ex</code> (normal, visual)</td><td><code>;</code> opens the ex prompt</td></tr>
+<tr><td><code>C-h/j/k/l</code> → <code>evil-window-*</code></td><td>window navigation; with the <strong>tmux layer</strong>, at an edge it moves to the neighbouring tmux pane</td></tr>
+<tr><td><code>,w</code> → <code>delete-trailing-whitespace</code></td><td>normal state</td></tr>
+<tr><td><code>,q</code> → <code>sort-lines</code>, <code>,ah</code> → <code>align-repeat</code></td><td>visual state (your <code>align-repeat</code> defun is implemented)</td></tr>
+<tr><td>insert <code>C-h</code> backspace, <code>C-w</code> delete word, <code>C-n</code>/<code>C-p</code> lines</td><td>insert state</td></tr>
+<tr><td><code>C-y</code> unbound, <code>C-y ,</code> → <code>my-tab-command</code></td><td>indent + yasnippet expansion (snippets from <code>~/.emacs.d/snippets</code>)</td></tr>
+<tr><td>evilified <code>/ ? n N</code>, <code>Buffer-menu</code> <code>k</code></td><td>magit, dired, help and list buffers</td></tr>
+<tr><td>company <code>C-n/C-p/C-w/C-h</code>, <code>C-d o</code>/<code>C-d t</code> (EEx tags)</td><td>completion popup</td></tr>
+<tr><td>magit <code>C-j/C-k</code>, <code>/ n N</code>, <code>Z</code> stash, <code>zt</code>/<code>zz</code></td><td><code>SPC g s</code> status buffer</td></tr>
+<tr><td><code>evil-escape-key-sequence &quot;jk&quot;</code>, delay 0.4</td><td><code>jk</code> leaves insert state</td></tr>
+<tr><td><code>display-line-numbers-type 'relative</code></td><td>relative line numbers</td></tr>
+<tr><td><code>display-fill-column-indicator-column 101</code>, <code>fill-column 79</code></td><td>indicator at column 101</td></tr>
+<tr><td><code>case-fold-search nil</code></td><td>case-sensitive search</td></tr>
+<tr><td><code>before-save-hook delete-trailing-whitespace</code></td><td>applied on save</td></tr>
+<tr><td><code>defalias 'sl 'sort-lines</code></td><td><code>:sl</code> / <code>M-x sl</code></td></tr>
+<tr><td><code>dotspacemacs-themes '(monokai …)</code></td><td>Monokai palette</td></tr>
+</tbody></table></div>
+<p>The full list of what was loaded is on the <a href="keybindings.html">key bindings page</a>, or <code>keys editor</code> inside Lepton.</p>
+<h2 id="spacemacs-defaults">Spacemacs defaults<a class="anchor" href="#spacemacs-defaults" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>the <code>SPC</code> leader with which-key popups: <code>SPC f f/s</code> files, <code>SPC b b/d</code> buffers, <code>SPC w /,-,d,m</code> windows, <code>SPC g s</code> git, <code>SPC p f</code> project files, <code>SPC s s</code> / <code>SPC /</code> search, <code>SPC t n/r</code> line numbers, <code>SPC x a r</code> align, <code>SPC q q</code> quit, <code>SPC SPC</code> M-x, <code>SPC ?</code> bindings;</li>
+<li>helm-style candidate lists;</li>
+<li>evil operators, motions and text objects with counts and <code>.</code>, visual modes, undo/redo, yank and paste, and splits;</li>
+<li>ex commands: <code>:w :q :wq :e :sp :vsp :s/// :sort :!cmd :r !cmd</code>.</li>
+</ul>
+<p>Bindings that name commands <code>le</code> doesn't implement are listed as &quot;not supported&quot; by <code>keys</code> and <code>SPC h d b</code>, never silently dropped.</p>
+<h2 id="git-from-the-editor">Git from the editor<a class="anchor" href="#git-from-the-editor" aria-label="Link to this section">#</a></h2>
+<p><code>SPC g s</code> opens a magit-style status buffer: stage with <code>s</code>, unstage with <code>u</code>, commit with <code>c c</code>, push with <code>P p</code>, pull with <code>F p</code>, and stash with <code>Z</code>. See <a href="git.html">git and GitHub</a>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-le"><code>le</code></a></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [FILE...]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8119a24. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#read-from-your-configuration">Read from your configuration</a></li>
+          <li><a href="#spacemacs-defaults">Spacemacs defaults</a></li>
+          <li><a href="#git-from-the-editor">Git from the editor</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
