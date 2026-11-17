@@ -265,3 +265,22 @@ figcaption { margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Download ------------------------------------------------------------------ */
+.btn-note { margin-left: 8px; font: 600 0.78rem var(--mono); opacity: 0.75; }
+.download { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px 40px; align-items: start; }
+.download .verify { grid-column: 1 / -1; }
+@media (max-width: 900px) { .download { grid-template-columns: 1fr; } }
+.iso-facts { margin: 0; display: grid; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.iso-facts div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+.iso-facts dt { color: var(--muted); }
+.iso-facts dd { margin: 0; min-width: 0; }
+.hash { word-break: break-all; font-size: 0.8rem; }
+@media (max-width: 480px) { .iso-facts div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Grid children must be allowed to shrink so long code lines scroll inside
+   their block instead of widening the page. */
+.step, .card, .rm, .download > *, .split > *, .arch-grid > * { min-width: 0; }
+
+/* Keep the Copy button clear of the first code line. */
+.copy-block pre { padding-top: 42px; }

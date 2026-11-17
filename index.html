@@ -26,6 +26,7 @@
           <li><a href="#dotfiles">Dotfiles</a></li>
           <li><a href="#architecture">Architecture</a></li>
           <li><a href="#screens">Screens</a></li>
+          <li><a href="#download">Download</a></li>
           <li><a href="#start">Get started</a></li>
         </ul>
       </nav>
@@ -52,7 +53,8 @@
             itself from your dotfiles.
           </p>
           <div class="cta">
-            <a class="btn" href="#start">Get started</a>
+            <a class="btn" href="https://github.com/danieljaouen/lepton.iso/raw/main/lepton.iso" download>Download the ISO <span class="btn-note">93&nbsp;MiB</span></a>
+            <a class="btn btn-ghost" href="#start">Get started</a>
             <a class="btn btn-ghost" href="https://github.com/danieljaouen/lepton">View the source</a>
           </div>
         </div>
@@ -306,11 +308,33 @@ format = <span class="s">"at [$path]($style)[$read_only]($read_only_style) "</sp
         <h2>Screens from the running system</h2>
         <p class="section-lead">Captured from Lepton's display console under QEMU, on the same virtual hardware UTM uses. Click to enlarge.</p>
         <div class="gallery">
-          <figure><button class="shot" type="button" data-full="assets/img/neofetch.png" data-caption="neofetch on the framebuffer console"><img src="assets/img/neofetch.png" alt="Lepton's neofetch output listing the OS, kernel, Elixir and OTP versions" loading="lazy" width="800" height="600"></button><figcaption><code>neofetch</code> on the display console</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="assets/img/whichkey.png" data-caption="Pressing SPC opens the which-key menu"><img src="assets/img/whichkey.png" alt="The le editor showing the SPC which-key popup with buffers, files, git and windows prefixes" loading="lazy" width="800" height="600"></button><figcaption><kbd>SPC</kbd> opens which-key in <code>le</code></figcaption></figure>
-          <figure><button class="shot" type="button" data-full="assets/img/editor.png" data-caption="Elixir in le with relative line numbers"><img src="assets/img/editor.png" alt="An Elixir module in le with syntax highlighting, relative line numbers and a Spacemacs-style mode line" loading="lazy" width="800" height="600"></button><figcaption>Relative numbers and the mode line</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="assets/img/tmux.png" data-caption="tmux splits from prefix C-t v and C-t s"><img src="assets/img/tmux.png" alt="Three tmux panes running lsh, with a cyan status line" loading="lazy" width="800" height="600"></button><figcaption><kbd>C-t v</kbd>, <kbd>C-t s</kbd> &mdash; from your tmux.conf</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/neofetch.png" data-caption="neofetch on the framebuffer console"><img src="assets/img/neofetch.png" alt="Lepton's neofetch output listing the OS, kernel, Elixir and OTP versions" width="800" height="600"></button><figcaption><code>neofetch</code> on the display console</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/whichkey.png" data-caption="Pressing SPC opens the which-key menu"><img src="assets/img/whichkey.png" alt="The le editor showing the SPC which-key popup with buffers, files, git and windows prefixes" width="800" height="600"></button><figcaption><kbd>SPC</kbd> opens which-key in <code>le</code></figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/editor.png" data-caption="Elixir in le with relative line numbers"><img src="assets/img/editor.png" alt="An Elixir module in le with syntax highlighting, relative line numbers and a Spacemacs-style mode line" width="800" height="600"></button><figcaption>Relative numbers and the mode line</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="assets/img/tmux.png" data-caption="tmux splits from prefix C-t v and C-t s"><img src="assets/img/tmux.png" alt="Three tmux panes running lsh, with a cyan status line" width="800" height="600"></button><figcaption><kbd>C-t v</kbd>, <kbd>C-t s</kbd> &mdash; from your tmux.conf</figcaption></figure>
         </div>
+      </div>
+    </section>
+
+    <!-- Download ------------------------------------------------------------>
+    <section id="download" class="section alt">
+      <div class="wrap download">
+        <div>
+          <h2>Download Lepton</h2>
+          <p class="section-lead">A ready-to-boot UEFI image for ARM64, for UTM and QEMU on Apple Silicon. It is a hybrid image: it boots when attached as a CD or as a disk.</p>
+          <div class="cta">
+            <a class="btn" href="https://github.com/danieljaouen/lepton.iso/raw/main/lepton.iso" download>Download lepton.iso</a>
+            <a class="btn btn-ghost" href="https://github.com/danieljaouen/lepton.iso">ISO repository</a>
+          </div>
+        </div>
+        <dl class="iso-facts">
+          <div><dt>File</dt><dd><code>lepton.iso</code> &middot; 93&nbsp;MiB</dd></div>
+          <div><dt>Architecture</dt><dd>aarch64 (ARM64), UEFI</dd></div>
+          <div><dt>Contents</dt><dd>Linux 6.18 &middot; Erlang/OTP 29.1.2 &middot; Elixir 1.20.5</dd></div>
+          <div><dt>SHA-256</dt><dd><code class="hash">095eea7fc5f8b0994f0bf647711d5250f3722d32f1aa3fc9d66226b45df84573</code></dd></div>
+        </dl>
+        <div class="copy-block verify"><pre><code>curl -LO https://github.com/danieljaouen/lepton.iso/raw/main/lepton.iso
+shasum -a 256 lepton.iso   # compare with the SHA-256 above</code></pre><button class="copy" type="button">Copy</button></div>
       </div>
     </section>
 
@@ -320,8 +344,8 @@ format = <span class="s">"at [$path]($style)[$read_only]($read_only_style) "</sp
         <h2>Get started</h2>
         <div class="steps">
           <div class="step">
-            <h3><span class="n">1</span> Build the ISO</h3>
-            <p>Needs Elixir on OTP&nbsp;29 and network access on the first build.</p>
+            <h3><span class="n">1</span> Get the ISO</h3>
+            <p><a href="https://github.com/danieljaouen/lepton.iso/raw/main/lepton.iso" download>Download it</a>, or build your own (with your dotfiles) on Elixir/OTP&nbsp;29:</p>
             <div class="copy-block"><pre><code>git clone --recursive https://github.com/danieljaouen/lepton
 cd lepton
 mix lepton.iso          # -&gt; out/lepton.iso</code></pre><button class="copy" type="button">Copy</button></div>
