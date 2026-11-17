@@ -1,6 +1,6 @@
 # danieljaouen.github.io
 
-The showcase site for [Lepton OS](https://github.com/danieljaouen/lepton), a
+The showcase site, <https://trylepton.app/>, for [Lepton OS](https://github.com/danieljaouen/lepton), a
 Unix-like operating system for ARM64 whose userland is written in Elixir.
 
 Plain HTML, CSS and JavaScript, with no build step and no external requests:
