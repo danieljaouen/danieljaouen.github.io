@@ -83,8 +83,24 @@ www https://trylepton.app/    # a text-mode web browser</code></pre>
 <h2 id="serving">Serving<a class="anchor" href="#serving" aria-label="Link to this section">#</a></h2>
 <p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP. Run it as a <a href="services.html#httpd">service</a> to keep it running in the background.</p>
 <h2 id="wi-fi">Wi-Fi<a class="anchor" href="#wi-fi" aria-label="Link to this section">#</a></h2>
-<p>Lepton can't join Wi-Fi networks yet. The shipped kernel has no 802.11 stack or Wi-Fi drivers, and UTM/QEMU virtual machines have no wireless hardware (their network is virtio ethernet). So the automatic Wi-Fi prompt at startup is turned off.</p>
-<p>You can still save credentials for a future kernel: <code>wifi setup</code> asks for them, <code>wifi</code> shows the status and <code>wifi forget</code> clears them. They're stored in wpa_supplicant format in <code>/var/lib/lepton/wpa_supplicant.conf</code>, with the passphrase kept only as its WPA PSK.</p>
+<p>Lepton joins WPA2 and open Wi-Fi networks, with the kernel's 802.11 stack and <code>wpa_supplicant</code>:</p>
+<pre><code class="language-sh">wifi scan                       # networks in range: signal, security, band
+wifi connect MyNetwork          # asks for the passphrase, joins, then DHCP
+wifi connect Cafe &quot;&quot;            # an open network
+wifi                            # status: connected network and address
+wifi forget MyNetwork           # (or `wifi forget` for all)</code></pre>
+<p>Saved networks are kept in <code>/var/lib/lepton/wpa_supplicant.conf</code> (in wpa_supplicant's format) with each passphrase stored only as its WPA PSK. An installed system keeps them and reconnects at boot. With Wi-Fi hardware and nothing saved, Lepton asks for a network at startup (<code>wifi setup</code> asks again).</p>
+<h3 id="hardware">Hardware<a class="anchor" href="#hardware" aria-label="Link to this section">#</a></h3>
+<p>Virtual machines have no Wi-Fi of their own: their network is virtio ethernet, configured automatically. To use Wi-Fi in UTM, plug a USB Wi-Fi adapter into the Mac and pass it to the VM. Check that <strong>Input → USB Sharing</strong> is on in the VM's settings, then click the <strong>USB</strong> icon in the VM's toolbar while it runs and pick the adapter. Lepton loads the driver as soon as it appears, with no restart. Drivers are included for common USB adapters:</p>
+<ul>
+<li>MediaTek (MT7601U, MT7610U, MT7612U, MT7921AU);</li>
+<li>Realtek (<code>rtl8xxxu</code>, <code>rtw88</code>, <code>rtw89</code>: RTL8188/8192, 8811/8812/8814, 8821/8822, 8851/8852 USB);</li>
+<li>Ralink (RT2800/RT3070/RT5370);</li>
+<li>Atheros (AR9271, AR7010, AR9170);</li>
+<li>Broadcom's <code>brcmfmac</code> (Raspberry Pi's built-in Wi-Fi).</li>
+</ul>
+<p>Their firmware is included.</p>
+<p><code>wifi</code> reports when no adapter is present. Enterprise (802.1X) and WPA3-only networks aren't supported, and neither are hidden networks.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -97,11 +113,11 @@ www https://trylepton.app/    # a text-mode web browser</code></pre>
 <tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
 <tr><td><a href="commands.html#cmd-www"><code>www</code></a></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
 <tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
-<tr><td><a href="commands.html#cmd-wifi"><code>wifi</code></a></td><td>Wi-Fi status and credential setup</td><td><code>wifi [status | setup | forget]</code></td></tr>
+<tr><td><a href="commands.html#cmd-wifi"><code>wifi</code></a></td><td>Wi-Fi: status, scan, connect and saved networks</td><td><code>wifi [status] | scan [IFACE] | connect SSID [PASSPHRASE] | forget [SSID] | setup</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@223dc9b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

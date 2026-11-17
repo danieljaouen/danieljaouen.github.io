@@ -71,7 +71,7 @@
 <h1 id="limitations">Limitations<a class="anchor" href="#limitations" aria-label="Link to this section">#</a></h1>
 <ul>
 <li>The live ISO keeps everything in RAM. An installed system persists <code>/root</code> and <code>/var/lib/lepton</code> only; changes elsewhere (for example <code>/etc</code>) reset at boot.</li>
-<li>Wi-Fi credentials can be saved but not used: the kernel has no Wi-Fi support and the virtual machines have no wireless hardware.</li>
+<li>Wi-Fi needs a supported adapter: virtual machines have no wireless hardware (pass a USB adapter through). WPA2 and WPA2/WPA3 networks work; WPA3-only and enterprise (802.1X) networks don't.</li>
 <li>Single user (<code>root</code>), with no permissions model beyond the kernel's.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
@@ -84,7 +84,7 @@
 <p>There's no graphical desktop or full web browser yet; see the <a href="../#roadmap">roadmap</a>.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@223dc9b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>
