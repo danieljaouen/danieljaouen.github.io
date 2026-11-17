@@ -83,6 +83,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <li>Optional: <strong>Devices → New → Serial</strong>, to get a second login session in UTM's terminal window. That window speaks xterm, so 256 colours and Unicode look better there than on the framebuffer console, and full-screen programs follow its window size.</li>
 <li>Start the VM. GRUB boots the default entry after 3 seconds. Other entries give a verbose boot and a boot that runs the self-tests.</li>
 </ol>
+<p>UTM's window shows the console with the default display card (<code>virtio-ramfb</code>); no serial device is needed. Other cards, such as <code>virtio-gpu-pci</code> and <code>ramfb</code>, work too.</p>
 <p>You are logged in as <code>root</code> on the display console (<code>tty1</code>), on the serial port (<code>ttyAMA0</code>) if present, and on <code>hvc0</code> under Apple Virtualization. The network comes up by DHCP in the background.</p>
 <h2 id="run-it-with-qemu">Run it with QEMU<a class="anchor" href="#run-it-with-qemu" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">qemu-system-aarch64 -M virt -accel hvf -cpu host -m 2048 \
@@ -127,7 +128,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@f3e4df0. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@223dc9b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
