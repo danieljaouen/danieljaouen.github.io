@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html" aria-current="page">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -70,14 +71,15 @@
       <article class="prose">
 <h1 id="packages-lpm">Packages: lpm<a class="anchor" href="#packages-lpm" aria-label="Link to this section">#</a></h1>
 <p><code>lpm</code> installs Elixir and Erlang packages directly from <a href="https://hex.pm">hex.pm</a>. It resolves version requirements and dependencies through the Hex API, downloads the tarballs, verifies them against the registry's SHA-256 checksum, and compiles them <em>inside Lepton</em> with the compilers in the image. Installed packages are loaded at every boot.</p>
+<p>Packages are system-wide, so installing, removing and upgrading them takes <a href="users.html">sudo</a>; searching and listing don't.</p>
 <pre><code class="language-sh">lpm search json
 lpm info jason
-lpm install jason           # or jason@~&gt;1.4, several at once
+sudo lpm install jason      # or jason@~&gt;1.4, several at once
 elixir -e 'IO.puts Jason.encode!(%{hello: &quot;lepton&quot;})'
-lpm install ./my_tool       # a local Mix project
+sudo lpm install ./my_tool  # a local Mix project
 lpm list
-lpm remove jason
-lpm update                  # reinstall your packages at their latest version</code></pre>
+sudo lpm remove jason
+sudo lpm update             # reinstall the packages at their latest version</code></pre>
 <h2 id="packages-that-add-commands">Packages that add commands<a class="anchor" href="#packages-that-add-commands" aria-label="Link to this section">#</a></h2>
 <p>A package can add shell commands: any module that does <code>use Lepton.Command</code> and defines <code>defcmd</code>s becomes a command when the package loads, so a Lepton tool can be published to hex.pm like any other library.</p>
 <pre><code class="language-elixir">defmodule LeptonCowsay do
@@ -99,10 +101,10 @@ end</code></pre>
 <p>Installing a package still runs its code, so only install packages you trust.</p>
 <h2 id="official-updates-for-built-in-apps">Official updates for built-in apps<a class="anchor" href="#official-updates-for-built-in-apps" aria-label="Link to this section">#</a></h2>
 <p>Built-in apps can be updated from hex.pm without a new ISO, but only by <strong>official updates</strong>.</p>
-<pre><code class="language-sh">lpm official          # what's available, and what's installed
-lpm upgrade grep      # install the official update for grep
-lpm upgrade           # refresh all of them (withdrawn ones are reverted)
-lpm revert grep       # back to the built-in grep
+<pre><code class="language-sh">lpm official               # what's available, and what's installed
+sudo lpm upgrade grep      # install the official update for grep
+sudo lpm upgrade           # refresh all of them (withdrawn ones are reverted)
+sudo lpm revert grep       # back to the built-in grep
 builtin grep ...      # always runs the built-in, even when replaced</code></pre>
 <p>The project publishes a signed list, <a href="https://trylepton.app/official.json">https://trylepton.app/official.json</a> (Ed25519; the signature is in <code>official.json.sig</code>). Each entry names the exact hex package, version and tarball SHA-256, the built-in commands it may stand in for, and every pinned dependency. The public key is compiled into the OS, with a copy at <code>/etc/lepton/official-key.pub</code>.</p>
 <ul>
@@ -126,7 +128,7 @@ cd site &amp;&amp; git commit -am &quot;Official: lepton_grep 1.2.0&quot; &amp;&
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/packages.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/packages.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

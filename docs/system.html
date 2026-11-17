@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html" aria-current="page">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -78,10 +79,10 @@
 </ul>
 <p>For long-running apps that should survive logouts and restart when they fail, use <a href="services.html">services</a>.</p>
 <h2 id="storage-and-persistence">Storage and persistence<a class="anchor" href="#storage-and-persistence" aria-label="Link to this section">#</a></h2>
-<p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/root</code> (your home) and <code>/var/lib/lepton</code> (packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot.</p>
+<p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot.</p>
 <p><code>df</code>, <code>du</code>, <code>free</code> and <code>mount</code> show filesystems and memory.</p>
 <h2 id="power">Power<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
-<p><code>poweroff</code> (also <code>halt</code>, <code>shutdown</code>) and <code>reboot</code> stop services, flush the data partition and remount it read-only first. UTM's <strong>Request power down</strong> does the same through the virtual power button.</p>
+<p><code>poweroff</code> (also <code>halt</code>, <code>shutdown</code>) and <code>reboot</code> stop services, flush the data partition and remount it read-only first. They need root: <code>sudo poweroff</code>. UTM's <strong>Request power down</strong> does the same through the virtual power button.</p>
 <h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
 <p>Each console runs a login session as <code>root</code>. On a serial console, full-screen programs (<code>le</code>, <code>tmux</code>, <code>less</code>, <code>top</code>) follow the terminal window's size as you resize it; <code>resize</code> sets the size by hand. Colours follow your terminal; <code>NO_COLOR=1</code> turns them off.</p>
 <h2 id="clipboard">Clipboard<a class="anchor" href="#clipboard" aria-label="Link to this section">#</a></h2>
@@ -110,8 +111,8 @@
 <tr><td><a href="commands.html#cmd-du"><code>du</code></a></td><td>estimate file space usage</td><td><code>du [-sh] [FILE...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-free"><code>free</code></a></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
 <tr><td><a href="commands.html#cmd-mount"><code>mount</code></a></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
-<tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first)</td><td><code>poweroff</code></td></tr>
-<tr><td><a href="commands.html#cmd-reboot"><code>reboot</code></a></td><td>reboot the machine</td><td><code>reboot</code></td></tr>
+<tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first) (needs <a href="users.html">sudo</a>)</td><td><code>poweroff</code></td></tr>
+<tr><td><a href="commands.html#cmd-reboot"><code>reboot</code></a></td><td>reboot the machine (needs <a href="users.html">sudo</a>)</td><td><code>reboot</code></td></tr>
 <tr><td><a href="commands.html#cmd-resize"><code>resize</code></a></td><td>set the terminal size from the terminal emulator's window</td><td><code>resize</code></td></tr>
 <tr><td><a href="commands.html#cmd-pbcopy"><code>pbcopy</code></a></td><td>copy standard input to the clipboard</td><td><code>pbcopy [-o]</code></td></tr>
 <tr><td><a href="commands.html#cmd-pbpaste"><code>pbpaste</code></a></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
@@ -126,7 +127,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

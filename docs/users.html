@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Users and sudo - Lepton OS docs</title>
+  <meta name="description" content="Your account, logging in, sudo for administration, and managing accounts.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html" aria-current="page">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="users-and-sudo">Users and sudo<a class="anchor" href="#users-and-sudo" aria-label="Link to this section">#</a></h1>
+<p>An installed Lepton has your own account. <code>lepton-install</code> asks for a user name and a password, and every console then starts at a login prompt:</p>
+<pre><code>lepton login: alice
+Password: ********</code></pre>
+<p>You log in to your home, <code>/home/NAME</code>, which starts with the image's dotfiles. Your files are yours to change; the rest of the system needs root. The live ISO has no accounts and logs <code>root</code> in automatically, as before.</p>
+<h2 id="sudo">sudo<a class="anchor" href="#sudo" aria-label="Link to this section">#</a></h2>
+<p>Administrative commands run as root through <code>sudo</code>, which asks for <strong>your</strong> password:</p>
+<pre><code class="language-sh">sudo poweroff
+sudo svc start httpd
+sudo lpm install jason
+sudo le /etc/hosts
+[sudo] password for alice:</code></pre>
+<p>After you've typed it, <code>sudo</code> remembers it for 5 minutes on that terminal.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>sudo COMMAND…</code></td><td>run one command as root</td></tr>
+<tr><td><code>sudo su -</code></td><td>a root login shell (in <code>/root</code>); <code>exit</code> or <code>C-d</code> takes you back to your own shell</td></tr>
+<tr><td><code>sudo -i</code></td><td>the same</td></tr>
+<tr><td><code>sudo -s</code></td><td>a root shell, staying where you are</td></tr>
+<tr><td><code>sudo -k</code></td><td>forget the password now</td></tr>
+<tr><td><code>sudo -v</code></td><td>ask for the password now, to start the 5 minutes</td></tr>
+<tr><td><code>sudo -l</code></td><td>may you use sudo?</td></tr>
+<tr><td><code>sudo -S …</code></td><td>read the password from standard input (scripts)</td></tr>
+<tr><td><code>sudo -n …</code></td><td>never ask; fail instead</td></tr>
+</tbody></table></div>
+<p>Members of the <code>sudo</code> group may use sudo; the installer puts your account in it.</p>
+<h2 id="what-needs-root">What needs root<a class="anchor" href="#what-needs-root" aria-label="Link to this section">#</a></h2>
+<p>Without sudo, these are refused with &quot;permission denied&quot;:</p>
+<ul>
+<li><strong>Commands that change the system:</strong> <code>poweroff</code>, <code>reboot</code>, <code>lepton-install</code>, <code>mount</code> (to mount), <code>umount</code>, <code>modprobe</code>, <code>rmmod</code>, <code>dhclient</code>, <code>hostname NAME</code>, <code>chown</code>, <code>useradd</code> and <code>userdel</code>.</li>
+<li><strong>Changing services, packages and Wi-Fi:</strong> <code>svc start|stop|restart|enable|disable|new|edit</code>, <code>lpm install|remove|update|upgrade|revert</code>, and <code>wifi connect|forget|setup</code>. Looking (<code>svc</code>, <code>svc logs</code>, <code>lpm list</code>, <code>wifi</code>, <code>wifi scan</code>) is for everyone.</li>
+<li><strong>Writing outside your home</strong> and the temporary directories (<code>/tmp</code>, <code>/var/tmp</code>): the file commands (<code>touch</code>, <code>mkdir</code>, <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>ln</code>, <code>chmod</code>, <code>tee</code>), shell redirections (<code>&gt;</code>, <code>&gt;&gt;</code>) and saving in <code>le</code>.</li>
+</ul>
+<p>Who you are comes from your login, not from <code>$USER</code>: <code>export USER=root</code> changes nothing.</p>
+<h2 id="managing-accounts">Managing accounts<a class="anchor" href="#managing-accounts" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">passwd                      # change your password
+sudo useradd --sudo bob     # add an account (asks for its password); --sudo lets it use sudo
+sudo passwd bob             # set someone's password
+sudo userdel -r bob         # delete an account (-r: and its home)
+id                          # who you are and your groups</code></pre>
+<p>Accounts are stored in <code>/var/lib/lepton</code> as <code>passwd</code>, <code>group</code> and <code>shadow</code>. Passwords are kept only as salted PBKDF2-SHA512 hashes, in <code>shadow</code> (mode 600). <code>/etc/passwd</code> and <code>/etc/group</code> are rebuilt from them at every boot.</p>
+<h2 id="how-far-this-goes">How far this goes<a class="anchor" href="#how-far-this-goes" aria-label="Link to this section">#</a></h2>
+<p>Accounts and sudo are enforced by Lepton's own commands, not by the kernel. Lepton's whole userland is one Erlang VM running as root, so code you run with <code>iex</code>, <code>elixir</code> or <code>mix</code> can still do anything. Think of accounts as protection against mistakes and a clear line between your files and the system, not as a wall between untrusted users.</p>
+<p><code>su [-] [USER]</code> switches to another user in a new shell. Root may become anyone; anyone else must type that user's password. Root has no password, so become root with <code>sudo su -</code>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-sudo"><code>sudo</code></a></td><td>run a command as root, after asking for your password</td><td><code>sudo [-S] COMMAND [ARG...] | sudo [-S] -i | -s | sudo -k | -v | -l</code></td></tr>
+<tr><td><a href="commands.html#cmd-su"><code>su</code></a></td><td>become another user (default root) in a new shell; exit or C-d returns</td><td><code>su [-|-l] [USER] [-c COMMAND]</code></td></tr>
+<tr><td><a href="commands.html#cmd-passwd"><code>passwd</code></a></td><td>change your password (root: anyone's)</td><td><code>passwd [--stdin] [USER]</code></td></tr>
+<tr><td><a href="commands.html#cmd-useradd"><code>useradd</code></a></td><td>create a user account (and its home) (needs <a href="users.html">sudo</a>)</td><td><code>useradd [--sudo] [-c FULL_NAME] [--password-stdin] NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-userdel"><code>userdel</code></a></td><td>delete a user account (needs <a href="users.html">sudo</a>)</td><td><code>userdel [-r] NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-whoami"><code>whoami</code></a></td><td>print effective user name</td><td><code>whoami</code></td></tr>
+<tr><td><a href="commands.html#cmd-id"><code>id</code></a></td><td>print user and group information</td><td><code>id [USER]</code></td></tr>
+<tr><td><a href="commands.html#cmd-chown"><code>chown</code></a></td><td>change file owner (needs <a href="users.html">sudo</a>)</td><td><code>chown [-R] USER[:GROUP] FILE...</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/users.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#sudo">sudo</a></li>
+          <li><a href="#what-needs-root">What needs root</a></li>
+          <li><a href="#managing-accounts">Managing accounts</a></li>
+          <li><a href="#how-far-this-goes">How far this goes</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html" aria-current="page">Limitations</a></li>
@@ -72,7 +73,7 @@
 <ul>
 <li>The live ISO keeps everything in RAM. An installed system persists <code>/root</code> and <code>/var/lib/lepton</code> only; changes elsewhere (for example <code>/etc</code>) reset at boot.</li>
 <li>Wi-Fi needs a supported adapter: virtual machines have no wireless hardware (pass a USB adapter through). WPA2 and WPA2/WPA3 networks work; WPA3-only and enterprise (802.1X) networks don't.</li>
-<li>Single user (<code>root</code>), with no permissions model beyond the kernel's.</li>
+<li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
 <li>SSH: keys only (no password logins), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding, <code>scp</code>/<code>sftp</code> or SSH server.</li>
@@ -84,7 +85,7 @@
 <p>There's no graphical desktop or full web browser yet; see the <a href="../#roadmap">roadmap</a>.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>

@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html" aria-current="page">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -85,11 +86,11 @@ www https://trylepton.app/    # a text-mode web browser</code></pre>
 <h2 id="wi-fi">Wi-Fi<a class="anchor" href="#wi-fi" aria-label="Link to this section">#</a></h2>
 <p>Lepton joins WPA2 and open Wi-Fi networks, with the kernel's 802.11 stack and <code>wpa_supplicant</code>:</p>
 <pre><code class="language-sh">wifi scan                       # networks in range: signal, security, band
-wifi connect MyNetwork          # asks for the passphrase, joins, then DHCP
-wifi connect Cafe &quot;&quot;            # an open network
+sudo wifi connect MyNetwork     # asks for the passphrase, joins, then DHCP
+sudo wifi connect Cafe &quot;&quot;       # an open network
 wifi                            # status: connected network and address
-wifi forget MyNetwork           # (or `wifi forget` for all)</code></pre>
-<p>Saved networks are kept in <code>/var/lib/lepton/wpa_supplicant.conf</code> (in wpa_supplicant's format) with each passphrase stored only as its WPA PSK. An installed system keeps them and reconnects at boot. With Wi-Fi hardware and nothing saved, Lepton asks for a network at startup (<code>wifi setup</code> asks again).</p>
+sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
+<p>Saved networks are kept in <code>/var/lib/lepton/wpa_supplicant.conf</code> (in wpa_supplicant's format) with each passphrase stored only as its WPA PSK. An installed system keeps them and reconnects at boot. With Wi-Fi hardware and nothing saved, Lepton asks for a network at startup (<code>sudo wifi setup</code> asks again). Saved networks are system settings: changing them takes <a href="users.html">sudo</a>.</p>
 <h3 id="hardware">Hardware<a class="anchor" href="#hardware" aria-label="Link to this section">#</a></h3>
 <p>Virtual machines have no Wi-Fi of their own: their network is virtio ethernet, configured automatically. To use Wi-Fi in UTM, plug a USB Wi-Fi adapter into the Mac and pass it to the VM. Check that <strong>Input → USB Sharing</strong> is on in the VM's settings, then click the <strong>USB</strong> icon in the VM's toolbar while it runs and pick the adapter. Lepton loads the driver as soon as it appears, with no restart. Drivers are included for common USB adapters:</p>
 <ul>
@@ -107,7 +108,7 @@ wifi forget MyNetwork           # (or `wifi forget` for all)</code></pre>
 <tbody>
 <tr><td><a href="commands.html#cmd-ip"><code>ip</code></a></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
 <tr><td><a href="commands.html#cmd-ifconfig"><code>ifconfig</code></a></td><td>show network interfaces</td><td><code>ifconfig</code></td></tr>
-<tr><td><a href="commands.html#cmd-dhclient"><code>dhclient</code></a></td><td>configure an interface with DHCP</td><td><code>dhclient [IFACE]</code></td></tr>
+<tr><td><a href="commands.html#cmd-dhclient"><code>dhclient</code></a></td><td>configure an interface with DHCP (needs <a href="users.html">sudo</a>)</td><td><code>dhclient [IFACE]</code></td></tr>
 <tr><td><a href="commands.html#cmd-ping"><code>ping</code></a></td><td>send ICMP ECHO_REQUEST to a host</td><td><code>ping [-c COUNT] HOST</code></td></tr>
 <tr><td><a href="commands.html#cmd-nslookup"><code>nslookup</code></a></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
@@ -117,7 +118,7 @@ wifi forget MyNetwork           # (or `wifi forget` for all)</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

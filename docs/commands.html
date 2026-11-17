@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -69,7 +70,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 118 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 123 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -77,7 +78,7 @@
 <tr><td><span class="anchor-target" id="cmd-basename"></span><code>basename</code></td><td>strip directory and suffix from filenames</td><td><code>basename NAME [SUFFIX]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-cat"></span><code>cat</code></td><td>concatenate files and print on the standard output</td><td><code>cat [-n] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-chmod"></span><code>chmod</code></td><td>change file mode bits</td><td><code>chmod MODE FILE...</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-chown"></span><code>chown</code></td><td>change file owner (single-user system: accepted, no-op)</td><td><code>chown OWNER FILE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-chown"></span><code>chown</code></td><td>change file owner (needs <a href="users.html">sudo</a>)</td><td><code>chown [-R] USER[:GROUP] FILE...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-cp"></span><code>cp</code></td><td>copy files and directories</td><td><code>cp [-rv] SOURCE... DEST</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-df"></span><code>df</code></td><td>report file system space usage</td><td><code>df [-h]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-dirname"></span><code>dirname</code></td><td>strip last component from file name</td><td><code>dirname NAME</code></td></tr>
@@ -144,32 +145,32 @@
 <tr><td><span class="anchor-target" id="cmd-free"></span><code>free</code></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-help"></span><code>help</code></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-hostname"></span><code>hostname</code></td><td>show or set the system's host name</td><td><code>hostname [NAME]</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-id"></span><code>id</code></td><td>print user and group information</td><td><code>id</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-id"></span><code>id</code></td><td>print user and group information</td><td><code>id [USER]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-keys"></span><code>keys</code></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-kill"></span><code>kill</code></td><td>send a signal to a process</td><td><code>kill [-9|-STOP|-CONT|-TERM] PID...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsmod"></span><code>lsmod</code></td><td>show the status of modules in the Linux kernel</td><td><code>lsmod</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-man"></span><code>man</code></td><td>show the manual for a command</td><td><code>man COMMAND</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-modprobe"></span><code>modprobe</code></td><td>add a module (and its dependencies) to the kernel</td><td><code>modprobe MODULE [PARAM=VALUE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-modprobe"></span><code>modprobe</code></td><td>add a module (and its dependencies) to the kernel (needs <a href="users.html">sudo</a>)</td><td><code>modprobe MODULE [PARAM=VALUE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-mount"></span><code>mount</code></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-neofetch"></span><code>neofetch</code> · also <code>fetch</code>, <code>about</code></td><td>show system information</td><td><code>neofetch</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pbcopy"></span><code>pbcopy</code> · also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code></td><td>copy standard input to the clipboard</td><td><code>pbcopy [-o]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pbpaste"></span><code>pbpaste</code> · also <code>wl-paste</code></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pgrep"></span><code>pgrep</code></td><td>look up processes by name</td><td><code>pgrep PATTERN</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pkill"></span><code>pkill</code></td><td>signal processes by name</td><td><code>pkill PATTERN</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-poweroff"></span><code>poweroff</code> · also <code>halt</code>, <code>shutdown</code></td><td>power off the machine (flushes the disk first)</td><td><code>poweroff</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-poweroff"></span><code>poweroff</code> · also <code>halt</code>, <code>shutdown</code></td><td>power off the machine (flushes the disk first) (needs <a href="users.html">sudo</a>)</td><td><code>poweroff</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-printenv"></span><code>printenv</code></td><td>print environment variables</td><td><code>printenv [NAME...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ps"></span><code>ps</code></td><td>report a snapshot of the current processes</td><td><code>ps [-e] [aux]</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-reboot"></span><code>reboot</code></td><td>reboot the machine</td><td><code>reboot</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-reboot"></span><code>reboot</code></td><td>reboot the machine (needs <a href="users.html">sudo</a>)</td><td><code>reboot</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-reset"></span><code>reset</code></td><td>reset the terminal</td><td><code>reset</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-resize"></span><code>resize</code></td><td>set the terminal size from the terminal emulator's window</td><td><code>resize</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-rmmod"></span><code>rmmod</code></td><td>remove a module from the kernel</td><td><code>rmmod MODULE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-rmmod"></span><code>rmmod</code></td><td>remove a module from the kernel (needs <a href="users.html">sudo</a>)</td><td><code>rmmod MODULE...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sleep"></span><code>sleep</code></td><td>delay for a specified amount of time</td><td><code>sleep SECONDS</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-stty"></span><code>stty</code></td><td>show terminal settings (size)</td><td><code>stty [size | rows N cols M]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sync"></span><code>sync</code></td><td>flush filesystem buffers</td><td><code>sync</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-time"></span><code>time</code></td><td>run a command and report how long it took</td><td><code>time COMMAND [ARG...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-top"></span><code>top</code></td><td>display Lepton processes (q to quit)</td><td><code>top</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-tty"></span><code>tty</code></td><td>print the file name of the terminal</td><td><code>tty</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-umount"></span><code>umount</code></td><td>unmount a filesystem</td><td><code>umount DIR...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-umount"></span><code>umount</code></td><td>unmount a filesystem (needs <a href="users.html">sudo</a>)</td><td><code>umount DIR...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-uname"></span><code>uname</code></td><td>print system information</td><td><code>uname [-asnrmo]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-uptime"></span><code>uptime</code></td><td>tell how long the system has been running</td><td><code>uptime</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-watch"></span><code>watch</code></td><td>execute a program periodically, showing output fullscreen</td><td><code>watch [-n SECS] COMMAND</code></td></tr>
@@ -180,7 +181,7 @@
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-curl"></span><code>curl</code> · also <code>wget</code>, <code>fetch</code></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-dhclient"></span><code>dhclient</code> · also <code>udhcpc</code>, <code>dhcpcd</code></td><td>configure an interface with DHCP</td><td><code>dhclient [IFACE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-dhclient"></span><code>dhclient</code> · also <code>udhcpc</code>, <code>dhcpcd</code></td><td>configure an interface with DHCP (needs <a href="users.html">sudo</a>)</td><td><code>dhclient [IFACE]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ifconfig"></span><code>ifconfig</code></td><td>show network interfaces</td><td><code>ifconfig</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ip"></span><code>ip</code></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-nslookup"></span><code>nslookup</code> · also <code>host</code></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
@@ -210,9 +211,14 @@
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-credits"></span><code>credits</code></td><td>who made Lepton</td><td><code>credits</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-lepton-install"></span><code>lepton-install</code></td><td>install Lepton from the ISO onto a disk</td><td><code>lepton-install [-y] [/dev/DISK]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lepton-install"></span><code>lepton-install</code></td><td>install Lepton from the ISO onto a disk (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [-u NAME --password-stdin] [/dev/DISK]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lepton-tutorial"></span><code>lepton-tutorial</code> · also <code>tutorial</code></td><td>an interactive tour of Lepton</td><td><code>lepton-tutorial</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lpm"></span><code>lpm</code></td><td>Lepton package manager (packages from hex.pm)</td><td><code>lpm search|info|install|list|remove|update|official|upgrade|revert ...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-passwd"></span><code>passwd</code></td><td>change your password (root: anyone's)</td><td><code>passwd [--stdin] [USER]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-su"></span><code>su</code></td><td>become another user (default root) in a new shell; exit or C-d returns</td><td><code>su [-|-l] [USER] [-c COMMAND]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sudo"></span><code>sudo</code></td><td>run a command as root, after asking for your password</td><td><code>sudo [-S] COMMAND [ARG...] | sudo [-S] -i | -s | sudo -k | -v | -l</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-useradd"></span><code>useradd</code> · also <code>adduser</code></td><td>create a user account (and its home) (needs <a href="users.html">sudo</a>)</td><td><code>useradd [--sudo] [-c FULL_NAME] [--password-stdin] NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-userdel"></span><code>userdel</code> · also <code>deluser</code></td><td>delete a user account (needs <a href="users.html">sudo</a>)</td><td><code>userdel [-r] NAME</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-wifi"></span><code>wifi</code></td><td>Wi-Fi: status, scan, connect and saved networks</td><td><code>wifi [status] | scan [IFACE] | connect SSID [PASSPHRASE] | forget [SSID] | setup</code></td></tr>
 </tbody></table></div>
 <h2 id="services">Services<a class="anchor" href="#services" aria-label="Link to this section">#</a></h2>
@@ -227,7 +233,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@aa75aca.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@34c3f8d.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

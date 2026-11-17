@@ -54,6 +54,7 @@
           <li><a href="services.html" aria-current="page">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -70,13 +71,14 @@
       <article class="prose">
 <h1 id="services-svc">Services: svc<a class="anchor" href="#services-svc" aria-label="Link to this section">#</a></h1>
 <p><code>svc</code> (also <code>systemctl</code>) starts, stops and restarts long-running apps, restarts them when they fail, starts enabled ones at boot and keeps their logs.</p>
-<pre><code class="language-sh">svc                         # every service: state, PID, uptime
-svc start hello             # an example service that ships with Lepton
-svc status hello            # state, PID, restarts and the last log lines
-svc logs hello -f           # follow its output (also: journalctl -u hello -f)
-svc stop hello              # stops it and every process it started
-svc new clock 'while true; do date; sleep 60; done'
-svc enable --now clock      # start now and at every boot</code></pre>
+<p>Services are system-wide and run as root, so starting, stopping, enabling, creating and editing them takes <a href="users.html">sudo</a>. Anyone can list them, see their status and read their logs.</p>
+<pre><code class="language-sh">svc                              # every service: state, PID, uptime
+sudo svc start hello             # an example service that ships with Lepton
+svc status hello                 # state, PID, restarts and the last log lines
+svc logs hello -f                # follow its output (also: journalctl -u hello -f)
+sudo svc stop hello              # stops it and every process it started
+sudo svc new clock 'while true; do date; sleep 60; done'
+sudo svc enable --now clock      # start now and at every boot</code></pre>
 <h2 id="commands">Commands<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th></tr></thead>
@@ -87,7 +89,7 @@ svc enable --now clock      # start now and at every boot</code></pre>
 <tr><td><code>svc enable / disable [--now] NAME</code></td><td>start at boot (<code>--now</code> also starts or stops it)</td></tr>
 <tr><td><code>svc logs NAME [-n N] [-f]</code></td><td>the log; <code>-f</code> follows it until <code>C-c</code></td></tr>
 <tr><td><code>svc cat NAME</code></td><td>show the unit file</td></tr>
-<tr><td><code>svc new NAME COMMAND…</code></td><td>create <code>~/.config/lepton/services/NAME.service</code></td></tr>
+<tr><td><code>svc new NAME COMMAND…</code></td><td>create <code>~/.config/lepton/services/NAME.service</code> (root's: <code>/root/.config/…</code>)</td></tr>
 <tr><td><code>svc edit NAME</code></td><td>edit a unit in <code>le</code>; editing a shipped unit makes your own copy</td></tr>
 <tr><td><code>svc is-active / is-enabled NAME</code></td><td>for scripts: exit status 0 means yes</td></tr>
 <tr><td><code>journalctl -u NAME [-n N] [-f]</code></td><td>the same log, systemd-style</td></tr>
@@ -119,8 +121,8 @@ TimeoutStopSec=5        # wait this long before killing on stop</code></pre>
 </ul>
 <h2 id="httpd">httpd<a class="anchor" href="#httpd" aria-label="Link to this section">#</a></h2>
 <p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP (static files only), using the web server built into Erlang/OTP. It makes a good first service:</p>
-<pre><code class="language-sh">mkdir -p ~/public &amp;&amp; echo 'hello' &gt; ~/public/index.html
-svc start httpd
+<pre><code class="language-sh">sudo mkdir -p /root/public &amp;&amp; echo 'hello' | sudo tee /root/public/index.html
+sudo svc start httpd
 curl http://localhost:8080/</code></pre>
 <h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
 <p>Only simple services: no dependencies between services (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits. Everything runs as <code>root</code>.</p>
@@ -134,7 +136,7 @@ curl http://localhost:8080/</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

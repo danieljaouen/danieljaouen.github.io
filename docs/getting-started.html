@@ -54,6 +54,7 @@
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -94,26 +95,28 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <p>The live ISO keeps everything in RAM. To keep your files, install it:</p>
 <ol>
 <li>With the VM stopped, add a disk: <strong>Drives → New → VirtIO</strong> (or NVMe), 4 GB or more.</li>
-<li>Boot the ISO and run <code>lepton-install</code>. It asks which disk and asks you to confirm; <code>lepton-install -y /dev/vda</code> skips both.</li>
+<li>Boot the ISO and run <code>lepton-install</code>. It asks which disk, asks you to confirm, and asks you to <strong>create your user account</strong>: a user name and a password. That account can run administrative commands with <a href="users.html">sudo</a>.</li>
 <li><code>poweroff</code>, then <strong>CD/DVD → Clear</strong> to eject the ISO, and start the VM.</li>
+<li>Log in with your user name and password.</li>
 </ol>
-<p>The installer writes a GPT partition table, a FAT16 EFI system partition (GRUB, kernel and initramfs) and an ext2 data partition named <code>LEPTON-DATA</code>, all from Elixir. The installed system still boots into RAM, but <code>/root</code> and <code>/var/lib/lepton</code> (packages, services, logs, settings) live on the data partition. On the first boot, <code>/root</code> is seeded from the image, including the dotfiles.</p>
-<p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system.</p>
+<p>For an unattended install, <code>echo PASSWORD | lepton-install -y -u NAME --password-stdin /dev/vda</code> skips every question.</p>
+<p>The installer writes a GPT partition table, a FAT16 EFI system partition (GRUB, kernel and initramfs) and an ext2 data partition named <code>LEPTON-DATA</code>, all from Elixir. The installed system still boots into RAM, but <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs, settings) live on the data partition. Your home starts with the image's dotfiles.</p>
+<p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system (add <code>--login NAME:PASSWORD</code> with <code>--run</code> to script it).</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk</td><td><code>lepton-install [-y] [/dev/DISK]</code></td></tr>
+<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [-u NAME --password-stdin] [/dev/DISK]</code></td></tr>
 </tbody></table></div>
 <h2 id="shut-down">Shut down<a class="anchor" href="#shut-down" aria-label="Link to this section">#</a></h2>
-<p>Type <code>poweroff</code>, or use UTM's power button → <strong>Request power down</strong>. Lepton hears the virtual power button, warns the consoles, stops running services, flushes the data partition and remounts it read-only, so the next start is a clean boot through GRUB. &quot;Force shut down&quot; and closing the VM window pull the plug and can't be intercepted.</p>
-<p>Logging out with <code>C-d</code> just logs the console back in; it reminds you that <code>poweroff</code> is the way to shut down.</p>
+<p>Type <code>sudo poweroff</code> (just <code>poweroff</code> on the live ISO, where you are root), or use UTM's power button → <strong>Request power down</strong>. Lepton hears the virtual power button, warns the consoles, stops running services, flushes the data partition and remounts it read-only, so the next start is a clean boot through GRUB. &quot;Force shut down&quot; and closing the VM window pull the plug and can't be intercepted.</p>
+<p>Logging out with <code>C-d</code> returns an installed system to its login prompt. On the live ISO the console logs straight back in, with a reminder that <code>poweroff</code> is the way to shut down.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first)</td><td><code>poweroff</code></td></tr>
-<tr><td><a href="commands.html#cmd-reboot"><code>reboot</code></a></td><td>reboot the machine</td><td><code>reboot</code></td></tr>
+<tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first) (needs <a href="users.html">sudo</a>)</td><td><code>poweroff</code></td></tr>
+<tr><td><a href="commands.html#cmd-reboot"><code>reboot</code></a></td><td>reboot the machine (needs <a href="users.html">sudo</a>)</td><td><code>reboot</code></td></tr>
 </tbody></table></div>
 <h2 id="first-boot-after-installing">First boot after installing<a class="anchor" href="#first-boot-after-installing" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -128,7 +131,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@aa75aca. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@34c3f8d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
