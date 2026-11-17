@@ -75,7 +75,7 @@
       <div class="wrap stats-grid">
         <div class="stat"><span class="num" data-count="19950">19,950</span><span class="lbl">lines of Elixir in the OS</span></div>
         <div class="stat"><span class="num" data-count="112">112</span><span class="lbl">commands</span></div>
-        <div class="stat"><span class="num" data-count="82">82</span><span class="lbl">self-tests, run inside the OS</span></div>
+        <div class="stat"><span class="num" data-count="96">96</span><span class="lbl">self-tests, run inside the OS</span></div>
         <div class="stat"><span class="num">~0.1&nbsp;s</span><span class="lbl">from PID 1 to userland</span></div>
         <div class="stat"><span class="num" data-iso-size>93&nbsp;MiB</span><span class="lbl">bootable hybrid ISO</span></div>
       </div>
@@ -111,7 +111,7 @@
           <article class="card">
             <div class="card-ico" aria-hidden="true">⬢</div>
             <h3>lpm &mdash; packages from hex.pm</h3>
-            <p>Resolves dependencies, verifies checksums and compiles Elixir and Erlang packages <em>inside the OS</em>. Packages can ship new shell commands.</p>
+            <p>Resolves dependencies, verifies checksums and compiles Elixir and Erlang packages <em>inside the OS</em>. Packages can ship new shell commands, but they can't take over built-in ones. Built-in apps update only through a <a href="official.json">signed list</a> of official updates: <code>lpm upgrade grep</code>, and <code>lpm revert grep</code> to go back.</p>
           </article>
           <article class="card">
             <div class="card-ico" aria-hidden="true">⇩</div>
@@ -362,6 +362,7 @@ mix lepton.qemu --test  # headless: boot and run the self-tests</code></pre><but
             <div class="copy-block"><pre><code>lepton-install          # GPT + EFI + ext2, all in Elixir
 lepton-tutorial         # a 10-lesson tour
 lpm install jason       # packages from hex.pm
+lpm official            # signed updates for built-in apps
 keys                    # bindings loaded from your dotfiles</code></pre><button class="copy" type="button">Copy</button></div>
           </div>
         </div>

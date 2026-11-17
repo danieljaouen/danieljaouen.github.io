@@ -30,7 +30,7 @@
     { cmd: "lpm list", out: [["", "decimal                  2.4.1\n"]] },
     { cmd: "lepton-test", out: [["", "Lepton self-test: 7 files from /usr/share/lepton/test; excluding []\n"],
                                 ["g", "..................................................................................\n\n"],
-                                ["", "Finished in 2.7 seconds\n"], ["g", "82 tests, 0 failures\n"]] },
+                                ["", "Finished in 3.9 seconds\n"], ["g", "96 tests, 0 failures\n"]] },
   ];
 
   const term = document.getElementById("term");
