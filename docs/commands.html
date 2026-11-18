@@ -57,6 +57,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
         </ul>
@@ -71,7 +72,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 125 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 127 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -234,14 +235,16 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
+<tr><td><span class="anchor-target" id="cmd-app"></span><code>app</code></td><td>native Linux apps (from Alpine's packages): list, install, remove</td><td><code>app [list] | install NAME | remove NAME</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-classic"></span><code>classic</code></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-firefox"></span><code>firefox</code></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-photon"></span><code>photon</code></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | screenshot FILE.png | stop</code></td></tr>
 </tbody></table></div>
 <h2 id="shell-builtins">Shell builtins<a class="anchor" href="#shell-builtins" aria-label="Link to this section">#</a></h2>
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@ac55150.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@c94ce00.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

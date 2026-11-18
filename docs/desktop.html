@@ -57,6 +57,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html" aria-current="page">The desktop (Photon)</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
         </ul>
@@ -100,9 +101,9 @@ photon stop                 # quit</code></pre>
 <p>For something more familiar, type <code>classic</code> instead of <code>photon</code>. It's Photon with a different window manager, styled after Windows 95:</p>
 <ul>
 <li>grey 3D window frames with a navy title bar and <strong>minimize</strong>, <strong>maximize</strong> and <strong>close</strong> buttons (double-click a title bar to maximize or restore)</li>
-<li>a teal desktop with icons for the Terminal, the Text Editor (<code>le</code>) and the System Monitor (<code>top</code>): double-click one to open it</li>
+<li>a teal desktop with icons for <a href="apps.html">Firefox</a>, the Terminal, the Text Editor (<code>le</code>) and the System Monitor (<code>top</code>): double-click one to open it</li>
 <li>a <strong>taskbar</strong> with a button for each window (click to bring it to the front, click again to minimize it) and a clock</li>
-<li>the <strong>Start</strong> menu (click Start, or Ctrl+Esc): Terminal, Text Editor, System Monitor, Help and Exit Desktop</li>
+<li>the <strong>Start</strong> menu (click Start, or Ctrl+Esc): <a href="apps.html">Firefox</a>, Terminal, Text Editor, System Monitor, Help and Exit Desktop</li>
 </ul>
 <p>The keys from the table above work here too. Exit Desktop (or Ctrl+Alt+Backspace) returns you to the console. Lepton never starts a desktop at boot; you choose <code>photon</code> or <code>classic</code> when you want one.</p>
 <h2 id="wayland">Wayland<a class="anchor" href="#wayland" aria-label="Link to this section">#</a></h2>
@@ -115,15 +116,18 @@ photon stop                 # quit</code></pre>
 <tr><td><code>wl_seat</code>, <code>wl_pointer</code>, <code>wl_keyboard</code></td><td>5</td><td>US keymap (XKB), key repeat info</td></tr>
 <tr><td><code>wl_output</code></td><td>2</td><td></td></tr>
 <tr><td><code>xdg_wm_base</code>, <code>xdg_surface</code>, <code>xdg_toplevel</code>, <code>xdg_popup</code></td><td>1</td><td></td></tr>
+<tr><td><code>wl_subcompositor</code>, <code>wl_subsurface</code></td><td>1</td><td></td></tr>
+<tr><td><code>wl_data_device_manager</code></td><td>3</td><td>no clipboard yet</td></tr>
+<tr><td><code>org_kde_kwin_server_decoration_manager</code></td><td>1</td><td>Photon draws the title bars</td></tr>
 <tr><td><code>lepton_shm</code></td><td>1</td><td>Lepton's own programs: shared memory by path</td></tr>
 </tbody></table></div>
-<p>Inside Photon, terminals set <code>WAYLAND_DISPLAY</code> and <code>XDG_RUNTIME_DIR</code>, so a Wayland program that draws with shared-memory buffers can connect to it. Photon draws the title bar and border itself, so programs that draw their own decorations get both. Lepton can't close a descriptor it receives, so each shared-memory pool such a program creates stays in memory until you reboot; Lepton's own windows use <code>lepton_shm</code> instead and leave nothing behind.</p>
+<p>Inside Photon, terminals set <code>WAYLAND_DISPLAY</code> and <code>XDG_RUNTIME_DIR</code>, so a Wayland program that draws with shared-memory buffers can connect to it; <a href="apps.html">Firefox</a> does. Photon draws the title bar and border itself and tells GTK so (KDE's server-side decoration protocol), so GTK programs leave theirs out.</p>
 <h2 id="what-it-doesnt-do-yet">What it doesn't do yet<a class="anchor" href="#what-it-doesnt-do-yet" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>GPU-drawn (EGL) programs, transparency, clipboard and drag and drop, touch, and HiDPI scaling.</li>
 <li>Fonts other than the built-in 8x16 Terminus bitmap font.</li>
 <li>Keyboard layouts other than US.</li>
-<li>A web browser: <a href="commands.html"><code>www</code></a> is text-only for now.</li>
+<li>Video drivers: programs draw with the CPU.</li>
 </ul>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -134,7 +138,7 @@ photon stop                 # quit</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@ac55150. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@c94ce00. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
