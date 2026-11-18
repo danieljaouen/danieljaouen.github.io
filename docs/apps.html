@@ -83,16 +83,20 @@
 <pre><code class="language-sh">sudo app install firefox</code></pre>
 <p>Firefox runs on Photon, Lepton's Wayland compositor, so it needs the desktop (<code>photon</code> or <code>classic</code>). It shows Photon's window frame instead of drawing its own. Its output goes to <code>~/.cache/lepton/firefox.log</code>.</p>
 <h2 id="what-gets-installed">What gets installed<a class="anchor" href="#what-gets-installed" aria-label="Link to this section">#</a></h2>
-<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, and so on: about 87 packages), downloads them over HTTPS (about 130 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 350 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
+<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, and so on: about 85 packages), downloads them over HTTPS (about 130 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 350 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
 <p>On an installed system the app is kept on the data partition. On the live ISO it is kept in memory and is gone after a reboot; give the VM at least 4 GB of memory to install and run Firefox there.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th></tr></thead>
 <tbody>
-<tr><td><code>app</code></td><td>the apps there are, and which are installed</td></tr>
+<tr><td><code>app</code></td><td>the apps there are, their versions, and when they were last checked for updates</td></tr>
 <tr><td><code>sudo app install NAME</code></td><td>download and install an app</td></tr>
+<tr><td><code>sudo app update [NAME]</code></td><td>update an app (or all of them) now</td></tr>
 <tr><td><code>sudo app remove NAME</code></td><td>remove it</td></tr>
 <tr><td><code>firefox [URL...]</code></td><td>start Firefox (installing it first, as root)</td></tr>
 </tbody></table></div>
+<h2 id="updates">Updates<a class="anchor" href="#updates" aria-label="Link to this section">#</a></h2>
+<p>Firefox keeps itself up to date. Alpine rebuilds it for every Firefox release, about every four weeks, and sooner for security fixes. Every 10 days, starting Firefox also checks for a newer build. If there is one, Lepton downloads it in the background, next to the one you're using. The next time you start Firefox, the new version takes over before the window opens. If its setup fails, the old version stays.</p>
+<p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
 <h2 id="whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere<a class="anchor" href="#whats-different-from-firefox-elsewhere" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>It draws with the CPU: the VM has no GPU, and the GPU drivers are not installed.</li>
@@ -104,18 +108,19 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-app"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, remove</td><td><code>app [list] | install NAME | remove NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-app"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | update [NAME] | remove NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-firefox"><code>firefox</code></a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@c94ce00. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@65886f0. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#starting-firefox">Starting Firefox</a></li>
           <li><a href="#what-gets-installed">What gets installed</a></li>
+          <li><a href="#updates">Updates</a></li>
           <li><a href="#whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>
