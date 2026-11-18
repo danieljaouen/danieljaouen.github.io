@@ -82,6 +82,7 @@
 <p>The first time, a terminal window shows Firefox being installed, then Firefox opens. Installing needs root, so as your own user the window asks for your password (<code>sudo</code>). You can also install it ahead of time:</p>
 <pre><code class="language-sh">sudo app install firefox</code></pre>
 <p>Firefox runs on Photon, Lepton's Wayland compositor, so it needs the desktop (<code>photon</code> or <code>classic</code>). It shows Photon's window frame instead of drawing its own. Its output goes to <code>~/.cache/lepton/firefox.log</code>.</p>
+<p>Firefox runs as you: as your account's user ID, with its profile in your home (<code>~/.config/mozilla</code>). You don't need <code>sudo</code>, and Firefox refuses to run as root in your home anyway. <code>sudo firefox</code> runs it as root, with root's own profile in <code>/root</code>.</p>
 <h2 id="what-gets-installed">What gets installed<a class="anchor" href="#what-gets-installed" aria-label="Link to this section">#</a></h2>
 <p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, and so on: about 85 packages), downloads them over HTTPS (about 130 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 350 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
 <p>On an installed system the app is kept on the data partition. On the live ISO it is kept in memory and is gone after a reboot; give the VM at least 4 GB of memory to install and run Firefox there.</p>
@@ -114,7 +115,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@d9e4a4c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@99104b2. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
