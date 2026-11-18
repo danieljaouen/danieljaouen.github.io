@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>The desktop (Photon) - Lepton OS docs</title>
+  <meta name="description" content="Photon, Lepton's Wayland compositor: terminal windows on the display, with the mouse and keyboard.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html" aria-current="page">The desktop (Photon)</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="the-desktop-photon">The desktop (Photon)<a class="anchor" href="#the-desktop-photon" aria-label="Link to this section">#</a></h1>
+<p>Photon is Lepton's graphical desktop: a Wayland compositor written in Elixir, like the rest of Lepton. It takes over the VM's display and shows windows that you move, resize and type into with the mouse and keyboard. The first window is a terminal running your shell.</p>
+<pre><code class="language-sh">photon</code></pre>
+<p>Run it from the console in the VM window (UTM's display, or QEMU with a display). It needs the display's framebuffer, so it doesn't start from <code>mix lepton.shell</code> on a Mac or over a serial console without a display.</p>
+<p>When you quit, the text console comes back as you left it.</p>
+<h2 id="keys-and-the-mouse">Keys and the mouse<a class="anchor" href="#keys-and-the-mouse" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Key or action</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Alt+Return</td><td>open a terminal window</td></tr>
+<tr><td>Alt+Tab</td><td>focus the next window</td></tr>
+<tr><td>Alt+F4, or the × button</td><td>close the window</td></tr>
+<tr><td>Ctrl+Alt+Backspace</td><td>quit Photon</td></tr>
+<tr><td>click a window</td><td>focus it and bring it to the front</td></tr>
+<tr><td>drag the title bar (or Alt+drag anywhere)</td><td>move the window</td></tr>
+<tr><td>drag the bottom-right corner (or Alt+right-drag)</td><td>resize the window</td></tr>
+</tbody></table></div>
+<p>Super (the Windows/Command key) works in place of Alt where the VM passes it through.</p>
+<h2 id="terminal-windows">Terminal windows<a class="anchor" href="#terminal-windows" aria-label="Link to this section">#</a></h2>
+<p>A terminal window runs <code>lsh</code> with your account, as your console does. Everything that works in a terminal works there, including <code>le</code>, <code>tmux</code> and the colours of your prompt. Resizing a window changes its rows and columns. Typing <code>exit</code> closes the window, and closing the window ends its shell.</p>
+<p>From a shell, inside Photon or on the console:</p>
+<pre><code class="language-sh">photon term                 # open another terminal window
+photon term le notes.txt    # a window running a command
+photon info                 # the display, clients and windows
+photon screenshot shot.png  # save the screen as a PNG
+photon stop                 # quit</code></pre>
+<h2 id="wayland">Wayland<a class="anchor" href="#wayland" aria-label="Link to this section">#</a></h2>
+<p>Photon speaks the standard Wayland protocol on <code>$XDG_RUNTIME_DIR/wayland-0</code> (<code>/run/user/UID</code>). It supports the core protocol and <code>xdg-shell</code>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Interface</th><th>Version</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>wl_compositor</code>, <code>wl_surface</code>, <code>wl_region</code></td><td>4</td><td></td></tr>
+<tr><td><code>wl_shm</code>, <code>wl_shm_pool</code>, <code>wl_buffer</code></td><td>1</td><td>ARGB8888 and XRGB8888, shown opaque</td></tr>
+<tr><td><code>wl_seat</code>, <code>wl_pointer</code>, <code>wl_keyboard</code></td><td>5</td><td>US keymap (XKB), key repeat info</td></tr>
+<tr><td><code>wl_output</code></td><td>2</td><td></td></tr>
+<tr><td><code>xdg_wm_base</code>, <code>xdg_surface</code>, <code>xdg_toplevel</code>, <code>xdg_popup</code></td><td>1</td><td></td></tr>
+<tr><td><code>lepton_shm</code></td><td>1</td><td>Lepton's own programs: shared memory by path</td></tr>
+</tbody></table></div>
+<p>Inside Photon, terminals set <code>WAYLAND_DISPLAY</code> and <code>XDG_RUNTIME_DIR</code>, so a Wayland program that draws with shared-memory buffers can connect to it. Photon draws the title bar and border itself, so programs that draw their own decorations get both. Lepton can't close a descriptor it receives, so each shared-memory pool such a program creates stays in memory until you reboot; Lepton's own windows use <code>lepton_shm</code> instead and leave nothing behind.</p>
+<h2 id="what-it-doesnt-do-yet">What it doesn't do yet<a class="anchor" href="#what-it-doesnt-do-yet" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>GPU-drawn (EGL) programs, transparency, clipboard and drag and drop, touch, and HiDPI scaling.</li>
+<li>Fonts other than the built-in 8x16 Terminus bitmap font.</li>
+<li>Keyboard layouts other than US.</li>
+<li>A web browser: <a href="commands.html"><code>www</code></a> is text-only for now.</li>
+</ul>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-photon"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | screenshot FILE.png | stop</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@0eeb4f3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#keys-and-the-mouse">Keys and the mouse</a></li>
+          <li><a href="#terminal-windows">Terminal windows</a></li>
+          <li><a href="#wayland">Wayland</a></li>
+          <li><a href="#what-it-doesnt-do-yet">What it doesn't do yet</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
