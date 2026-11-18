@@ -57,6 +57,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html" aria-current="page">Limitations</a></li>
@@ -74,6 +75,7 @@
 <h1 id="limitations">Limitations<a class="anchor" href="#limitations" aria-label="Link to this section">#</a></h1>
 <ul>
 <li>The live ISO keeps everything in RAM. An installed system persists <code>/root</code> and <code>/var/lib/lepton</code> only; changes elsewhere (for example <code>/etc</code>) reset at boot.</li>
+<li>USB display adapters: DisplayLink's USB 2.0 chips and Generic USB Display gadgets only; newer DisplayLink docks need a closed-source driver. A USB-C hub's HDMI port (DisplayPort Alternate Mode) belongs to the Mac, not the VM. See <a href="usb.html">USB, hubs and displays</a>.</li>
 <li>Wi-Fi needs a supported adapter: virtual machines have no wireless hardware (pass a USB adapter through). WPA2 and WPA2/WPA3 networks work; WPA3-only and enterprise (802.1X) networks don't.</li>
 <li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
@@ -88,7 +90,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@784faf6. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fedefb7. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>

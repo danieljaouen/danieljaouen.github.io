@@ -57,6 +57,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html" aria-current="page">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -83,6 +84,7 @@
 <tr><td>Alt+Return</td><td>open a terminal window</td></tr>
 <tr><td>Alt+Tab</td><td>focus the next window</td></tr>
 <tr><td>Alt+F4, or the × button</td><td>close the window</td></tr>
+<tr><td>Alt+Shift+Right / Left</td><td>move the window to the next / previous <a href="usb.html">display</a></td></tr>
 <tr><td>Ctrl+Alt+Backspace</td><td>quit Photon</td></tr>
 <tr><td>click a window</td><td>focus it and bring it to the front</td></tr>
 <tr><td>drag the title bar (or Alt+drag anywhere)</td><td>move the window</td></tr>
@@ -95,6 +97,7 @@
 <pre><code class="language-sh">photon term                 # open another terminal window
 photon term le notes.txt    # a window running a command
 photon info                 # the display, clients and windows
+photon display mirror       # with two displays: mirror them (or extend)
 photon screenshot shot.png  # save the screen as a PNG
 photon stop                 # quit</code></pre>
 <h2 id="the-classic-desktop">The classic desktop<a class="anchor" href="#the-classic-desktop" aria-label="Link to this section">#</a></h2>
@@ -106,6 +109,9 @@ photon stop                 # quit</code></pre>
 <li>the <strong>Start</strong> menu (click Start, or Ctrl+Esc): <a href="apps.html">Firefox</a>, Terminal, Text Editor, System Monitor, Help and Exit Desktop</li>
 </ul>
 <p>The keys from the table above work here too. Exit Desktop (or Ctrl+Alt+Backspace) returns you to the console. Lepton never starts a desktop at boot; you choose <code>photon</code> or <code>classic</code> when you want one.</p>
+<h2 id="more-than-one-display">More than one display<a class="anchor" href="#more-than-one-display" aria-label="Link to this section">#</a></h2>
+<p>With a second display (a second VM display, or a USB display adapter), the desktop extends across both, side by side, or mirrors the primary display (<code>photon display mirror</code>). Displays can come and go while it runs. See <a href="usb.html">USB, hubs and displays</a>.</p>
+<p>Keyboards and mice plugged in while the desktop runs, directly or through a hub, work within a second.</p>
 <h2 id="wayland">Wayland<a class="anchor" href="#wayland" aria-label="Link to this section">#</a></h2>
 <p>Photon speaks the standard Wayland protocol on <code>$XDG_RUNTIME_DIR/wayland-0</code> (<code>/run/user/UID</code>). It supports the core protocol and <code>xdg-shell</code>:</p>
 <div class="table-wrap"><table>
@@ -128,17 +134,18 @@ photon stop                 # quit</code></pre>
 <li>Fonts other than the built-in 8x16 Terminus bitmap font.</li>
 <li>Keyboard layouts other than US.</li>
 <li>Video drivers: programs draw with the CPU.</li>
+<li>Arranging displays other than left to right, or changing a display's resolution. Wayland programs see one output, the whole desktop.</li>
 </ul>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-photon"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | screenshot FILE.png | stop</code></td></tr>
+<tr><td><a href="commands.html#cmd-photon"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></td></tr>
 <tr><td><a href="commands.html#cmd-classic"><code>classic</code></a></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@784faf6. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fedefb7. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -146,6 +153,7 @@ photon stop                 # quit</code></pre>
           <li><a href="#keys-and-the-mouse">Keys and the mouse</a></li>
           <li><a href="#terminal-windows">Terminal windows</a></li>
           <li><a href="#the-classic-desktop">The classic desktop</a></li>
+          <li><a href="#more-than-one-display">More than one display</a></li>
           <li><a href="#wayland">Wayland</a></li>
           <li><a href="#what-it-doesnt-do-yet">What it doesn't do yet</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
