@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>System - Lepton OS docs</title>
-  <meta name="description" content="Processes and jobs, storage and persistence, running out of memory, power, the clipboard, Elixir and the self-tests.">
+  <meta name="description" content="Processes and jobs, storage and persistence, running out of memory, logs, power, the clipboard, Elixir and the self-tests.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -90,7 +90,7 @@
 </ul>
 <p>For long-running apps that should survive logouts and restart when they fail, use <a href="services.html">services</a>.</p>
 <h2 id="storage-and-persistence">Storage and persistence<a class="anchor" href="#storage-and-persistence" aria-label="Link to this section">#</a></h2>
-<p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot.</p>
+<p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot. It keeps <code>/var/log</code> too (see <a href="#logs">logs</a>).</p>
 <p><code>df</code>, <code>du</code>, <code>free</code> and <code>mount</code> show filesystems and memory.</p>
 <h2 id="when-memory-runs-out">When memory runs out<a class="anchor" href="#when-memory-runs-out" aria-label="Link to this section">#</a></h2>
 <p>Lepton has no swap, so the memory the VM has is all there is. Firefox uses most of it: each tab is a program of its own. When memory runs short:</p>
@@ -100,6 +100,14 @@
 </ol>
 <p>Without step 2 the whole system would freeze: Linux keeps going until almost nothing is left, and before that it spends all its time reading programs back from the disk. Lepton's own processes are never stopped.</p>
 <p>Each time Lepton stops a program, <code>dmesg</code> shows it (<code>lepton: memory: ... stopping process ...</code>). <code>free -h</code> shows how much memory is available. If this happens often, give the VM more memory (in UTM: the VM's settings → <strong>System</strong> → <strong>Memory</strong>), or keep fewer tabs open.</p>
+<h2 id="logs">Logs<a class="anchor" href="#logs" aria-label="Link to this section">#</a></h2>
+<p>Lepton logs what its services do to <code>/var/log/messages</code>, with the kernel's messages among them (<code>kernel: ...</code>). <code>dmesg</code> shows the kernel's log alone, and <code>less /var/log/messages</code> the whole log.</p>
+<p>The live ISO keeps the log in memory, so a restart erases it. An installed system keeps <code>/var/log</code> on its data partition:</p>
+<ul>
+<li>at each boot, the last boot's log moves to <code>/var/log/messages.previous</code>, so after a crash it shows what led up to it;</li>
+<li>if Lepton itself stops, its crash dump goes to <code>/var/log/erl_crash.dump</code>.</li>
+</ul>
+<p>When the log reaches 4 MiB, it moves to <code>messages.0</code> (replacing the one there) and a new one starts.</p>
 <h2 id="power">Power<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
 <p><code>poweroff</code> (also <code>halt</code>, <code>shutdown</code>) and <code>reboot</code> stop services, flush the data partition and remount it read-only first. They need root: <code>sudo poweroff</code>. UTM's <strong>Request power down</strong> does the same through the virtual power button.</p>
 <h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
@@ -146,7 +154,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@54cd4f3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@f0d6bd9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -154,6 +162,7 @@
           <li><a href="#processes-and-jobs">Processes and jobs</a></li>
           <li><a href="#storage-and-persistence">Storage and persistence</a></li>
           <li><a href="#when-memory-runs-out">When memory runs out</a></li>
+          <li><a href="#logs">Logs</a></li>
           <li><a href="#power">Power</a></li>
           <li><a href="#terminals">Terminals</a></li>
           <li><a href="#clipboard">Clipboard</a></li>
