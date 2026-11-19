@@ -97,7 +97,7 @@
 <h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
 <p>Each console runs a login session as <code>root</code>. On a serial console, full-screen programs (<code>le</code>, <code>tmux</code>, <code>less</code>, <code>top</code>) follow the terminal window's size as you resize it; <code>resize</code> sets the size by hand. Colours follow your terminal; <code>NO_COLOR=1</code> turns them off.</p>
 <h2 id="clipboard">Clipboard<a class="anchor" href="#clipboard" aria-label="Link to this section">#</a></h2>
-<p><code>pbcopy</code> and <code>pbpaste</code> (also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code>, <code>wl-paste</code>) share one clipboard with tmux copy mode and editor yanks. Copies are also sent to your computer's terminal with OSC 52, so they can land in the Mac clipboard over a serial console.</p>
+<p><code>pbcopy</code> and <code>pbpaste</code> (also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code>, <code>wl-paste</code>) share one clipboard with tmux copy mode, editor yanks and the programs on the <a href="desktop.html#the-clipboard">desktop</a>, such as Firefox. Copies are also sent to your computer's terminal with OSC 52, so they can land in the Mac clipboard over a serial console.</p>
 <h2 id="elixir-and-erlang">Elixir and Erlang<a class="anchor" href="#elixir-and-erlang" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>iex</code> is interactive Elixir. It loads <code>~/.iex.exs</code>, so your helpers work: <code>sh &quot;ls&quot;</code> and <code>~x(ls -la)</code> run commands in <code>lsh</code>.</li>
@@ -138,7 +138,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7e3a219. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3a55291. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

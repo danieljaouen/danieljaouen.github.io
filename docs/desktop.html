@@ -101,7 +101,16 @@
 </tbody></table></div>
 <p>Super (the Windows/Command key) works in place of Alt where the VM passes it through.</p>
 <h2 id="terminal-windows">Terminal windows<a class="anchor" href="#terminal-windows" aria-label="Link to this section">#</a></h2>
-<p>A terminal window runs <code>lsh</code> with your account, as your console does. Everything that works in a terminal works there, including <code>le</code>, <code>tmux</code> and the colours of your prompt. Resizing a window changes its rows and columns. Typing <code>exit</code> closes the window, and closing the window ends its shell.</p>
+<p>A terminal window runs <code>lsh</code> with your account, as your console does. Everything that works in a terminal works there, including <code>le</code>, <code>tmux</code> and the colours of your prompt. Resizing a window changes its rows and columns. Typing <code>exit</code> closes the window, and closing the window ends its shell. <strong>Ctrl+Shift+V</strong> pastes the clipboard.</p>
+<h2 id="the-clipboard">The clipboard<a class="anchor" href="#the-clipboard" aria-label="Link to this section">#</a></h2>
+<p>Photon's windows share Lepton's clipboard, the one <code>pbcopy</code> and <code>pbpaste</code>, tmux's copy mode and the editor's yanks use (see <a href="system.html#clipboard">System</a>):</p>
+<ul>
+<li>Copy in Firefox (Ctrl+C), then <code>pbpaste</code> in a terminal, <strong>Ctrl+Shift+V</strong> in a terminal window, <code>C-t ]</code> in tmux or <code>p</code> in <code>le</code>.</li>
+<li>Copy in a terminal (<code>echo hello | pbcopy</code>, a tmux or editor copy), then Ctrl+V in Firefox.</li>
+</ul>
+<p>Only text reaches Lepton's clipboard; anything else a program copies goes only to programs on the desktop.</p>
+<h2 id="drag-and-drop">Drag and drop<a class="anchor" href="#drag-and-drop" aria-label="Link to this section">#</a></h2>
+<p>Programs can drag things within their windows and between them: in Firefox, drag a tab along the tab bar to move it. No picture of what's dragged follows the pointer.</p>
 <p>From a shell, inside Photon or on the console:</p>
 <pre><code class="language-sh">photon term                 # open another terminal window
 photon term le notes.txt    # a window running a command
@@ -132,14 +141,14 @@ photon stop                 # quit</code></pre>
 <tr><td><code>wl_output</code></td><td>2</td><td></td></tr>
 <tr><td><code>xdg_wm_base</code>, <code>xdg_surface</code>, <code>xdg_toplevel</code>, <code>xdg_popup</code></td><td>1</td><td></td></tr>
 <tr><td><code>wl_subcompositor</code>, <code>wl_subsurface</code></td><td>1</td><td></td></tr>
-<tr><td><code>wl_data_device_manager</code>, <code>wl_data_source</code>, <code>wl_data_offer</code></td><td>3</td><td>drag and drop; no clipboard yet</td></tr>
+<tr><td><code>wl_data_device_manager</code>, <code>wl_data_source</code>, <code>wl_data_offer</code></td><td>3</td><td>the clipboard (shared with Lepton's), drag and drop</td></tr>
 <tr><td><code>org_kde_kwin_server_decoration_manager</code></td><td>1</td><td>Photon draws the title bars</td></tr>
 <tr><td><code>lepton_shm</code></td><td>1</td><td>Lepton's own programs: shared memory by path</td></tr>
 </tbody></table></div>
 <p>Inside Photon, terminals set <code>WAYLAND_DISPLAY</code> and <code>XDG_RUNTIME_DIR</code>, so a Wayland program that draws with shared-memory buffers can connect to it; <a href="apps.html">Firefox</a> does. Photon draws the title bar and border itself and tells GTK so (KDE's server-side decoration protocol), so GTK programs leave theirs out.</p>
 <h2 id="what-it-doesnt-do-yet">What it doesn't do yet<a class="anchor" href="#what-it-doesnt-do-yet" aria-label="Link to this section">#</a></h2>
 <ul>
-<li>GPU-drawn (EGL) programs, transparency, a clipboard between programs, touch, and HiDPI scaling. (Drag and drop works, without a picture of what's dragged following the pointer.)</li>
+<li>GPU-drawn (EGL) programs, transparency, the primary selection (pasting what's selected with the middle button), touch, and HiDPI scaling.</li>
 <li>Fonts other than the built-in 8x16 Terminus bitmap font.</li>
 <li>Keyboard layouts other than US.</li>
 <li>Video drivers: programs draw with the CPU.</li>
@@ -154,13 +163,15 @@ photon stop                 # quit</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7e3a219. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3a55291. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#keys-and-the-mouse">Keys and the mouse</a></li>
           <li><a href="#terminal-windows">Terminal windows</a></li>
+          <li><a href="#the-clipboard">The clipboard</a></li>
+          <li><a href="#drag-and-drop">Drag and drop</a></li>
           <li><a href="#the-classic-desktop">The classic desktop</a></li>
           <li><a href="#more-than-one-display">More than one display</a></li>
           <li><a href="#wayland">Wayland</a></li>
