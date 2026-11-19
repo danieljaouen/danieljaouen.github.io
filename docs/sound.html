@@ -94,11 +94,11 @@ beep 440 500        # a 440 Hz tone for half a second</code></pre>
 <p>On the <strong>classic desktop</strong> a speaker sits next to the clock. Click it for the volume control: click the slider to set the volume, and tick <strong>Mute</strong> to silence everything. The speaker shows a red cross while sound is muted. Click anywhere else to close the control.</p>
 <h2 id="sound-cards">Sound cards<a class="anchor" href="#sound-cards" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-text">$ sound
-  0  HDA Intel                    volume: Master Playback Volume
-* 1  USB Headset                  volume: PCM Playback Volume
+  0  HDA Intel                    volume: Lepton Playback Volume
+* 1  USB Headset                  volume: Lepton Playback Volume
 (* plays sound: the card added last)</code></pre>
 <p>Sound plays on the card added last, so a USB headset takes over when you plug it in and hands back when you unplug it, and so do <a href="bluetooth.html">Bluetooth headphones</a> when they connect (listed as <code>bt</code>). <code>sound use 0</code> keeps sound on card 0 instead, <code>sound use bluetooth</code> on the headphones; <code>sound use auto</code> goes back to the one added last.</p>
-<p>The volume is set on the card's own volume control. A card without one (virtio-sound) gets a volume control that works in software, marked &quot;software volume&quot;. Lepton's sounds and Firefox's follow it just the same.</p>
+<p>The volume works in software: each card gets a volume control of Lepton's (<code>Lepton Playback Volume</code>), and Lepton's sounds and Firefox's are made quieter, or silent when muted, before they reach the card. The card's own volume and mute are kept at full and on, because a virtual machine's sound card may not apply them: UTM's passes them on to UTM, which doesn't use them.</p>
 <p><strong>Drivers</strong>: Intel HD Audio (UTM's and QEMU's usual sound device), virtio-sound, and USB audio (headsets, speakers, sound cards, docks). They load when the device appears. Bluetooth headphones and speakers play through bluez-alsa; see <a href="bluetooth.html">Bluetooth</a>.</p>
 <h2 id="in-utm">In UTM<a class="anchor" href="#in-utm" aria-label="Link to this section">#</a></h2>
 <p>Give the VM a sound device in its settings (<strong>Sound</strong>: Intel HD Audio, or VirtIO). Its sound comes out of your Mac. <code>mix lepton.qemu</code> gives its VM Intel HD Audio, played on the Mac's speakers too.</p>
@@ -120,7 +120,7 @@ beep 440 500        # a 440 Hz tone for half a second</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2357e85. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/sound.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e4af2e3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/sound.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
