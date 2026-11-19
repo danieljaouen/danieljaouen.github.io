@@ -60,6 +60,7 @@
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
           <li><a href="apps.html" aria-current="page">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -98,6 +99,7 @@
 <tr><td><code>sudo app remove NAME</code></td><td>remove it</td></tr>
 <tr><td><code>firefox [URL...]</code></td><td>start Firefox (installing it first, as root)</td></tr>
 </tbody></table></div>
+<p>The other app is <code>bluetooth</code>: <a href="bluetooth.html">Bluetooth</a>'s programs (BlueZ, D-Bus and bluez-alsa: about 37 packages, 7.5 MB to download), which Lepton runs in the background rather than opening in a window.</p>
 <h2 id="updates">Updates<a class="anchor" href="#updates" aria-label="Link to this section">#</a></h2>
 <p>Firefox keeps itself up to date. Alpine rebuilds it for every Firefox release, about every four weeks, and sooner for security fixes. Every 10 days, starting Firefox also checks for a newer build. If there is one, Lepton downloads it in the background, next to the one you're using. The next time you start Firefox, the new version takes over before the window opens. If its setup fails, the old version stays.</p>
 <p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
@@ -119,7 +121,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@45733c7. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@0fcf633. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
