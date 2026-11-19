@@ -50,6 +50,7 @@
         <p class="docs-nav-group">Guides</p>
         <ul>
           <li><a href="getting-started.html" aria-current="page">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
@@ -133,7 +134,7 @@ Where should Lepton go?
 </ul>
 <p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system (add <code>--login NAME:PASSWORD</code> with <code>--run</code> to script it).</p>
 <h2 id="upgrade-to-a-new-release">Upgrade to a new release<a class="anchor" href="#upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
-<p>Because Lepton and your data are on separate partitions, a new release replaces only Lepton:</p>
+<p>Because Lepton and your data are on separate partitions, a new release replaces only Lepton. <a href="updating.html">Updating Lepton</a> has the steps in full, for UTM, QEMU and from inside Lepton; in short:</p>
 <ol>
 <li>Download the new ISO.</li>
 <li>In UTM, choose it for the VM's <strong>CD/DVD</strong> drive and start the VM. Whether the VM starts the ISO or your installed Lepton doesn't matter: either way, log in with your own account and run <code>sudo lepton-install</code>. It finds the ISO and the Lepton on your disk, and upgrades it.</li>
@@ -183,7 +184,7 @@ Where should Lepton go?
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0ab9803. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3b7df18. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
