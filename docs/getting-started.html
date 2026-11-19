@@ -110,6 +110,22 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <li>Log in with your user name and password.</li>
 </ol>
 <p>For an unattended install, <code>echo PASSWORD | lepton-install -y -u NAME --password-stdin /dev/vda</code> skips every question.</p>
+<h3 id="alongside-other-systems">Alongside other systems<a class="anchor" href="#alongside-other-systems" aria-label="Link to this section">#</a></h3>
+<p>A disk that already has partitions (macOS's, say, with room made for Lepton) keeps them. <code>lepton-install</code> lists what is on it and offers the places where Lepton fits without touching anything else:</p>
+<pre><code class="language-text">/dev/vda (64 GiB) has:
+  /dev/vda1    200 MiB  EFI System Partition (vfat)
+  /dev/vda2     40 GiB  Macintosh HD (apfs)
+  /dev/vda3     24 GiB  empty
+Where should Lepton go?
+  1) /dev/vda3: empty, 24 GiB (recommended)
+  2) erase the whole disk (everything on it is lost)</code></pre>
+<ul>
+<li><strong>An empty partition</strong>: one with no filesystem, or with an empty one (an &quot;MS-DOS (FAT)&quot; or exFAT partition you made for Lepton in Disk Utility, with nothing in it yet). The empty one is the default.</li>
+<li><strong>Free space</strong> that isn't in any partition, 1 GiB or more.</li>
+<li><strong>Erase the whole disk</strong>, always last, and only when you choose it.</li>
+</ul>
+<p>Lepton's two partitions are made in the place you pick. The other partitions keep their numbers and contents; the installer never offers EFI, Apple (APFS, HFS+, recovery) or Microsoft system partitions, or one with files in it. To pick the place yourself, name the partition: <code>lepton-install /dev/vda3</code>. With <code>-y</code>, Lepton goes into the first place offered, and a disk with other partitions but no room is left alone (unless you add <code>--erase</code>).</p>
+<p>This is for a VM's disk, or an external drive you pass to the VM. A Mac starts only macOS from its own internal disk.</p>
 <p>The installer writes a GPT partition table and two partitions, all from Elixir:</p>
 <ul>
 <li><strong><code>LEPTON-OS</code></strong> (512 MiB, FAT16, the EFI system partition): Lepton itself, meaning GRUB, the kernel and the initramfs. The installed system boots into RAM from it.</li>
@@ -131,6 +147,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <tr><td><code>lepton-install</code></td><td>install (a disk without Lepton), or ask whether to upgrade or erase</td></tr>
 <tr><td><code>lepton-install --upgrade</code></td><td>upgrade without asking (<code>-y</code> upgrades too)</td></tr>
 <tr><td><code>lepton-install --erase</code></td><td>erase the disk and install from scratch (asks you to confirm)</td></tr>
+<tr><td><code>lepton-install /dev/vda3</code></td><td>install into that partition, leaving the disk's other partitions alone</td></tr>
 <tr><td>boot menu: <strong>live: leave installed disks alone</strong></td><td>start the ISO without your disk's files, accounts and settings (to erase that disk, say)</td></tr>
 <tr><td><code>lepton-install --iso FILE</code></td><td>install or upgrade from a downloaded ISO file</td></tr>
 </tbody></table></div>
@@ -141,7 +158,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk, or upgrade it there (keeping your files) (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [--upgrade | --erase] [--iso FILE] [-u NAME --password-stdin] [/dev/DISK]</code></td></tr>
+<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk, or upgrade it there (keeping your files) (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [--upgrade | --erase] [--iso FILE] [-u NAME --password-stdin] [/dev/DISK | /dev/PARTITION]</code></td></tr>
 </tbody></table></div>
 <h2 id="shut-down">Shut down<a class="anchor" href="#shut-down" aria-label="Link to this section">#</a></h2>
 <p>Type <code>sudo poweroff</code> (just <code>poweroff</code> on the live ISO, where you are root), or use UTM's power button → <strong>Request power down</strong>. Lepton hears the virtual power button, warns the consoles, stops running services, flushes the data partition and remounts it read-only, so the next start is a clean boot through GRUB. &quot;Force shut down&quot; and closing the VM window pull the plug and can't be intercepted.</p>
@@ -166,7 +183,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@6c9d611. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@573bc3b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
