@@ -58,6 +58,8 @@
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html" aria-current="page">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -78,8 +80,8 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Device</th><th>Driver</th><th>What you get</th></tr></thead>
 <tbody>
-<tr><td>keyboards, mice, tablets</td><td><code>usbhid</code></td><td>they work at the console and in <a href="desktop.html">Photon</a> at once</td></tr>
-<tr><td>USB sticks and disks</td><td><code>usb-storage</code>, <code>uas</code></td><td>a disk (<code>sda</code>, ...) for <code>mount</code> and <code>lepton-install</code></td></tr>
+<tr><td>keyboards, mice, touchpads, tablets</td><td><code>usbhid</code> and others</td><td>they work at once (below)</td></tr>
+<tr><td>USB sticks, drives and card readers</td><td><code>usb-storage</code>, <code>uas</code></td><td>mounted under <code>/media</code> (<a href="storage.html">USB drives and SD cards</a>)</td></tr>
 <tr><td>Wi-Fi adapters</td><td>see <a href="networking.html">Networking</a></td><td>a wireless interface</td></tr>
 <tr><td>Ethernet ports (docks, adapters)</td><td><code>r8152</code>, <code>ax88179_178a</code>, <code>asix</code>, <code>cdc_ether</code>, <code>cdc_ncm</code></td><td>an interface, configured with DHCP</td></tr>
 <tr><td>USB display adapters</td><td><code>udl</code>, <code>gud</code></td><td>another display for the desktop (below)</td></tr>
@@ -94,7 +96,22 @@ usb1  xHCI Host Controller (root hub, 4 ports) [480 Mbit/s]
   1-2 0627:0001  QEMU USB Tablet (HID) [480 Mbit/s; usbhid] -&gt; event1
   1-4 0525:a4a2  RNDIS/QEMU USB Network Device (communications) [12 Mbit/s; cdc_ether] -&gt; usb0
 usb2  xHCI Host Controller (root hub, 4 ports) [5 Gbit/s]</code></pre>
-<p><strong>In UTM</strong>, USB devices reach the VM one at a time. Turn on <strong>Input → USB Sharing</strong> in the VM's settings, then click the <strong>USB</strong> icon in the toolbar and choose a device. macOS keeps the hubs themselves, so a device behind a hub on your desk shows up in the VM as if it were plugged in directly. Hubs show up as hubs on real hardware and in QEMU (<code>mix lepton.qemu</code> plugs its keyboard into a virtual hub).</p>
+<h2 id="keyboards-and-mice">Keyboards and mice<a class="anchor" href="#keyboards-and-mice" aria-label="Link to this section">#</a></h2>
+<p>Any USB keyboard works, at the console and on the desktop. Mice, trackballs, touchpads, drawing tablets and touchscreens work on the desktop (<a href="desktop.html">Photon</a> and the classic desktop). Plug them in at any time, directly, through a hub, or through a wireless receiver.</p>
+<p>Most devices need only the standard HID driver. Lepton also has the drivers for Apple keyboards, Magic Mouse and Magic Trackpad, Logitech's Unifying and Bolt receivers, Microsoft, Lenovo, Cherry, ASUS and Elan devices, Wacom tablets and multi-touch touchpads, and loads them when one appears.</p>
+<ul>
+<li><strong>Mice</strong>: the wheel scrolls, a tilting or second wheel scrolls sideways, and every button (side buttons too) reaches the program under the pointer.</li>
+<li><strong>Touchpads</strong> move the pointer as you slide one finger. Click by pressing the pad (or its buttons). Tap-to-click and two-finger scrolling aren't supported yet.</li>
+<li><strong>Tablets and touchscreens</strong> map their surface onto the display.</li>
+<li><strong>Keyboards</strong>: every key, with the US layout. The volume keys set the volume (see <a href="sound.html">Sound</a>).</li>
+</ul>
+<p><code>input</code> lists the input devices, what Lepton takes each for, and the USB port it's on:</p>
+<pre><code class="language-text">$ input
+event0   other     Power Button
+event1   tablet    QEMU QEMU USB Tablet  (USB 1-2)
+event2   keyboard  QEMU QEMU USB Keyboard  (USB 1-1.1)</code></pre>
+<p>At the text console a mouse does nothing (there is no console pointer).</p>
+<p><strong>In UTM</strong>, USB devices reach the VM one at a time. Turn on <strong>Input → USB Sharing</strong> in the VM's settings, then click the <strong>USB</strong> icon in the toolbar and choose a device. macOS keeps the hubs themselves, so a device behind a hub on your desk shows up in the VM as if it were plugged in directly. You rarely need to pass a keyboard or mouse: UTM already gives the VM a keyboard and pointer that follow your Mac's. A device you do pass belongs to the VM until you take it back, so keep another one for the Mac. Hubs show up as hubs on real hardware and in QEMU (<code>mix lepton.qemu</code> plugs its keyboard into a virtual hub).</p>
 <h2 id="displays">Displays<a class="anchor" href="#displays" aria-label="Link to this section">#</a></h2>
 <p><a href="desktop.html">Photon</a> (and the classic desktop) uses every display the kernel has a framebuffer for (<code>/dev/fb0</code>, <code>/dev/fb1</code>, ...):</p>
 <ul>
@@ -119,15 +136,17 @@ photon display mirror    # the same picture on every display</code></pre>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><a href="commands.html#cmd-usb"><code>usb</code></a></td><td>USB devices as a tree: hubs, their ports and what is plugged in</td><td><code>usb</code></td></tr>
+<tr><td><a href="commands.html#cmd-input"><code>input</code></a></td><td>keyboards, mice, touchpads and tablets: the input devices and what each is</td><td><code>input</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@6410c90. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@293f1e3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#usb-devices-and-hubs">USB devices and hubs</a></li>
+          <li><a href="#keyboards-and-mice">Keyboards and mice</a></li>
           <li><a href="#displays">Displays</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>

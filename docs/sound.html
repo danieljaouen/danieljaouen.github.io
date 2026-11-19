@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Sound - Lepton OS docs</title>
+  <meta name="description" content="Sound cards, the volume (volume, the volume keys, the classic desktop's speaker), and playing sounds.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html" aria-current="page">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="sound">Sound<a class="anchor" href="#sound" aria-label="Link to this section">#</a></h1>
+<p>Lepton plays sound through the VM's sound device or a USB headset, speaker or dock. There is one volume for everything: Lepton's own sounds and <a href="apps.html">Firefox</a> alike.</p>
+<pre><code class="language-sh">volume              # Volume: 50% on HDA Intel
+volume 75           # set it (0 to 100)
+volume +10          # louder (volume up / volume down: 5 at a time)
+volume mute         # mute (unmute, toggle)
+sound test          # three notes, to check you can hear it
+play song.wav       # play a WAV file (C-c stops it)
+beep 440 500        # a 440 Hz tone for half a second</code></pre>
+<p>The volume and mute are remembered, on an installed system across restarts too.</p>
+<h2 id="on-the-desktop">On the desktop<a class="anchor" href="#on-the-desktop" aria-label="Link to this section">#</a></h2>
+<p>The volume keys on a keyboard (mute, volume down, volume up) work on the desktop, in <a href="desktop.html">Photon</a> and the classic desktop.</p>
+<p>On the <strong>classic desktop</strong> a speaker sits next to the clock. Click it for the volume control: click the slider to set the volume, and tick <strong>Mute</strong> to silence everything. The speaker shows a red cross while sound is muted. Click anywhere else to close the control.</p>
+<h2 id="sound-cards">Sound cards<a class="anchor" href="#sound-cards" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-text">$ sound
+  0  HDA Intel                    volume: Master Playback Volume
+* 1  USB Headset                  volume: PCM Playback Volume
+(* plays sound: the card added last)</code></pre>
+<p>Sound plays on the card added last, so a USB headset takes over when you plug it in and hands back when you unplug it. <code>sound use 0</code> keeps sound on card 0 instead; <code>sound use auto</code> goes back to the card added last.</p>
+<p>The volume is set on the card's own volume control. A card without one (virtio-sound) gets a volume control that works in software, marked &quot;software volume&quot;. Lepton's sounds and Firefox's follow it just the same.</p>
+<p><strong>Drivers</strong>: Intel HD Audio (UTM's and QEMU's usual sound device), virtio-sound, and USB audio (headsets, speakers, sound cards, docks). They load when the device appears.</p>
+<h2 id="in-utm">In UTM<a class="anchor" href="#in-utm" aria-label="Link to this section">#</a></h2>
+<p>Give the VM a sound device in its settings (<strong>Sound</strong>: Intel HD Audio, or VirtIO). Its sound comes out of your Mac. <code>mix lepton.qemu</code> gives its VM Intel HD Audio, played on the Mac's speakers too.</p>
+<h2 id="what-it-doesnt-do-yet">What it doesn't do yet<a class="anchor" href="#what-it-doesnt-do-yet" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Recording: microphones and line-in.</li>
+<li>Mixing: on most sound cards one program plays at a time, so while Firefox plays, <code>beep</code> and <code>play</code> may say the device is in use.</li>
+<li>Files other than WAV for <code>play</code> (Firefox plays the web's formats).</li>
+<li>Bluetooth audio.</li>
+</ul>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-volume"><code>volume</code></a></td><td>the sound volume: show it, set it (0-100, +N, -N), mute or unmute</td><td><code>volume [N | +N | -N | up | down | mute | unmute | toggle]</code></td></tr>
+<tr><td><a href="commands.html#cmd-sound"><code>sound</code></a></td><td>sound cards: list them, choose where sound plays, play a test tone</td><td><code>sound [list] | use N | use auto | test</code></td></tr>
+<tr><td><a href="commands.html#cmd-play"><code>play</code></a></td><td>play a sound file (WAV) on the sound card; C-c stops it</td><td><code>play FILE.wav...</code></td></tr>
+<tr><td><a href="commands.html#cmd-beep"><code>beep</code></a></td><td>play a tone (default 880 Hz for 150 ms)</td><td><code>beep [HZ [MS]]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@293f1e3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/sound.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#on-the-desktop">On the desktop</a></li>
+          <li><a href="#sound-cards">Sound cards</a></li>
+          <li><a href="#in-utm">In UTM</a></li>
+          <li><a href="#what-it-doesnt-do-yet">What it doesn't do yet</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

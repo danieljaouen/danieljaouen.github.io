@@ -58,6 +58,8 @@
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
@@ -73,7 +75,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 128 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 135 commands that ship with Lepton, generated from the command registry. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -144,13 +146,16 @@
 <tr><td><span class="anchor-target" id="cmd-clear"></span><code>clear</code> · also <code>cls</code></td><td>clear the terminal screen</td><td><code>clear</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-date"></span><code>date</code></td><td>print the system date and time</td><td><code>date [+FORMAT] [-u]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-dmesg"></span><code>dmesg</code></td><td>print the kernel ring buffer</td><td><code>dmesg</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-eject"></span><code>eject</code></td><td>unmount a USB drive or SD card so it's safe to remove</td><td><code>eject [DEVICE|DIR]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-env"></span><code>env</code></td><td>print the environment, or run a command in a modified one</td><td><code>env [NAME=VALUE...] [COMMAND [ARG...]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-free"></span><code>free</code></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-help"></span><code>help</code></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-hostname"></span><code>hostname</code></td><td>show or set the system's host name</td><td><code>hostname [NAME]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-id"></span><code>id</code></td><td>print user and group information</td><td><code>id [USER]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-input"></span><code>input</code></td><td>keyboards, mice, touchpads and tablets: the input devices and what each is</td><td><code>input</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-keys"></span><code>keys</code></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-kill"></span><code>kill</code></td><td>send a signal to a process</td><td><code>kill [-9|-STOP|-CONT|-TERM] PID...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lsblk"></span><code>lsblk</code></td><td>disks, USB drives and SD cards: partitions, filesystems and where they're mounted</td><td><code>lsblk</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsmod"></span><code>lsmod</code></td><td>show the status of modules in the Linux kernel</td><td><code>lsmod</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-man"></span><code>man</code></td><td>show the manual for a command</td><td><code>man COMMAND</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-modprobe"></span><code>modprobe</code></td><td>add a module (and its dependencies) to the kernel (needs <a href="users.html">sudo</a>)</td><td><code>modprobe MODULE [PARAM=VALUE...]</code></td></tr>
@@ -238,15 +243,19 @@
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-app"></span><code>app</code></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | update [NAME] | remove NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-beep"></span><code>beep</code></td><td>play a tone (default 880 Hz for 150 ms)</td><td><code>beep [HZ [MS]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-classic"></span><code>classic</code></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-firefox"></span><code>firefox</code></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-photon"></span><code>photon</code></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-play"></span><code>play</code></td><td>play a sound file (WAV) on the sound card; C-c stops it</td><td><code>play FILE.wav...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sound"></span><code>sound</code></td><td>sound cards: list them, choose where sound plays, play a test tone</td><td><code>sound [list] | use N | use auto | test</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-volume"></span><code>volume</code></td><td>the sound volume: show it, set it (0-100, +N, -N), mute or unmute</td><td><code>volume [N | +N | -N | up | down | mute | unmute | toggle]</code></td></tr>
 </tbody></table></div>
 <h2 id="shell-builtins">Shell builtins<a class="anchor" href="#shell-builtins" aria-label="Link to this section">#</a></h2>
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@6410c90.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@293f1e3.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
