@@ -93,9 +93,13 @@ www https://trylepton.app/    # a text-mode web browser</code></pre>
 <pre><code class="language-sh">wifi scan                       # networks in range: signal, security, band
 sudo wifi connect MyNetwork     # asks for the passphrase, joins, then DHCP
 sudo wifi connect Cafe &quot;&quot;       # an open network
+sudo wifi connect MyNetwork     # (saved already: switches to it, no passphrase)
 wifi                            # status: connected network and address
 sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
 <p>Saved networks are kept in <code>/var/lib/lepton/wpa_supplicant.conf</code> (in wpa_supplicant's format) with each passphrase stored only as its WPA PSK. An installed system keeps them and reconnects at boot. With Wi-Fi hardware and nothing saved, Lepton asks for a network at startup (<code>sudo wifi setup</code> asks again). Saved networks are system settings: changing them takes <a href="users.html">sudo</a>.</p>
+<h3 id="on-the-classic-desktop">On the classic desktop<a class="anchor" href="#on-the-classic-desktop" aria-label="Link to this section">#</a></h3>
+<p>With Wi-Fi hardware, the <a href="desktop.html#the-classic-desktop">classic desktop</a>'s taskbar shows the signal next to the volume: dark bars when connected (more of them for a stronger signal), grey ones when not. Click it for the networks in range, with their signal and a padlock on the ones that need a passphrase. The network you're on is highlighted, and the line below the list says where you are connected and your address.</p>
+<p>Click a network to join it. A small terminal window opens and runs <code>wifi connect</code> for you: it asks for the passphrase (none for an open network or one you've saved), and for your password if you aren't root, since joining changes the saved networks. It closes itself once you're connected. <strong>Refresh</strong> looks for networks again; opening the list does too.</p>
 <h3 id="hardware">Hardware<a class="anchor" href="#hardware" aria-label="Link to this section">#</a></h3>
 <p>Virtual machines have no Wi-Fi of their own: their network is virtio ethernet, configured automatically. To use Wi-Fi in UTM, plug a USB Wi-Fi adapter into the Mac and pass it to the VM. Check that <strong>Input → USB Sharing</strong> is on in the VM's settings, then click the <strong>USB</strong> icon in the VM's toolbar while it runs and pick the adapter. Lepton loads the driver as soon as it appears, with no restart. Drivers are included for common USB adapters:</p>
 <ul>
@@ -124,7 +128,7 @@ sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@293f1e3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@45733c7. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
