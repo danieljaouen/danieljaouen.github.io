@@ -106,13 +106,38 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 <li>Log in with your user name and password.</li>
 </ol>
 <p>For an unattended install, <code>echo PASSWORD | lepton-install -y -u NAME --password-stdin /dev/vda</code> skips every question.</p>
-<p>The installer writes a GPT partition table, a FAT16 EFI system partition (GRUB, kernel and initramfs) and an ext2 data partition named <code>LEPTON-DATA</code>, all from Elixir. The installed system still boots into RAM, but <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs, settings) live on the data partition. Your home starts with the image's dotfiles.</p>
+<p>The installer writes a GPT partition table and two partitions, all from Elixir:</p>
+<ul>
+<li><strong><code>LEPTON-OS</code></strong> (512 MiB, FAT16, the EFI system partition): Lepton itself, meaning GRUB, the kernel and the initramfs. The installed system boots into RAM from it.</li>
+<li><strong><code>LEPTON-DATA</code></strong> (ext2, the rest of the disk): everything you make. <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, apps such as Firefox, packages, services, Wi-Fi networks, Bluetooth pairings, settings, logs) live here. Your home starts with the image's dotfiles.</li>
+</ul>
 <p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system (add <code>--login NAME:PASSWORD</code> with <code>--run</code> to script it).</p>
+<h2 id="upgrade-to-a-new-release">Upgrade to a new release<a class="anchor" href="#upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
+<p>Because Lepton and your data are on separate partitions, a new release replaces only Lepton:</p>
+<ol>
+<li>Download the new ISO.</li>
+<li>In UTM, choose it for the VM's <strong>CD/DVD</strong> drive and start the VM. Whether the VM starts the ISO or your installed Lepton doesn't matter: either way, log in with your own account and run <code>sudo lepton-install</code>. It finds the ISO and the Lepton on your disk, and upgrades it.</li>
+<li><code>sudo poweroff</code>, eject the ISO (<strong>CD/DVD → Clear</strong>) and start the VM.</li>
+</ol>
+<p>Your files, apps, accounts and settings are all still there: the upgrade writes the <code>LEPTON-OS</code> partition and nothing else. (The ISO uses your disk's accounts and files while it runs, which is why it asks for your password.)</p>
+<p>You can also upgrade from the installed system itself, without booting the ISO: download it, then run <code>sudo lepton-install --iso lepton.iso</code> and <code>sudo reboot</code>. Lepton runs from memory, so it can replace itself while running; the new release starts at the next boot.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>lepton-install</code></td><td>install (a disk without Lepton), or ask whether to upgrade or erase</td></tr>
+<tr><td><code>lepton-install --upgrade</code></td><td>upgrade without asking (<code>-y</code> upgrades too)</td></tr>
+<tr><td><code>lepton-install --erase</code></td><td>erase the disk and install from scratch (asks you to confirm)</td></tr>
+<tr><td>boot menu: <strong>live: leave installed disks alone</strong></td><td>start the ISO without your disk's files, accounts and settings (to erase that disk, say)</td></tr>
+<tr><td><code>lepton-install --iso FILE</code></td><td>install or upgrade from a downloaded ISO file</td></tr>
+</tbody></table></div>
+<p>Started from an ISO that is using your disk, <code>lepton-install</code> can only upgrade it; to erase the disk and start over, choose <strong>live: leave installed disks alone</strong> in the ISO's boot menu (it shows for three seconds as the VM starts) and run <code>lepton-install --erase</code>.</p>
+<p>The installer says which release you had and which you have now, as builds: an identifier of the kernel and initramfs (a disk installed before builds were recorded says so). Disks installed before the <code>LEPTON-OS</code> partition existed have a 200 MiB &quot;EFI System&quot; partition in its place. They upgrade the same way for as long as a release fits; one that doesn't is refused without writing anything, and the installer says so.</p>
+<p>With QEMU, <code>mix lepton.qemu --disk disk.qcow2</code> boots the new ISO with your disk attached, for <code>lepton-install</code>.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [-u NAME --password-stdin] [/dev/DISK]</code></td></tr>
+<tr><td><a href="commands.html#cmd-lepton-install"><code>lepton-install</code></a></td><td>install Lepton from the ISO onto a disk, or upgrade it there (keeping your files) (needs <a href="users.html">sudo</a>)</td><td><code>lepton-install [-y] [--upgrade | --erase] [--iso FILE] [-u NAME --password-stdin] [/dev/DISK]</code></td></tr>
 </tbody></table></div>
 <h2 id="shut-down">Shut down<a class="anchor" href="#shut-down" aria-label="Link to this section">#</a></h2>
 <p>Type <code>sudo poweroff</code> (just <code>poweroff</code> on the live ISO, where you are root), or use UTM's power button → <strong>Request power down</strong>. Lepton hears the virtual power button, warns the consoles, stops running services, flushes the data partition and remounts it read-only, so the next start is a clean boot through GRUB. &quot;Force shut down&quot; and closing the VM window pull the plug and can't be intercepted.</p>
@@ -137,7 +162,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0fcf633. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@1e06001. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -146,6 +171,7 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
           <li><a href="#run-it-in-utm">Run it in UTM</a></li>
           <li><a href="#run-it-with-qemu">Run it with QEMU</a></li>
           <li><a href="#install-to-a-disk">Install to a disk</a></li>
+          <li><a href="#upgrade-to-a-new-release">Upgrade to a new release</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
           <li><a href="#shut-down">Shut down</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
