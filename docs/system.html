@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>System - Lepton OS docs</title>
-  <meta name="description" content="Processes and jobs, storage and persistence, power, the clipboard, Elixir and the self-tests.">
+  <meta name="description" content="Processes and jobs, storage and persistence, running out of memory, power, the clipboard, Elixir and the self-tests.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -92,6 +92,14 @@
 <h2 id="storage-and-persistence">Storage and persistence<a class="anchor" href="#storage-and-persistence" aria-label="Link to this section">#</a></h2>
 <p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot.</p>
 <p><code>df</code>, <code>du</code>, <code>free</code> and <code>mount</code> show filesystems and memory.</p>
+<h2 id="when-memory-runs-out">When memory runs out<a class="anchor" href="#when-memory-runs-out" aria-label="Link to this section">#</a></h2>
+<p>Lepton has no swap, so the memory the VM has is all there is. Firefox uses most of it: each tab is a program of its own. When memory runs short:</p>
+<ol>
+<li>At 10% left, Firefox unloads tabs you haven't looked at for a while. They stay in the tab bar and load again when you go back to them.</li>
+<li>At 5% left (and at least 160 MiB), Lepton stops the largest of Firefox's tabs. That tab shows <strong>Gah. Your tab just crashed.</strong>, and <strong>Reload Tab</strong> brings it back. If there is no tab to stop, Lepton stops the largest app program instead.</li>
+</ol>
+<p>Without step 2 the whole system would freeze: Linux keeps going until almost nothing is left, and before that it spends all its time reading programs back from the disk. Lepton's own processes are never stopped.</p>
+<p>Each time Lepton stops a program, <code>dmesg</code> shows it (<code>lepton: memory: ... stopping process ...</code>). <code>free -h</code> shows how much memory is available. If this happens often, give the VM more memory (in UTM: the VM's settings → <strong>System</strong> → <strong>Memory</strong>), or keep fewer tabs open.</p>
 <h2 id="power">Power<a class="anchor" href="#power" aria-label="Link to this section">#</a></h2>
 <p><code>poweroff</code> (also <code>halt</code>, <code>shutdown</code>) and <code>reboot</code> stop services, flush the data partition and remount it read-only first. They need root: <code>sudo poweroff</code>. UTM's <strong>Request power down</strong> does the same through the virtual power button.</p>
 <h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
@@ -138,13 +146,14 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@b78d9be. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@54cd4f3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#processes-and-jobs">Processes and jobs</a></li>
           <li><a href="#storage-and-persistence">Storage and persistence</a></li>
+          <li><a href="#when-memory-runs-out">When memory runs out</a></li>
           <li><a href="#power">Power</a></li>
           <li><a href="#terminals">Terminals</a></li>
           <li><a href="#clipboard">Clipboard</a></li>
