@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>lepton-tutorial - Lepton OS docs</title>
+  <meta name="description" content="The lessons of lepton-tutorial, the tour inside the OS.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html" aria-current="page">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="lepton-tutorial">lepton-tutorial<a class="anchor" href="#lepton-tutorial" aria-label="Link to this section">#</a></h1>
+<p><code>lepton-tutorial</code> is a short interactive tour inside Lepton: each lesson explains a topic and suggests a command to run for real. It is offered once after installation and runs any time. These are its lessons, generated from it, with the key bindings from the dotfiles. The <a href="tutorial.html">Tutorial</a> is the longer tour, here on the site.</p>
+<h2 id="1-welcome">1. Welcome<a class="anchor" href="#1-welcome" aria-label="Link to this section">#</a></h2>
+<p>Lepton is a Unix-like system whose userland is written in Elixir and runs on the BEAM as PID 1. Everything you'll use - the shell, editor, multiplexer, git - is configured from your dotfiles.</p>
+<p>Try:</p>
+<pre><code class="language-sh">neofetch</code></pre>
+<h2 id="2-files-and-directories">2. Files and directories<a class="anchor" href="#2-files-and-directories" aria-label="Link to this section">#</a></h2>
+<p>The usual tools work: ls, cd, mkdir, cp, mv, rm, cat, tree, find. Your zsh aliases are loaded too (try <code>l</code>, which is <code>ls -lah</code>).</p>
+<p>Try:</p>
+<pre><code class="language-sh">mkdir -p ~/tutorial &amp;&amp; echo 'hello, lepton' &gt; ~/tutorial/hello.txt &amp;&amp; l ~/tutorial</code></pre>
+<h2 id="3-pipes-redirection-and-text-tools">3. Pipes, redirection and text tools<a class="anchor" href="#3-pipes-redirection-and-text-tools" aria-label="Link to this section">#</a></h2>
+<p>Programs are BEAM processes connected by pipes. grep, sort, uniq, wc, sed, awk, cut, tr, head and tail are all here.</p>
+<p>Try:</p>
+<pre><code class="language-sh">help | grep -i git | head -5</code></pre>
+<h2 id="4-jobs-and-processes">4. Jobs and processes<a class="anchor" href="#4-jobs-and-processes" aria-label="Link to this section">#</a></h2>
+<p><code>&amp;</code> runs a job in the background, C-z suspends the foreground job, <code>fg</code>/<code>bg</code>/<code>jobs</code> manage them, and <code>ps</code>, <code>kill</code> and <code>top</code> work on the process table.</p>
+<p>Try:</p>
+<pre><code class="language-sh">sleep 2 &amp; jobs; ps</code></pre>
+<h2 id="5-services-long-running-apps">5. Services: long-running apps<a class="anchor" href="#5-services-long-running-apps" aria-label="Link to this section">#</a></h2>
+<p><code>svc</code> (also <code>systemctl</code>) runs apps in the background for you, like systemd: <code>svc start NAME</code>, <code>svc stop NAME</code>, <code>svc restart NAME</code>, <code>svc status NAME</code> and <code>svc logs NAME</code> (-f follows). A crashed service is restarted, and <code>svc enable NAME</code> starts it at every boot. Services run as root, so changing them takes sudo (it asks for your password); <code>svc</code> lists them. Two come with Lepton: hello (an example) and httpd, a web server.</p>
+<p>Try:</p>
+<pre><code class="language-sh">sudo svc start hello &amp;&amp; sleep 5 &amp;&amp; svc status hello &amp;&amp; sudo svc stop hello</code></pre>
+<h2 id="6-the-editor-le">6. The editor: le<a class="anchor" href="#6-the-editor-le" aria-label="Link to this section">#</a></h2>
+<p><code>le FILE</code> (also vim/nvim/emacs/e) is Spacemacs-style: SPC opens the leader menu (SPC f s saves, SPC f f finds a file, SPC w / splits, SPC g s is magit), <code>jk</code> leaves insert state, <code>;</code> opens the ex prompt, and C-h/j/k/l move between windows - and into tmux panes. Try: le ~/tutorial/hello.txt  (quit with SPC q q or ;q)</p>
+<h2 id="7-the-multiplexer-tmux">7. The multiplexer: tmux<a class="anchor" href="#7-the-multiplexer-tmux" aria-label="Link to this section">#</a></h2>
+<p>Your prefix is C-t.  C-t v splits side by side (split-window -h), C-t s splits below, C-t h/j/k/l move between panes, C-t c opens a window, C-t C-h / C-l move between windows, C-t [ starts vi copy mode (v, y), and C-t d detaches - <code>tmux attach</code> brings it back.</p>
+<h2 id="8-git-and-github">8. git and GitHub<a class="anchor" href="#8-git-and-github" aria-label="Link to this section">#</a></h2>
+<p>git understands your ~/.gitconfig aliases (git st, git ci, git gl...). <code>gh auth login</code> stores a GitHub token; then git push/pull and gh repo, gh issue and gh pr work over HTTPS.</p>
+<p>Try:</p>
+<pre><code class="language-sh">cd ~/tutorial &amp;&amp; git init -q &amp;&amp; git add . &amp;&amp; git ci -q -m 'first commit' &amp;&amp; git gl</code></pre>
+<h2 id="9-packages">9. Packages<a class="anchor" href="#9-packages" aria-label="Link to this section">#</a></h2>
+<p>lpm installs Elixir/Erlang packages straight from hex.pm, compiles them inside Lepton and loads them (and any Lepton commands they define). Try: lpm search json   /   sudo lpm install jason Built-in apps get updates only from the signed official list: <code>lpm official</code> shows them, <code>sudo lpm upgrade grep</code> installs one and <code>sudo lpm revert grep</code> goes back. A package can't take over a built-in.</p>
+<p>Try:</p>
+<pre><code class="language-sh">lpm list</code></pre>
+<h2 id="10-network">10. Network<a class="anchor" href="#10-network" aria-label="Link to this section">#</a></h2>
+<p>The network comes up with DHCP. <code>ip addr</code>, <code>ping</code>, <code>curl</code> and the text browser <code>www</code> are available. With a Wi-Fi adapter, <code>wifi scan</code> lists networks and <code>sudo wifi connect NAME</code> joins one.</p>
+<p>Try:</p>
+<pre><code class="language-sh">ip addr</code></pre>
+<h2 id="11-help">11. Help<a class="anchor" href="#11-help" aria-label="Link to this section">#</a></h2>
+<p><code>help</code> lists commands, <code>man CMD</code> describes one, <code>keys</code> shows every binding loaded from your dotfiles, and <code>lepton-test</code> runs the self-test suite. Run <code>lepton-tutorial</code> to see this again.</p>
+<p>Try:</p>
+<pre><code class="language-sh">keys tmux | head -8</code></pre>
+
+      </article>
+      <footer class="docs-foot">Generated from the source of lepton@fbd46f4.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#1-welcome">1. Welcome</a></li>
+          <li><a href="#2-files-and-directories">2. Files and directories</a></li>
+          <li><a href="#3-pipes-redirection-and-text-tools">3. Pipes, redirection and text tools</a></li>
+          <li><a href="#4-jobs-and-processes">4. Jobs and processes</a></li>
+          <li><a href="#5-services-long-running-apps">5. Services: long-running apps</a></li>
+          <li><a href="#6-the-editor-le">6. The editor: le</a></li>
+          <li><a href="#7-the-multiplexer-tmux">7. The multiplexer: tmux</a></li>
+          <li><a href="#8-git-and-github">8. git and GitHub</a></li>
+          <li><a href="#9-packages">9. Packages</a></li>
+          <li><a href="#10-network">10. Network</a></li>
+          <li><a href="#11-help">11. Help</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
