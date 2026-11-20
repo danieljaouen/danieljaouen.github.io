@@ -111,7 +111,7 @@ sudo le /etc/hosts
 <h2 id="what-needs-root">What needs root<a class="anchor" href="#what-needs-root" aria-label="Link to this section">#</a></h2>
 <p>Without sudo, these are refused with &quot;permission denied&quot;:</p>
 <ul>
-<li><strong>Commands that change the system:</strong> <code>poweroff</code>, <code>reboot</code>, <code>lepton-install</code>, <code>mount</code> (to mount), <code>umount</code>, <code>modprobe</code>, <code>rmmod</code>, <code>dhclient</code>, <code>hostname NAME</code>, <code>chown</code>, <code>useradd</code> and <code>userdel</code>.</li>
+<li><strong>Commands that change the system:</strong> <code>poweroff</code>, <code>reboot</code>, <code>lepton-install</code>, <code>mount</code> (to mount), <code>umount</code>, <code>modprobe</code>, <code>rmmod</code>, <code>dhclient</code>, <code>hostname NAME</code>, <code>chown</code>, <code>useradd</code>, <code>userdel</code> and <code>sshd</code>.</li>
 <li><strong>Changing services, packages and Wi-Fi:</strong> <code>svc start|stop|restart|enable|disable|new|edit</code>, <code>lpm install|remove|update|upgrade|revert</code>, and <code>wifi connect|forget|setup</code>. Looking (<code>svc</code>, <code>svc logs</code>, <code>lpm list</code>, <code>wifi</code>, <code>wifi scan</code>) is for everyone.</li>
 <li><strong>Writing outside your home</strong> and the temporary directories (<code>/tmp</code>, <code>/var/tmp</code>): the file commands (<code>touch</code>, <code>mkdir</code>, <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>ln</code>, <code>chmod</code>, <code>tee</code>), shell redirections (<code>&gt;</code>, <code>&gt;&gt;</code>) and saving in <code>le</code>.</li>
 </ul>
@@ -141,7 +141,7 @@ id                          # who you are and your groups</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/users.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/users.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

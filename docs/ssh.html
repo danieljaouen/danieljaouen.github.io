@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>SSH - Lepton OS docs</title>
-  <meta name="description" content="SSH keys, an ssh client, known hosts and ~/.ssh/config, for GitHub and your own servers.">
+  <meta name="description" content="SSH keys, an ssh client, known hosts and ~/.ssh/config, and an SSH server (keys only) to log in to Lepton.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -132,8 +132,29 @@ ssh -o StrictHostKeyChecking=accept-new server true</code></pre>
   User git
   IdentityFile ~/.ssh/github_ed25519</code></pre>
 <p>Aliases work everywhere, including in git remotes: <code>git clone gh:you/repo.git</code>.</p>
+<h2 id="logging-in-to-lepton">Logging in to Lepton<a class="anchor" href="#logging-in-to-lepton" aria-label="Link to this section">#</a></h2>
+<p>Lepton has an SSH server too, <code>sshd</code>, so you can log in to it from another computer on your network. It is <strong>off</strong> until you turn it on, and it only takes <strong>keys</strong>: there is no password login, so nobody can guess their way in.</p>
+<p>On Lepton, put the other computer's public key (its <code>~/.ssh/id_ed25519.pub</code>; copy it over on a USB drive, or paste it) in the <code>authorized_keys</code> of the account you'll log in as, then start the server:</p>
+<pre><code class="language-sh">mkdir -p ~/.ssh
+cat id_ed25519.pub &gt;&gt; ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+sudo svc enable --now sshd     # now and at every boot
+svc logs sshd                  # the host key's fingerprint, and the address to use</code></pre>
+<p>Then, from the other computer:</p>
+<pre><code class="language-sh">ssh alice@192.168.1.23         # a shell on Lepton
+ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></pre>
+<p>The first time, <code>ssh</code> shows Lepton's host key fingerprint. Check it against the one in <code>svc logs sshd</code> before you answer yes.</p>
+<ul>
+<li>You log in as one of Lepton's <a href="users.html">accounts</a>, with a key in that account's <code>~/.ssh/authorized_keys</code> (one OpenSSH public key per line; options before the key are allowed and ignored). Root can log in the same way, with <code>/root/.ssh/authorized_keys</code>, which is how to reach the live ISO. An <code>authorized_keys</code> that group or others may write to is ignored.</li>
+<li>A login gets its own terminal, which follows your window's size: <code>le</code>, <code>tmux</code>, <code>top</code> and <code>sudo</code> work as on the console. Closing the connection ends everything the session started.</li>
+<li><code>svc logs sshd</code> shows every login and every refused key.</li>
+<li>The host key is made the first time <code>sshd</code> starts, in <code>/var/lib/lepton/ssh</code>. An installed system keeps it; the live ISO makes a new one each boot.</li>
+<li>Another port: <code>sudo svc edit sshd</code> and change <code>ExecStart=sshd</code> to <code>ExecStart=sshd -p 2222</code>.</li>
+<li>To turn it off again: <code>sudo svc disable --now sshd</code>.</li>
+</ul>
+<p>In UTM, the VM must be reachable from your network: use <strong>Bridged</strong> networking, or the Mac itself can reach a <strong>Shared Network</strong> VM at the address <code>svc logs sshd</code> shows.</p>
 <h2 id="not-supported">Not supported<a class="anchor" href="#not-supported" aria-label="Link to this section">#</a></h2>
-<p>Logging in with a password (keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, <code>scp</code>/<code>sftp</code>, and running an SSH server on Lepton.</p>
+<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, and <code>scp</code>/<code>sftp</code> (to or from Lepton).</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -141,10 +162,11 @@ ssh -o StrictHostKeyChecking=accept-new server true</code></pre>
 <tr><td><a href="commands.html#cmd-ssh"><code>ssh</code></a></td><td>OpenSSH-compatible client: remote shells and commands, keys from ~/.ssh</td><td><code>ssh [-p PORT] [-i KEY] [-l USER] [-o StrictHostKeyChecking=VALUE] [-T|-t] [USER@]HOST [COMMAND...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-ssh-keygen"><code>ssh-keygen</code></a></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
 <tr><td><a href="commands.html#cmd-ssh-keyscan"><code>ssh-keyscan</code></a></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
+<tr><td><a href="commands.html#cmd-sshd"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -154,6 +176,7 @@ ssh -o StrictHostKeyChecking=accept-new server true</code></pre>
           <li><a href="#known-hosts">Known hosts</a></li>
           <li><a href="#the-ssh-command">The ssh command</a></li>
           <li><a href="#sshconfig">~/.ssh/config</a></li>
+          <li><a href="#logging-in-to-lepton">Logging in to Lepton</a></li>
           <li><a href="#not-supported">Not supported</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>

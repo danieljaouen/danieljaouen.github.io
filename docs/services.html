@@ -130,7 +130,9 @@ TimeoutStopSec=5        # wait this long before killing on stop</code></pre>
 <ul>
 <li><strong>hello</strong>: says hello every two seconds. The tutorial uses it.</li>
 <li><strong>httpd</strong>: serves <code>~/public</code> on port 8080 with <code>httpd</code>.</li>
+<li><strong>sshd</strong>: the <a href="ssh.html#logging-in-to-lepton">SSH server</a>, keys only. Off until you run <code>sudo svc enable --now sshd</code>.</li>
 </ul>
+<p>No service is enabled when Lepton is installed: each starts only when you start or enable it.</p>
 <h2 id="httpd">httpd<a class="anchor" href="#httpd" aria-label="Link to this section">#</a></h2>
 <p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP (static files only), using the web server built into Erlang/OTP. It makes a good first service:</p>
 <pre><code class="language-sh">sudo mkdir -p /root/public &amp;&amp; echo 'hello' | sudo tee /root/public/index.html
@@ -148,7 +150,7 @@ curl http://localhost:8080/</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

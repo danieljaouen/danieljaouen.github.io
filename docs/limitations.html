@@ -92,7 +92,7 @@
 <li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
-<li>SSH: keys only (no password logins), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding, <code>scp</code>/<code>sftp</code> or SSH server.</li>
+<li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding or <code>scp</code>/<code>sftp</code>. The SSH server (<code>sshd</code>) offers shells and commands only.</li>
 <li><code>le</code> is a Spacemacs work-alike, not Emacs: it doesn't <em>evaluate</em> Elisp, so layers and packages aren't loaded. Unsupported bindings are reported.</li>
 <li>Packages that rely on Mix-specific features (compile-time config, application callbacks, NIFs) are not supported.</li>
 <li>Native ELF programs can run through a port (standard input and output only, no terminal).</li>
@@ -102,7 +102,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>
