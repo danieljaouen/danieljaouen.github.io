@@ -41,46 +41,77 @@
   </header>
   <div class="wrap docs-grid">
     <nav class="docs-nav" aria-label="Documentation">
-      <details open>
+      <details class="docs-nav-all" open>
         <summary>Contents</summary>
         <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
         <ul>
           <li><a href="tutorial.html">Tutorial</a></li>
         </ul>
-        <p class="docs-nav-group">Guides</p>
-        <ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
           <li><a href="getting-started.html">Getting started</a></li>
           <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
-          <li><a href="ssh.html">SSH</a></li>
-          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
-          <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
-          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Desktop and apps</summary>
+          <ul>
           <li><a href="desktop.html" aria-current="page">The desktop (Photon)</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
-          <li><a href="sound.html">Sound</a></li>
           <li><a href="bluetooth.html">Bluetooth</a></li>
-          <li><a href="apps.html">Firefox and other apps</a></li>
-          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
-          <li><a href="limitations.html">Limitations</a></li>
-        </ul>
-        <p class="docs-nav-group">Reference</p>
-        <ul>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
           <li><a href="commands.html">Command reference</a></li>
           <li><a href="man.html">Manual pages</a></li>
           <li><a href="keybindings.html">Key bindings</a></li>
           <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
-        </ul>
+          </ul>
+        </details>
       </details>
     </nav>
     <main id="main" class="docs-main">
@@ -129,7 +160,7 @@ photon stop                 # quit</code></pre>
 <li>grey 3D window frames with a navy title bar and <strong>minimize</strong>, <strong>maximize</strong> and <strong>close</strong> buttons (double-click a title bar to maximize or restore)</li>
 <li>a teal desktop with icons for <a href="apps.html">Firefox</a>, the Terminal, the Text Editor (<code>le</code>) and the System Monitor (<code>top</code>), and one for each <a href="storage.html">USB drive or SD card</a> that is mounted: double-click one to open it</li>
 <li>a <strong>taskbar</strong> with a button for each window (click to bring it to the front, click again to minimize it), the Wi-Fi signal (click it to pick a network: <a href="networking.html#on-the-classic-desktop">Wi-Fi</a>), the Bluetooth rune (click it for your devices: <a href="bluetooth.html">Bluetooth</a>), the volume's speaker (click it for the volume control: <a href="sound.html">Sound</a>) and a clock</li>
-<li>the <strong>Start</strong> menu (click Start, or Ctrl+Esc): <a href="apps.html">Firefox</a>, Terminal, Text Editor, System Monitor, Help and Exit Desktop</li>
+<li>the <strong>Start</strong> menu (click Start, or Ctrl+Esc): <a href="apps.html">Firefox</a>, Terminal, Text Editor, System Monitor, <a href="printing.html">Printers</a> (choose your default printer), Help and Exit Desktop</li>
 </ul>
 <p>The keys from the table above work here too. Exit Desktop (or Ctrl+Alt+Backspace) returns you to the console. Lepton never starts a desktop at boot; you choose <code>photon</code> or <code>classic</code> when you want one.</p>
 <h2 id="more-than-one-display">More than one display<a class="anchor" href="#more-than-one-display" aria-label="Link to this section">#</a></h2>
@@ -168,7 +199,7 @@ photon stop                 # quit</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@acd673e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@9905ee9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -187,7 +218,7 @@ photon stop                 # quit</code></pre>
   </div>
   <script>
     // The contents list starts collapsed on phones.
-    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
     document.getElementById("theme-toggle").addEventListener("click", function () {
       var root = document.documentElement;
       var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");

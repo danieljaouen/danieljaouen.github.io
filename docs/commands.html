@@ -41,52 +41,83 @@
   </header>
   <div class="wrap docs-grid">
     <nav class="docs-nav" aria-label="Documentation">
-      <details open>
+      <details class="docs-nav-all" open>
         <summary>Contents</summary>
         <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
         <ul>
           <li><a href="tutorial.html">Tutorial</a></li>
         </ul>
-        <p class="docs-nav-group">Guides</p>
-        <ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
           <li><a href="getting-started.html">Getting started</a></li>
           <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
-          <li><a href="ssh.html">SSH</a></li>
-          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
-          <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
-          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
-          <li><a href="sound.html">Sound</a></li>
           <li><a href="bluetooth.html">Bluetooth</a></li>
-          <li><a href="apps.html">Firefox and other apps</a></li>
-          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
-          <li><a href="limitations.html">Limitations</a></li>
-        </ul>
-        <p class="docs-nav-group">Reference</p>
-        <ul>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Reference</summary>
+          <ul>
           <li><a href="commands.html" aria-current="page">Command reference</a></li>
           <li><a href="man.html">Manual pages</a></li>
           <li><a href="keybindings.html">Key bindings</a></li>
           <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
-        </ul>
+          </ul>
+        </details>
       </details>
     </nav>
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 146 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 156 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -253,12 +284,27 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
+<tr><td><span class="anchor-target" id="cmd-cert"></span><a href="man-cert.html"><code>cert</code></a></td><td>TLS certificates for httpd: a local CA, self-signed, Let's Encrypt</td><td><code>cert list | local HOST... | self-signed HOST... | letsencrypt [-m EMAIL] [--staging] DOMAIN... | renew | import NAME CERT KEY | rm NAME | ca | trust</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-crond"></span><a href="man-crond.html"><code>crond</code></a></td><td>the cron daemon: runs the jobs in the crontabs (the cron service runs it) (needs <a href="users.html">sudo</a>)</td><td><code>crond</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-crontab"></span><a href="man-crontab.html"><code>crontab</code></a></td><td>your table of commands to run at set times (cron): list, edit, install or remove it</td><td><code>crontab [-u USER] -l | -e | -r | FILE | -</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-httpd"></span><a href="man-httpd.html"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-httpd"></span><a href="man-httpd.html"><code>httpd</code></a></td><td>web server: files, and HTTPS in front of web apps (Phoenix), WebSockets too</td><td><code>httpd [-p PORT] [-s TLS_PORT] [-x APP_URL] [-c CERT -k KEY] [-r] [-f CONFIG] [DIR]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-journalctl"></span><a href="man-journalctl.html"><code>journalctl</code></a></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td><td><code>journalctl -u NAME [-n N] [-f]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sshd"></span><a href="man-sshd.html"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-svc"></span><a href="man-svc.html"><code>svc</code></a> · also <code>systemctl</code></td><td>start, stop and restart long-running services (like systemctl)</td><td><code>svc [list|status|start|stop|restart|enable|disable|logs|cat|new|edit] ...</code></td></tr>
+</tbody></table></div>
+<h2 id="printing">Printing<a class="anchor" href="#printing" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-cancel"></span><a href="man-cancel.html"><code>cancel</code></a></td><td>cancel print jobs</td><td><code>cancel [JOB | PRINTER-JOB]... | -a</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-cupsd"></span><a href="man-cupsd.html"><code>cupsd</code></a></td><td>the print service: the queue, and IPP on 127.0.0.1:631 (the cups service runs it) (needs <a href="users.html">sudo</a>)</td><td><code>cupsd</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lp"></span><a href="man-lp.html"><code>lp</code></a></td><td>print files (or standard input)</td><td><code>lp [-d PRINTER] [-n COPIES] [-t TITLE] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpadmin"></span><a href="man-lpadmin.html"><code>lpadmin</code></a></td><td>add or remove a printer, or set the system's default (needs <a href="users.html">sudo</a>)</td><td><code>lpadmin -p NAME -v URI [-D DESCRIPTION] [-L LOCATION] [-E] | -x NAME | -d NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpinfo"></span><a href="man-lpinfo.html"><code>lpinfo</code></a></td><td>the printers found on the network (IPP, by mDNS)</td><td><code>lpinfo -v</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpoptions"></span><a href="man-lpoptions.html"><code>lpoptions</code></a></td><td>your default printer (in ~/.cups/lpoptions)</td><td><code>lpoptions [-d PRINTER]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpr"></span><a href="man-lpr.html"><code>lpr</code></a></td><td>print files (or standard input), BSD style</td><td><code>lpr [-P PRINTER] [-# COPIES] [-T TITLE] [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lpstat"></span><a href="man-lpstat.html"><code>lpstat</code></a></td><td>the printers, the default, and the print jobs</td><td><code>lpstat [-p] [-d] [-o] [-v] [-t]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-printers"></span><a href="man-printers.html"><code>printers</code></a></td><td>the printers: see them and choose your default</td><td><code>printers [NAME]</code></td></tr>
 </tbody></table></div>
 <h2 id="desktop">Desktop<a class="anchor" href="#desktop" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -277,7 +323,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@acd673e.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@9905ee9.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -289,6 +335,7 @@
           <li><a href="#development">Development</a></li>
           <li><a href="#administration">Administration</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#printing">Printing</a></li>
           <li><a href="#desktop">Desktop</a></li>
           <li><a href="#shell-builtins">Shell builtins</a></li>
         </ul>
@@ -296,7 +343,7 @@
   </div>
   <script>
     // The contents list starts collapsed on phones.
-    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
     document.getElementById("theme-toggle").addEventListener("click", function () {
       var root = document.documentElement;
       var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");

@@ -41,46 +41,77 @@
   </header>
   <div class="wrap docs-grid">
     <nav class="docs-nav" aria-label="Documentation">
-      <details open>
+      <details class="docs-nav-all" open>
         <summary>Contents</summary>
         <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
         <ul>
           <li><a href="tutorial.html">Tutorial</a></li>
         </ul>
-        <p class="docs-nav-group">Guides</p>
-        <ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
           <li><a href="getting-started.html">Getting started</a></li>
           <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
-          <li><a href="ssh.html">SSH</a></li>
-          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
-          <li><a href="networking.html" aria-current="page">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
-          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html" aria-current="page">Networking</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
-          <li><a href="sound.html">Sound</a></li>
           <li><a href="bluetooth.html">Bluetooth</a></li>
-          <li><a href="apps.html">Firefox and other apps</a></li>
-          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
-          <li><a href="limitations.html">Limitations</a></li>
-        </ul>
-        <p class="docs-nav-group">Reference</p>
-        <ul>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
           <li><a href="commands.html">Command reference</a></li>
           <li><a href="man.html">Manual pages</a></li>
           <li><a href="keybindings.html">Key bindings</a></li>
           <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
-        </ul>
+          </ul>
+        </details>
       </details>
     </nav>
     <main id="main" class="docs-main">
@@ -99,7 +130,7 @@ www https://trylepton.app/    # a text-mode web browser</code></pre>
 <h2 id="remote-machines">Remote machines<a class="anchor" href="#remote-machines" aria-label="Link to this section">#</a></h2>
 <p><code>ssh</code> logs in to other machines and runs commands on them, with keys from <code>ssh-keygen</code>; see <a href="ssh.html">SSH</a>.</p>
 <h2 id="serving">Serving<a class="anchor" href="#serving" aria-label="Link to this section">#</a></h2>
-<p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP. Run it as a <a href="services.html#httpd">service</a> to keep it running in the background.</p>
+<p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP; it also serves HTTPS in front of a Phoenix app, with certificates from <code>cert</code>: see <a href="web.html">the web server</a>. Run it as a <a href="services.html#httpd">service</a> to keep it running in the background.</p>
 <h2 id="wi-fi">Wi-Fi<a class="anchor" href="#wi-fi" aria-label="Link to this section">#</a></h2>
 <p>Lepton joins WPA2 and open Wi-Fi networks, with the kernel's 802.11 stack and <code>wpa_supplicant</code>:</p>
 <pre><code class="language-sh">wifi scan                       # networks in range: signal, security, band
@@ -135,12 +166,12 @@ sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
 <tr><td><a href="commands.html#cmd-nslookup"><code>nslookup</code></a></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] [-x PROXY] URL</code></td></tr>
 <tr><td><a href="commands.html#cmd-www"><code>www</code></a></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
-<tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
+<tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>web server: files, and HTTPS in front of web apps (Phoenix), WebSockets too</td><td><code>httpd [-p PORT] [-s TLS_PORT] [-x APP_URL] [-c CERT -k KEY] [-r] [-f CONFIG] [DIR]</code></td></tr>
 <tr><td><a href="commands.html#cmd-wifi"><code>wifi</code></a></td><td>Wi-Fi: status, scan, connect and saved networks</td><td><code>wifi [status] | scan [IFACE] | connect SSID [PASSPHRASE] | forget [SSID] | setup</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@acd673e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@9905ee9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -155,7 +186,7 @@ sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
   </div>
   <script>
     // The contents list starts collapsed on phones.
-    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
     document.getElementById("theme-toggle").addEventListener("click", function () {
       var root = document.documentElement;
       var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");

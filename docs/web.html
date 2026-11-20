@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Web server and HTTPS (httpd) - Lepton OS docs</title>
+  <meta name="description" content="Serve files, put HTTPS in front of a Phoenix app (LiveView's WebSockets too), and get its certificates, local or from Let's Encrypt.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="web.html" aria-current="page">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="web-server-and-https">Web server and HTTPS<a class="anchor" href="#web-server-and-https" aria-label="Link to this section">#</a></h1>
+<p><code>httpd</code> is Lepton's web server. It serves a directory of files, or sits in front of a web app, as nginx does in front of Phoenix: it takes the browser's HTTPS, with the right certificate for each name, and passes each request on to the app over plain HTTP, WebSockets included. <code>cert</code> makes and keeps its certificates.</p>
+<pre><code class="language-sh">httpd ~/public                               # files, on http://localhost:8080/
+httpd -x http://127.0.0.1:4000               # an app, on http://localhost:8080/
+sudo cert local myapp.local                  # a certificate for a development name
+sudo httpd -p 80 -s 443 -r -x http://127.0.0.1:4000   # the app on HTTPS</code></pre>
+<h2 id="serving-files">Serving files<a class="anchor" href="#serving-files" aria-label="Link to this section">#</a></h2>
+<p><code>httpd [-p PORT] [DIR]</code> serves DIR (the current directory) on PORT (8080). A directory's <code>index.html</code> is its page; nothing outside DIR is served. As a <a href="services.html#httpd">service</a>, <code>sudo svc start httpd</code> serves <code>~/public</code> (root's) on port 8080.</p>
+<h2 id="in-front-of-an-app">In front of an app<a class="anchor" href="#in-front-of-an-app" aria-label="Link to this section">#</a></h2>
+<p>With <code>-x URL</code> (or <code>proxy =</code> in the config file) every request goes to the app at URL, an <code>http://</code> address: usually the app on this machine (<code>http://127.0.0.1:4000</code>), or on another on your network. <code>httpd</code> adds the headers that tell the app what the browser asked for:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Header</th><th>Says</th></tr></thead>
+<tbody>
+<tr><td><code>X-Forwarded-For</code></td><td>the browser's address (added to any already there)</td></tr>
+<tr><td><code>X-Forwarded-Proto</code></td><td><code>https</code> or <code>http</code></td></tr>
+<tr><td><code>X-Forwarded-Host</code></td><td>the name asked for (<code>myapp.example.com</code>)</td></tr>
+<tr><td><code>X-Forwarded-Port</code></td><td>the port asked for (443)</td></tr>
+</tbody></table></div>
+<p>A <strong>WebSocket</strong> (Phoenix's LiveView and channels) needs nothing more: <code>httpd</code> passes the upgrade on, and then the connection both ways until either side closes it.</p>
+<h2 id="https">HTTPS<a class="anchor" href="#https" aria-label="Link to this section">#</a></h2>
+<p><code>-s PORT</code> (<code>tls_port =</code>) adds HTTPS on PORT. The certificate is chosen by the name the browser asks for (SNI), from those <code>cert</code> keeps; <code>-c CERT -k KEY</code> give one to use for any name. <code>-r</code> (<code>redirect_https = true</code>) sends plain HTTP to HTTPS. Ports below 1024 (80, 443) need root: run it with <code>sudo</code>, or as a service.</p>
+<h2 id="certificates">Certificates<a class="anchor" href="#certificates" aria-label="Link to this section">#</a></h2>
+<p>Which certificate depends on who will visit:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>For</th><th>Make it with</th><th>Trusted by</th></tr></thead>
+<tbody>
+<tr><td>development, on this machine or your network (<code>myapp.local</code>, <code>localhost</code>, an address)</td><td><code>sudo cert local NAME...</code></td><td>Lepton, its Firefox, and any computer you add Lepton's CA to</td></tr>
+<tr><td>a site on the internet (<code>myapp.example.com</code>)</td><td><code>sudo cert letsencrypt -m EMAIL NAME...</code></td><td>every browser</td></tr>
+<tr><td>a quick test</td><td><code>sudo cert self-signed NAME...</code></td><td>nobody (the browser warns)</td></tr>
+<tr><td>one you already have</td><td><code>sudo cert import NAME CERT KEY</code></td><td>as it was</td></tr>
+</tbody></table></div>
+<p>They are kept in <code>/var/lib/lepton/certs</code> (<code>NAME.crt</code>, <code>NAME.key</code>); <code>cert list</code> shows them, with their names and the days left.</p>
+<h3 id="leptons-local-ca">Lepton's local CA<a class="anchor" href="#leptons-local-ca" aria-label="Link to this section">#</a></h3>
+<p><code>cert local</code> signs certificates with Lepton's own certificate authority (as <code>mkcert</code> does), made the first time it's needed. Lepton's tools (<code>curl</code>, <code>git</code>, ...) trust it, and so does Lepton's Firefox (by a policy: restart Firefox after the CA is first made). A browser on another computer trusts it once you add it there:</p>
+<pre><code class="language-sh">cert ca &gt; lepton-ca.crt        # the CA's certificate, to copy over</code></pre>
+<ul>
+<li><strong>macOS</strong>: open <code>lepton-ca.crt</code> in Keychain Access (System keychain), then under Trust choose <em>Always Trust</em>.</li>
+<li><strong>Windows</strong>: open it, <em>Install Certificate</em>, <em>Trusted Root Certification Authorities</em>.</li>
+<li><strong>Linux</strong>: copy it to <code>/usr/local/share/ca-certificates/</code> and run <code>sudo update-ca-certificates</code>.</li>
+<li><strong>Firefox</strong> (anywhere): Settings, Privacy &amp; Security, Certificates, View Certificates, Authorities, Import.</li>
+</ul>
+<p>Keep the CA to yourself: whoever has its key (in <code>/var/lib/lepton/certs/ca/</code>, root only) can make certificates that those computers trust.</p>
+<h3 id="lets-encrypt">Let's Encrypt<a class="anchor" href="#lets-encrypt" aria-label="Link to this section">#</a></h3>
+<p><code>cert letsencrypt</code> gets a certificate from Let's Encrypt, which every browser trusts. Let's Encrypt checks that the name is yours by fetching a file from <code>http://NAME/.well-known/acme-challenge/</code>, which <code>httpd</code> answers, so:</p>
+<ol>
+<li>the name's DNS record (A or AAAA) points at this machine's public address;</li>
+<li>port 80 reaches this machine (on a home network, forward ports 80 and 443 to Lepton in your router);</li>
+<li><code>httpd</code> is running on port 80 (<code>-p 80</code>).</li>
+</ol>
+<pre><code class="language-sh">sudo cert letsencrypt --staging -m you@example.com myapp.example.com   # a trial run first
+sudo cert letsencrypt -m you@example.com myapp.example.com www.myapp.example.com</code></pre>
+<p><code>--staging</code> uses Let's Encrypt's test service (its certificates aren't trusted, but its limits are generous): use it until everything works.</p>
+<h3 id="renewal">Renewal<a class="anchor" href="#renewal" aria-label="Link to this section">#</a></h3>
+<p>Let's Encrypt's certificates last 90 days. A running <code>httpd</code> renews them by itself: twice a day it renews each one with less than 30 days left, and uses the new one at once, with no restart. <code>svc logs httpd</code> says what was renewed. <code>sudo cert renew</code> does the same by hand. Local and self-signed certificates last 397 days; <code>cert list</code> shows the days left, and making one again with the same name replaces it.</p>
+<h2 id="a-new-phoenix-app-step-by-step">A new Phoenix app, step by step<a class="anchor" href="#a-new-phoenix-app-step-by-step" aria-label="Link to this section">#</a></h2>
+<p>This puts a new Phoenix app, <code>myapp</code>, behind <code>httpd</code> with HTTPS: first for development, as <code>https://myapp.local</code>, then on the internet, as <code>https://myapp.example.com</code>.</p>
+<h3 id="1-the-app-listens-on-this-machine-only">1. The app listens on this machine only<a class="anchor" href="#1-the-app-listens-on-this-machine-only" aria-label="Link to this section">#</a></h3>
+<p>In <code>config/dev.exs</code> (and <code>config/runtime.exs</code> for production), the endpoint listens on <code>127.0.0.1:4000</code>, where only <code>httpd</code> reaches it:</p>
+<pre><code class="language-elixir">config :myapp, MyappWeb.Endpoint,
+  http: [ip: {127, 0, 0, 1}, port: 4000]</code></pre>
+<h3 id="2-the-app-knows-its-public-address">2. The app knows its public address<a class="anchor" href="#2-the-app-knows-its-public-address" aria-label="Link to this section">#</a></h3>
+<p>Phoenix builds links, redirects and LiveView's socket address from <code>url</code>, and LiveView accepts a WebSocket only from the origins in <code>check_origin</code>:</p>
+<pre><code class="language-elixir">config :myapp, MyappWeb.Endpoint,
+  url: [host: &quot;myapp.local&quot;, scheme: &quot;https&quot;, port: 443],
+  check_origin: [&quot;https://myapp.local&quot;]</code></pre>
+<h3 id="3-the-app-believes-httpds-headers">3. The app believes httpd's headers<a class="anchor" href="#3-the-app-believes-httpds-headers" aria-label="Link to this section">#</a></h3>
+<p>In <code>lib/myapp_web/endpoint.ex</code>, before <code>plug MyappWeb.Router</code> (and before <code>Plug.Session</code>), so that <code>conn.scheme</code>, <code>conn.host</code>, <code>conn.port</code> and <code>conn.remote_ip</code> are the browser's (Plug 1.14 or later):</p>
+<pre><code class="language-elixir">plug Plug.RewriteOn, [:x_forwarded_for, :x_forwarded_host, :x_forwarded_port, :x_forwarded_proto]</code></pre>
+<p>Only <code>httpd</code> can reach the app (step 1), so these headers can be trusted. To send plain HTTP to HTTPS from the app as well (and set HSTS), add <code>force_ssl</code> to the endpoint's configuration, reading the same header:</p>
+<pre><code class="language-elixir">config :myapp, MyappWeb.Endpoint,
+  force_ssl: [rewrite_on: [:x_forwarded_proto], hsts: true]</code></pre>
+<p>(or let <code>httpd -r</code> do the redirect, and leave <code>force_ssl</code> out).</p>
+<h3 id="4-the-name-and-its-certificate-development">4. The name and its certificate (development)<a class="anchor" href="#4-the-name-and-its-certificate-development" aria-label="Link to this section">#</a></h3>
+<pre><code class="language-sh">echo '127.0.0.1 myapp.local' | sudo tee -a /etc/hosts
+sudo cert local myapp.local localhost 127.0.0.1</code></pre>
+<p>On another computer on your network, add <code>ADDRESS myapp.local</code> (Lepton's address: <code>ip addr</code>) to its hosts file, and add Lepton's CA to it (above).</p>
+<h3 id="5-run-them">5. Run them<a class="anchor" href="#5-run-them" aria-label="Link to this section">#</a></h3>
+<pre><code class="language-sh">mix phx.server &amp;                                   # the app, on 127.0.0.1:4000
+sudo httpd -p 80 -s 443 -r -x http://127.0.0.1:4000</code></pre>
+<p>Visit <a href="https://myapp.local/">https://myapp.local/</a>: the padlock shows Lepton's local CA, and LiveView connects (its WebSocket goes through <code>httpd</code>). If LiveView keeps reloading, <code>check_origin</code> doesn't match the address in the browser.</p>
+<h3 id="6-keep-them-running">6. Keep them running<a class="anchor" href="#6-keep-them-running" aria-label="Link to this section">#</a></h3>
+<p>As <a href="services.html">services</a>, so they start at boot:</p>
+<pre><code class="language-sh">sudo svc new myapp 'cd /root/myapp &amp;&amp; MIX_ENV=prod mix phx.server'
+sudo svc edit httpd     # ExecStart=httpd -f /etc/lepton/httpd.toml
+sudo svc enable --now myapp httpd</code></pre>
+<p>with the sites in <code>/etc/lepton/httpd.toml</code> (below).</p>
+<h3 id="7-on-the-internet">7. On the internet<a class="anchor" href="#7-on-the-internet" aria-label="Link to this section">#</a></h3>
+<p>With a domain, <code>myapp.example.com</code>, whose DNS points at this machine, and ports 80 and 443 reaching it:</p>
+<ol>
+<li>In <code>config/runtime.exs</code>: <code>url: [host: &quot;myapp.example.com&quot;, scheme: &quot;https&quot;, port: 443]</code> and <code>check_origin: [&quot;https://myapp.example.com&quot;]</code>.</li>
+<li>With <code>httpd</code> running on port 80: <code>sudo cert letsencrypt -m you@example.com myapp.example.com</code>.</li>
+<li>Restart the app: <code>sudo svc restart myapp</code>. <code>httpd</code> picks the new certificate by its name, and renews it from then on.</li>
+</ol>
+<h2 id="the-config-file">The config file<a class="anchor" href="#the-config-file" aria-label="Link to this section">#</a></h2>
+<p>Several sites, by name, are set in a TOML file (<code>httpd -f FILE</code>). Each <code>[site.NAME]</code> has a <code>host</code> (<code>*</code> for any name; <code>*.example.com</code> for its subdomains) and either <code>root</code> (files) or <code>proxy</code> (an app); <code>cert</code> and <code>key</code> give its certificate instead of the one kept for its name.</p>
+<pre><code class="language-toml">port = 80
+tls_port = 443
+redirect_https = true
+
+[site.myapp]
+host = &quot;myapp.example.com&quot;
+proxy = &quot;http://127.0.0.1:4000&quot;
+
+[site.blog]
+host = &quot;blog.example.com&quot;
+root = &quot;/srv/blog&quot;
+
+[site.default]
+host = &quot;*&quot;
+root = &quot;/srv/www&quot;</code></pre>
+<p>Options on the command line add a site for any name, after these.</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<p>HTTP/1.1 only (no HTTP/2 or 3), one request per connection to the app, no compression, caching, rate limits or access control; Let's Encrypt by its HTTP-01 challenge only (no DNS-01, so no wildcard certificates from it).</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>web server: files, and HTTPS in front of web apps (Phoenix), WebSockets too</td><td><code>httpd [-p PORT] [-s TLS_PORT] [-x APP_URL] [-c CERT -k KEY] [-r] [-f CONFIG] [DIR]</code></td></tr>
+<tr><td><a href="commands.html#cmd-cert"><code>cert</code></a></td><td>TLS certificates for httpd: a local CA, self-signed, Let's Encrypt</td><td><code>cert list | local HOST... | self-signed HOST... | letsencrypt [-m EMAIL] [--staging] DOMAIN... | renew | import NAME CERT KEY | rm NAME | ca | trust</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@9905ee9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/web.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#serving-files">Serving files</a></li>
+          <li><a href="#in-front-of-an-app">In front of an app</a></li>
+          <li><a href="#https">HTTPS</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#a-new-phoenix-app-step-by-step">A new Phoenix app, step by step</a></li>
+          <li><a href="#the-config-file">The config file</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
