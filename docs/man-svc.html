@@ -63,6 +63,7 @@
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
@@ -104,7 +105,7 @@
 <li><code>is-active NAME</code>, <code>is-enabled NAME</code>: for scripts: exit status 0 means yes.</li>
 </ul>
 <h2 id="unit-files">UNIT FILES<a class="anchor" href="#unit-files" aria-label="Link to this section">#</a></h2>
-<p>A service is a file <code>NAME.service</code> in systemd syntax, in <code>~/.config/lepton/services/</code> (yours, which win) or <code>/etc/lepton/services/</code> (shipped). The <code>[Service]</code> keys read are <code>ExecStart</code> (a shell command line), <code>Restart</code> (<code>no</code>, <code>on-failure</code>, <code>always</code>), <code>RestartSec</code>, <code>Environment</code>, <code>WorkingDirectory</code> and <code>TimeoutStopSec</code>; <code>[Unit]</code> has <code>Description</code>. A shipped unit with <code>WantedBy=</code> in <code>[Install]</code> is enabled by default (<code>cron</code> is), until disabled.</p>
+<p>A service is a file <code>NAME.service</code> in systemd syntax, in <code>~/.config/lepton/services/</code> (yours, which win) or <code>/etc/lepton/services/</code> (shipped). The <code>[Service]</code> keys read are <code>ExecStart</code> (a shell command line), <code>Restart</code> (<code>no</code>, <code>on-failure</code>, <code>always</code>), <code>RestartSec</code>, <code>Environment</code>, <code>WorkingDirectory</code> and <code>TimeoutStopSec</code>; <code>[Unit]</code> has <code>Description</code>. A shipped unit with <code>WantedBy=</code> in <code>[Install]</code> is enabled by default (<code>cron</code> and <code>ntpd</code> are), until disabled.</p>
 <pre><code class="language-sh">[Service]
 ExecStart=httpd -p 8080 ~/public
 Restart=on-failure</code></pre>
@@ -123,7 +124,7 @@ sudo svc enable --now clock</code></pre>
 <p><a href="man-journalctl.html">journalctl(1)</a>, <a href="man-httpd.html">httpd(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="man-crond.html">crond(1)</a>, <a href="man-ps.html">ps(1)</a>, <a href="https://trylepton.app/docs/services.html">https://trylepton.app/docs/services.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/man/svc.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/man/svc.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

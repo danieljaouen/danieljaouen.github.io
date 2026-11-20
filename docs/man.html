@@ -63,6 +63,7 @@
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
@@ -153,7 +154,7 @@
 <tbody>
 <tr><td><a href="man-cal.html"><code>cal</code>(1)</a></td><td>display a calendar</td></tr>
 <tr><td><a href="man-clear.html"><code>clear</code>(1)</a></td><td>clear the terminal screen</td></tr>
-<tr><td><a href="man-date.html"><code>date</code>(1)</a></td><td>print the system date and time</td></tr>
+<tr><td><a href="man-date.html"><code>date</code>(1)</a></td><td>print the date and time (in the local time zone)</td></tr>
 <tr><td><a href="man-dmesg.html"><code>dmesg</code>(1)</a></td><td>print the kernel ring buffer</td></tr>
 <tr><td><a href="man-eject.html"><code>eject</code>(1)</a></td><td>unmount a USB drive or SD card so it's safe to remove</td></tr>
 <tr><td><a href="man-env.html"><code>env</code>(1)</a></td><td>print the environment, or run a command in a modified one</td></tr>
@@ -170,6 +171,7 @@
 <tr><td><a href="man-modprobe.html"><code>modprobe</code>(1)</a></td><td>add a module (and its dependencies) to the kernel</td></tr>
 <tr><td><a href="man-mount.html"><code>mount</code>(1)</a></td><td>mount a filesystem / list mounts</td></tr>
 <tr><td><a href="man-neofetch.html"><code>neofetch</code>(1)</a></td><td>show system information</td></tr>
+<tr><td><a href="man-ntpd.html"><code>ntpd</code>(1)</a></td><td>keep the clock right with NTP (the ntpd service runs it); -q: set it once</td></tr>
 <tr><td><a href="man-pbcopy.html"><code>pbcopy</code>(1)</a></td><td>copy standard input to the clipboard</td></tr>
 <tr><td><a href="man-pbpaste.html"><code>pbpaste</code>(1)</a></td><td>paste the clipboard to standard output</td></tr>
 <tr><td><a href="man-pgrep.html"><code>pgrep</code>(1)</a></td><td>look up processes by name</td></tr>
@@ -185,6 +187,7 @@
 <tr><td><a href="man-stty.html"><code>stty</code>(1)</a></td><td>show terminal settings (size)</td></tr>
 <tr><td><a href="man-sync.html"><code>sync</code>(1)</a></td><td>flush filesystem buffers</td></tr>
 <tr><td><a href="man-time.html"><code>time</code>(1)</a></td><td>run a command and report how long it took</td></tr>
+<tr><td><a href="man-timedatectl.html"><code>timedatectl</code>(1)</a></td><td>the clock and time zone: show them, set the zone, list zones, turn NTP on or off</td></tr>
 <tr><td><a href="man-top.html"><code>top</code>(1)</a></td><td>display Lepton processes (q to quit)</td></tr>
 <tr><td><a href="man-tty.html"><code>tty</code>(1)</a></td><td>print the file name of the terminal</td></tr>
 <tr><td><a href="man-umount.html"><code>umount</code>(1)</a></td><td>unmount a filesystem</td></tr>
@@ -310,7 +313,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@583c010.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@e02e46d.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>date(1) - Lepton OS docs</title>
-  <meta name="description" content="print the system date and time">
+  <meta name="description" content="print the date and time (in the local time zone)">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -63,6 +63,7 @@
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
@@ -85,32 +86,34 @@
       <article class="prose">
 <h1 id="date1">date(1)<a class="anchor" href="#date1" aria-label="Link to this section">#</a></h1>
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
-<p><code>date</code> - print the system date and time</p>
+<p><code>date</code> - print the date and time (in the local time zone)</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>date [+FORMAT] [-u]</code></pre>
+<pre><code>date [-u] [-I] [+FORMAT]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Print the date and time, in UTC, as in <code>Fri Nov 20 14:03:12 UTC 2026</code>, or in the given FORMAT. In FORMAT, these sequences are replaced:</p>
+<p>Print the date and time in the local time zone, as in <code>Fri Nov 20 14:03:12 EST 2026</code>, or in the given FORMAT. The zone is the system's (see <code>timedatectl</code>), or the one in the <code>TZ</code> variable. In FORMAT, these sequences are replaced:</p>
 <ul>
 <li><code>%Y</code> year, <code>%y</code> year in two digits, <code>%m</code> month (01-12), <code>%d</code> day (01-31), <code>%e</code> day padded with a space, <code>%j</code> day of the year.</li>
 <li><code>%H</code> hour (00-23), <code>%I</code> hour (01-12), <code>%p</code> AM or PM, <code>%M</code> minute, <code>%S</code> second, <code>%s</code> seconds since 1970-01-01.</li>
 <li><code>%a</code> and <code>%A</code> the weekday, short and long; <code>%b</code> and <code>%B</code> the month, short and long.</li>
 <li><code>%F</code> the same as <code>%Y-%m-%d</code>; <code>%T</code> the same as <code>%H:%M:%S</code>.</li>
-<li><code>%Z</code> the time zone (<code>UTC</code>); <code>%%</code> a <code>%</code>.</li>
+<li><code>%Z</code> the zone's abbreviation (<code>EST</code>), <code>%z</code> its offset from UTC (<code>-0500</code>); <code>%%</code> a <code>%</code>.</li>
 </ul>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>-u</code>: use UTC (always the case).</li>
+<li><code>-u</code>: show UTC instead of local time.</li>
 <li><code>-I</code>: print the date in ISO 8601 format (<code>2026-11-20</code>).</li>
 </ul>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">date
+date -u
+TZ=Asia/Tokyo date
 date +%F
 cp notes.txt &quot;notes-$(date +%Y%m%d).txt&quot;</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-cal.html">cal(1)</a>, <a href="man-uptime.html">uptime(1)</a></p>
+<p><a href="man-cal.html">cal(1)</a>, <a href="man-uptime.html">uptime(1)</a>, <a href="man-timedatectl.html">timedatectl(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/man/date.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/man/date.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

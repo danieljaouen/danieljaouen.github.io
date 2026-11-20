@@ -63,6 +63,7 @@
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
@@ -139,8 +140,9 @@ WantedBy=multi-user.target   # in a shipped unit: on by default</code></pre>
 </ul>
 <ul>
 <li><strong>cron</strong>: runs the jobs in everyone's <a href="cron.html">crontab</a>. On by default.</li>
+<li><strong>ntpd</strong>: keeps the clock right and finds the <a href="time.html">time zone</a>. On by default.</li>
 </ul>
-<p>Only <code>cron</code> starts by itself: a shipped unit with an <code>[Install]</code> section (<code>WantedBy=</code>) is on until you disable it, as systemd's presets do. The others start only when you start or enable them.</p>
+<p>Only <code>cron</code> and <code>ntpd</code> start by themselves: a shipped unit with an <code>[Install]</code> section (<code>WantedBy=</code>) is on until you disable it, as systemd's presets do. The others start only when you start or enable them.</p>
 <h2 id="httpd">httpd<a class="anchor" href="#httpd" aria-label="Link to this section">#</a></h2>
 <p><code>httpd [-p PORT] [DIR]</code> serves a directory over HTTP (static files only), using the web server built into Erlang/OTP. It makes a good first service:</p>
 <pre><code class="language-sh">sudo mkdir -p /root/public &amp;&amp; echo 'hello' | sudo tee /root/public/index.html
@@ -158,7 +160,7 @@ curl http://localhost:8080/</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

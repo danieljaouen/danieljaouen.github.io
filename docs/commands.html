@@ -63,6 +63,7 @@
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="usb.html">USB, hubs and displays</a></li>
           <li><a href="storage.html">USB drives and SD cards</a></li>
@@ -84,7 +85,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 140 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 142 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -153,7 +154,7 @@
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-cal"></span><a href="man-cal.html"><code>cal</code></a></td><td>display a calendar</td><td><code>cal</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-clear"></span><a href="man-clear.html"><code>clear</code></a> · also <code>cls</code></td><td>clear the terminal screen</td><td><code>clear</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-date"></span><a href="man-date.html"><code>date</code></a></td><td>print the system date and time</td><td><code>date [+FORMAT] [-u]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-date"></span><a href="man-date.html"><code>date</code></a></td><td>print the date and time (in the local time zone)</td><td><code>date [-u] [-I] [+FORMAT]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-dmesg"></span><a href="man-dmesg.html"><code>dmesg</code></a></td><td>print the kernel ring buffer</td><td><code>dmesg</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-eject"></span><a href="man-eject.html"><code>eject</code></a></td><td>unmount a USB drive or SD card so it's safe to remove</td><td><code>eject [DEVICE|DIR]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-env"></span><a href="man-env.html"><code>env</code></a></td><td>print the environment, or run a command in a modified one</td><td><code>env [NAME=VALUE...] [COMMAND [ARG...]]</code></td></tr>
@@ -170,6 +171,7 @@
 <tr><td><span class="anchor-target" id="cmd-modprobe"></span><a href="man-modprobe.html"><code>modprobe</code></a></td><td>add a module (and its dependencies) to the kernel (needs <a href="users.html">sudo</a>)</td><td><code>modprobe MODULE [PARAM=VALUE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-mount"></span><a href="man-mount.html"><code>mount</code></a></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-neofetch"></span><a href="man-neofetch.html"><code>neofetch</code></a> · also <code>fetch</code>, <code>about</code></td><td>show system information</td><td><code>neofetch</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-ntpd"></span><a href="man-ntpd.html"><code>ntpd</code></a></td><td>keep the clock right with NTP (the ntpd service runs it); -q: set it once (needs <a href="users.html">sudo</a>)</td><td><code>ntpd [-q] [-p SERVER]...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pbcopy"></span><a href="man-pbcopy.html"><code>pbcopy</code></a> · also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code></td><td>copy standard input to the clipboard</td><td><code>pbcopy [-o]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pbpaste"></span><a href="man-pbpaste.html"><code>pbpaste</code></a> · also <code>wl-paste</code></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-pgrep"></span><a href="man-pgrep.html"><code>pgrep</code></a></td><td>look up processes by name</td><td><code>pgrep PATTERN</code></td></tr>
@@ -185,6 +187,7 @@
 <tr><td><span class="anchor-target" id="cmd-stty"></span><a href="man-stty.html"><code>stty</code></a></td><td>show terminal settings (size)</td><td><code>stty [size | rows N cols M]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sync"></span><a href="man-sync.html"><code>sync</code></a></td><td>flush filesystem buffers</td><td><code>sync</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-time"></span><a href="man-time.html"><code>time</code></a></td><td>run a command and report how long it took</td><td><code>time COMMAND [ARG...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-timedatectl"></span><a href="man-timedatectl.html"><code>timedatectl</code></a></td><td>the clock and time zone: show them, set the zone, list zones, turn NTP on or off</td><td><code>timedatectl [status] | set-timezone ZONE|auto | list-timezones [TEXT] | set-ntp yes|no</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-top"></span><a href="man-top.html"><code>top</code></a></td><td>display Lepton processes (q to quit)</td><td><code>top</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-tty"></span><a href="man-tty.html"><code>tty</code></a></td><td>print the file name of the terminal</td><td><code>tty</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-umount"></span><a href="man-umount.html"><code>umount</code></a></td><td>unmount a filesystem (needs <a href="users.html">sudo</a>)</td><td><code>umount DIR...</code></td></tr>
@@ -269,7 +272,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@583c010.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@e02e46d.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
