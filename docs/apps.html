@@ -93,7 +93,7 @@
 <p>Firefox runs on Photon, Lepton's Wayland compositor, so it needs the desktop (<code>photon</code> or <code>classic</code>). It shows Photon's window frame instead of drawing its own. Its output goes to <code>~/.cache/lepton/firefox.log</code>.</p>
 <p>Firefox runs as you: as your account's user ID, with its profile in your home (<code>~/.config/mozilla</code>). You don't need <code>sudo</code>, and Firefox refuses to run as root in your home anyway. <code>sudo firefox</code> runs it as root, with root's own profile in <code>/root</code>.</p>
 <h2 id="what-gets-installed">What gets installed<a class="anchor" href="#what-gets-installed" aria-label="Link to this section">#</a></h2>
-<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, and so on: about 85 packages), downloads them over HTTPS (about 137 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 366 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
+<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, FFmpeg's video decoders, and so on: about 113 packages), downloads them over HTTPS (about 161 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 415 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
 <p>On an installed system the app is kept on the data partition. On the live ISO it is kept in memory and is gone after a reboot; give the VM at least 4 GB of memory to install and run Firefox there.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th></tr></thead>
@@ -109,10 +109,11 @@
 <p>Firefox keeps itself up to date. Alpine rebuilds it for every Firefox release, about every four weeks, and sooner for security fixes. Every 10 days, starting Firefox also checks for a newer build. If there is one, Lepton downloads it in the background, next to the one you're using. The next time you start Firefox, the new version takes over before the window opens. If its setup fails, the old version stays.</p>
 <p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
 <p>Alpine updates Firefox only in its current release, so when Alpine makes a new stable release (about twice a year), a new Lepton release moves to it.</p>
+<p>When a Lepton release adds packages to Firefox (as when FFmpeg was added for H.264 video), Firefox doesn't wait for the 10 days: its next start downloads them in the background, and the start after that uses them. <code>sudo app update firefox</code>, with Firefox closed, does it at once.</p>
 <h2 id="whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere<a class="anchor" href="#whats-different-from-firefox-elsewhere" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>It draws with the CPU: the VM has no GPU, and the GPU drivers are not installed.</li>
-<li>Video plays in the formats Firefox decodes itself (WebM, VP9, AV1), but not H.264: the FFmpeg codecs are left out to keep the download small. OpenH264, the H.264 plugin Firefox downloads by itself, is turned off: Mozilla's build of it needs glibc, so on Lepton it crashed (&quot;gmpopenh264 crashed&quot;) whenever a page used it. Video calls use VP8 or VP9 instead.</li>
+<li>Video plays in every common format: WebM, VP9 and AV1 with Firefox's own decoders, and MP4 (H.264 video, AAC sound: TikTok, LinkedIn, Instagram and many news sites) through Alpine's FFmpeg, which comes with Firefox. The CPU decodes it, so a large video can stutter in a small VM. OpenH264, the H.264 plugin Firefox downloads by itself, is turned off: Mozilla's build of it needs glibc, so on Lepton it crashed (&quot;gmpopenh264 crashed&quot;) whenever a page used it. Video calls use VP8 or VP9 instead.</li>
 <li>Fonts are DejaVu, which has no Chinese, Japanese or Korean characters.</li>
 <li>Its clipboard is Lepton's: copy in Firefox and <code>pbpaste</code> (or Ctrl+Shift+V in a terminal window), or <code>pbcopy</code> and paste in Firefox. See <a href="desktop.html#the-clipboard">The desktop</a>.</li>
 <li>When memory runs short, it unloads tabs you haven't used for a while, and if that isn't enough, Lepton stops the largest tab (it shows as crashed; reload it). See <a href="system.html#when-memory-runs-out">When memory runs out</a>.</li>
@@ -129,7 +130,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@f0d6bd9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@f53982e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
