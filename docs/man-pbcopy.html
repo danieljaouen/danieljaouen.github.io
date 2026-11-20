@@ -122,7 +122,7 @@
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
 <pre><code>pbcopy [-o]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Copy standard input to the clipboard: the one shared by Lepton's terminals, the editor, tmux's copy mode and the desktop. The text is also sent to the terminal emulator you are connected through (with the OSC 52 escape sequence), so on a serial console or over SSH it can reach your own computer's clipboard too, if your terminal allows it.</p>
+<p>Copy standard input to the clipboard: the one shared by Lepton's terminals, the editor, tmux's copy mode and the desktop, and in UTM your Mac's too (paste it there with Cmd-V; UTM's Clipboard Sharing). The text is also sent to the terminal emulator you are connected through (with the OSC 52 escape sequence), so on a serial console or over SSH it can reach your own computer's clipboard too, if your terminal allows it.</p>
 <p>The names <code>xclip</code>, <code>xsel</code> and <code>wl-copy</code> run this command too, so dotfiles written for Linux or macOS work unchanged.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -135,7 +135,7 @@ pbcopy &lt; ~/.ssh/id_ed25519.pub</code></pre>
 <p><a href="man-pbpaste.html">pbpaste(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@9905ee9. <a href="https://github.com/danieljaouen/lepton/blob/main/man/pbcopy.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fa29e60. <a href="https://github.com/danieljaouen/lepton/blob/main/man/pbcopy.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

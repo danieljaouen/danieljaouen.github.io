@@ -149,7 +149,12 @@
 <h2 id="terminals">Terminals<a class="anchor" href="#terminals" aria-label="Link to this section">#</a></h2>
 <p>Each console runs a login session as <code>root</code>. On a serial console, full-screen programs (<code>le</code>, <code>tmux</code>, <code>less</code>, <code>top</code>) follow the terminal window's size as you resize it; <code>resize</code> sets the size by hand. Colours follow your terminal; <code>NO_COLOR=1</code> turns them off.</p>
 <h2 id="clipboard">Clipboard<a class="anchor" href="#clipboard" aria-label="Link to this section">#</a></h2>
-<p><code>pbcopy</code> and <code>pbpaste</code> (also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code>, <code>wl-paste</code>) share one clipboard with tmux copy mode, editor yanks and the programs on the <a href="desktop.html#the-clipboard">desktop</a>, such as Firefox. Copies are also sent to your computer's terminal with OSC 52, so they can land in the Mac clipboard over a serial console.</p>
+<p><code>pbcopy</code> and <code>pbpaste</code> (also <code>xclip</code>, <code>xsel</code>, <code>wl-copy</code>, <code>wl-paste</code>) share one clipboard with tmux copy mode, editor yanks and the programs on the <a href="desktop.html#the-clipboard">desktop</a>, such as Firefox.</p>
+<h3 id="sharing-it-with-your-mac-utm">Sharing it with your Mac (UTM)<a class="anchor" href="#sharing-it-with-your-mac-utm" aria-label="Link to this section">#</a></h3>
+<p>In UTM, Lepton's clipboard and your Mac's are one: copy on the Mac and <code>pbpaste</code> has it, so a public key copied on the Mac goes straight in:</p>
+<pre><code class="language-sh">pbpaste &gt;&gt; ~/.ssh/authorized_keys</code></pre>
+<p>and what you copy in Lepton (<code>pbcopy</code>, tmux, the editor, Firefox) can be pasted on the Mac with Cmd-V. This is UTM's <strong>Clipboard Sharing</strong> (VM settings → <strong>Sharing</strong>), which is on by default; Lepton speaks the SPICE guest agent's protocol to it, as <code>spice-vdagent</code> does on other Linux systems. Only text is shared. If <code>pbpaste</code> still has nothing after you copy on the Mac, check that setting is on and restart the VM (the setting adds a device). Other SPICE clients (virt-manager, <code>remote-viewer</code>) work the same way.</p>
+<p>Copies are also sent to your computer's terminal with OSC 52, so they can land in the Mac clipboard over a serial console or SSH too.</p>
 <h2 id="elixir-and-erlang">Elixir and Erlang<a class="anchor" href="#elixir-and-erlang" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>iex</code> is interactive Elixir. It loads <code>~/.iex.exs</code>, so your helpers work: <code>sh &quot;ls&quot;</code> and <code>~x(ls -la)</code> run commands in <code>lsh</code>.</li>
@@ -196,7 +201,7 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@9905ee9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fa29e60. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
