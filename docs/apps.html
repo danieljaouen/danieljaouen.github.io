@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -116,6 +117,9 @@
 <p>When a Lepton release adds packages to Firefox (as when FFmpeg was added for H.264 video), Firefox doesn't wait for the 10 days: its next start downloads them in the background, and the start after that uses them. <code>sudo app update firefox</code>, with Firefox closed, does it at once.</p>
 <h2 id="whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere<a class="anchor" href="#whats-different-from-firefox-elsewhere" aria-label="Link to this section">#</a></h2>
 <ul>
+<li>It uses Lepton's <a href="proxy.html">proxy</a>, when one is set: Firefox is started with <code>http_proxy</code> and <code>https_proxy</code> pointing at Lepton, which takes each connection through the chain (restart Firefox after changing it).</li>
+</ul>
+<ul>
 <li>It draws with the CPU: the VM has no GPU, and the GPU drivers are not installed.</li>
 <li>Video plays in every common format: WebM, VP9 and AV1 with Firefox's own decoders, and MP4 (H.264 video, AAC sound: TikTok, LinkedIn, Instagram and many news sites) through Alpine's FFmpeg, which comes with Firefox. The CPU decodes it, so a large video can stutter in a small VM. OpenH264, the H.264 plugin Firefox downloads by itself, is turned off: Mozilla's build of it needs glibc, so on Lepton it crashed (&quot;gmpopenh264 crashed&quot;) whenever a page used it. Video calls use VP8 or VP9 instead.</li>
 <li>Fonts are DejaVu, which has no Chinese, Japanese or Korean characters.</li>
@@ -134,7 +138,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

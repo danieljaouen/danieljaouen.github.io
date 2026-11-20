@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -88,7 +89,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>curl</code>, <code>wget</code>, <code>fetch</code> - transfer a URL (HTTP/HTTPS)</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>curl [-o FILE] [-I] [-s] URL</code></pre>
+<pre><code>curl [-o FILE] [-I] [-s] [-x PROXY] URL</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Fetch URL over HTTP or HTTPS and write the response body to standard output (or to a file). Redirects are followed. A URL without a scheme gets <code>http://</code>. HTTPS certificates are verified against the system's certificate authorities.</p>
 <p><code>wget</code> and <code>fetch</code> are the same command; with them, use <code>-O</code> to save to a file named after the URL.</p>
@@ -100,8 +101,12 @@
 <li><code>-d DATA</code>: send DATA as a form POST.</li>
 <li><code>-s</code>: silent: do not report where the body was saved.</li>
 <li><code>-k</code>: do not verify the server's certificate.</li>
+<li><code>-x PROXY</code>, <code>--proxy=PROXY</code>: go through PROXY (<code>http://</code>, <code>socks5://</code>, <code>socks5h://</code>, ...) instead of the configured one.</li>
+<li><code>--noproxy=HOSTS</code>: reach these hosts directly (<code>*</code> for all).</li>
 <li><code>-L</code>, <code>-H</code>, <code>-X</code>: accepted for compatibility (redirects are always followed).</li>
 </ul>
+<h2 id="proxies">PROXIES<a class="anchor" href="#proxies" aria-label="Link to this section">#</a></h2>
+<p>Requests go through the system's proxy, if one is set (see <code>proxy</code>), or through <code>https_proxy</code>, <code>http_proxy</code> or <code>all_proxy</code> when set.</p>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>0 on success, 22 if the server answered with an HTTP error (400 or above), 6 if the request failed.</p>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
@@ -109,10 +114,10 @@
 curl -o page.html https://example.com/
 curl -I https://github.com/</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-www.html">www(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="man-httpd.html">httpd(1)</a>, <a href="man-gh.html">gh(1)</a></p>
+<p><a href="man-www.html">www(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="man-httpd.html">httpd(1)</a>, <a href="man-gh.html">gh(1)</a>, <a href="man-proxy.html">proxy(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/man/curl.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/man/curl.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -121,6 +126,7 @@ curl -I https://github.com/</code></pre>
           <li><a href="#synopsis">SYNOPSIS</a></li>
           <li><a href="#description">DESCRIPTION</a></li>
           <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#proxies">PROXIES</a></li>
           <li><a href="#exit-status">EXIT STATUS</a></li>
           <li><a href="#examples">EXAMPLES</a></li>
           <li><a href="#see-also">SEE ALSO</a></li>

@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -129,12 +130,26 @@ ssh -o StrictHostKeyChecking=accept-new server true</code></pre>
 <tr><td><code>IdentityFile</code></td><td>a key to try; several add up</td></tr>
 <tr><td><code>StrictHostKeyChecking</code></td><td><code>ask</code> (default), <code>accept-new</code>/<code>no</code> to add new hosts silently, <code>yes</code> to refuse them</td></tr>
 <tr><td><code>UserKnownHostsFile</code></td><td>instead of <code>~/.ssh/known_hosts</code></td></tr>
+<tr><td><code>ProxyJump</code></td><td>go through these hosts first (<a href="#jump-hosts-and-proxies">jump hosts</a>)</td></tr>
+<tr><td><code>ProxyCommand</code></td><td>a command that is the connection (<code>none</code>: none)</td></tr>
 </tbody></table></div>
 <pre><code>Host gh
   HostName github.com
   User git
   IdentityFile ~/.ssh/github_ed25519</code></pre>
 <p>Aliases work everywhere, including in git remotes: <code>git clone gh:you/repo.git</code>.</p>
+<h2 id="jump-hosts-and-proxies">Jump hosts and proxies<a class="anchor" href="#jump-hosts-and-proxies" aria-label="Link to this section">#</a></h2>
+<p>To reach a server you can only get to through another one (a bastion), go through it with <code>-J</code>, or with <code>ProxyJump</code> in <code>~/.ssh/config</code>. Each host of a chain is reached through the one before:</p>
+<pre><code class="language-sh">ssh -J bastion.example.com server.internal
+ssh -J me@hop1,me@hop2:2222 server.internal</code></pre>
+<pre><code>Host inside
+  HostName server.internal
+  ProxyJump bastion.example.com</code></pre>
+<p><code>ProxyCommand</code> runs a command whose input and output are the connection, as in OpenSSH (<code>%h</code> and <code>%p</code> are the host and port). Lepton has the commands it is usually given: <code>ssh -W</code> and <code>nc</code>, which can go through an HTTP or SOCKS proxy:</p>
+<pre><code class="language-sh">ssh -o ProxyCommand='ssh -W %h:%p bastion' server.internal
+ssh -o ProxyCommand='nc -X connect -x proxy.example.com:3128 %h %p' server.example.com</code></pre>
+<p>SSH also goes through the system's <a href="proxy.html">proxy</a> chain, or the <code>all_proxy</code> variable, when one is set. <code>ProxyJump none</code> or <code>ProxyCommand none</code> in a <code>Host</code> block turns them off for that host. git and rsync over SSH take the same ways, and host keys are always checked under the server's own name.</p>
+<p>Lepton's own SSH server can be a jump host: <code>ssh -J alice@lepton server</code> from another computer goes on through it.</p>
 <h2 id="logging-in-to-lepton">Logging in to Lepton<a class="anchor" href="#logging-in-to-lepton" aria-label="Link to this section">#</a></h2>
 <p>Lepton has an SSH server too, <code>sshd</code>, so you can log in to it from another computer on your network. It is <strong>off</strong> until you turn it on, and it only takes <strong>keys</strong>: there is no password login, so nobody can guess their way in.</p>
 <p>On Lepton, put the other computer's public key (its <code>~/.ssh/id_ed25519.pub</code>; copy it over on a USB drive, or paste it) in the <code>authorized_keys</code> of the account you'll log in as, then start the server:</p>
@@ -158,7 +173,7 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 </ul>
 <p>In UTM, the VM must be reachable from your network: use <strong>Bridged</strong> networking, or the Mac itself can reach a <strong>Shared Network</strong> VM at the address <code>svc logs sshd</code> shows.</p>
 <h2 id="not-supported">Not supported<a class="anchor" href="#not-supported" aria-label="Link to this section">#</a></h2>
-<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, and <code>scp</code>/<code>sftp</code> (to or from Lepton: use <a href="rsync.html">rsync</a> instead).</p>
+<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent forwarding, <code>-L</code>/<code>-R</code>/<code>-D</code> port forwarding from Lepton's <code>ssh</code>, and <code>scp</code>/<code>sftp</code> (to or from Lepton: use <a href="rsync.html">rsync</a> instead).</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -167,10 +182,11 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 <tr><td><a href="commands.html#cmd-ssh-keygen"><code>ssh-keygen</code></a></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
 <tr><td><a href="commands.html#cmd-ssh-keyscan"><code>ssh-keyscan</code></a></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
 <tr><td><a href="commands.html#cmd-sshd"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
+<tr><td><a href="commands.html#cmd-nc"><code>nc</code></a></td><td>connect to a TCP port and pass standard input and output (netcat), optionally through a proxy</td><td><code>nc [-x PROXY[:PORT]] [-X 4|5|connect] [-w SECONDS] [-z] [-v] HOST PORT</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -180,6 +196,7 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
           <li><a href="#known-hosts">Known hosts</a></li>
           <li><a href="#the-ssh-command">The ssh command</a></li>
           <li><a href="#sshconfig">~/.ssh/config</a></li>
+          <li><a href="#jump-hosts-and-proxies">Jump hosts and proxies</a></li>
           <li><a href="#logging-in-to-lepton">Logging in to Lepton</a></li>
           <li><a href="#not-supported">Not supported</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>

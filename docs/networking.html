@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html" aria-current="page">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -94,6 +95,7 @@ nslookup github.com
 curl -sI https://trylepton.app/
 www https://trylepton.app/    # a text-mode web browser</code></pre>
 <p><code>dhclient</code> re-runs DHCP on an interface. <code>curl</code> (also <code>wget</code>) fetches over HTTP and HTTPS and can save to a file with <code>-o</code>.</p>
+<p>On a network that only reaches the internet through a proxy, set it with <code>sudo proxy set http://proxy:3128</code>: see <a href="proxy.html">proxies</a>. <code>nc</code> connects to any TCP port (<code>nc -z host 22</code> checks it's open).</p>
 <h2 id="remote-machines">Remote machines<a class="anchor" href="#remote-machines" aria-label="Link to this section">#</a></h2>
 <p><code>ssh</code> logs in to other machines and runs commands on them, with keys from <code>ssh-keygen</code>; see <a href="ssh.html">SSH</a>.</p>
 <h2 id="serving">Serving<a class="anchor" href="#serving" aria-label="Link to this section">#</a></h2>
@@ -131,14 +133,14 @@ sudo wifi forget MyNetwork      # (or `sudo wifi forget` for all)</code></pre>
 <tr><td><a href="commands.html#cmd-dhclient"><code>dhclient</code></a></td><td>configure an interface with DHCP (needs <a href="users.html">sudo</a>)</td><td><code>dhclient [IFACE]</code></td></tr>
 <tr><td><a href="commands.html#cmd-ping"><code>ping</code></a></td><td>send ICMP ECHO_REQUEST to a host</td><td><code>ping [-c COUNT] HOST</code></td></tr>
 <tr><td><a href="commands.html#cmd-nslookup"><code>nslookup</code></a></td><td>query DNS</td><td><code>nslookup NAME</code></td></tr>
-<tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] URL</code></td></tr>
+<tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] [-x PROXY] URL</code></td></tr>
 <tr><td><a href="commands.html#cmd-www"><code>www</code></a></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
 <tr><td><a href="commands.html#cmd-httpd"><code>httpd</code></a></td><td>serve a directory over HTTP (static files)</td><td><code>httpd [-p PORT] [DIR]</code></td></tr>
 <tr><td><a href="commands.html#cmd-wifi"><code>wifi</code></a></td><td>Wi-Fi: status, scan, connect and saved networks</td><td><code>wifi [status] | scan [IFACE] | connect SSID [PASSPHRASE] | forget [SSID] | setup</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/networking.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

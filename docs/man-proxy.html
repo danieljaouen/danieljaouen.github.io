@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>proxy(1) - Lepton OS docs</title>
+  <meta name="description" content="the internet proxy (or chain of proxies) for web and SSH connections">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="proxy1">proxy(1)<a class="anchor" href="#proxy1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>proxy</code> - the internet proxy (or chain of proxies) for web and SSH connections</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>proxy [status] | set URL... | off | no-proxy HOST,... | test [URL]</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>Show or set the proxy that Lepton's connections go through: one proxy, or a chain of them, each reached through the one before. It applies to web requests (<code>curl</code>, <code>www</code>, <code>git</code>, <code>gh</code>, <code>lpm</code>, <code>app</code>, Firefox) and to SSH (and so git and rsync over SSH). Without one, connections go directly.</p>
+<h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>proxy</code>, <code>proxy status</code>: the chain, the hosts reached directly, and any proxy variables set in this shell (which take precedence).</li>
+<li><code>set URL...</code>: go through these proxies, in order. Root only.</li>
+<li><code>off</code>: connect directly. Root only.</li>
+<li><code>no-proxy HOST,...</code>: the hosts reached directly: names, <code>.domain</code> for a whole domain, addresses, or <code>*</code>. By default <code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code> and <code>.local</code>. Root only.</li>
+<li><code>test [URL]</code>: connect to URL (<code>https://trylepton.app/</code> by default) through the chain and report each step.</li>
+</ul>
+<h2 id="proxy-addresses">PROXY ADDRESSES<a class="anchor" href="#proxy-addresses" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>http://[USER:PASS@]HOST[:PORT]</code>: an HTTP proxy, by CONNECT (port 3128 by default).</li>
+<li><code>socks5://</code>: SOCKS5, names resolved by Lepton (port 1080 by default).</li>
+<li><code>socks5h://</code>: SOCKS5, names resolved by the proxy (Tor).</li>
+<li><code>socks4://</code>, <code>socks4a://</code>: SOCKS4, and 4a with names resolved by the proxy.</li>
+</ul>
+<h2 id="environment">ENVIRONMENT<a class="anchor" href="#environment" aria-label="Link to this section">#</a></h2>
+<p>For one command, these take precedence: <code>https_proxy</code> and <code>http_proxy</code> for web requests, <code>all_proxy</code> for any connection, <code>no_proxy</code> for the hosts to reach directly (upper-case names too).</p>
+<h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>/var/lib/lepton/proxy</code>: the setting (root only: it may hold passwords).</li>
+</ul>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo proxy set http://proxy.example.com:3128
+sudo proxy set http://proxy:3128 socks5h://10.0.0.5:1080
+proxy test
+sudo proxy off</code></pre>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-curl.html">curl(1)</a>, <a href="man-nc.html">nc(1)</a>, <a href="man-ssh.html">ssh(1)</a>, <a href="https://trylepton.app/docs/proxy.html">https://trylepton.app/docs/proxy.html</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/man/proxy.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#commands">COMMANDS</a></li>
+          <li><a href="#proxy-addresses">PROXY ADDRESSES</a></li>
+          <li><a href="#environment">ENVIRONMENT</a></li>
+          <li><a href="#files">FILES</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

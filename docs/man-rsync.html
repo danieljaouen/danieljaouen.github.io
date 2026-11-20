@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -111,7 +112,7 @@
 <li><code>--delete</code>: delete files at DEST that are not in SOURCE (in the directories being copied). Excluded files are kept.</li>
 <li><code>--exclude PATTERN</code>: leave out files matching PATTERN: <code>*</code>, <code>?</code> and <code>[...]</code> match within a name and <code>**</code> across directories; a pattern without <code>/</code> matches the name anywhere, a leading <code>/</code> anchors it to the top of the transfer, and a trailing <code>/</code> matches only directories. May be repeated.</li>
 <li><code>-z</code>, <code>--compress</code>: accepted. Lepton compresses when another machine's rsync asks it to; its own transfers are not compressed.</li>
-<li><code>-e COMMAND</code>, <code>--rsh COMMAND</code>: the ssh command line for another machine, with the ssh options Lepton's <code>ssh</code> takes, as in <code>-e 'ssh -p 2222 -i ~/.ssh/work_ed25519'</code>.</li>
+<li><code>-e COMMAND</code>, <code>--rsh COMMAND</code>: the ssh command line for another machine, with the ssh options Lepton's <code>ssh</code> takes, as in <code>-e 'ssh -p 2222 -i ~/.ssh/work_ed25519'</code> or <code>-e 'ssh -J bastion'</code>. Proxies and <code>~/.ssh/config</code>'s ProxyJump apply as for <code>ssh</code>.</li>
 <li><code>--rsync-path PATH</code>: the rsync to run on the other machine.</li>
 <li><code>-h</code>, <code>-P</code>, <code>--progress</code>, <code>--stats</code>, <code>-q</code> and the like are accepted and ignored.</li>
 </ul>
@@ -131,7 +132,7 @@ rsync -avn --delete src/ backup/              # see what would change</code></pr
 <p><a href="man-cp.html">cp(1)</a>, <a href="man-ssh.html">ssh(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="https://trylepton.app/docs/rsync.html">https://trylepton.app/docs/rsync.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/man/rsync.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/man/rsync.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

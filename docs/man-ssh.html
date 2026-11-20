@@ -61,6 +61,7 @@
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
@@ -99,13 +100,20 @@
 <li><code>-i KEY</code>: try the private key in file KEY (may be repeated).</li>
 <li><code>-l USER</code>: log in as USER (or write <code>USER@HOST</code>).</li>
 <li><code>-o StrictHostKeyChecking=VALUE</code>: <code>ask</code> (the default), <code>accept-new</code> or <code>no</code> (add new hosts without asking) or <code>yes</code> (refuse unknown hosts).</li>
+<li><code>-J JUMP[,JUMP...]</code>: go through these jump hosts (<code>[USER@]HOST[:PORT]</code>), each reached over SSH through the one before (ProxyJump).</li>
+<li><code>-W HOST:PORT</code>: instead of a shell, connect standard input and output to HOST:PORT through the server (for ProxyCommand).</li>
+<li><code>-o ProxyJump=...</code>, <code>-o ProxyCommand=COMMAND</code>: as in <code>~/.ssh/config</code>. The command's input and output are the connection; <code>%h</code>, <code>%p</code>, <code>%r</code> and <code>%n</code> are the host, port, user and the name given.</li>
 <li><code>-T</code>: do not ask for a terminal.</li>
 <li><code>-t</code>: ask for a terminal even when running COMMAND.</li>
 <li><code>-q</code>, <code>-v</code>, <code>-n</code>, <code>-A</code>, <code>-x</code>, <code>-4</code>, <code>-6</code>: accepted for compatibility.</li>
 </ul>
 <h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>~/.ssh/config</code>: <code>Host</code> blocks with <code>HostName</code>, <code>User</code>, <code>Port</code>, <code>IdentityFile</code>, <code>StrictHostKeyChecking</code> and <code>UserKnownHostsFile</code>, as in OpenSSH.</li>
+<li><code>~/.ssh/config</code>: <code>Host</code> blocks with <code>HostName</code>, <code>User</code>, <code>Port</code>, <code>IdentityFile</code>, <code>StrictHostKeyChecking</code>, <code>UserKnownHostsFile</code>, <code>ProxyJump</code> and <code>ProxyCommand</code> (<code>none</code> to turn one off), as in OpenSSH.</li>
+</ul>
+<h2 id="proxies">PROXIES<a class="anchor" href="#proxies" aria-label="Link to this section">#</a></h2>
+<p>The way to the server is, first that applies: a ProxyCommand, a ProxyJump chain, the system's proxy chain (see <code>proxy</code>) or the <code>all_proxy</code> variable, or directly. Host keys are checked under the server's own name and port, whichever way the connection goes.</p>
+<ul>
 <li><code>~/.ssh/known_hosts</code>: the hosts you have trusted.</li>
 </ul>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
@@ -113,12 +121,14 @@
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">ssh -T git@github.com
 ssh me@server
-ssh -p 2222 -i ~/.ssh/work_ed25519 me@server uptime</code></pre>
+ssh -p 2222 -i ~/.ssh/work_ed25519 me@server uptime
+ssh -J bastion me@server.internal
+ssh -o ProxyCommand='nc -X connect -x proxy:3128 %h %p' me@server</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-ssh-keygen.html">ssh-keygen(1)</a>, <a href="man-ssh-keyscan.html">ssh-keyscan(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="man-rsync.html">rsync(1)</a>, <a href="man-git.html">git(1)</a>, <a href="man-gh.html">gh(1)</a></p>
+<p><a href="man-ssh-keygen.html">ssh-keygen(1)</a>, <a href="man-ssh-keyscan.html">ssh-keyscan(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="man-rsync.html">rsync(1)</a>, <a href="man-proxy.html">proxy(1)</a>, <a href="man-nc.html">nc(1)</a>, <a href="man-git.html">git(1)</a>, <a href="man-gh.html">gh(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e02e46d. <a href="https://github.com/danieljaouen/lepton/blob/main/man/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/man/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -128,6 +138,7 @@ ssh -p 2222 -i ~/.ssh/work_ed25519 me@server uptime</code></pre>
           <li><a href="#description">DESCRIPTION</a></li>
           <li><a href="#options">OPTIONS</a></li>
           <li><a href="#files">FILES</a></li>
+          <li><a href="#proxies">PROXIES</a></li>
           <li><a href="#exit-status">EXIT STATUS</a></li>
           <li><a href="#examples">EXAMPLES</a></li>
           <li><a href="#see-also">SEE ALSO</a></li>

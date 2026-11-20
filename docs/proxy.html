@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Proxies - Lepton OS docs</title>
+  <meta name="description" content="Reach the internet through a proxy, or a chain of them (HTTP and SOCKS), for the web, git, packages, Firefox and SSH.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="proxy.html" aria-current="page">Proxies</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="proxies">Proxies<a class="anchor" href="#proxies" aria-label="Link to this section">#</a></h1>
+<p>Some networks only reach the internet through a <strong>proxy</strong>: a server that makes connections on your behalf. Offices and schools often have an HTTP proxy; a SOCKS proxy is what <code>ssh -D</code> and Tor provide. Lepton can send its connections through one, or through a <strong>chain</strong> of them, each reached through the one before (as <code>proxychains</code> does).</p>
+<pre><code class="language-sh">sudo proxy set http://proxy.example.com:3128        # one proxy
+sudo proxy set http://me:secret@proxy:8080          # with a user name and password
+sudo proxy set http://proxy:3128 socks5h://10.0.0.5:1080   # a chain: through both
+proxy                                               # what is set
+proxy test                                          # try https://trylepton.app/ through it
+sudo proxy off                                      # back to connecting directly</code></pre>
+<p>If you don't know whether you need one, you probably don't: without a proxy, Lepton connects directly, as before. Your network's administrator (or your browser's settings on another computer) can tell you the proxy's address.</p>
+<h2 id="kinds-of-proxy">Kinds of proxy<a class="anchor" href="#kinds-of-proxy" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Address</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><code>http://host:port</code></td><td>an HTTP proxy (CONNECT); port 3128 if left out</td></tr>
+<tr><td><code>socks5://host:port</code></td><td>SOCKS5; names are resolved by Lepton</td></tr>
+<tr><td><code>socks5h://host:port</code></td><td>SOCKS5, names resolved by the proxy (needed for Tor's <code>.onion</code> names)</td></tr>
+<tr><td><code>socks4://</code>, <code>socks4a://</code></td><td>older SOCKS servers</td></tr>
+</tbody></table></div>
+<p>Any of them may carry <code>user:password@</code> before the host. The passwords are kept in <code>/var/lib/lepton/proxy</code>, readable only by root, and <code>proxy</code> shows them as <code>***</code>.</p>
+<h2 id="what-goes-through-it">What goes through it<a class="anchor" href="#what-goes-through-it" aria-label="Link to this section">#</a></h2>
+<p>Everything Lepton connects to: <code>curl</code>, <code>www</code>, <code>git</code> and <code>gh</code>, <code>lpm</code>, <code>app install</code>, the time zone lookup, <a href="apps.html">Firefox</a> and <a href="ssh.html">SSH</a> (so also git and rsync over SSH). The NTP time servers are not reached through it (NTP uses UDP, which proxies don't carry).</p>
+<p>Some hosts are always reached directly: by default <code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code> and names ending in <code>.local</code>. Change the list with <code>sudo proxy no-proxy localhost,127.0.0.1,.corp.example.com</code> (a name starting with <code>.</code> covers a whole domain; <code>*</code> means everything).</p>
+<h2 id="for-one-command">For one command<a class="anchor" href="#for-one-command" aria-label="Link to this section">#</a></h2>
+<p>The usual variables override the setting for one command:</p>
+<pre><code class="language-sh">https_proxy=http://proxy:3128 curl https://example.com/   # web requests
+all_proxy=socks5h://127.0.0.1:9050 git clone ...           # web and SSH
+no_proxy=intranet.example.com curl http://intranet.example.com/
+curl -x socks5://127.0.0.1:1080 https://example.com/       # curl's own option</code></pre>
+<p><code>http_proxy</code> and <code>https_proxy</code> apply to the web, <code>all_proxy</code> to anything, <code>no_proxy</code> lists hosts to reach directly. Upper-case names work too.</p>
+<h2 id="ssh-through-proxies-and-jump-hosts">SSH through proxies and jump hosts<a class="anchor" href="#ssh-through-proxies-and-jump-hosts" aria-label="Link to this section">#</a></h2>
+<p>SSH connections use the proxy chain too. SSH also has its own ways of going through other machines, which work the same in Lepton as in OpenSSH:</p>
+<pre><code class="language-sh">ssh -J bastion.example.com server.internal            # through a jump host
+ssh -J me@hop1,me@hop2:2222 server.internal           # a chain of jump hosts
+ssh -o ProxyCommand='ssh -W %h:%p bastion' server.internal
+ssh -o ProxyCommand='nc -X connect -x proxy:3128 %h %p' server.example.com</code></pre>
+<p>or in <code>~/.ssh/config</code>:</p>
+<pre><code>Host inside
+  HostName server.internal
+  ProxyJump bastion.example.com</code></pre>
+<p>See <a href="ssh.html#jump-hosts-and-proxies">SSH</a>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-proxy"><code>proxy</code></a></td><td>the internet proxy (or chain of proxies) for web and SSH connections</td><td><code>proxy [status] | set URL... | off | no-proxy HOST,... | test [URL]</code></td></tr>
+<tr><td><a href="commands.html#cmd-nc"><code>nc</code></a></td><td>connect to a TCP port and pass standard input and output (netcat), optionally through a proxy</td><td><code>nc [-x PROXY[:PORT]] [-X 4|5|connect] [-w SECONDS] [-z] [-v] HOST PORT</code></td></tr>
+<tr><td><a href="commands.html#cmd-curl"><code>curl</code></a></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] [-x PROXY] URL</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/proxy.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#kinds-of-proxy">Kinds of proxy</a></li>
+          <li><a href="#what-goes-through-it">What goes through it</a></li>
+          <li><a href="#for-one-command">For one command</a></li>
+          <li><a href="#ssh-through-proxies-and-jump-hosts">SSH through proxies and jump hosts</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
