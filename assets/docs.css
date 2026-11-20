@@ -10,7 +10,15 @@
 
 /* Contents sidebar */
 .docs-nav { position: sticky; top: 88px; max-height: calc(100vh - 110px); overflow-y: auto; font-size: 0.94rem; }
-.docs-nav details > summary { display: none; }
+.docs-nav-all > summary { display: none; }
+.docs-sec { margin: 0 0 6px; }
+.docs-sec > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); user-select: none; }
+.docs-sec > summary::-webkit-details-marker { display: none; }
+.docs-sec > summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform 0.15s; margin-right: 2px; }
+.docs-sec[open] > summary::after { transform: rotate(45deg); }
+.docs-sec > summary:hover { color: var(--text); background: var(--surface-2); }
+.docs-sec > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.docs-sec > ul { margin: 2px 0 10px; padding-left: 8px; }
 .docs-nav ul { list-style: none; margin: 0 0 18px; padding: 0; }
 .docs-nav li a { display: block; padding: 5px 10px; border-radius: 8px; color: var(--muted); text-decoration: none; }
 .docs-nav li a:hover { color: var(--text); background: var(--surface-2); }
@@ -78,7 +86,7 @@
 @media (max-width: 820px) {
   .docs-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-top: 20px; }
   .docs-nav { position: static; max-height: none; border: 1px solid var(--border); border-radius: 10px; padding: 4px 12px; }
-  .docs-nav details > summary { display: list-item; cursor: pointer; padding: 8px 0; font-weight: 700; }
-  .docs-nav details:not([open]) > :not(summary) { display: none; }
+  .docs-nav-all > summary { display: list-item; cursor: pointer; padding: 8px 0; font-weight: 700; }
+  .docs-nav-all:not([open]) > :not(summary) { display: none; }
   .prose td:first-child code { white-space: normal; }
 }
