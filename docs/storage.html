@@ -90,6 +90,7 @@
 <pre><code class="language-sh">lsblk                     # disks, partitions, filesystems and mount points
 ls /media/CAMERA          # use the files like any others
 eject /media/CAMERA       # ...then unplug it</code></pre>
+<p>Another machine's files can be mounted too, over SSH: see <a href="ssh.html#mounting-another-machine-sshfs">sshfs</a>.</p>
 <p>To back up to a drive, <a href="rsync.html">rsync</a> copies only what changed since last time: <code>rsync -av ~/notes/ /media/BACKUP/notes/</code>. FAT and exFAT drives keep times only to the nearest two seconds, so if unchanged files are sent again each time, add <code>--size-only</code> (or <code>-c</code>, to compare contents).</p>
 <p><strong>Filesystems</strong>: FAT (FAT12, FAT16, FAT32: most sticks and SD cards), exFAT (large SD cards), NTFS (Windows drives), ext2/3/4 (Linux drives) and ISO 9660 (CD images written to a stick). FAT, exFAT and NTFS have no owners or permissions, so every user can read and write them. A filesystem the kernel won't write, such as an NTFS drive that Windows left hibernated, is mounted read-only.</p>
 <p><strong>Several partitions</strong> on a drive are each mounted in their own folder. A drive with no partition table, as many sticks and cards are, is mounted whole.</p>
@@ -114,7 +115,7 @@ eject sdb             # by device: every partition of the drive</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/storage.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@acd673e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/storage.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

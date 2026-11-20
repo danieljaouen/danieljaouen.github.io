@@ -96,7 +96,8 @@
 <li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
-<li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding or <code>scp</code>/<code>sftp</code> (rsync works). The SSH server (<code>sshd</code>) offers shells and commands only.</li>
+<li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, port forwarding from Lepton's <code>ssh</code>, or <code>scp</code>/<code>sftp</code> commands on Lepton (rsync and sshfs work; from other computers, sftp, scp and sshfs reach Lepton's <code>sshd</code>).</li>
+<li>sshfs: no hard links or device files on the mount; a slow connection can hold up other file operations while it answers.</li>
 <li>Proxies carry TCP only: NTP (UDP) goes directly. HTTPS proxies (TLS to the proxy itself) and PAC files aren't supported.</li>
 <li>rsync: protocol 27; no hard links (<code>-H</code>), relative paths (<code>-R</code>), owners and groups, or daemon mode, and Lepton's own transfers aren't compressed.</li>
 <li><code>le</code> is a Spacemacs work-alike, not Emacs: it doesn't <em>evaluate</em> Elisp, so layers and packages aren't loaded. Unsupported bindings are reported.</li>
@@ -108,7 +109,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@acd673e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>

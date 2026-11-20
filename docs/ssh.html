@@ -150,6 +150,13 @@ ssh -J me@hop1,me@hop2:2222 server.internal</code></pre>
 ssh -o ProxyCommand='nc -X connect -x proxy.example.com:3128 %h %p' server.example.com</code></pre>
 <p>SSH also goes through the system's <a href="proxy.html">proxy</a> chain, or the <code>all_proxy</code> variable, when one is set. <code>ProxyJump none</code> or <code>ProxyCommand none</code> in a <code>Host</code> block turns them off for that host. git and rsync over SSH take the same ways, and host keys are always checked under the server's own name.</p>
 <p>Lepton's own SSH server can be a jump host: <code>ssh -J alice@lepton server</code> from another computer goes on through it.</p>
+<h2 id="mounting-another-machine-sshfs">Mounting another machine (sshfs)<a class="anchor" href="#mounting-another-machine-sshfs" aria-label="Link to this section">#</a></h2>
+<p><code>sshfs</code> mounts a directory of another machine in yours: its files then appear there for every program, read and written over SFTP on an SSH connection (with your keys, config, jump hosts and proxies).</p>
+<pre><code class="language-sh">mkdir ~/server
+sshfs me@server.example.com:projects ~/server   # (or me@server: for its whole home)
+ls ~/server &amp;&amp; le ~/server/README.md
+fusermount -u ~/server                          # unmount</code></pre>
+<p>The other machine needs an SFTP server, which OpenSSH has (on a Mac: System Settings, Sharing, Remote Login), and so does Lepton's. The files appear as yours. While a program waits on a slow connection, other file operations in Lepton can wait with it.</p>
 <h2 id="logging-in-to-lepton">Logging in to Lepton<a class="anchor" href="#logging-in-to-lepton" aria-label="Link to this section">#</a></h2>
 <p>Lepton has an SSH server too, <code>sshd</code>, so you can log in to it from another computer on your network. It is <strong>off</strong> until you turn it on, and it only takes <strong>keys</strong>: there is no password login, so nobody can guess their way in.</p>
 <p>On Lepton, put the other computer's public key (its <code>~/.ssh/id_ed25519.pub</code>; copy it over on a USB drive, or paste it) in the <code>authorized_keys</code> of the account you'll log in as, then start the server:</p>
@@ -166,14 +173,14 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 <li>You log in as one of Lepton's <a href="users.html">accounts</a>, with a key in that account's <code>~/.ssh/authorized_keys</code> (one OpenSSH public key per line; options before the key are allowed and ignored). Root can log in the same way, with <code>/root/.ssh/authorized_keys</code>, which is how to reach the live ISO. An <code>authorized_keys</code> that group or others may write to is ignored.</li>
 <li>A login gets its own terminal, which follows your window's size: <code>le</code>, <code>tmux</code>, <code>top</code> and <code>sudo</code> work as on the console. Closing the connection ends everything the session started.</li>
 <li><code>svc logs sshd</code> shows every login and every refused key.</li>
-<li>To copy files, use <a href="rsync.html">rsync</a> from the other computer: <code>rsync -av dir/ alice@192.168.1.23:dir/</code>.</li>
+<li>To copy files, use <a href="rsync.html">rsync</a>, <code>scp</code> or <code>sftp</code> from the other computer: <code>rsync -av dir/ alice@192.168.1.23:dir/</code>. Lepton's server speaks SFTP, so a Mac's <code>sshfs</code> can mount your Lepton home too. Each account sees only its home over SFTP (root sees everything).</li>
 <li>The host key is made the first time <code>sshd</code> starts, in <code>/var/lib/lepton/ssh</code>. An installed system keeps it; the live ISO makes a new one each boot.</li>
 <li>Another port: <code>sudo svc edit sshd</code> and change <code>ExecStart=sshd</code> to <code>ExecStart=sshd -p 2222</code>.</li>
 <li>To turn it off again: <code>sudo svc disable --now sshd</code>.</li>
 </ul>
 <p>In UTM, the VM must be reachable from your network: use <strong>Bridged</strong> networking, or the Mac itself can reach a <strong>Shared Network</strong> VM at the address <code>svc logs sshd</code> shows.</p>
 <h2 id="not-supported">Not supported<a class="anchor" href="#not-supported" aria-label="Link to this section">#</a></h2>
-<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent forwarding, <code>-L</code>/<code>-R</code>/<code>-D</code> port forwarding from Lepton's <code>ssh</code>, and <code>scp</code>/<code>sftp</code> (to or from Lepton: use <a href="rsync.html">rsync</a> instead).</p>
+<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent forwarding, <code>-L</code>/<code>-R</code>/<code>-D</code> port forwarding from Lepton's <code>ssh</code>, and <code>scp</code>/<code>sftp</code> commands on Lepton (from another computer to Lepton they work; on Lepton, use <a href="rsync.html">rsync</a> or <code>sshfs</code>).</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -182,11 +189,13 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 <tr><td><a href="commands.html#cmd-ssh-keygen"><code>ssh-keygen</code></a></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
 <tr><td><a href="commands.html#cmd-ssh-keyscan"><code>ssh-keyscan</code></a></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
 <tr><td><a href="commands.html#cmd-sshd"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
+<tr><td><a href="commands.html#cmd-sshfs"><code>sshfs</code></a></td><td>mount a directory of another machine over SSH (SFTP)</td><td><code>sshfs [USER@]HOST:[DIR] MOUNTPOINT [-p PORT] [-o OPTION=VALUE]...</code></td></tr>
+<tr><td><a href="commands.html#cmd-fusermount"><code>fusermount</code></a></td><td>unmount a FUSE filesystem (sshfs) you mounted</td><td><code>fusermount -u MOUNTPOINT</code></td></tr>
 <tr><td><a href="commands.html#cmd-nc"><code>nc</code></a></td><td>connect to a TCP port and pass standard input and output (netcat), optionally through a proxy</td><td><code>nc [-x PROXY[:PORT]] [-X 4|5|connect] [-w SECONDS] [-z] [-v] HOST PORT</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@987973f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@acd673e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -197,6 +206,7 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
           <li><a href="#the-ssh-command">The ssh command</a></li>
           <li><a href="#sshconfig">~/.ssh/config</a></li>
           <li><a href="#jump-hosts-and-proxies">Jump hosts and proxies</a></li>
+          <li><a href="#mounting-another-machine-sshfs">Mounting another machine (sshfs)</a></li>
           <li><a href="#logging-in-to-lepton">Logging in to Lepton</a></li>
           <li><a href="#not-supported">Not supported</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>

@@ -86,7 +86,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 144 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 146 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -204,6 +204,7 @@
 <tbody>
 <tr><td><span class="anchor-target" id="cmd-curl"></span><a href="man-curl.html"><code>curl</code></a> · also <code>wget</code>, <code>fetch</code></td><td>transfer a URL (HTTP/HTTPS)</td><td><code>curl [-o FILE] [-I] [-s] [-x PROXY] URL</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-dhclient"></span><a href="man-dhclient.html"><code>dhclient</code></a> · also <code>udhcpc</code>, <code>dhcpcd</code></td><td>configure an interface with DHCP (needs <a href="users.html">sudo</a>)</td><td><code>dhclient [IFACE]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-fusermount"></span><a href="man-fusermount.html"><code>fusermount</code></a></td><td>unmount a FUSE filesystem (sshfs) you mounted</td><td><code>fusermount -u MOUNTPOINT</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ifconfig"></span><a href="man-ifconfig.html"><code>ifconfig</code></a></td><td>show network interfaces</td><td><code>ifconfig</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ip"></span><a href="man-ip.html"><code>ip</code></a></td><td>show / manipulate network interfaces, addresses and routes</td><td><code>ip [addr|link|route]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-nc"></span><a href="man-nc.html"><code>nc</code></a></td><td>connect to a TCP port and pass standard input and output (netcat), optionally through a proxy</td><td><code>nc [-x PROXY[:PORT]] [-X 4|5|connect] [-w SECONDS] [-z] [-v] HOST PORT</code></td></tr>
@@ -214,6 +215,7 @@
 <tr><td><span class="anchor-target" id="cmd-ssh"></span><a href="man-ssh.html"><code>ssh</code></a></td><td>OpenSSH-compatible client: remote shells and commands, keys from ~/.ssh</td><td><code>ssh [-p PORT] [-i KEY] [-l USER] [-o StrictHostKeyChecking=VALUE] [-T|-t] [USER@]HOST [COMMAND...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ssh-keygen"></span><a href="man-ssh-keygen.html"><code>ssh-keygen</code></a></td><td>create an SSH key, show fingerprints, forget a host</td><td><code>ssh-keygen [-t ed25519] [-f FILE] [-C COMMENT] | -l -f FILE | -y -f FILE | -R HOST</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ssh-keyscan"></span><a href="man-ssh-keyscan.html"><code>ssh-keyscan</code></a></td><td>print a host's SSH public keys (known_hosts lines)</td><td><code>ssh-keyscan [-p PORT] [-t TYPES] HOST...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-sshfs"></span><a href="man-sshfs.html"><code>sshfs</code></a></td><td>mount a directory of another machine over SSH (SFTP)</td><td><code>sshfs [USER@]HOST:[DIR] MOUNTPOINT [-p PORT] [-o OPTION=VALUE]...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-www"></span><a href="man-www.html"><code>www</code></a> · also <code>lynx</code>, <code>browse</code></td><td>text-mode web browser (preview of the Lepton browser)</td><td><code>www URL</code></td></tr>
 </tbody></table></div>
 <h2 id="development">Development<a class="anchor" href="#development" aria-label="Link to this section">#</a></h2>
@@ -275,7 +277,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@987973f.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@acd673e.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
