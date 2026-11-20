@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>git(1) - Lepton OS docs</title>
+  <meta name="description" content="distributed version control, with HTTPS and SSH remotes (Elixir implementation)">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="git1">git(1)<a class="anchor" href="#git1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>git</code> - distributed version control, with HTTPS and SSH remotes (Elixir implementation)</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>git COMMAND [ARGS]</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>Lepton's git, written in Elixir. It reads and writes the same repository format as upstream git: loose and packed objects, index v2, refs, packed-refs and <code>.gitignore</code>. It talks to GitHub and other servers over HTTPS and SSH.</p>
+<p>Your <code>~/.gitconfig</code> is honoured: its aliases (including <code>!</code> shell aliases), <code>user.name</code> and <code>user.email</code>, <code>[include]</code>, <code>core.excludesfile</code>, <code>http.sslVerify</code> and <code>url.BASE.insteadOf</code> and <code>pushInsteadOf</code>.</p>
+<h2 id="global-options">GLOBAL OPTIONS<a class="anchor" href="#global-options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>-C DIR</code>: run as if started in DIR.</li>
+<li><code>--no-pager</code>: accepted (git never pages).</li>
+</ul>
+<h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>init [-b BRANCH] [-q] [DIR]</code>: create a repository (branch <code>main</code> by default).</li>
+<li><code>clone URL [DIR]</code>: copy a repository. URL may be HTTPS, <code>git@host:owner/repo.git</code>, <code>ssh://...</code> or an <code>~/.ssh/config</code> alias.</li>
+<li><code>status [-s] [-b]</code>: show what is staged, changed and untracked (<code>-s</code> short format).</li>
+<li><code>add [-A] [PATH...]</code>: stage changes (all of them with <code>-A</code> or no PATH).</li>
+<li><code>rm [--cached] PATH...</code>: remove files from the index (and from the working tree unless <code>--cached</code>).</li>
+<li><code>restore [--staged | -S] PATH...</code>: discard changes to PATHs, or unstage them.</li>
+<li><code>reset [--soft | --mixed | --hard] [COMMIT]</code>: move the branch to COMMIT (HEAD by default); <code>--mixed</code> (the default) also resets the index, <code>--hard</code> the working tree too. <code>reset PATH</code> unstages PATH.</li>
+<li><code>commit [-a] [-m MESSAGE | -F FILE] [--amend] [--allow-empty]</code>: record the staged changes. Without <code>-m</code> or <code>-F</code>, the editor opens for the message.</li>
+<li><code>log [-n N] [-p] [--oneline] [--graph] [--all] [--pretty=FORMAT] [REV]</code>: show the history; <code>--pretty=format:...</code> takes <code>%h</code>, <code>%H</code>, <code>%s</code>, <code>%an</code>, <code>%ar</code> and the like.</li>
+<li><code>show [REV]</code>: show a commit and its diff.</li>
+<li><code>diff [--cached | --staged] [PATH...]</code>: show unstaged (or staged) changes.</li>
+<li><code>branch [-a | -r] [-v]</code>: list branches; <code>branch NAME [START]</code> creates one; <code>branch -d NAME</code> deletes one.</li>
+<li><code>checkout BRANCH</code>, <code>switch BRANCH</code>: switch branches; <code>-b NAME</code> (or <code>switch -c NAME</code>) creates it first. <code>checkout -- PATH</code> discards changes to PATH.</li>
+<li><code>merge REV</code>: merge by fast-forward.</li>
+<li><code>stash</code>, <code>stash pop</code>: put changes aside and bring them back.</li>
+<li><code>tag [NAME [REV]]</code>: list tags or create a lightweight tag.</li>
+<li><code>fetch [REMOTE]</code>, <code>pull [REMOTE [BRANCH]]</code>: get new commits (pull fast-forwards the current branch).</li>
+<li><code>push [-u] [-f] [REMOTE [BRANCH]]</code>: send commits; <code>-u</code> sets the upstream, <code>-f</code> forces.</li>
+<li><code>remote -v</code>, <code>remote add NAME URL</code>, <code>remote set-url NAME URL</code>: manage remotes.</li>
+<li><code>config [--global] KEY [VALUE]</code>, <code>config -l</code>: read or set configuration.</li>
+<li><code>ls-remote URL</code>, <code>ls-files [-o]</code>, <code>rev-parse REV</code>, <code>cat-file -t|-s|-p OBJECT</code>, <code>hash-object [-w] FILE</code>: plumbing.</li>
+<li><code>version</code>: print the version.</li>
+</ul>
+<h2 id="authentication">AUTHENTICATION<a class="anchor" href="#authentication" aria-label="Link to this section">#</a></h2>
+<p>Over HTTPS, git uses the token stored by <code>gh auth login</code> (or <code>GH_TOKEN</code>). Over SSH it uses your keys in <code>~/.ssh</code> (see <code>ssh</code>).</p>
+<h2 id="bugs">BUGS<a class="anchor" href="#bugs" aria-label="Link to this section">#</a></h2>
+<p>Merges are fast-forward only (no three-way merge), and there is no rebase.</p>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">git clone git@github.com:you/app.git
+git add -A &amp;&amp; git commit -m &quot;Fix the thing&quot; &amp;&amp; git push
+git log --oneline -n 10</code></pre>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-gh.html">gh(1)</a>, <a href="man-ssh.html">ssh(1)</a>, <a href="man-ssh-keygen.html">ssh-keygen(1)</a>, <a href="man-le.html">le(1)</a>, <a href="man-diff.html">diff(1)</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/man/git.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#global-options">GLOBAL OPTIONS</a></li>
+          <li><a href="#commands">COMMANDS</a></li>
+          <li><a href="#authentication">AUTHENTICATION</a></li>
+          <li><a href="#bugs">BUGS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

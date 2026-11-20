@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>builtins(1) - Lepton OS docs</title>
+  <meta name="description" content="the shell's builtin commands">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="builtins1">builtins(1)<a class="anchor" href="#builtins1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>builtins</code> - the shell's builtin commands</p>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>Builtin commands run inside the shell, <code>lsh</code>, rather than as programs of their own, because most of them change the shell itself: its directory, variables, aliases or jobs. <code>man NAME</code> shows one of them; <code>type NAME</code> says whether a name is a builtin, an alias or a command.</p>
+<h2 id="builtins">BUILTINS<a class="anchor" href="#builtins" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>cd [DIR | -]</code>: change the current directory to DIR, to your home directory when DIR is left out, or back to the previous directory with <code>-</code> (which is printed). <code>PWD</code> and <code>OLDPWD</code> are updated.</li>
+<li><code>pwd</code>: print the current directory.</li>
+<li><code>pushd DIR</code>: change to DIR, remembering the current directory on the directory stack, then print the stack.</li>
+<li><code>popd</code>: change back to the directory on top of the directory stack, removing it from the stack.</li>
+<li><code>dirs</code>: print the current directory and the directory stack.</li>
+<li><code>export [NAME[=VALUE]...]</code>: set environment variables, which commands started by the shell see. A NAME without a value is set to the empty string if it is not set already. With no arguments, print every variable.</li>
+<li><code>local [NAME[=VALUE]...]</code>: the same as <code>export</code> (lsh has no functions).</li>
+<li><code>unset NAME...</code>: remove variables.</li>
+<li><code>alias [NAME[=VALUE]...]</code>: define aliases, words replaced by VALUE when they start a command (<code>alias ll='ls -l'</code>). <code>alias NAME</code> prints one alias; with no arguments, print them all, including those from <code>~/.zshrc</code> and <code>/etc/lshrc</code>.</li>
+<li><code>unalias [-a] NAME...</code>: remove aliases (all of them with <code>-a</code>).</li>
+<li><code>history [N]</code>: print the command history (the last N commands).</li>
+<li><code>exit [N]</code>, <code>logout [N]</code>: leave the shell with status N (by default the status of the last command). In a terminal window this closes the window.</li>
+<li><code>source FILE [ARG...]</code>, <code>. FILE [ARG...]</code>: run the commands in FILE in this shell, so the variables, aliases and directory it sets stay set. ARGs become <code>$1</code>, <code>$2</code>, ... while it runs.</li>
+<li><code>jobs</code>: list the background and stopped jobs with their numbers.</li>
+<li><code>fg [%N]</code>: bring job N (the latest by default) to the foreground.</li>
+<li><code>bg [%N]</code>: let a stopped job N carry on in the background.</li>
+<li><code>wait</code>: wait until every background job has finished.</li>
+<li><code>type NAME...</code>: say what NAME is: an alias, a shell builtin or a command.</li>
+<li><code>which NAME...</code>: print the path of command NAME (or what it is, for an alias or builtin).</li>
+<li><code>read [-p PROMPT] [-r] [NAME...]</code>: read a line from standard input and split it into words, setting each NAME to one word and the last NAME to the rest of the line (<code>REPLY</code> when no NAME is given). <code>-p</code> prints PROMPT first. Returns 1 at the end of input.</li>
+<li><code>eval ARG...</code>: run the ARGs, joined by spaces, as a shell command.</li>
+<li><code>shift [N]</code>: drop the first N (1) positional parameters, so <code>$2</code> becomes <code>$1</code>.</li>
+<li><code>set [--] [ARG...]</code>: with ARGs, set the positional parameters <code>$1</code>, <code>$2</code>, ...; with no arguments, print the variables. <code>set -o</code> prints the shell's options. Shell options such as <code>set -e</code> are not supported.</li>
+<li><code>setopt NAME...</code>, <code>unsetopt NAME...</code>: turn shell options on or off, as in zsh.</li>
+<li><code>bindkey</code>: list the line editor's key bindings.</li>
+<li><code>exec COMMAND [ARG...]</code>, <code>command COMMAND [ARG...]</code>: run COMMAND, ignoring aliases. (<code>exec</code> does not end the shell.)</li>
+<li><code>builtin COMMAND [ARG...]</code>: run the version of COMMAND that ships with Lepton, even when an official update installed with <code>lpm upgrade</code> stands in for it.</li>
+<li><code>break [N]</code>, <code>continue [N]</code>: leave the innermost loop (or N loops), or go on with its next round.</li>
+<li><code>hash</code>, <code>rehash</code>, <code>umask</code>, <code>return</code>: accepted for compatibility with zsh and bash scripts; they do nothing.</li>
+</ul>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-lsh.html">lsh(1)</a>, <a href="man-help.html">help(1)</a>, <a href="man-test.html">test(1)</a>, <a href="https://trylepton.app/docs/shell.html">https://trylepton.app/docs/shell.html</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/man/builtins.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#builtins">BUILTINS</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

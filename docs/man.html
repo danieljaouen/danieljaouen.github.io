@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Manual pages - Lepton OS docs</title>
+  <meta name="description" content="The manual page of every command and shell builtin, as man shows them inside Lepton.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html" aria-current="page">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="manual-pages">Manual pages<a class="anchor" href="#manual-pages" aria-label="Link to this section">#</a></h1>
+<p>Every command that ships with Lepton has a manual page, and so does each shell builtin. Inside Lepton, <code>man COMMAND</code> shows one, and <code>man -k WORD</code> searches them. These are the same pages.</p>
+<h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-basename.html"><code>basename</code>(1)</a></td><td>strip directory and suffix from filenames</td></tr>
+<tr><td><a href="man-cat.html"><code>cat</code>(1)</a></td><td>concatenate files and print on the standard output</td></tr>
+<tr><td><a href="man-chmod.html"><code>chmod</code>(1)</a></td><td>change file mode bits</td></tr>
+<tr><td><a href="man-chown.html"><code>chown</code>(1)</a></td><td>change file owner</td></tr>
+<tr><td><a href="man-cp.html"><code>cp</code>(1)</a></td><td>copy files and directories</td></tr>
+<tr><td><a href="man-df.html"><code>df</code>(1)</a></td><td>report file system space usage</td></tr>
+<tr><td><a href="man-dirname.html"><code>dirname</code>(1)</a></td><td>strip last component from file name</td></tr>
+<tr><td><a href="man-du.html"><code>du</code>(1)</a></td><td>estimate file space usage</td></tr>
+<tr><td><a href="man-echo.html"><code>echo</code>(1)</a></td><td>display a line of text</td></tr>
+<tr><td><a href="man-expr.html"><code>expr</code>(1)</a></td><td>evaluate expressions</td></tr>
+<tr><td><a href="man-false.html"><code>false</code>(1)</a></td><td>do nothing, unsuccessfully</td></tr>
+<tr><td><a href="man-find.html"><code>find</code>(1)</a></td><td>search for files in a directory hierarchy</td></tr>
+<tr><td><a href="man-ln.html"><code>ln</code>(1)</a></td><td>make links between files</td></tr>
+<tr><td><a href="man-ls.html"><code>ls</code>(1)</a></td><td>list directory contents</td></tr>
+<tr><td><a href="man-mkdir.html"><code>mkdir</code>(1)</a></td><td>make directories</td></tr>
+<tr><td><a href="man-mv.html"><code>mv</code>(1)</a></td><td>move (rename) files</td></tr>
+<tr><td><a href="man-printf.html"><code>printf</code>(1)</a></td><td>format and print data</td></tr>
+<tr><td><a href="man-readlink.html"><code>readlink</code>(1)</a></td><td>print resolved symbolic links</td></tr>
+<tr><td><a href="man-realpath.html"><code>realpath</code>(1)</a></td><td>print the resolved absolute file name</td></tr>
+<tr><td><a href="man-rm.html"><code>rm</code>(1)</a></td><td>remove files or directories</td></tr>
+<tr><td><a href="man-rmdir.html"><code>rmdir</code>(1)</a></td><td>remove empty directories</td></tr>
+<tr><td><a href="man-seq.html"><code>seq</code>(1)</a></td><td>print a sequence of numbers</td></tr>
+<tr><td><a href="man-stat.html"><code>stat</code>(1)</a></td><td>display file status</td></tr>
+<tr><td><a href="man-tee.html"><code>tee</code>(1)</a></td><td>read from standard input and write to standard output and files</td></tr>
+<tr><td><a href="man-test.html"><code>test</code>(1)</a></td><td>check file types and compare values</td></tr>
+<tr><td><a href="man-touch.html"><code>touch</code>(1)</a></td><td>change file timestamps (creating files)</td></tr>
+<tr><td><a href="man-tree.html"><code>tree</code>(1)</a></td><td>list contents of directories in a tree-like format</td></tr>
+<tr><td><a href="man-true.html"><code>true</code>(1)</a></td><td>do nothing, successfully</td></tr>
+<tr><td><a href="man-yes.html"><code>yes</code>(1)</a></td><td>output a string repeatedly until killed</td></tr>
+</tbody></table></div>
+<h2 id="text">Text<a class="anchor" href="#text" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-awk.html"><code>awk</code>(1)</a></td><td>pattern scanning (subset: print fields, -F, /re/, NR, NF)</td></tr>
+<tr><td><a href="man-base64.html"><code>base64</code>(1)</a></td><td>base64 encode/decode data</td></tr>
+<tr><td><a href="man-cut.html"><code>cut</code>(1)</a></td><td>remove sections from each line</td></tr>
+<tr><td><a href="man-diff.html"><code>diff</code>(1)</a></td><td>compare files line by line (unified format)</td></tr>
+<tr><td><a href="man-grep.html"><code>grep</code>(1)</a></td><td>print lines that match patterns</td></tr>
+<tr><td><a href="man-head.html"><code>head</code>(1)</a></td><td>output the first part of files</td></tr>
+<tr><td><a href="man-hexdump.html"><code>hexdump</code>(1)</a></td><td>display file contents in hexadecimal</td></tr>
+<tr><td><a href="man-less.html"><code>less</code>(1)</a></td><td>view text one screen at a time (vi keys)</td></tr>
+<tr><td><a href="man-md5sum.html"><code>md5sum</code>(1)</a></td><td>compute MD5 message digest</td></tr>
+<tr><td><a href="man-nl.html"><code>nl</code>(1)</a></td><td>number lines of files</td></tr>
+<tr><td><a href="man-rev.html"><code>rev</code>(1)</a></td><td>reverse lines characterwise</td></tr>
+<tr><td><a href="man-sed.html"><code>sed</code>(1)</a></td><td>stream editor (s, d, p commands)</td></tr>
+<tr><td><a href="man-sha1sum.html"><code>sha1sum</code>(1)</a></td><td>compute SHA1 message digest</td></tr>
+<tr><td><a href="man-sha256sum.html"><code>sha256sum</code>(1)</a></td><td>compute SHA256 message digest</td></tr>
+<tr><td><a href="man-sha512sum.html"><code>sha512sum</code>(1)</a></td><td>compute SHA512 message digest</td></tr>
+<tr><td><a href="man-sort.html"><code>sort</code>(1)</a></td><td>sort lines of text files</td></tr>
+<tr><td><a href="man-strings.html"><code>strings</code>(1)</a></td><td>print printable character sequences in files</td></tr>
+<tr><td><a href="man-tac.html"><code>tac</code>(1)</a></td><td>concatenate and print files in reverse</td></tr>
+<tr><td><a href="man-tail.html"><code>tail</code>(1)</a></td><td>output the last part of files</td></tr>
+<tr><td><a href="man-tr.html"><code>tr</code>(1)</a></td><td>translate or delete characters</td></tr>
+<tr><td><a href="man-uniq.html"><code>uniq</code>(1)</a></td><td>report or omit repeated lines</td></tr>
+<tr><td><a href="man-wc.html"><code>wc</code>(1)</a></td><td>print newline, word, and byte counts</td></tr>
+<tr><td><a href="man-xargs.html"><code>xargs</code>(1)</a></td><td>build and execute command lines from standard input</td></tr>
+</tbody></table></div>
+<h2 id="system">System<a class="anchor" href="#system" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-cal.html"><code>cal</code>(1)</a></td><td>display a calendar</td></tr>
+<tr><td><a href="man-clear.html"><code>clear</code>(1)</a></td><td>clear the terminal screen</td></tr>
+<tr><td><a href="man-date.html"><code>date</code>(1)</a></td><td>print the system date and time</td></tr>
+<tr><td><a href="man-dmesg.html"><code>dmesg</code>(1)</a></td><td>print the kernel ring buffer</td></tr>
+<tr><td><a href="man-eject.html"><code>eject</code>(1)</a></td><td>unmount a USB drive or SD card so it's safe to remove</td></tr>
+<tr><td><a href="man-env.html"><code>env</code>(1)</a></td><td>print the environment, or run a command in a modified one</td></tr>
+<tr><td><a href="man-free.html"><code>free</code>(1)</a></td><td>display amount of free and used memory</td></tr>
+<tr><td><a href="man-help.html"><code>help</code>(1)</a></td><td>list available commands</td></tr>
+<tr><td><a href="man-hostname.html"><code>hostname</code>(1)</a></td><td>show or set the system's host name</td></tr>
+<tr><td><a href="man-id.html"><code>id</code>(1)</a></td><td>print user and group information</td></tr>
+<tr><td><a href="man-input.html"><code>input</code>(1)</a></td><td>keyboards, mice, touchpads and tablets: the input devices and what each is</td></tr>
+<tr><td><a href="man-keys.html"><code>keys</code>(1)</a></td><td>show keybindings loaded from the dotfiles</td></tr>
+<tr><td><a href="man-kill.html"><code>kill</code>(1)</a></td><td>send a signal to a process</td></tr>
+<tr><td><a href="man-lsblk.html"><code>lsblk</code>(1)</a></td><td>disks, USB drives and SD cards: partitions, filesystems and where they're mounted</td></tr>
+<tr><td><a href="man-lsmod.html"><code>lsmod</code>(1)</a></td><td>show the status of modules in the Linux kernel</td></tr>
+<tr><td><a href="man-man.html"><code>man</code>(1)</a></td><td>show the manual page for a command</td></tr>
+<tr><td><a href="man-modprobe.html"><code>modprobe</code>(1)</a></td><td>add a module (and its dependencies) to the kernel</td></tr>
+<tr><td><a href="man-mount.html"><code>mount</code>(1)</a></td><td>mount a filesystem / list mounts</td></tr>
+<tr><td><a href="man-neofetch.html"><code>neofetch</code>(1)</a></td><td>show system information</td></tr>
+<tr><td><a href="man-pbcopy.html"><code>pbcopy</code>(1)</a></td><td>copy standard input to the clipboard</td></tr>
+<tr><td><a href="man-pbpaste.html"><code>pbpaste</code>(1)</a></td><td>paste the clipboard to standard output</td></tr>
+<tr><td><a href="man-pgrep.html"><code>pgrep</code>(1)</a></td><td>look up processes by name</td></tr>
+<tr><td><a href="man-pkill.html"><code>pkill</code>(1)</a></td><td>signal processes by name</td></tr>
+<tr><td><a href="man-poweroff.html"><code>poweroff</code>(1)</a></td><td>power off the machine (flushes the disk first)</td></tr>
+<tr><td><a href="man-printenv.html"><code>printenv</code>(1)</a></td><td>print environment variables</td></tr>
+<tr><td><a href="man-ps.html"><code>ps</code>(1)</a></td><td>report a snapshot of the current processes</td></tr>
+<tr><td><a href="man-reboot.html"><code>reboot</code>(1)</a></td><td>reboot the machine</td></tr>
+<tr><td><a href="man-reset.html"><code>reset</code>(1)</a></td><td>reset the terminal</td></tr>
+<tr><td><a href="man-resize.html"><code>resize</code>(1)</a></td><td>set the terminal size from the terminal emulator's window</td></tr>
+<tr><td><a href="man-rmmod.html"><code>rmmod</code>(1)</a></td><td>remove a module from the kernel</td></tr>
+<tr><td><a href="man-sleep.html"><code>sleep</code>(1)</a></td><td>delay for a specified amount of time</td></tr>
+<tr><td><a href="man-stty.html"><code>stty</code>(1)</a></td><td>show terminal settings (size)</td></tr>
+<tr><td><a href="man-sync.html"><code>sync</code>(1)</a></td><td>flush filesystem buffers</td></tr>
+<tr><td><a href="man-time.html"><code>time</code>(1)</a></td><td>run a command and report how long it took</td></tr>
+<tr><td><a href="man-top.html"><code>top</code>(1)</a></td><td>display Lepton processes (q to quit)</td></tr>
+<tr><td><a href="man-tty.html"><code>tty</code>(1)</a></td><td>print the file name of the terminal</td></tr>
+<tr><td><a href="man-umount.html"><code>umount</code>(1)</a></td><td>unmount a filesystem</td></tr>
+<tr><td><a href="man-uname.html"><code>uname</code>(1)</a></td><td>print system information</td></tr>
+<tr><td><a href="man-uptime.html"><code>uptime</code>(1)</a></td><td>tell how long the system has been running</td></tr>
+<tr><td><a href="man-usb.html"><code>usb</code>(1)</a></td><td>USB devices as a tree: hubs, their ports and what is plugged in</td></tr>
+<tr><td><a href="man-watch.html"><code>watch</code>(1)</a></td><td>execute a program periodically, showing output fullscreen</td></tr>
+<tr><td><a href="man-whoami.html"><code>whoami</code>(1)</a></td><td>print effective user name</td></tr>
+</tbody></table></div>
+<h2 id="network">Network<a class="anchor" href="#network" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-curl.html"><code>curl</code>(1)</a></td><td>transfer a URL (HTTP/HTTPS)</td></tr>
+<tr><td><a href="man-dhclient.html"><code>dhclient</code>(1)</a></td><td>configure an interface with DHCP</td></tr>
+<tr><td><a href="man-ifconfig.html"><code>ifconfig</code>(1)</a></td><td>show network interfaces</td></tr>
+<tr><td><a href="man-ip.html"><code>ip</code>(1)</a></td><td>show / manipulate network interfaces, addresses and routes</td></tr>
+<tr><td><a href="man-nslookup.html"><code>nslookup</code>(1)</a></td><td>query DNS</td></tr>
+<tr><td><a href="man-ping.html"><code>ping</code>(1)</a></td><td>send ICMP ECHO_REQUEST to a host</td></tr>
+<tr><td><a href="man-ssh.html"><code>ssh</code>(1)</a></td><td>OpenSSH-compatible client: remote shells and commands, keys from ~/.ssh</td></tr>
+<tr><td><a href="man-ssh-keygen.html"><code>ssh-keygen</code>(1)</a></td><td>create an SSH key, show fingerprints, forget a host</td></tr>
+<tr><td><a href="man-ssh-keyscan.html"><code>ssh-keyscan</code>(1)</a></td><td>print a host's SSH public keys (known_hosts lines)</td></tr>
+<tr><td><a href="man-www.html"><code>www</code>(1)</a></td><td>text-mode web browser (preview of the Lepton browser)</td></tr>
+</tbody></table></div>
+<h2 id="development">Development<a class="anchor" href="#development" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-elixir.html"><code>elixir</code>(1)</a></td><td>run Elixir code</td></tr>
+<tr><td><a href="man-erl.html"><code>erl</code>(1)</a></td><td>Erlang version information</td></tr>
+<tr><td><a href="man-gh.html"><code>gh</code>(1)</a></td><td>GitHub CLI (repos, issues, PRs, auth)</td></tr>
+<tr><td><a href="man-git.html"><code>git</code>(1)</a></td><td>distributed version control, with HTTPS and SSH remotes (Elixir implementation)</td></tr>
+<tr><td><a href="man-iex.html"><code>iex</code>(1)</a></td><td>interactive Elixir (loads ~/.iex.exs)</td></tr>
+<tr><td><a href="man-le.html"><code>le</code>(1)</a></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td></tr>
+<tr><td><a href="man-lepton-test.html"><code>lepton-test</code>(1)</a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td></tr>
+<tr><td><a href="man-lsh.html"><code>lsh</code>(1)</a></td><td>the Lepton shell</td></tr>
+<tr><td><a href="man-mix.html"><code>mix</code>(1)</a></td><td>Elixir build tool (runs in the project in the current directory)</td></tr>
+<tr><td><a href="man-tmux.html"><code>tmux</code>(1)</a></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td></tr>
+</tbody></table></div>
+<h2 id="administration">Administration<a class="anchor" href="#administration" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-bluetooth.html"><code>bluetooth</code>(1)</a></td><td>Bluetooth: keyboards, mice and headphones: scan, pair, connect</td></tr>
+<tr><td><a href="man-credits.html"><code>credits</code>(1)</a></td><td>who made Lepton</td></tr>
+<tr><td><a href="man-lepton-install.html"><code>lepton-install</code>(1)</a></td><td>install Lepton from the ISO onto a disk, or upgrade it there (keeping your files)</td></tr>
+<tr><td><a href="man-lepton-tutorial.html"><code>lepton-tutorial</code>(1)</a></td><td>an interactive tour of Lepton</td></tr>
+<tr><td><a href="man-lpm.html"><code>lpm</code>(1)</a></td><td>Lepton package manager (packages from hex.pm)</td></tr>
+<tr><td><a href="man-passwd.html"><code>passwd</code>(1)</a></td><td>change your password (root: anyone's)</td></tr>
+<tr><td><a href="man-su.html"><code>su</code>(1)</a></td><td>become another user (default root) in a new shell; exit or C-d returns</td></tr>
+<tr><td><a href="man-sudo.html"><code>sudo</code>(1)</a></td><td>run a command as root, after asking for your password</td></tr>
+<tr><td><a href="man-useradd.html"><code>useradd</code>(1)</a></td><td>create a user account (and its home)</td></tr>
+<tr><td><a href="man-userdel.html"><code>userdel</code>(1)</a></td><td>delete a user account</td></tr>
+<tr><td><a href="man-wifi.html"><code>wifi</code>(1)</a></td><td>Wi-Fi: status, scan, connect and saved networks</td></tr>
+</tbody></table></div>
+<h2 id="services">Services<a class="anchor" href="#services" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-httpd.html"><code>httpd</code>(1)</a></td><td>serve a directory over HTTP (static files)</td></tr>
+<tr><td><a href="man-journalctl.html"><code>journalctl</code>(1)</a></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td></tr>
+<tr><td><a href="man-svc.html"><code>svc</code>(1)</a></td><td>start, stop and restart long-running services (like systemctl)</td></tr>
+</tbody></table></div>
+<h2 id="desktop">Desktop<a class="anchor" href="#desktop" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-app.html"><code>app</code>(1)</a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td></tr>
+<tr><td><a href="man-beep.html"><code>beep</code>(1)</a></td><td>play a tone (default 880 Hz for 150 ms)</td></tr>
+<tr><td><a href="man-classic.html"><code>classic</code>(1)</a></td><td>the classic desktop: Photon with a Windows 95-style window manager</td></tr>
+<tr><td><a href="man-firefox.html"><code>firefox</code>(1)</a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td></tr>
+<tr><td><a href="man-photon.html"><code>photon</code>(1)</a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td></tr>
+<tr><td><a href="man-play.html"><code>play</code>(1)</a></td><td>play a sound file (WAV) on the sound card; C-c stops it</td></tr>
+<tr><td><a href="man-sound.html"><code>sound</code>(1)</a></td><td>sound cards: list them, choose where sound plays, play a test tone</td></tr>
+<tr><td><a href="man-volume.html"><code>volume</code>(1)</a></td><td>the sound volume: show it, set it (0-100, +N, -N), mute or unmute</td></tr>
+</tbody></table></div>
+<h2 id="shell-builtins">Shell builtins<a class="anchor" href="#shell-builtins" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Page</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><a href="man-builtins.html"><code>builtins</code>(1)</a></td><td>the shell's builtin commands</td></tr>
+<tr><td><a href="man-..html"><code>.</code>(1)</a></td><td>run the commands in FILE in this shell (shell builtin)</td></tr>
+<tr><td><a href="man-alias.html"><code>alias</code>(1)</a></td><td>define aliases (shell builtin)</td></tr>
+<tr><td><a href="man-bg.html"><code>bg</code>(1)</a></td><td>let a stopped job N carry on in the background (shell builtin)</td></tr>
+<tr><td><a href="man-bindkey.html"><code>bindkey</code>(1)</a></td><td>list the line editor's key bindings (shell builtin)</td></tr>
+<tr><td><a href="man-break.html"><code>break</code>(1)</a></td><td>leave the innermost loop (or N loops) (shell builtin)</td></tr>
+<tr><td><a href="man-builtin.html"><code>builtin</code>(1)</a></td><td>run the version of COMMAND that ships with Lepton (shell builtin)</td></tr>
+<tr><td><a href="man-cd.html"><code>cd</code>(1)</a></td><td>change the current directory to DIR (shell builtin)</td></tr>
+<tr><td><a href="man-command.html"><code>command</code>(1)</a></td><td>run COMMAND (shell builtin)</td></tr>
+<tr><td><a href="man-continue.html"><code>continue</code>(1)</a></td><td>leave the innermost loop (or N loops) (shell builtin)</td></tr>
+<tr><td><a href="man-dirs.html"><code>dirs</code>(1)</a></td><td>print the current directory and the directory stack (shell builtin)</td></tr>
+<tr><td><a href="man-eval.html"><code>eval</code>(1)</a></td><td>run the ARGs (shell builtin)</td></tr>
+<tr><td><a href="man-exec.html"><code>exec</code>(1)</a></td><td>run COMMAND (shell builtin)</td></tr>
+<tr><td><a href="man-exit.html"><code>exit</code>(1)</a></td><td>leave the shell with status N (by default the status of the last command) (shell builtin)</td></tr>
+<tr><td><a href="man-export.html"><code>export</code>(1)</a></td><td>set environment variables (shell builtin)</td></tr>
+<tr><td><a href="man-fg.html"><code>fg</code>(1)</a></td><td>bring job N (the latest by default) to the foreground (shell builtin)</td></tr>
+<tr><td><a href="man-hash.html"><code>hash</code>(1)</a></td><td>accepted for compatibility with zsh and bash scripts (shell builtin)</td></tr>
+<tr><td><a href="man-history.html"><code>history</code>(1)</a></td><td>print the command history (the last N commands) (shell builtin)</td></tr>
+<tr><td><a href="man-jobs.html"><code>jobs</code>(1)</a></td><td>list the background and stopped jobs with their numbers (shell builtin)</td></tr>
+<tr><td><a href="man-local.html"><code>local</code>(1)</a></td><td>the same as export (lsh has no functions) (shell builtin)</td></tr>
+<tr><td><a href="man-logout.html"><code>logout</code>(1)</a></td><td>leave the shell with status N (by default the status of the last command) (shell builtin)</td></tr>
+<tr><td><a href="man-popd.html"><code>popd</code>(1)</a></td><td>change back to the directory on top of the directory stack (shell builtin)</td></tr>
+<tr><td><a href="man-pushd.html"><code>pushd</code>(1)</a></td><td>change to DIR (shell builtin)</td></tr>
+<tr><td><a href="man-pwd.html"><code>pwd</code>(1)</a></td><td>print the current directory (shell builtin)</td></tr>
+<tr><td><a href="man-read.html"><code>read</code>(1)</a></td><td>read a line from standard input and split it into words (shell builtin)</td></tr>
+<tr><td><a href="man-rehash.html"><code>rehash</code>(1)</a></td><td>accepted for compatibility with zsh and bash scripts (shell builtin)</td></tr>
+<tr><td><a href="man-return.html"><code>return</code>(1)</a></td><td>accepted for compatibility with zsh and bash scripts (shell builtin)</td></tr>
+<tr><td><a href="man-set.html"><code>set</code>(1)</a></td><td>with ARGs (shell builtin)</td></tr>
+<tr><td><a href="man-setopt.html"><code>setopt</code>(1)</a></td><td>turn shell options on or off (shell builtin)</td></tr>
+<tr><td><a href="man-shift.html"><code>shift</code>(1)</a></td><td>drop the first N (1) positional parameters (shell builtin)</td></tr>
+<tr><td><a href="man-source.html"><code>source</code>(1)</a></td><td>run the commands in FILE in this shell (shell builtin)</td></tr>
+<tr><td><a href="man-type.html"><code>type</code>(1)</a></td><td>say what NAME is (shell builtin)</td></tr>
+<tr><td><a href="man-umask.html"><code>umask</code>(1)</a></td><td>accepted for compatibility with zsh and bash scripts (shell builtin)</td></tr>
+<tr><td><a href="man-unalias.html"><code>unalias</code>(1)</a></td><td>remove aliases (all of them with -a) (shell builtin)</td></tr>
+<tr><td><a href="man-unset.html"><code>unset</code>(1)</a></td><td>remove variables (shell builtin)</td></tr>
+<tr><td><a href="man-unsetopt.html"><code>unsetopt</code>(1)</a></td><td>turn shell options on or off (shell builtin)</td></tr>
+<tr><td><a href="man-wait.html"><code>wait</code>(1)</a></td><td>wait until every background job has finished (shell builtin)</td></tr>
+<tr><td><a href="man-which.html"><code>which</code>(1)</a></td><td>print the path of command NAME (or what it is (shell builtin)</td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Generated from the source of lepton@13b2c76.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#files-and-basics">Files and basics</a></li>
+          <li><a href="#text">Text</a></li>
+          <li><a href="#system">System</a></li>
+          <li><a href="#network">Network</a></li>
+          <li><a href="#development">Development</a></li>
+          <li><a href="#administration">Administration</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#desktop">Desktop</a></li>
+          <li><a href="#shell-builtins">Shell builtins</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

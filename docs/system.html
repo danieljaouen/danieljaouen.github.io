@@ -73,6 +73,7 @@
         <p class="docs-nav-group">Reference</p>
         <ul>
           <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
           <li><a href="keybindings.html">Key bindings</a></li>
           <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
         </ul>
@@ -122,7 +123,13 @@
 <li>Commands can be added at runtime with <code>Lepton.Commands.register/2</code>, or by <a href="packages.html#packages-that-add-commands">packages</a>.</li>
 </ul>
 <h2 id="help-and-information">Help and information<a class="anchor" href="#help-and-information" aria-label="Link to this section">#</a></h2>
-<p><code>help</code> lists every command, and <code>man CMD</code> or <code>help CMD</code> describes one (the <a href="commands.html">command reference</a> has them all). <code>keys</code> shows the bindings loaded from your dotfiles, <code>neofetch</code> summarises the system, and <code>credits</code> says who made Lepton. The login message and <code>help</code> point here, to <a href="https://trylepton.app/docs/">https://trylepton.app/docs/</a>.</p>
+<p><code>help</code> lists every command, and <code>help CMD</code> gives one's usage in a line or two. <code>man CMD</code> shows its manual page: what it does, every option, and examples. Every command has one, and so does each shell builtin (<code>man cd</code>, or <code>man builtins</code> for them all).</p>
+<pre><code class="language-sh">man ls              # the manual page, in the pager: Space, /search, q to quit
+man -k usb          # pages whose name or summary mentions usb
+man -f grep         # grep's one-line summary
+man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
+<p><code>MANWIDTH</code> sets the width pages are laid out at (by default the terminal's, up to 80 columns). The same pages are on this site: <a href="man.html">manual pages</a>.</p>
+<p><code>keys</code> shows the bindings loaded from your dotfiles, <code>neofetch</code> summarises the system, and <code>credits</code> says who made Lepton. The login message and <code>help</code> point here, to <a href="https://trylepton.app/docs/">https://trylepton.app/docs/</a>.</p>
 <h2 id="self-tests">Self-tests<a class="anchor" href="#self-tests" aria-label="Link to this section">#</a></h2>
 <p><code>lepton-test</code> runs Lepton's ExUnit test suite inside the running system: mounts, drivers, DHCP, the shell, editor, multiplexer, git, packages and services. <code>--only TAG</code> and file arguments pick tests.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
@@ -147,14 +154,14 @@
 <tr><td><a href="commands.html#cmd-elixir"><code>elixir</code></a></td><td>run Elixir code</td><td><code>elixir [-e CODE] [FILE.exs] [ARGS...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-mix"><code>mix</code></a></td><td>Elixir build tool (runs in the project in the current directory)</td><td><code>mix TASK [ARGS...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-help"><code>help</code></a></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
-<tr><td><a href="commands.html#cmd-man"><code>man</code></a></td><td>show the manual for a command</td><td><code>man COMMAND</code></td></tr>
+<tr><td><a href="commands.html#cmd-man"><code>man</code></a></td><td>show the manual page for a command</td><td><code>man [-k KEYWORD | -f NAME] [1] NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-keys"><code>keys</code></a></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
 <tr><td><a href="commands.html#cmd-neofetch"><code>neofetch</code></a></td><td>show system information</td><td><code>neofetch</code></td></tr>
 <tr><td><a href="commands.html#cmd-lepton-test"><code>lepton-test</code></a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0bd41bc. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

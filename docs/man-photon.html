@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>photon(1) - Lepton OS docs</title>
+  <meta name="description" content="the graphical desktop (Photon, a Wayland compositor) and its terminal windows">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="photon1">photon(1)<a class="anchor" href="#photon1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>photon</code> - the graphical desktop (Photon, a Wayland compositor) and its terminal windows</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>Photon is Lepton's graphical desktop: a Wayland compositor that takes over the display and shows windows you move, resize and type into with the mouse and keyboard. Its first window is a terminal running your shell. Run it from the console of a machine with a display; when you quit, the text console comes back.</p>
+<p>For a Windows 95-style desktop with a taskbar and Start menu, run <code>classic</code> instead.</p>
+<h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>photon</code>, <code>photon start</code>: start the desktop.</li>
+<li><code>term [COMMAND...]</code>: open a terminal window (running COMMAND instead of the shell, if given).</li>
+<li><code>info</code>: the display size, window manager, clients and windows.</li>
+<li><code>display extend</code>, <code>display mirror</code>: with two displays, put them side by side or show the same picture on both.</li>
+<li><code>screenshot FILE.png</code>: save the screen as a PNG.</li>
+<li><code>stop</code>: quit the desktop.</li>
+</ul>
+<h2 id="keys">KEYS<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>Alt+Enter</code>: open a terminal window.</li>
+<li><code>Alt+Tab</code>: focus the next window.</li>
+<li><code>Alt+F4</code>: close the window (or click its close button). Closing a terminal window ends its shell and everything running in it.</li>
+<li><code>Alt+Shift+Right</code>, <code>Alt+Shift+Left</code>: move the window to the next or previous display.</li>
+<li><code>Ctrl+Shift+V</code>: paste in a terminal window.</li>
+<li><code>Ctrl+Alt+Backspace</code>: quit.</li>
+<li>Drag a title bar (or Alt+drag anywhere) to move a window; drag the bottom-right corner (or Alt+right-drag) to resize it.</li>
+</ul>
+<p>Super works in place of Alt.</p>
+<h2 id="environment">ENVIRONMENT<a class="anchor" href="#environment" aria-label="Link to this section">#</a></h2>
+<p>Programs in Photon's windows get <code>WAYLAND_DISPLAY</code> and <code>XDG_RUNTIME_DIR</code>, so Wayland programs such as Firefox can connect.</p>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-classic.html">classic(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="man-input.html">input(1)</a>, <a href="https://trylepton.app/docs/desktop.html">https://trylepton.app/docs/desktop.html</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@13b2c76. <a href="https://github.com/danieljaouen/lepton/blob/main/man/photon.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#commands">COMMANDS</a></li>
+          <li><a href="#keys">KEYS</a></li>
+          <li><a href="#environment">ENVIRONMENT</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
