@@ -56,9 +56,11 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
           <li><a href="services.html">Services (svc)</a></li>
-          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
@@ -92,7 +94,8 @@
 <li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
-<li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding or <code>scp</code>/<code>sftp</code>. The SSH server (<code>sshd</code>) offers shells and commands only.</li>
+<li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, forwarding or <code>scp</code>/<code>sftp</code> (rsync works). The SSH server (<code>sshd</code>) offers shells and commands only.</li>
+<li>rsync: protocol 27; no hard links (<code>-H</code>), relative paths (<code>-R</code>), owners and groups, or daemon mode, and Lepton's own transfers aren't compressed.</li>
 <li><code>le</code> is a Spacemacs work-alike, not Emacs: it doesn't <em>evaluate</em> Elisp, so layers and packages aren't loaded. Unsupported bindings are reported.</li>
 <li>Packages that rely on Mix-specific features (compile-time config, application callbacks, NIFs) are not supported.</li>
 <li>Native ELF programs can run through a port (standard input and output only, no terminal).</li>
@@ -102,7 +105,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>

@@ -56,9 +56,11 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="ssh.html" aria-current="page">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
           <li><a href="services.html">Services (svc)</a></li>
-          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
@@ -148,13 +150,14 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 <li>You log in as one of Lepton's <a href="users.html">accounts</a>, with a key in that account's <code>~/.ssh/authorized_keys</code> (one OpenSSH public key per line; options before the key are allowed and ignored). Root can log in the same way, with <code>/root/.ssh/authorized_keys</code>, which is how to reach the live ISO. An <code>authorized_keys</code> that group or others may write to is ignored.</li>
 <li>A login gets its own terminal, which follows your window's size: <code>le</code>, <code>tmux</code>, <code>top</code> and <code>sudo</code> work as on the console. Closing the connection ends everything the session started.</li>
 <li><code>svc logs sshd</code> shows every login and every refused key.</li>
+<li>To copy files, use <a href="rsync.html">rsync</a> from the other computer: <code>rsync -av dir/ alice@192.168.1.23:dir/</code>.</li>
 <li>The host key is made the first time <code>sshd</code> starts, in <code>/var/lib/lepton/ssh</code>. An installed system keeps it; the live ISO makes a new one each boot.</li>
 <li>Another port: <code>sudo svc edit sshd</code> and change <code>ExecStart=sshd</code> to <code>ExecStart=sshd -p 2222</code>.</li>
 <li>To turn it off again: <code>sudo svc disable --now sshd</code>.</li>
 </ul>
 <p>In UTM, the VM must be reachable from your network: use <strong>Bridged</strong> networking, or the Mac itself can reach a <strong>Shared Network</strong> VM at the address <code>svc logs sshd</code> shows.</p>
 <h2 id="not-supported">Not supported<a class="anchor" href="#not-supported" aria-label="Link to this section">#</a></h2>
-<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, and <code>scp</code>/<code>sftp</code> (to or from Lepton).</p>
+<p>Logging in with a password (in both directions: keys only), passphrase-protected keys, <code>ssh-agent</code>, agent and port forwarding, and <code>scp</code>/<code>sftp</code> (to or from Lepton: use <a href="rsync.html">rsync</a> instead).</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -166,7 +169,7 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

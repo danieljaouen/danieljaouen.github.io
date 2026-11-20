@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Scheduled jobs (cron) - Lepton OS docs</title>
+  <meta name="description" content="Run commands at set times with crontab and the cron service.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html" aria-current="page">Scheduled jobs (cron)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="scheduled-jobs-cron">Scheduled jobs: cron<a class="anchor" href="#scheduled-jobs-cron" aria-label="Link to this section">#</a></h1>
+<p>The <code>cron</code> service runs commands at set times: backups at night, a report every hour, something at every boot. Each user has a <strong>crontab</strong>, a table of times and commands, and the jobs in it run as that user, in their home directory.</p>
+<pre><code class="language-sh">crontab -e        # edit yours (in le); it's checked when you save
+crontab -l        # show it
+crontab -r        # remove it
+svc logs cron     # what ran, and what the jobs printed</code></pre>
+<h2 id="the-format">The format<a class="anchor" href="#the-format" aria-label="Link to this section">#</a></h2>
+<pre><code># m   h   dom mon dow   command
+*/5   *   *   *   *     date &gt;&gt; ~/heartbeat.log
+0     3   *   *   1-5   rsync -a ~/notes/ /media/BACKUP/notes/
+30    8   1   *   *     echo &quot;first of the month&quot; &gt;&gt; ~/reminders.txt
+@reboot                 date &gt;&gt; ~/boots.log</code></pre>
+<p>The five fields are minute, hour, day of the month, month and day of the week:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Field</th><th>Values</th></tr></thead>
+<tbody>
+<tr><td>minute</td><td>0-59</td></tr>
+<tr><td>hour</td><td>0-23</td></tr>
+<tr><td>day of month</td><td>1-31</td></tr>
+<tr><td>month</td><td>1-12, or <code>jan</code>-<code>dec</code></td></tr>
+<tr><td>day of week</td><td>0-7 (0 and 7 are Sunday), or <code>sun</code>-<code>sat</code></td></tr>
+</tbody></table></div>
+<p>Each field is <code>*</code> (any), a number, a list (<code>1,15</code>), a range (<code>1-5</code>) or a step (<code>*/10</code>, <code>0-30/10</code>). When both day fields are restricted, a day matching either runs the job. <code>@hourly</code>, <code>@daily</code>, <code>@weekly</code>, <code>@monthly</code>, <code>@yearly</code> and <code>@reboot</code> (when Lepton starts) can stand in for the five fields.</p>
+<p>Times are <strong>UTC</strong>, as <code>date</code> shows them.</p>
+<ul>
+<li><code>NAME=value</code> lines set environment variables for the jobs after them.</li>
+<li>In a command, <code>%</code> starts its standard input (write <code>\%</code> for a percent sign, as in <code>date +\%F</code>).</li>
+<li>Jobs run without your <code>~/.zshrc</code>, so use commands, not aliases.</li>
+</ul>
+<h2 id="the-log">The log<a class="anchor" href="#the-log" aria-label="Link to this section">#</a></h2>
+<p>What a job prints goes to the cron log, not to a terminal or mail:</p>
+<pre><code class="language-sh">svc logs cron       # recent lines
+svc logs cron -f    # follow it</code></pre>
+<pre><code class="language-text">Nov 20 03:00:00 cron[105]: (alice) CMD (rsync -a ~/notes/ /media/BACKUP/notes/)
+Nov 20 03:00:01 cron[105]: (alice) exited with status 23: rsync -a ~/notes/ /media/BACKUP/notes/</code></pre>
+<h2 id="the-service">The service<a class="anchor" href="#the-service" aria-label="Link to this section">#</a></h2>
+<p><code>cron</code> is on by default: it starts at boot and reads every crontab each minute, so a change takes effect at the next minute. To turn it off:</p>
+<pre><code class="language-sh">sudo svc disable --now cron</code></pre>
+<p>Crontabs are kept in <code>/var/lib/lepton/cron</code>, so on an installed system they survive restarts. Root manages anyone's with <code>crontab -u USER</code>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-crontab"><code>crontab</code></a></td><td>your table of commands to run at set times (cron): list, edit, install or remove it</td><td><code>crontab [-u USER] -l | -e | -r | FILE | -</code></td></tr>
+<tr><td><a href="commands.html#cmd-crond"><code>crond</code></a></td><td>the cron daemon: runs the jobs in the crontabs (the cron service runs it) (needs <a href="users.html">sudo</a>)</td><td><code>crond</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/cron.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#the-format">The format</a></li>
+          <li><a href="#the-log">The log</a></li>
+          <li><a href="#the-service">The service</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

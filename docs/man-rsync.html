@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>rsync(1) - Lepton OS docs</title>
+  <meta name="description" content="copy and synchronise files, locally or with another machine over SSH, sending only what changed">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <p class="docs-nav-group">Guides</p>
+        <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+        </ul>
+        <p class="docs-nav-group">Reference</p>
+        <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+        </ul>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="rsync1">rsync(1)<a class="anchor" href="#rsync1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>rsync</code> - copy and synchronise files, locally or with another machine over SSH, sending only what changed</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>rsync [-avrlptnczuh] [--delete] [--exclude PATTERN] [-e 'ssh OPTIONS'] SOURCE... DEST</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>Copy files and directories to DEST, sending only what changed. A file that is already at DEST with the same size and modification time is skipped; a changed file is updated by sending just its differences, so syncing a big directory again is quick.</p>
+<p>SOURCE and DEST are local paths or, for another machine, <code>[USER@]HOST:PATH</code> reached over SSH (with your keys, as <code>ssh</code> uses them). The other machine needs <code>rsync</code>: Linux and macOS have it, and so does Lepton, so a Mac can sync to Lepton too, through its SSH server (<code>sshd</code>).</p>
+<p>A trailing <code>/</code> on a source directory means its contents: <code>rsync -a src/ dst</code> makes <code>dst</code> a copy of <code>src</code>, while <code>rsync -a src dst</code> makes <code>dst/src</code>.</p>
+<h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>-a</code>, <code>--archive</code>: the usual choice: <code>-rlpt</code> (recursive, links, permissions, times). Its <code>-o</code>, <code>-g</code> and <code>-D</code> are accepted, but owners, groups and devices are not copied.</li>
+<li><code>-v</code>, <code>--verbose</code>: list the files and directories transferred, then the bytes sent and received.</li>
+<li><code>-r</code>, <code>--recursive</code>: copy directories and everything in them.</li>
+<li><code>-l</code>, <code>--links</code>: copy symbolic links as links (without it they are skipped).</li>
+<li><code>-p</code>, <code>--perms</code>: copy permissions.</li>
+<li><code>-t</code>, <code>--times</code>: copy modification times (needed for the quick check to skip unchanged files next time).</li>
+<li><code>-d</code>, <code>--dirs</code>: copy directories named, without their contents.</li>
+<li><code>-n</code>, <code>--dry-run</code>: show what would be done, but change nothing.</li>
+<li><code>-c</code>, <code>--checksum</code>: compare files by their contents, not size and time.</li>
+<li><code>-u</code>, <code>--update</code>: skip files that are newer at DEST.</li>
+<li><code>-I</code>, <code>--ignore-times</code>: send files even when size and time match.</li>
+<li><code>--size-only</code>: skip files whose size matches.</li>
+<li><code>-W</code>, <code>--whole-file</code>: send whole files, not differences.</li>
+<li><code>--delete</code>: delete files at DEST that are not in SOURCE (in the directories being copied). Excluded files are kept.</li>
+<li><code>--exclude PATTERN</code>: leave out files matching PATTERN: <code>*</code>, <code>?</code> and <code>[...]</code> match within a name and <code>**</code> across directories; a pattern without <code>/</code> matches the name anywhere, a leading <code>/</code> anchors it to the top of the transfer, and a trailing <code>/</code> matches only directories. May be repeated.</li>
+<li><code>-z</code>, <code>--compress</code>: accepted. Lepton compresses when another machine's rsync asks it to; its own transfers are not compressed.</li>
+<li><code>-e COMMAND</code>, <code>--rsh COMMAND</code>: the ssh command line for another machine, with the ssh options Lepton's <code>ssh</code> takes, as in <code>-e 'ssh -p 2222 -i ~/.ssh/work_ed25519'</code>.</li>
+<li><code>--rsync-path PATH</code>: the rsync to run on the other machine.</li>
+<li><code>-h</code>, <code>-P</code>, <code>--progress</code>, <code>--stats</code>, <code>-q</code> and the like are accepted and ignored.</li>
+</ul>
+<p><code>-H</code> (hard links) and <code>-R</code> (relative paths) are not supported.</p>
+<h2 id="compatibility">COMPATIBILITY<a class="anchor" href="#compatibility" aria-label="Link to this section">#</a></h2>
+<p>Lepton's rsync speaks version 27 of rsync's protocol, which rsync 3.x and macOS's own rsync (openrsync) both accept, in both directions. Daemon mode (<code>rsync://</code>) is not supported.</p>
+<h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
+<p>0 on success, 1 for a usage error, 2 if the other side's protocol is too old, 12 if the connection broke, 23 if some files were not transferred, 255 if SSH could not connect.</p>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">rsync -av ~/notes/ /media/USB/notes/          # back up to a USB drive
+rsync -av --delete src/ me@server:src/       # mirror to another machine
+rsync -avz me@mac:Projects/app/ ~/app/        # fetch from a Mac
+rsync -avn --delete src/ backup/              # see what would change</code></pre>
+<p>From a Mac, to Lepton (with <code>sshd</code> enabled):</p>
+<pre><code class="language-sh">rsync -avz ~/Projects/app/ alice@lepton.local:app/</code></pre>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-cp.html">cp(1)</a>, <a href="man-ssh.html">ssh(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="https://trylepton.app/docs/rsync.html">https://trylepton.app/docs/rsync.html</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/man/rsync.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#compatibility">COMPATIBILITY</a></li>
+          <li><a href="#exit-status">EXIT STATUS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav details").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

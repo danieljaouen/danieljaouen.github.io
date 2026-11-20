@@ -56,9 +56,11 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
           <li><a href="services.html">Services (svc)</a></li>
-          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
           <li><a href="networking.html">Networking</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="desktop.html">The desktop (Photon)</a></li>
@@ -102,7 +104,7 @@
 <li><code>is-active NAME</code>, <code>is-enabled NAME</code>: for scripts: exit status 0 means yes.</li>
 </ul>
 <h2 id="unit-files">UNIT FILES<a class="anchor" href="#unit-files" aria-label="Link to this section">#</a></h2>
-<p>A service is a file <code>NAME.service</code> in systemd syntax, in <code>~/.config/lepton/services/</code> (yours, which win) or <code>/etc/lepton/services/</code> (shipped). The <code>[Service]</code> keys read are <code>ExecStart</code> (a shell command line), <code>Restart</code> (<code>no</code>, <code>on-failure</code>, <code>always</code>), <code>RestartSec</code>, <code>Environment</code>, <code>WorkingDirectory</code> and <code>TimeoutStopSec</code>; <code>[Unit]</code> has <code>Description</code>.</p>
+<p>A service is a file <code>NAME.service</code> in systemd syntax, in <code>~/.config/lepton/services/</code> (yours, which win) or <code>/etc/lepton/services/</code> (shipped). The <code>[Service]</code> keys read are <code>ExecStart</code> (a shell command line), <code>Restart</code> (<code>no</code>, <code>on-failure</code>, <code>always</code>), <code>RestartSec</code>, <code>Environment</code>, <code>WorkingDirectory</code> and <code>TimeoutStopSec</code>; <code>[Unit]</code> has <code>Description</code>. A shipped unit with <code>WantedBy=</code> in <code>[Install]</code> is enabled by default (<code>cron</code> is), until disabled.</p>
 <pre><code class="language-sh">[Service]
 ExecStart=httpd -p 8080 ~/public
 Restart=on-failure</code></pre>
@@ -118,10 +120,10 @@ svc logs hello -f
 sudo svc new clock 'while true; do date; sleep 60; done'
 sudo svc enable --now clock</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-journalctl.html">journalctl(1)</a>, <a href="man-httpd.html">httpd(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="man-ps.html">ps(1)</a>, <a href="https://trylepton.app/docs/services.html">https://trylepton.app/docs/services.html</a></p>
+<p><a href="man-journalctl.html">journalctl(1)</a>, <a href="man-httpd.html">httpd(1)</a>, <a href="man-sshd.html">sshd(1)</a>, <a href="man-crond.html">crond(1)</a>, <a href="man-ps.html">ps(1)</a>, <a href="https://trylepton.app/docs/services.html">https://trylepton.app/docs/services.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@ebbc51e. <a href="https://github.com/danieljaouen/lepton/blob/main/man/svc.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@583c010. <a href="https://github.com/danieljaouen/lepton/blob/main/man/svc.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
