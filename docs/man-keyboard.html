@@ -131,7 +131,7 @@
 <li><code>ko</code>: Korean, the standard 2-set (Dubeolsik) keyboard. Letters compose into Hangul syllables as you type, shown underlined until each one is done; Backspace takes back one jamo. The Hangul key, Right Alt (a Korean keyboard's 한/영 key) or Shift+Space switch between Hangul and English (the indicator shows <code>A</code>).</li>
 <li><code>th</code> Thai, <code>hi</code> Hindi (InScript), <code>bn</code> Bengali, <code>ta</code> Tamil (InScript), <code>km</code> Khmer, <code>lo</code> Lao, <code>my</code> Burmese, <code>ar</code> Arabic, <code>he</code> Hebrew, <code>vi</code> Vietnamese: the layouts of xkeyboard-config, as on other Linux desktops. At most three besides English.</li>
 </ul>
-<p>Korean composes in programs that take composed text (Firefox and other GTK programs, through Wayland's text-input protocol). In Lepton's own windows the keys stay English: the terminal's font has no Hangul. The other layouts type in every window, but the terminal shows only the scripts its font has.</p>
+<p>Korean composes in programs that take composed text (Firefox and other GTK programs, through Wayland's text-input protocol). In Lepton's own windows (terminal windows, <code>le</code>) the keys stay English: they don't take composed text yet. The other layouts type in every window, and terminal windows show their text (Unifont's glyphs, where Terminus has none).</p>
 <h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>keyboard</code>: the input sources, with <code>*</code> at the one in use.</li>
@@ -150,7 +150,7 @@ keyboard list</code></pre>
 <p><a href="man-photon.html">photon(1)</a>, <a href="man-classic.html">classic(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="https://trylepton.app/docs/keyboard.html">https://trylepton.app/docs/keyboard.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a051c9b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/keyboard.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@213bc6a. <a href="https://github.com/danieljaouen/lepton/blob/main/man/keyboard.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

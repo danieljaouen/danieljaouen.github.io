@@ -162,9 +162,10 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 </tbody></table></div>
 <p>A vowel after a final consonant takes the consonant into the next syllable, as on any Korean keyboard (<code>ekfr</code> is 닭, <code>ekfrk</code> is 달가). Backspace takes back one jamo at a time. Space, Return, punctuation, a click or another window finish the syllable.</p>
 <p>To type English without leaving Korean, press the <strong>Hangul</strong> key, <strong>Right Alt</strong> (where a Korean keyboard has its 한/영 key) or <strong>Shift+Space</strong>; the indicator shows <code>A</code>. Press it again for Hangul.</p>
-<p>Hangul is composed in programs that take composed text: Firefox and other GTK programs, through Wayland's text-input protocol. In Lepton's own windows (the terminal, <code>le</code>) the keys type English, as the terminal's font has no Hangul. To show Korean pages, Firefox comes with the fonts (see <a href="apps.html">Apps</a>).</p>
+<p>Hangul is composed in programs that take composed text: Firefox and other GTK programs, through Wayland's text-input protocol. In Lepton's own windows (terminal windows, <code>le</code>) the keys type English: they don't take composed text yet, though they show Korean text. To show Korean pages, Firefox comes with the fonts (see <a href="apps.html">Apps</a>).</p>
 <h2 id="in-leptons-own-windows">In Lepton's own windows<a class="anchor" href="#in-leptons-own-windows" aria-label="Link to this section">#</a></h2>
-<p>The layouts type in terminal windows too: the shell and <code>le</code> get the characters. The terminal draws with its built-in Terminus font, though, which has Latin, Greek and Cyrillic but not Thai, Devanagari or Arabic, so those show as boxes there (the text itself is right: copy it to Firefox and it reads correctly).</p>
+<p>The layouts type in terminal windows too: the shell and <code>le</code> get the characters. Terminal windows, title bars and the taskbar draw with the built-in Terminus font, and with GNU Unifont's glyphs for what Terminus lacks: Chinese, Japanese and Korean, Thai, Devanagari, Arabic and the rest of Unicode's first 65,536 characters. They are bitmaps, one glyph per character: scripts whose letters join or reorder (Devanagari, Arabic) show their characters one by one, not shaped as Firefox shows them.</p>
+<p>Chinese, Japanese and Korean characters take two columns, as in other terminals: the shell's line editor, <code>le</code>, <code>ls</code> and terminal windows count them so, and so do terminals you reach Lepton from over SSH.</p>
 <h2 id="not-yet">Not yet<a class="anchor" href="#not-yet" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Japanese and Chinese input, which needs converting from kana or pinyin with a dictionary.</li>
@@ -173,7 +174,7 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a051c9b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@213bc6a. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
