@@ -125,9 +125,10 @@
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>List Lepton's processes: every program and shell running in Lepton, with its process ID (PID), parent's PID (PPID), controlling terminal (TTY), state (STAT: <code>S</code> running or sleeping, <code>T</code> stopped), the time since it started, and its command line.</p>
 <p>Lepton's processes are Erlang processes inside one virtual machine, so they are not the Linux kernel's processes. Those, such as Firefox and kernel threads, are listed too with <code>-e</code>, with PIDs prefixed by <code>k</code>.</p>
+<p>A service shows as two processes: <code>svc NAME</code>, the service itself (which <code>svc</code> watches and restarts), and its command running under it, such as <code>svc cron</code> and <code>crond</code>.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>-e</code>, <code>-A</code>, <code>aux</code>: also list the Linux processes.</li>
+<li><code>-e</code>, <code>-A</code>, or BSD style with <code>x</code> (<code>aux</code>, <code>auxw</code>, <code>ax</code>): also list the Linux processes.</li>
 <li><code>-f</code>: accepted for compatibility.</li>
 </ul>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
@@ -137,7 +138,7 @@ ps aux | grep firefox</code></pre>
 <p><a href="man-top.html">top(1)</a>, <a href="man-kill.html">kill(1)</a>, <a href="man-pgrep.html">pgrep(1)</a>, <a href="man-jobs.html">jobs(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@16983d9. <a href="https://github.com/danieljaouen/lepton/blob/main/man/ps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7663fb0. <a href="https://github.com/danieljaouen/lepton/blob/main/man/ps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

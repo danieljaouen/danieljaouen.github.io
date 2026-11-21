@@ -160,7 +160,7 @@ WantedBy=multi-user.target   # in a shipped unit: on by default</code></pre>
 <p>Other keys are ignored, and <code>svc status</code> lists them.</p>
 <h2 id="how-services-behave">How services behave<a class="anchor" href="#how-services-behave" aria-label="Link to this section">#</a></h2>
 <ul>
-<li>Each run is a Lepton process tree under PID 1, so it shows in <code>ps</code>. Stopping a service ends the whole tree (a terminate signal, then a kill after <code>TimeoutStopSec</code>).</li>
+<li>Each run is a Lepton process tree under PID 1, so it shows in <code>ps</code>: <code>svc NAME</code>, and the service's command under it (<code>svc cron</code>, then <code>crond</code>). Stopping a service ends the whole tree (a terminate signal, then a kill after <code>TimeoutStopSec</code>).</li>
 <li>A clean exit leaves the service <code>inactive</code>; a non-zero exit or a kill marks it <code>failed</code>, and <code>Restart=</code> decides whether it comes back. The restarts stop after 5 starts in 10 seconds, as in systemd; a manual <code>svc start</code> resets that.</li>
 <li>Output goes to <code>/var/lib/lepton/log/NAME.log</code> (rotated at 1 MiB), so on an installed system the log survives reboots.</li>
 <li>Enabled services start at boot, once the data partition is mounted; the list is kept in <code>/var/lib/lepton/services</code>. Every service is stopped cleanly before power-off and reboot.</li>
@@ -194,7 +194,7 @@ curl http://localhost:8080/</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@16983d9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7663fb0. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
