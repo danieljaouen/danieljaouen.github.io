@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html" aria-current="page">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -176,6 +177,7 @@ WantedBy=multi-user.target   # in a shipped unit: on by default</code></pre>
 <li><strong>cron</strong>: runs the jobs in everyone's <a href="cron.html">crontab</a>. On by default.</li>
 <li><strong>ntpd</strong>: keeps the clock right and finds the <a href="time.html">time zone</a>. On by default.</li>
 <li><strong>cups</strong>: <a href="printing.html">printing</a>: the queue, and IPP on 127.0.0.1:631. On by default.</li>
+<li><strong>postgresql</strong>: the <a href="postgresql.html">PostgreSQL</a> database server, on localhost:5432. Off until <code>sudo postgresql setup</code> installs PostgreSQL and enables it.</li>
 </ul>
 <p>Only <code>cron</code>, <code>ntpd</code> and <code>cups</code> start by themselves: a shipped unit with an <code>[Install]</code> section (<code>WantedBy=</code>) is on until you disable it, as systemd's presets do. The others start only when you start or enable them.</p>
 <h2 id="httpd">httpd<a class="anchor" href="#httpd" aria-label="Link to this section">#</a></h2>
@@ -195,7 +197,7 @@ curl http://localhost:8080/</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2a1f8a4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/services.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

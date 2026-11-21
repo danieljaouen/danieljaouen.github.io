@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>mix(1) - Lepton OS docs</title>
-  <meta name="description" content="Elixir build tool (runs in the project in the current directory)">
+  <meta name="description" content="Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -120,19 +121,24 @@
       <article class="prose">
 <h1 id="mix1">mix(1)<a class="anchor" href="#mix1" aria-label="Link to this section">#</a></h1>
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
-<p><code>mix</code> - Elixir build tool (runs in the project in the current directory)</p>
+<p><code>mix</code> - Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>mix TASK [ARGS...]</code></pre>
+<pre><code>mix [TASK [ARGS...]]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Run the Mix TASK, Elixir's build tool, in the project in the current directory (the one with <code>mix.exs</code>), as in <code>mix compile</code>, <code>mix test</code> or <code>mix format</code>. <code>mix new NAME</code> creates a project, and <code>mix help</code> lists the tasks.</p>
-<p>Mix runs inside Lepton's own Erlang virtual machine, so one <code>mix</code> runs at a time. Dependencies from Hex need network access.</p>
+<p>Run the Mix TASK, Elixir's build tool, as on any other system: in the project in the current directory (the one with <code>mix.exs</code>), as in <code>mix compile</code>, <code>mix test</code> or <code>mix deps.get</code>. <code>mix new NAME</code> creates a project, and <code>mix help</code> lists the tasks.</p>
+<p>Mix runs in an Erlang virtual machine of its own (the image's Erlang and Elixir), not in Lepton's: a project's configuration and dependencies stay its own, and <code>mix phx.server</code> serves a Phoenix app without running it inside the OS. Hex and archives work as usual: <code>mix local.hex</code>, <code>mix archive.install hex phx_new</code>, then <code>mix phx.new NAME</code> (they are kept in <code>~/.mix</code> and <code>~/.hex</code>). Dependencies from Hex need network access; ones that compile C code (NIFs with a Makefile) can't be built, as Lepton has no C compiler.</p>
+<p>Git dependencies (a new Phoenix app has one, <code>heroicons</code>) and Phoenix's live reload need programs Mix runs itself: <code>sudo app install mix-tools</code> installs them (Alpine's git and inotifywait, on Mix's path only; at the prompt, <code>git</code> is still Lepton's). Programs Mix downloads (esbuild, Tailwind) run as they are.</p>
+<p>Mix runs as you, so the files it writes are yours. Lines typed in the terminal go to it, for Mix's questions. <code>C-c</code> stops it, as does stopping the service it runs in (<code>svc stop</code>).</p>
+<p><code>iex -S mix</code> isn't available: <code>iex</code> and <code>elixir</code> evaluate code in Lepton's own VM.</p>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
-<pre><code class="language-sh">mix new hello &amp;&amp; cd hello &amp;&amp; mix test</code></pre>
+<pre><code class="language-sh">mix new hello &amp;&amp; cd hello &amp;&amp; mix test
+mix archive.install hex phx_new
+mix phx.new myapp &amp;&amp; cd myapp &amp;&amp; mix ecto.create &amp;&amp; mix phx.server</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-elixir.html">elixir(1)</a>, <a href="man-iex.html">iex(1)</a></p>
+<p><a href="man-elixir.html">elixir(1)</a>, <a href="man-iex.html">iex(1)</a>, <a href="man-postgresql.html">postgresql(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2a1f8a4. <a href="https://github.com/danieljaouen/lepton/blob/main/man/mix.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/man/mix.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

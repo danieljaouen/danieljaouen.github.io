@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Databases (PostgreSQL) - Lepton OS docs</title>
+  <meta name="description" content="PostgreSQL, the database Phoenix apps use: set up with one command (or a desktop icon), run as a service, with psql and PostgreSQL's tools.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html" aria-current="page">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="databases-postgresql">Databases: PostgreSQL<a class="anchor" href="#databases-postgresql" aria-label="Link to this section">#</a></h1>
+<p>Lepton runs <strong>PostgreSQL</strong>, the database <a href="web.html#a-new-phoenix-app-step-by-step">Phoenix</a> apps (Ecto) use by default: Alpine Linux's build of PostgreSQL 18, installed on demand like <a href="apps.html">Firefox</a>, and run as a <a href="services.html">service</a>.</p>
+<h2 id="setting-it-up">Setting it up<a class="anchor" href="#setting-it-up" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo postgresql setup</code></pre>
+<p>or, on the <a href="desktop.html">classic desktop</a>, double-click <strong>Install PostgreSQL</strong>. Either one:</p>
+<ol>
+<li>installs PostgreSQL (26 packages from Alpine, about 18 MB to download, 49 MB in <code>/var/lib/lepton/apps/postgresql</code>);</li>
+<li>creates the database cluster in <code>/var/lib/lepton/postgresql/18</code> (UTF-8, with the <code>C.UTF-8</code> locale);</li>
+<li>enables and starts the <code>postgresql</code> service, so it also starts at every boot.</li>
+</ol>
+<p>Run it again at any time: it does only what is missing. Afterwards the desktop icon is <strong>PostgreSQL</strong>, and opens <code>psql</code>.</p>
+<p>On an installed system, PostgreSQL and its data are kept on the data partition. On the live ISO they are kept in memory and are gone after a reboot.</p>
+<pre><code class="language-sh">postgresql                  # installed? running? how to connect
+svc status postgresql       # the service
+svc logs postgresql         # PostgreSQL's log
+sudo svc restart postgresql</code></pre>
+<h2 id="psql">psql<a class="anchor" href="#psql" aria-label="Link to this section">#</a></h2>
+<p><code>psql</code> is PostgreSQL's SQL shell, with Lepton's line editor in front of it (history in <code>~/.psql_history</code>, <code>C-r</code> to search it). It connects as the <code>postgres</code> superuser role.</p>
+<pre><code class="language-text">$ psql
+psql 18.7: PostgreSQL's SQL shell. \? for help, \q or C-d to quit.
+postgres=# create table notes (id serial primary key, body text);
+CREATE TABLE
+postgres=# insert into notes (body) values ('hello');
+INSERT 0 1
+postgres=# select * from notes;
+ id | body
+----+-------
+  1 | hello
+(1 row)
+
+postgres=# \q</code></pre>
+<p>End each statement with <code>;</code>: a statement can run over several lines. Backslash commands work as in psql everywhere: <code>\l</code> lists the databases, <code>\c NAME</code> connects to one, <code>\dt</code> lists the tables, <code>\d NAME</code> describes one, <code>\x</code> turns expanded output on and off. <code>C-c</code> cancels a statement that is taking too long.</p>
+<p><code>psql -c SQL</code>, <code>psql -f FILE</code>, and input from a pipe or file run as a script:</p>
+<pre><code class="language-sh">psql -c 'select version()'
+psql myapp_dev &lt; schema.sql</code></pre>
+<p>PostgreSQL's other tools are on the path once it's installed: <code>createdb</code>, <code>dropdb</code>, <code>createuser</code>, <code>dropuser</code>, <code>pg_dump</code>, <code>pg_dumpall</code>, <code>pg_restore</code>, <code>pg_isready</code>, <code>vacuumdb</code>, <code>reindexdb</code>, <code>clusterdb</code>, <code>pgbench</code>, <code>pg_basebackup</code> and <code>pg_controldata</code>.</p>
+<pre><code class="language-sh">createdb myapp_dev
+pg_dump myapp_dev &gt; myapp.sql</code></pre>
+<h2 id="connecting-and-passwords">Connecting, and passwords<a class="anchor" href="#connecting-and-passwords" aria-label="Link to this section">#</a></h2>
+<p>PostgreSQL listens on <code>localhost:5432</code>, for programs on this machine only, and on a socket in <code>/run/postgresql</code>.</p>
+<ul>
+<li><strong>Through the socket</strong> (<code>psql</code>, <code>createdb</code> and the rest), no password is asked: they connect as the <code>postgres</code> role (<code>PGUSER=postgres</code> is set in <code>/etc/lshrc</code>). Lepton's <a href="users.html">accounts</a> aren't a boundary here, as elsewhere in Lepton.</li>
+<li><strong>Over TCP</strong> (Phoenix and Ecto), a password is needed: the <code>postgres</code> role's is <code>postgres</code>, which is what a new Phoenix app's <code>config/dev.exs</code> expects, so it works as generated:</li>
+</ul>
+<pre><code class="language-elixir">config :myapp, Myapp.Repo,
+  username: &quot;postgres&quot;,
+  password: &quot;postgres&quot;,
+  hostname: &quot;localhost&quot;,
+  database: &quot;myapp_dev&quot;</code></pre>
+<p>For anything beyond development, give the role a password of your own, and the app a role of its own:</p>
+<pre><code class="language-sh">psql -c &quot;ALTER USER postgres PASSWORD 'a long secret'&quot;
+psql -c &quot;CREATE ROLE myapp LOGIN PASSWORD 'another secret' CREATEDB&quot;</code></pre>
+<p>To reach PostgreSQL from another computer, use an <a href="ssh.html">SSH tunnel</a> rather than opening the port. To open it anyway, change <code>listen_addresses</code> in <code>/var/lib/lepton/postgresql/18/postgresql.conf</code> and add a <code>host</code> line to <code>pg_hba.conf</code> next to it, then <code>sudo svc restart postgresql</code>.</p>
+<h2 id="how-it-runs">How it runs<a class="anchor" href="#how-it-runs" aria-label="Link to this section">#</a></h2>
+<p>PostgreSQL refuses to run as root, so it runs as the <code>postgres</code> system account (user ID 70, as on Alpine), which owns the cluster's files. Stopping the service (and powering off) shuts PostgreSQL down cleanly: open transactions are rolled back and everything is written out first.</p>
+<p>Its settings are PostgreSQL's defaults, plus Lepton's at the end of <code>postgresql.conf</code> (where it listens, and its log going to the service's). Change them there, then restart the service.</p>
+<h2 id="removing-it">Removing it<a class="anchor" href="#removing-it" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo svc disable --now postgresql
+sudo app remove postgresql</code></pre>
+<p>removes the programs and keeps the databases in <code>/var/lib/lepton/postgresql</code>. To delete those too: <code>sudo rm -r /var/lib/lepton/postgresql</code>.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-postgresql"><code>postgresql</code></a></td><td>the PostgreSQL database server: set it up (for Phoenix apps), see how it is, run it</td><td><code>postgresql [status] | setup | server</code></td></tr>
+<tr><td><a href="commands.html#cmd-psql"><code>psql</code></a></td><td>PostgreSQL's SQL shell, with Lepton's line editor (as the postgres role by default)</td><td><code>psql [-U ROLE] [-d DATABASE] [-h HOST] [-p PORT] [-c SQL] [-f FILE] [DATABASE [ROLE]]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/postgresql.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#setting-it-up">Setting it up</a></li>
+          <li><a href="#psql">psql</a></li>
+          <li><a href="#connecting-and-passwords">Connecting, and passwords</a></li>
+          <li><a href="#how-it-runs">How it runs</a></li>
+          <li><a href="#removing-it">Removing it</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -174,6 +175,12 @@ sudo cert letsencrypt -m you@example.com myapp.example.com www.myapp.example.com
 <p>Let's Encrypt's certificates last 90 days. A running <code>httpd</code> renews them by itself: twice a day it renews each one with less than 30 days left, and uses the new one at once, with no restart. <code>svc logs httpd</code> says what was renewed. <code>sudo cert renew</code> does the same by hand. Local and self-signed certificates last 397 days; <code>cert list</code> shows the days left, and making one again with the same name replaces it.</p>
 <h2 id="a-new-phoenix-app-step-by-step">A new Phoenix app, step by step<a class="anchor" href="#a-new-phoenix-app-step-by-step" aria-label="Link to this section">#</a></h2>
 <p>This puts a new Phoenix app, <code>myapp</code>, behind <code>httpd</code> with HTTPS: first for development, as <code>https://myapp.local</code>, then on the internet, as <code>https://myapp.example.com</code>.</p>
+<p>Before you start: the database, the programs Mix runs, Hex and the Phoenix generator, then the app (<code>mix</code> runs in a VM of its own, as on any other system):</p>
+<pre><code class="language-sh">sudo postgresql setup             # PostgreSQL (see Databases)
+sudo app install mix-tools        # git and inotifywait, for mix
+mix local.hex --force &amp;&amp; mix local.rebar --force
+mix archive.install hex phx_new
+mix phx.new myapp &amp;&amp; cd myapp &amp;&amp; mix ecto.create</code></pre>
 <h3 id="1-the-app-listens-on-this-machine-only">1. The app listens on this machine only<a class="anchor" href="#1-the-app-listens-on-this-machine-only" aria-label="Link to this section">#</a></h3>
 <p>In <code>config/dev.exs</code> (and <code>config/runtime.exs</code> for production), the endpoint listens on <code>127.0.0.1:4000</code>, where only <code>httpd</code> reaches it:</p>
 <pre><code class="language-elixir">config :myapp, MyappWeb.Endpoint,
@@ -240,7 +247,7 @@ root = &quot;/srv/www&quot;</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2a1f8a4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/web.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/web.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

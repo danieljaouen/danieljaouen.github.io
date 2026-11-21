@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -264,7 +265,7 @@
 <tr><td><a href="man-le.html"><code>le</code>(1)</a></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td></tr>
 <tr><td><a href="man-lepton-test.html"><code>lepton-test</code>(1)</a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td></tr>
 <tr><td><a href="man-lsh.html"><code>lsh</code>(1)</a></td><td>the Lepton shell</td></tr>
-<tr><td><a href="man-mix.html"><code>mix</code>(1)</a></td><td>Elixir build tool (runs in the project in the current directory)</td></tr>
+<tr><td><a href="man-mix.html"><code>mix</code>(1)</a></td><td>Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</td></tr>
 <tr><td><a href="man-tmux.html"><code>tmux</code>(1)</a></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td></tr>
 </tbody></table></div>
 <h2 id="administration">Administration<a class="anchor" href="#administration" aria-label="Link to this section">#</a></h2>
@@ -292,6 +293,8 @@
 <tr><td><a href="man-crontab.html"><code>crontab</code>(1)</a></td><td>your table of commands to run at set times (cron): list, edit, install or remove it</td></tr>
 <tr><td><a href="man-httpd.html"><code>httpd</code>(1)</a></td><td>web server: files, and HTTPS in front of web apps (Phoenix), WebSockets too</td></tr>
 <tr><td><a href="man-journalctl.html"><code>journalctl</code>(1)</a></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td></tr>
+<tr><td><a href="man-postgresql.html"><code>postgresql</code>(1)</a></td><td>the PostgreSQL database server: set it up (for Phoenix apps), see how it is, run it</td></tr>
+<tr><td><a href="man-psql.html"><code>psql</code>(1)</a></td><td>PostgreSQL's SQL shell, with Lepton's line editor (as the postgres role by default)</td></tr>
 <tr><td><a href="man-sshd.html"><code>sshd</code>(1)</a></td><td>SSH server: log in to Lepton from other machines, with keys only</td></tr>
 <tr><td><a href="man-svc.html"><code>svc</code>(1)</a></td><td>start, stop and restart long-running services (like systemctl)</td></tr>
 </tbody></table></div>
@@ -369,7 +372,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@2a1f8a4.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@897f07c.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

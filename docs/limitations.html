@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -126,7 +127,7 @@
 <li>Touchpads: no tap-to-click, two-finger scrolling or gestures yet.</li>
 <li>USB display adapters: DisplayLink's USB 2.0 chips and Generic USB Display gadgets only; newer DisplayLink docks need a closed-source driver. A USB-C hub's HDMI port (DisplayPort Alternate Mode) belongs to the Mac, not the VM. See <a href="usb.html">USB, hubs and displays</a>.</li>
 <li>Wi-Fi needs a supported adapter: virtual machines have no wireless hardware (pass a USB adapter through). WPA2 and WPA2/WPA3 networks work; WPA3-only and enterprise (802.1X) networks don't.</li>
-<li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code>, <code>elixir</code> and <code>mix</code> can bypass them. Services all run as root.</li>
+<li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code> and <code>elixir</code> can bypass them. Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
 <li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, port forwarding from Lepton's <code>ssh</code>, or <code>scp</code>/<code>sftp</code> commands on Lepton (rsync and sshfs work; from other computers, sftp, scp and sshfs reach Lepton's <code>sshd</code>).</li>
@@ -136,14 +137,15 @@
 <li>rsync: protocol 27; no hard links (<code>-H</code>), relative paths (<code>-R</code>), owners and groups, or daemon mode, and Lepton's own transfers aren't compressed.</li>
 <li><code>le</code> is a Spacemacs work-alike, not Emacs: it doesn't <em>evaluate</em> Elisp, so layers and packages aren't loaded. Unsupported bindings are reported.</li>
 <li>Packages that rely on Mix-specific features (compile-time config, application callbacks, NIFs) are not supported.</li>
-<li>Native ELF programs can run through a port (standard input and output only, no terminal).</li>
+<li>Native ELF programs can run through a port (standard input and output only, no terminal). For the ones that start others through a shell (Mix's rebar3, PostgreSQL's <code>initdb</code>), <code>/bin/sh</code> is busybox's; at Lepton's prompt the shell is always <code>lsh</code>.</li>
+<li><code>mix</code> can't build dependencies that compile C code (NIFs with a Makefile, like <code>bcrypt_elixir</code>): Lepton has no C compiler. Use pure-Elixir ones (<code>pbkdf2_elixir</code>), and <code>iex -S mix</code> isn't available.</li>
 <li>The Linux framebuffer console approximates 256-colour themes; a serial console in an xterm-compatible terminal renders them fully.</li>
 </ul>
 <p>The graphical desktop, <a href="desktop.html">Photon</a>, runs terminal windows and Wayland programs that draw with shared memory; see its guide for what it doesn't do yet. The web browser is <a href="apps.html">Firefox</a>, installed on demand; Lepton's own <code>www</code> is text-only.</p>
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2a1f8a4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>

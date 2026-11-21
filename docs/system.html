@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html" aria-current="page">System</a></li>
@@ -161,7 +162,7 @@
 <ul>
 <li><code>iex</code> is interactive Elixir. It loads <code>~/.iex.exs</code>, so your helpers work: <code>sh &quot;ls&quot;</code> and <code>~x(ls -la)</code> run commands in <code>lsh</code>.</li>
 <li><code>elixir -e CODE</code>, or <code>elixir FILE.exs</code>; executable <code>*.exs</code> files on the path run as Elixir scripts.</li>
-<li><code>mix</code> runs in the project in the current directory.</li>
+<li><code>mix</code> runs in the project in the current directory, in an Erlang VM of its own (not Lepton's), as you: Hex, archives and <a href="web.html#a-new-phoenix-app-step-by-step">Phoenix</a> work as elsewhere. <code>iex -S mix</code> doesn't, as <code>iex</code> is Lepton's.</li>
 <li>Commands can be added at runtime with <code>Lepton.Commands.register/2</code>, or by <a href="packages.html#packages-that-add-commands">packages</a>.</li>
 </ul>
 <h2 id="help-and-information">Help and information<a class="anchor" href="#help-and-information" aria-label="Link to this section">#</a></h2>
@@ -194,7 +195,7 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 <tr><td><a href="commands.html#cmd-pbpaste"><code>pbpaste</code></a></td><td>paste the clipboard to standard output</td><td><code>pbpaste</code></td></tr>
 <tr><td><a href="commands.html#cmd-iex"><code>iex</code></a></td><td>interactive Elixir (loads ~/.iex.exs)</td><td><code>iex</code></td></tr>
 <tr><td><a href="commands.html#cmd-elixir"><code>elixir</code></a></td><td>run Elixir code</td><td><code>elixir [-e CODE] [FILE.exs] [ARGS...]</code></td></tr>
-<tr><td><a href="commands.html#cmd-mix"><code>mix</code></a></td><td>Elixir build tool (runs in the project in the current directory)</td><td><code>mix TASK [ARGS...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-mix"><code>mix</code></a></td><td>Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</td><td><code>mix [TASK [ARGS...]]</code></td></tr>
 <tr><td><a href="commands.html#cmd-help"><code>help</code></a></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
 <tr><td><a href="commands.html#cmd-man"><code>man</code></a></td><td>show the manual page for a command</td><td><code>man [-k KEYWORD | -f NAME] [1] NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-keys"><code>keys</code></a></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
@@ -203,7 +204,7 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2a1f8a4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@897f07c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

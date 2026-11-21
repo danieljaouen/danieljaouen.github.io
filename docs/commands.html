@@ -70,6 +70,7 @@
           <ul>
           <li><a href="services.html">Services (svc)</a></li>
           <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
           <li><a href="packages.html">Packages (lpm)</a></li>
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
@@ -119,7 +120,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 159 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 161 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -264,7 +265,7 @@
 <tr><td><span class="anchor-target" id="cmd-le"></span><a href="man-le.html"><code>le</code></a> · also <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lepton-test"></span><a href="man-lepton-test.html"><code>lepton-test</code></a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsh"></span><a href="man-lsh.html"><code>lsh</code></a> · also <code>sh</code>, <code>zsh</code>, <code>bash</code></td><td>the Lepton shell</td><td><code>lsh [-c COMMANDS | SCRIPT [ARG...]]</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-mix"></span><a href="man-mix.html"><code>mix</code></a></td><td>Elixir build tool (runs in the project in the current directory)</td><td><code>mix TASK [ARGS...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mix"></span><a href="man-mix.html"><code>mix</code></a></td><td>Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</td><td><code>mix [TASK [ARGS...]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-tmux"></span><a href="man-tmux.html"><code>tmux</code></a></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td><td><code>tmux [new [-s NAME] | attach [-t NAME] | ls | kill-session -t NAME | list-keys]</code></td></tr>
 </tbody></table></div>
 <h2 id="administration">Administration<a class="anchor" href="#administration" aria-label="Link to this section">#</a></h2>
@@ -292,6 +293,8 @@
 <tr><td><span class="anchor-target" id="cmd-crontab"></span><a href="man-crontab.html"><code>crontab</code></a></td><td>your table of commands to run at set times (cron): list, edit, install or remove it</td><td><code>crontab [-u USER] -l | -e | -r | FILE | -</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-httpd"></span><a href="man-httpd.html"><code>httpd</code></a></td><td>web server: files, and HTTPS in front of web apps (Phoenix), WebSockets too</td><td><code>httpd [-p PORT] [-s TLS_PORT] [-x APP_URL] [-c CERT -k KEY] [-r] [-f CONFIG] [DIR]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-journalctl"></span><a href="man-journalctl.html"><code>journalctl</code></a></td><td>show service logs (journalctl -u NAME [-n N] [-f])</td><td><code>journalctl -u NAME [-n N] [-f]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-postgresql"></span><a href="man-postgresql.html"><code>postgresql</code></a></td><td>the PostgreSQL database server: set it up (for Phoenix apps), see how it is, run it</td><td><code>postgresql [status] | setup | server</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-psql"></span><a href="man-psql.html"><code>psql</code></a></td><td>PostgreSQL's SQL shell, with Lepton's line editor (as the postgres role by default)</td><td><code>psql [-U ROLE] [-d DATABASE] [-h HOST] [-p PORT] [-c SQL] [-f FILE] [DATABASE [ROLE]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sshd"></span><a href="man-sshd.html"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-svc"></span><a href="man-svc.html"><code>svc</code></a> · also <code>systemctl</code></td><td>start, stop and restart long-running services (like systemctl)</td><td><code>svc [list|status|start|stop|restart|enable|disable|logs|cat|new|edit] ...</code></td></tr>
 </tbody></table></div>
@@ -328,7 +331,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@2a1f8a4.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@897f07c.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
