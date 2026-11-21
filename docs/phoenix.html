@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Hosting a Phoenix application - Lepton OS docs</title>
+  <meta name="description" content="Build and run a Phoenix app on Lepton: PostgreSQL, Mix and Hex, development with live reload, and production as a service behind httpd with HTTPS.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="phoenix.html" aria-current="page">Hosting a Phoenix application</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="hosting-a-phoenix-application">Hosting a Phoenix application<a class="anchor" href="#hosting-a-phoenix-application" aria-label="Link to this section">#</a></h1>
+<p>Lepton can build and host <a href="https://www.phoenixframework.org/">Phoenix</a> apps:</p>
+<ul>
+<li><a href="postgresql.html">PostgreSQL</a> is the database;</li>
+<li><code>mix</code> runs in an Erlang VM of its own, as on any other system;</li>
+<li><a href="services.html">services</a> keep the app running;</li>
+<li><a href="web.html"><code>httpd</code></a> puts HTTPS in front of it.</li>
+</ul>
+<p>This page goes from nothing to a Phoenix app in production. Every step here was run on Lepton with Phoenix 1.8.</p>
+<p>Give the VM at least 4 GB of memory: compiling a new app's dependencies takes a few minutes and a fair amount of memory. Lepton needs network access to reach Hex.</p>
+<h2 id="1-set-up-once">1. Set up once<a class="anchor" href="#1-set-up-once" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo postgresql setup                       # the database (localhost:5432)
+sudo app install mix-tools                  # git and inotifywait, for mix
+mix local.hex --force                       # Hex, Elixir's package manager
+mix local.rebar --force                     # rebar3, for Erlang dependencies
+mix archive.install hex phx_new --force     # the Phoenix generator</code></pre>
+<ul>
+<li><code>postgresql setup</code> installs PostgreSQL, creates its database cluster, and starts it as a service that also starts at boot. On the classic desktop, the <strong>Install PostgreSQL</strong> icon does the same.</li>
+<li><code>mix-tools</code> holds two programs Mix runs itself: git, for git dependencies (a new Phoenix app gets its icons, Heroicons, from GitHub), and inotifywait, for live reload. Only Mix sees them. At Lepton's prompt, <code>git</code> is still Lepton's own.</li>
+<li>Hex, rebar3 and the generator are kept in your home (<code>~/.mix</code>, <code>~/.hex</code>), as on any system.</li>
+</ul>
+<h2 id="2-create-the-app">2. Create the app<a class="anchor" href="#2-create-the-app" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">mix phx.new myapp --no-install
+cd myapp
+mix deps.get
+mix ecto.create</code></pre>
+<p><code>mix ecto.create</code> connects as the <code>postgres</code> role with the password <code>postgres</code>, which is what the new app's <code>config/dev.exs</code> has, so the generated settings work unchanged. It creates <code>myapp_dev</code>.</p>
+<p>The first <code>mix</code> that compiles (here <code>ecto.create</code>) builds every dependency, which takes a few minutes.</p>
+<h2 id="3-develop">3. Develop<a class="anchor" href="#3-develop" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">mix phx.server</code></pre>
+<p>The app listens on port 4000. Open <a href="http://localhost:4000">http://localhost:4000</a> in <a href="apps.html">Firefox</a> on Lepton's desktop. The first start downloads esbuild and Tailwind, which build the JavaScript and CSS, and then watches your files. Save a template in <a href="editor.html"><code>le</code></a> and the page in Firefox reloads by itself (live reload).</p>
+<p><code>C-c</code> stops the server. To keep working in the same terminal, start it in the background, <code>mix phx.server &gt; /tmp/myapp.log 2&gt;&amp;1 &amp;</code>, and stop it with <code>pkill mix</code>.</p>
+<p>To see the app from your Mac's browser, put <code>httpd</code> in front of it, as in step 6 below. With <a href="networking.html">QEMU or UTM's shared network</a>, the VM's ports are reached through port forwarding.</p>
+<h3 id="whats-different-on-lepton">What's different on Lepton<a class="anchor" href="#whats-different-on-lepton" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong><code>iex -S mix</code> isn't available.</strong> <code>iex</code> and <code>elixir</code> run in Lepton's own VM, and <code>mix</code> runs in a VM of its own. Use <code>mix run</code>, <code>mix test</code> and <code>mix phx.server</code>.</li>
+<li><strong>No C compiler.</strong> Dependencies that compile C code (NIFs with a Makefile) can't be built. For <code>mix phx.gen.auth</code>, choose PBKDF2: <code>mix phx.gen.auth Accounts User users --hashing-lib pbkdf2</code>. The default, bcrypt, needs a C compiler.</li>
+<li><strong><code>mix</code> runs as you</strong>, so <code>_build</code> and <code>deps</code> are your files. <a href="services.html">Services</a> run as root, so a production copy is root's (step 5).</li>
+</ul>
+<h2 id="4-configure-for-production">4. Configure for production<a class="anchor" href="#4-configure-for-production" aria-label="Link to this section">#</a></h2>
+<p>Phoenix reads its production settings from the environment, in <code>config/runtime.exs</code>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Variable</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><code>DATABASE_URL</code></td><td><code>ecto://USER:PASSWORD@localhost/myapp_prod</code></td></tr>
+<tr><td><code>SECRET_KEY_BASE</code></td><td>a long random secret: <code>mix phx.gen.secret</code></td></tr>
+<tr><td><code>PHX_HOST</code></td><td>the name the app is reached at, like <code>myapp.example.com</code></td></tr>
+<tr><td><code>PORT</code></td><td>the port it listens on (4000)</td></tr>
+</tbody></table></div>
+<p>Give the app a database role of its own rather than using <code>postgres</code>:</p>
+<pre><code class="language-sh">psql -c &quot;CREATE ROLE myapp LOGIN PASSWORD 'a long secret' CREATEDB&quot;</code></pre>
+<p>When it sits behind <code>httpd</code> (step 6), make it listen on this machine only: in <code>config/runtime.exs</code>, change the endpoint's <code>ip: {0, 0, 0, 0, 0, 0, 0, 0}</code> to <code>ip: {127, 0, 0, 1}</code>.</p>
+<h2 id="5-build-and-run-it-as-a-service">5. Build and run it as a service<a class="anchor" href="#5-build-and-run-it-as-a-service" aria-label="Link to this section">#</a></h2>
+<p>Services run as root, so build the production copy as root, in a directory of its own, for example <code>/srv/myapp</code>:</p>
+<pre><code class="language-sh">sudo -i
+git clone https://github.com/you/myapp.git /srv/myapp     # or copy it there
+cd /srv/myapp
+export MIX_ENV=prod
+mix deps.get --only prod
+mix compile
+mix assets.deploy
+export DATABASE_URL=ecto://myapp:SECRET@localhost/myapp_prod
+mix ecto.create
+mix ecto.migrate
+mix phx.gen.secret | tail -1        # copy this: SECRET_KEY_BASE</code></pre>
+<p>Run <code>mix compile</code> before <code>mix assets.deploy</code>: compiling generates the CSS and JavaScript that LiveView's colocated hooks add, which the asset build includes. <code>assets.deploy</code> minifies the assets and fingerprints them (<code>phx.digest</code>).</p>
+<p>Then the service, <code>/root/.config/lepton/services/myapp.service</code> (<code>svc edit myapp</code> creates it in <code>le</code>):</p>
+<pre><code class="language-ini">[Unit]
+Description=myapp (Phoenix)
+
+[Service]
+ExecStart=mix phx.server
+WorkingDirectory=/srv/myapp
+Restart=on-failure
+Environment=MIX_ENV=prod PORT=4000 PHX_HOST=myapp.example.com
+Environment=DATABASE_URL=ecto://myapp:SECRET@localhost/myapp_prod
+Environment=SECRET_KEY_BASE=PASTE_IT_HERE</code></pre>
+<pre><code class="language-sh">svc enable --now myapp      # start it, and at every boot
+svc status myapp
+svc logs -f myapp           # the app's log (C-c to stop following)</code></pre>
+<p>The unit file holds the app's secrets, and it is root's: keep it that way. Stopping the service (and powering off) stops the app's VM gracefully. If it is still running 10 seconds later, it is killed. At boot the app may start before PostgreSQL is ready. That's fine: Ecto keeps trying to connect until it is.</p>
+<h2 id="6-https-in-front-of-it">6. HTTPS in front of it<a class="anchor" href="#6-https-in-front-of-it" aria-label="Link to this section">#</a></h2>
+<p><code>httpd</code> takes the browser's HTTPS, with a certificate for the app's name, and passes each request on to the app, LiveView's WebSockets included:</p>
+<pre><code class="language-sh">sudo httpd -p 80 -s 443 -r -x http://127.0.0.1:4000</code></pre>
+<p>As a service, with <code>/etc/lepton/httpd.toml</code> for several sites, and with Let's Encrypt certificates for a real domain: <a href="web.html#a-new-phoenix-app-step-by-step">Web server and HTTPS</a> covers it step by step, including the three settings Phoenix needs behind a proxy (<code>url</code>, <code>check_origin</code> and <code>Plug.RewriteOn</code>).</p>
+<h2 id="7-update-the-app">7. Update the app<a class="anchor" href="#7-update-the-app" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo -i
+cd /srv/myapp &amp;&amp; git pull
+export MIX_ENV=prod
+mix deps.get --only prod &amp;&amp; mix compile &amp;&amp; mix assets.deploy
+DATABASE_URL=ecto://myapp:SECRET@localhost/myapp_prod mix ecto.migrate
+svc restart myapp</code></pre>
+<h2 id="8-back-up-the-database">8. Back up the database<a class="anchor" href="#8-back-up-the-database" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">pg_dump myapp_prod &gt; /root/myapp-$(date +%F).sql     # a backup
+psql myapp_prod &lt; /root/myapp-2026-11-21.sql         # restore into an empty database</code></pre>
+<p>To make one every night, add a line to root's <a href="cron.html">crontab</a>:</p>
+<pre><code class="language-sh">0 3 * * * pg_dump myapp_prod &gt; /root/backups/myapp.sql</code></pre>
+<h2 id="when-something-goes-wrong">When something goes wrong<a class="anchor" href="#when-something-goes-wrong" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>What you see</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td><code>the &quot;git&quot; executable is not available</code></td><td><code>sudo app install mix-tools</code></td></tr>
+<tr><td><code>inotify-tools is needed</code> (no live reload)</td><td><code>sudo app install mix-tools</code>, then restart <code>mix phx.server</code></td></tr>
+<tr><td><code>connection refused</code> on port 5432</td><td><code>postgresql</code> says whether it is running; <code>sudo svc start postgresql</code></td></tr>
+<tr><td><code>password authentication failed</code></td><td>the role's password differs from <code>config/dev.exs</code> (<code>postgres</code> unless you changed it)</td></tr>
+<tr><td>a dependency fails with <code>make</code> or <code>cc</code></td><td>it compiles C code: use a pure-Elixir alternative</td></tr>
+<tr><td><code>could not find static manifest</code> (500 errors in production)</td><td>run <code>mix compile</code> and then <code>mix assets.deploy</code> with <code>MIX_ENV=prod</code></td></tr>
+<tr><td>the service restarts over and over</td><td><code>svc logs myapp</code>: often a missing variable in <code>Environment=</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@60c5226. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/phoenix.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#1-set-up-once">1. Set up once</a></li>
+          <li><a href="#2-create-the-app">2. Create the app</a></li>
+          <li><a href="#3-develop">3. Develop</a></li>
+          <li><a href="#4-configure-for-production">4. Configure for production</a></li>
+          <li><a href="#5-build-and-run-it-as-a-service">5. Build and run it as a service</a></li>
+          <li><a href="#6-https-in-front-of-it">6. HTTPS in front of it</a></li>
+          <li><a href="#7-update-the-app">7. Update the app</a></li>
+          <li><a href="#8-back-up-the-database">8. Back up the database</a></li>
+          <li><a href="#when-something-goes-wrong">When something goes wrong</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
