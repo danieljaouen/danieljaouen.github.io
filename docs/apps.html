@@ -131,7 +131,7 @@
 <p>Once Firefox is running, <code>firefox URL</code>, and <a href="desktop.html#opening-files"><code>open</code></a> for a page, image, PDF or folder, opens a new tab in it instead of starting another Firefox. Firefox passes these on over a D-Bus session bus, which Lepton starts with Firefox (at <code>$XDG_RUNTIME_DIR/bus</code>) and stops when it closes. A Firefox installed before the bus came with it gets <code>dbus</code> with its next update. If a Firefox started without the bus is still open, <code>firefox URL</code> says so: close it and start it again.</p>
 <p>Firefox runs as you: as your account's user ID, with its profile in your home (<code>~/.config/mozilla</code>). You don't need <code>sudo</code>, and Firefox refuses to run as root in your home anyway. <code>sudo firefox</code> runs it as root, with root's own profile in <code>/root</code>.</p>
 <h2 id="what-gets-installed">What gets installed<a class="anchor" href="#what-gets-installed" aria-label="Link to this section">#</a></h2>
-<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, FFmpeg's video decoders, and so on: about 113 packages), downloads them over HTTPS (about 161 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 415 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
+<p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, FFmpeg's video decoders, and so on: about 121 packages), downloads them over HTTPS (about 266 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 572 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
 <p>On an installed system the app is kept on the data partition. On the live ISO it is kept in memory and is gone after a reboot; give the VM at least 4 GB of memory to install and run Firefox there.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th></tr></thead>
@@ -147,7 +147,7 @@
 <p>Firefox keeps itself up to date. Alpine rebuilds it for every Firefox release, about every four weeks, and sooner for security fixes. Every 10 days, starting Firefox also checks for a newer build. If there is one, Lepton downloads it in the background, next to the one you're using. The next time you start Firefox, the new version takes over before the window opens. If its setup fails, the old version stays.</p>
 <p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
 <p>Alpine updates Firefox only in its current release, so when Alpine makes a new stable release (about twice a year), a new Lepton release moves to it.</p>
-<p>When a Lepton release adds packages to Firefox (as when FFmpeg was added for H.264 video), Firefox doesn't wait for the 10 days: its next start downloads them in the background, and the start after that uses them. <code>sudo app update firefox</code>, with Firefox closed, does it at once.</p>
+<p>When a Lepton release adds packages to Firefox (as when FFmpeg was added for H.264 video, or the fonts for Asian languages), Firefox doesn't wait for the 10 days: its next start downloads them in the background, and the start after that uses them. <code>sudo app update firefox</code>, with Firefox closed, does it at once.</p>
 <p>If Firefox is broken or won't start, <code>sudo app reinstall firefox</code>, with Firefox closed, downloads and sets up all of its packages again. Your profile (bookmarks, history, logins) is in your home and stays as it is.</p>
 <h2 id="whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere<a class="anchor" href="#whats-different-from-firefox-elsewhere" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -157,7 +157,7 @@
 <ul>
 <li>It draws with the CPU: the VM has no GPU, and the GPU drivers are not installed.</li>
 <li>Video plays in every common format: WebM, VP9 and AV1 with Firefox's own decoders, and MP4 (H.264 video, AAC sound: TikTok, LinkedIn, Instagram and many news sites) through Alpine's FFmpeg, which comes with Firefox. The CPU decodes it, so a large video can stutter in a small VM. OpenH264, the H.264 plugin Firefox downloads by itself, is turned off: Mozilla's build of it needs glibc, so on Lepton it crashed (&quot;gmpopenh264 crashed&quot;) whenever a page used it. Video calls use VP8 or VP9 instead.</li>
-<li>Fonts are DejaVu, which has no Chinese, Japanese or Korean characters.</li>
+<li>Fonts cover the world's common scripts: DejaVu for Latin, Greek and Cyrillic; Noto Sans and Serif CJK for Chinese (Simplified and Traditional), Japanese and Korean; Droid's non-Latin fonts for Thai, Hindi and other Devanagari languages, Tamil, Arabic, Hebrew, Georgian, Armenian and Ethiopic; and Noto for Bengali, Khmer, Lao and Myanmar. These are most of the download's size (about 105 MB). A page in a script none of them has (Sinhala, Telugu or Tibetan, for example) shows boxes for its letters.</li>
 <li>Its clipboard is Lepton's: copy in Firefox and <code>pbpaste</code> (or Ctrl+Shift+V in a terminal window), or <code>pbcopy</code> and paste in Firefox. See <a href="desktop.html#the-clipboard">The desktop</a>.</li>
 <li>When memory runs short, it unloads tabs you haven't used for a while, and if that isn't enough, Lepton stops the largest tab (it shows as crashed; reload it). See <a href="system.html#when-memory-runs-out">When memory runs out</a>.</li>
 <li>Drag a tab along the tab bar to move it (drop it onto another tab to group them, or at the far left to pin it).</li>
@@ -173,7 +173,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@b429e8f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@5423c74. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
