@@ -139,6 +139,21 @@
 <p>Super (the Windows/Command key) works in place of Alt where the VM passes it through.</p>
 <h2 id="terminal-windows">Terminal windows<a class="anchor" href="#terminal-windows" aria-label="Link to this section">#</a></h2>
 <p>A terminal window runs <code>lsh</code> with your account, as your console does. Everything that works in a terminal works there, including <code>le</code>, <code>tmux</code> and the colours of your prompt. Resizing a window changes its rows and columns. Typing <code>exit</code> closes the window. Closing the window ends its shell and everything running in it, as closing a terminal does on Unix: close the System Monitor and its <code>top</code> stops too. Apps such as Firefox keep running. <strong>Ctrl+Shift+V</strong> pastes the clipboard.</p>
+<h2 id="opening-files">Opening files<a class="anchor" href="#opening-files" aria-label="Link to this section">#</a></h2>
+<p><code>open</code> (also <code>xdg-open</code>, as your dotfiles call it on Linux) opens files, folders and web addresses in the app for them:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>What</th><th>Opens in</th></tr></thead>
+<tbody>
+<tr><td>text: notes, code, configuration, any file that is UTF-8 text</td><td><code>le</code>, in the terminal you ran <code>open</code> in</td></tr>
+<tr><td>images (PNG, JPEG, GIF, WebP, SVG, ...) and PDFs</td><td><a href="apps.html">Firefox</a></td></tr>
+<tr><td>a folder, such as <code>open .</code></td><td>Firefox, as a list of its files</td></tr>
+<tr><td>a web address (<code>https://...</code>)</td><td>Firefox</td></tr>
+</tbody></table></div>
+<pre><code class="language-sh">open notes.txt          # edit it in le
+open photo.jpg paper.pdf
+open .                  # the current folder, in Firefox
+xdg-open https://trylepton.app</code></pre>
+<p>Firefox needs the desktop (<code>photon</code> or <code>classic</code>). Several files can be given at once: the text files open together in one <code>le</code>, and everything else opens in Firefox. <code>open</code> recognises a file by its contents as well as its name, so an image without an extension still opens in Firefox. Files that are neither text nor anything Firefox shows (programs, archives) aren't opened.</p>
 <h2 id="the-clipboard">The clipboard<a class="anchor" href="#the-clipboard" aria-label="Link to this section">#</a></h2>
 <p>Photon's windows share Lepton's clipboard, the one <code>pbcopy</code> and <code>pbpaste</code>, tmux's copy mode and the editor's yanks use (see <a href="system.html#clipboard">System</a>):</p>
 <ul>
@@ -197,16 +212,18 @@ photon stop                 # quit</code></pre>
 <tbody>
 <tr><td><a href="commands.html#cmd-photon"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></td></tr>
 <tr><td><a href="commands.html#cmd-classic"><code>classic</code></a></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
+<tr><td><a href="commands.html#cmd-open"><code>open</code></a></td><td>open files, folders and web addresses in the right app: text in le; images, PDFs, folders and pages in Firefox</td><td><code>open FILE|DIR|URL...</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@8709da4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@022133e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#keys-and-the-mouse">Keys and the mouse</a></li>
           <li><a href="#terminal-windows">Terminal windows</a></li>
+          <li><a href="#opening-files">Opening files</a></li>
           <li><a href="#the-clipboard">The clipboard</a></li>
           <li><a href="#drag-and-drop">Drag and drop</a></li>
           <li><a href="#the-classic-desktop">The classic desktop</a></li>
