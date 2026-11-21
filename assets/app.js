@@ -22,9 +22,9 @@
   // Output below is what Lepton actually prints for these commands.
   const prompt = [["g", "root"], ["", " on "], ["b", "lepton"], ["", " at "], ["b", " ~"], ["", "\n"], ["g", "❯ "]];
   const session = [
-    { out: [["m", "[lepton] Lepton OS 0.1.0 booting on Linux 6.18.63-0-virt\n[lepton] userland up in 97 ms\n\n"],
+    { out: [["m", "[lepton] Lepton OS 1.0.0 booting on Linux 6.18.63-0-virt\n[lepton] userland up in 97 ms\n\n"],
             ["", "  "], ["b", "Lepton OS"], ["", " - a Unix-like operating system written in Elixir\n\n"]] },
-    { cmd: "uname -a", out: [["", "Linux lepton 6.18.63-0-virt Lepton 0.1.0 (Elixir 1.20.5, OTP 29) aarch64 Lepton\n"]] },
+    { cmd: "uname -a", out: [["", "Linux lepton 6.18.63-0-virt Lepton 1.0.0 (Elixir 1.20.5, OTP 29) aarch64 Lepton\n"]] },
     { cmd: "ip addr | grep inet", out: [["", "    inet 10.0.2.15/24 scope global dynamic eth0\n    inet 127.0.0.1/8 scope host lo\n"]] },
     { cmd: "git --version", out: [["", "git version 2.45.0 (lepton, Elixir 1.20.5)\n"]] },
     { cmd: "lpm list", out: [["", "decimal                  2.4.1\n"]] },
