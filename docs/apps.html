@@ -148,6 +148,7 @@
 <p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
 <p>Alpine updates Firefox only in its current release, so when Alpine makes a new stable release (about twice a year), a new Lepton release moves to it.</p>
 <p>When a Lepton release adds packages to Firefox (as when FFmpeg was added for H.264 video), Firefox doesn't wait for the 10 days: its next start downloads them in the background, and the start after that uses them. <code>sudo app update firefox</code>, with Firefox closed, does it at once.</p>
+<p>If Firefox is broken or won't start, <code>sudo app reinstall firefox</code>, with Firefox closed, downloads and sets up all of its packages again. Your profile (bookmarks, history, logins) is in your home and stays as it is.</p>
 <h2 id="whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere<a class="anchor" href="#whats-different-from-firefox-elsewhere" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>Print</strong> lists Lepton's <a href="printing.html">printers</a>, and prints to them.</li>
@@ -167,12 +168,12 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-app"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | update [NAME] | remove NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-app"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | reinstall NAME | update [NAME] | remove NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-firefox"><code>firefox</code></a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7663fb0. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@0939dc7. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

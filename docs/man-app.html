@@ -121,7 +121,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>app</code> - native Linux apps (from Alpine's packages): list, install, update, remove</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>app [list] | install NAME | update [NAME] | remove NAME</code></pre>
+<pre><code>app [list] | install NAME | reinstall NAME | update [NAME] | remove NAME</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Install, update and remove native Linux apps, built from Alpine Linux's packages: <code>firefox</code> and <code>bluetooth</code>. Apps live on the data partition of an installed system. Listing is for everyone; the other commands take <code>sudo</code>.</p>
 <h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
@@ -129,17 +129,19 @@
 <li><code>app</code>, <code>app list</code>: the apps, with whether and which version is installed.</li>
 <li><code>install NAME</code>: download and install an app.</li>
 <li><code>update [NAME]</code>: update an app (all installed apps with no NAME) to the latest packages.</li>
+<li><code>reinstall NAME</code>: download and set up all of an app's packages again, for an app that is broken or won't start. Close the app first. Your settings (Firefox's profile, in your home) are kept.</li>
 <li><code>remove NAME</code>: remove an app.</li>
 </ul>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">app
 sudo app install firefox
-sudo app update</code></pre>
+sudo app update
+sudo app reinstall firefox</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
 <p><a href="man-firefox.html">firefox(1)</a>, <a href="man-bluetooth.html">bluetooth(1)</a>, <a href="man-lpm.html">lpm(1)</a>, <a href="https://trylepton.app/docs/apps.html">https://trylepton.app/docs/apps.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7663fb0. <a href="https://github.com/danieljaouen/lepton/blob/main/man/app.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@0939dc7. <a href="https://github.com/danieljaouen/lepton/blob/main/man/app.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
