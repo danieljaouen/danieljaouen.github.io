@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>vault(1) - Lepton OS docs</title>
+  <meta name="description" content="the password manager: logins, notes and cards in an encrypted vault">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="vault1">vault(1)<a class="anchor" href="#vault1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>vault</code> - the password manager: logins, notes and cards in an encrypted vault</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>vault [status] | init | unlock [-t MIN] | lock | list [-t TAG] [QUERY] | show [-r] ITEM | get ITEM [FIELD] | copy ITEM [FIELD] | otp ITEM | add [-k KIND] [-g] [-n LEN] [-p] TITLE [FIELD=VALUE...] | edit [-g] [-p] ITEM [FIELD=VALUE...] | rm ITEM | generate [-n LEN] [-S] [-c] | audit | passwd | import FILE | export [--csv] | gui</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>A password manager. It keeps logins, secure notes and cards in a vault, encrypted with a master password: AES-256-GCM, with the key made by PBKDF2-HMAC-SHA256 (600,000 iterations). The classic desktop's <strong>Passwords</strong> window works on the same vault, and unlocking it in one unlocks it in the other.</p>
+<p>When the vault is locked, <code>vault</code> asks for the master password first. It reads it from the terminal, or, with no terminal, as the first line of standard input. The vault locks itself after 10 minutes without use.</p>
+<p>To name an ITEM, give its title, the start of its ID (from <code>vault list</code>), or any part of its title that matches only that item.</p>
+<p>FIELD=VALUE sets a field, and <code>FIELD=</code> removes it. Each kind has its own fields:</p>
+<ul>
+<li>a login: <code>username</code>, <code>password</code>, <code>url</code>, <code>otp</code> (a TOTP secret or an <code>otpauth://</code> link) and <code>notes</code>;</li>
+<li>a card: <code>cardholder</code>, <code>number</code>, <code>expiry</code>, <code>code</code> and <code>notes</code>;</li>
+<li>a note: <code>notes</code>.</li>
+</ul>
+<p>Any other name makes a new field. <code>tags=</code> takes a list separated by commas, and <code>favorite=true</code> lists an item first.</p>
+<h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>status</code> (or nothing): where the vault is, and whether it is unlocked.</li>
+<li><code>init</code>: make a vault, choosing the master password.</li>
+<li><code>unlock [-t MIN]</code>: unlock the vault until it goes MIN minutes without use (default 10). With 0, it stays unlocked until <code>vault lock</code>.</li>
+<li><code>lock</code>: lock it now.</li>
+<li><code>list [-t TAG] [QUERY]</code> (also <code>ls</code>): the items, or only those that match QUERY or are tagged TAG.</li>
+<li><code>show [-r] ITEM</code>: an item's fields, with secrets as stars unless you give <code>-r</code>.</li>
+<li><code>get ITEM [FIELD]</code>: print a field (by default, the password). <code>get ITEM otp</code> prints the current one-time code.</li>
+<li><code>copy ITEM [FIELD]</code>: put a field on the clipboard. It is taken off again after 45 seconds.</li>
+<li><code>otp ITEM</code>: print the current one-time code.</li>
+<li><code>add [-k KIND] [-g] [-n LEN] [-p] [-S] TITLE [FIELD=VALUE...]</code>: add an item. KIND is <code>login</code> (the default), <code>note</code> or <code>card</code>. A login gets a generated password unless you give <code>-p</code> or <code>password=</code>.</li>
+<li><code>edit [-g] [-n LEN] [-p] [-S] ITEM FIELD=VALUE...</code>: change an item. The old password is kept in the item's history.</li>
+<li><code>rm ITEM</code> (also <code>delete</code>): delete an item.</li>
+<li><code>generate [-n LEN] [-S] [-c]</code> (also <code>gen</code>): print a random password, or copy it with <code>-c</code>.</li>
+<li><code>audit</code>: list weak and reused passwords. Exits 1 if it finds any.</li>
+<li><code>passwd</code>: change the master password.</li>
+<li><code>import FILE</code>: add the items from a CSV export (1Password, Bitwarden, Chrome, Firefox, Safari or LastPass) or from <code>vault export</code> (JSON). With <code>-</code> as FILE, it reads standard input.</li>
+<li><code>export [--csv]</code>: write every item to standard output, as JSON or CSV. The export isn't encrypted.</li>
+<li><code>gui</code>: open the Passwords window (on the desktop).</li>
+</ul>
+<h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>-g</code>: give the item a generated password.</li>
+<li><code>-n LEN</code>: the generated password's length (default 20).</li>
+<li><code>-S</code>: leave symbols out of the generated password.</li>
+<li><code>-p</code>: ask for the password.</li>
+<li><code>-k KIND</code>: the kind of a new item.</li>
+<li><code>-r</code>: show secrets.</li>
+<li><code>-t TAG</code> (with <code>list</code>): only items with this tag.</li>
+<li><code>-t MIN</code> (with <code>unlock</code>): the minutes without use before it locks.</li>
+</ul>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">vault init
+vault add GitHub username=dan url=https://github.com
+vault copy github
+vault edit github otp=JBSWY3DPEHPK3PXP
+vault otp github
+git clone https://dan:$(vault get github)@example.com/repo.git
+vault import ~/Downloads/1password.csv
+vault audit</code></pre>
+<h2 id="environment">ENVIRONMENT<a class="anchor" href="#environment" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>VAULT_FILE</code>: use this vault file instead of <code>~/.vault/vault</code>.</li>
+</ul>
+<h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>~/.vault/vault</code>: the vault (only you can read it).</li>
+<li><code>~/.vault/vault.old</code>: the version from before the last change.</li>
+</ul>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-pbcopy.html">pbcopy(1)</a>, <a href="https://trylepton.app/docs/passwords.html">https://trylepton.app/docs/passwords.html</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@8709da4. <a href="https://github.com/danieljaouen/lepton/blob/main/man/vault.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#commands">COMMANDS</a></li>
+          <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
+          <li><a href="#environment">ENVIRONMENT</a></li>
+          <li><a href="#files">FILES</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
