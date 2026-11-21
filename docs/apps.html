@@ -128,6 +128,7 @@
 <p>The first time, a terminal window shows Firefox being installed, then Firefox opens. Installing needs root, so as your own user the window asks for your password (<code>sudo</code>). You can also install it ahead of time:</p>
 <pre><code class="language-sh">sudo app install firefox</code></pre>
 <p>Firefox runs on Photon, Lepton's Wayland compositor, so it needs the desktop (<code>photon</code> or <code>classic</code>). It shows Photon's window frame instead of drawing its own. Its output goes to <code>~/.cache/lepton/firefox.log</code>.</p>
+<p>Once Firefox is running, <code>firefox URL</code>, and <a href="desktop.html#opening-files"><code>open</code></a> for a page, image, PDF or folder, opens a new tab in it instead of starting another Firefox. Firefox passes these on over a D-Bus session bus, which Lepton starts with Firefox (at <code>$XDG_RUNTIME_DIR/bus</code>) and stops when it closes. A Firefox installed before the bus came with it gets <code>dbus</code> with its next update. If a Firefox started without the bus is still open, <code>firefox URL</code> says so: close it and start it again.</p>
 <p>Firefox runs as you: as your account's user ID, with its profile in your home (<code>~/.config/mozilla</code>). You don't need <code>sudo</code>, and Firefox refuses to run as root in your home anyway. <code>sudo firefox</code> runs it as root, with root's own profile in <code>/root</code>.</p>
 <h2 id="what-gets-installed">What gets installed<a class="anchor" href="#what-gets-installed" aria-label="Link to this section">#</a></h2>
 <p><code>app install firefox</code> reads the package index of <a href="https://alpinelinux.org/">Alpine Linux</a> 3.24, follows Firefox's dependencies (GTK, fonts, FFmpeg's video decoders, and so on: about 113 packages), downloads them over HTTPS (about 161 MB) and unpacks them into <code>/var/lib/lepton/apps/firefox</code> (about 415 MB). Then it does the setup the packages' install scripts would: GSettings schemas, the MIME database and image loaders. Nothing outside that directory changes, and <code>sudo app remove firefox</code> removes it all.</p>
@@ -171,7 +172,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@022133e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@16983d9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
