@@ -163,9 +163,8 @@ git clone --recurse-submodules https://github.com/danieljaouen/lepton.git
 git clone https://github.com/danieljaouen/danieljaouen.github.io.git
 git clone https://github.com/danieljaouen/lepton.iso.git
 cd lepton
-mix lepton.iso                  # the ISO, from its sources (about 1 GB to download the first time)
-mix lepton.qemu --test          # its self-tests, in a VM
-mix lepton.publish              # the release, and the site</code></pre>
+mix lepton.iso &amp;&amp; mix lepton.qemu --test &amp;&amp; mix lepton.publish</code></pre>
+<p>That builds the ISO from its sources (about 1 GB to download the first time), runs its self-tests in a VM, and only if they pass, publishes the release and the site. Mix runs in a VM of its own, which Lepton treats as a program, not as the OS: Lepton's application started there (to generate the docs) runs as it does on a Mac, without a second copy of the system's services.</p>
 <ul>
 <li>The ISO installs a dotfiles repository into <code>/root</code>: <code>~/.dotfiles</code>, or the one <code>LEPTON_DOTFILES</code> names.</li>
 <li>Publishing needs a GitHub token, in <code>GH_TOKEN</code>, and pushes over HTTPS. Point git at it with a <code>GIT_ASKPASS</code> script that prints <code>x-access-token</code> for the user name and the token for the password.</li>
@@ -186,7 +185,7 @@ mix lepton.publish              # the release, and the site</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7a27783. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@a084958. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
