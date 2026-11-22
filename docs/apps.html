@@ -162,6 +162,7 @@
 <ul>
 <li>It draws with the CPU: the VM has no GPU, and the GPU drivers are not installed.</li>
 <li>Video plays in every common format: WebM, VP9 and AV1 with Firefox's own decoders, and MP4 (H.264 video, AAC sound: TikTok, LinkedIn, Instagram and many news sites) through Alpine's FFmpeg, which comes with Firefox. The CPU decodes it, so a large video can stutter in a small VM. OpenH264, the H.264 plugin Firefox downloads by itself, is turned off: Mozilla's build of it needs glibc, so on Lepton it crashed (&quot;gmpopenh264 crashed&quot;) whenever a page used it. Video calls use VP8 or VP9 instead.</li>
+<li>Speech synthesis (pages reading text aloud through the Web Speech API) is turned off: Lepton has no speech engine for Firefox to use (Speech Dispatcher), so pages that tried it showed &quot;You can't use speech synthesis because the Speech Dispatcher library is missing&quot;.</li>
 <li>Fonts cover the world's common scripts: DejaVu for Latin, Greek and Cyrillic; Noto Sans and Serif CJK for Chinese (Simplified and Traditional), Japanese and Korean; Droid's non-Latin fonts for Thai, Hindi and other Devanagari languages, Tamil, Arabic, Hebrew, Georgian, Armenian and Ethiopic; and Noto for Bengali, Khmer, Lao and Myanmar. These are most of the download's size (about 105 MB). A page in a script none of them has (Sinhala, Telugu or Tibetan, for example) shows boxes for its letters.</li>
 <li>Its clipboard is Lepton's: copy in Firefox and <code>pbpaste</code> (or Ctrl+Shift+V in a terminal window), or <code>pbcopy</code> and paste in Firefox. See <a href="desktop.html#the-clipboard">The desktop</a>.</li>
 <li>When memory runs short, it unloads tabs you haven't used for a while, and if that isn't enough, Lepton stops the largest tab (it shows as crashed; reload it). See <a href="system.html#when-memory-runs-out">When memory runs out</a>.</li>
@@ -178,7 +179,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@4a74b8f. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@c4d37df. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
