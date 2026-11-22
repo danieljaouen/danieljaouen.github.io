@@ -76,6 +76,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -122,7 +123,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 163 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 164 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -302,6 +303,12 @@
 <tr><td><span class="anchor-target" id="cmd-sshd"></span><a href="man-sshd.html"><code>sshd</code></a></td><td>SSH server: log in to Lepton from other machines, with keys only (needs <a href="users.html">sudo</a>)</td><td><code>sshd [-p PORT]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-svc"></span><a href="man-svc.html"><code>svc</code></a> · also <code>systemctl</code></td><td>start, stop and restart long-running services (like systemctl)</td><td><code>svc [list|status|start|stop|restart|enable|disable|logs|cat|new|edit] ...</code></td></tr>
 </tbody></table></div>
+<h2 id="vm">VM<a class="anchor" href="#vm" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-vm"></span><a href="man-vm.html"><code>vm</code></a></td><td>virtual machines: create, start, stop and attach to QEMU guests (like UTM)</td><td><code>vm [list|create|start|stop|console|log|info|set|delete] [NAME] ...</code></td></tr>
+</tbody></table></div>
 <h2 id="printing">Printing<a class="anchor" href="#printing" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -335,7 +342,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@5739aa1.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@e312d00.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -347,6 +354,7 @@
           <li><a href="#development">Development</a></li>
           <li><a href="#administration">Administration</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#vm">VM</a></li>
           <li><a href="#printing">Printing</a></li>
           <li><a href="#desktop">Desktop</a></li>
           <li><a href="#shell-builtins">Shell builtins</a></li>

@@ -76,6 +76,7 @@
           <li><a href="users.html">Users and sudo</a></li>
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -141,6 +142,7 @@
 <li>Packages that rely on Mix-specific features (compile-time config, application callbacks, NIFs) are not supported.</li>
 <li>Native ELF programs can run through a port (standard input and output only, no terminal). For the ones that start others through a shell (Mix's rebar3, PostgreSQL's <code>initdb</code>), <code>/bin/sh</code> is busybox's; at Lepton's prompt the shell is always <code>lsh</code>.</li>
 <li><a href="claude-code.html">Claude Code</a> runs its commands in Alpine's bash, so Lepton's own commands (<code>svc</code>, <code>app</code>, Lepton's <code>git</code>) aren't available to it; it gets a terminal through <code>script</code>.</li>
+<li><a href="virtual-machines.html">Virtual machines</a> are arm64 only, headless (no display), and need nested virtualization (an M3 or later Mac) for full speed.</li>
 <li><code>mix</code> can't build dependencies that compile C code (NIFs with a Makefile, like <code>bcrypt_elixir</code>): Lepton has no C compiler. Use pure-Elixir ones (<code>pbkdf2_elixir</code>), and <code>iex -S mix</code> isn't available.</li>
 <li>The Linux framebuffer console approximates 256-colour themes; a serial console in an xterm-compatible terminal renders them fully.</li>
 </ul>
@@ -148,7 +150,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@5739aa1. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e312d00. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>
