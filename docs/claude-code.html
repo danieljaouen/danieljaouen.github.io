@@ -152,7 +152,11 @@ git diff | claude -p &quot;review this change&quot;</code></pre>
 <li>busybox's versions of the usual Unix programs (<code>ls</code>, <code>grep</code>, <code>sed</code>, <code>find</code>, <code>wget</code> and so on);</li>
 <li>QEMU, once it is installed (<code>sudo app install qemu</code>): with it, in a checkout of Lepton, <code>mix lepton.qemu --test</code> runs Lepton's self-tests in a <a href="virtual-machines.html">virtual machine</a>.</li>
 </ul>
-<p>Lepton's own commands (<code>svc</code>, <code>app</code>, <code>vm</code>, <code>photon</code>, Lepton's <code>git</code>, ...) run in Lepton's VM, which a native program can't reach, so Claude Code can't run them. Run those yourself at Lepton's prompt.</p>
+<p>Lepton's own commands (<code>svc</code>, <code>app</code>, <code>vm</code>, <code>photon</code>, Lepton's <code>git</code>, ...) are functions in Lepton's VM, not programs, so bash can't run them directly. It runs them through <code>lepton</code>:</p>
+<pre><code class="language-sh">lepton svc status
+lepton vm start test
+lepton -c 'vm log test | tail -5'</code></pre>
+<p><code>lepton</code> sends the command line to Lepton, which runs it as you, and prints what it prints. Commands that need a terminal (<code>le</code>, <code>vm console</code>) don't work this way. Claude Code finds <code>lepton</code> on its path and can use it like any other command.</p>
 <p>It runs as you, with your files and your permissions. It can change the files you can change, so review what it proposes, as anywhere.</p>
 <h2 id="how-it-runs">How it runs<a class="anchor" href="#how-it-runs" aria-label="Link to this section">#</a></h2>
 <p>Claude Code's interface needs a real terminal, which a native program on Lepton doesn't get, because Lepton's terminals are Lepton's own. So <code>claude</code> runs it under util-linux's <code>script</code>, which gives it a pseudo-terminal and passes it your keys and its output. When the window changes size, Lepton tells Claude Code. When its output isn't a terminal (<code>claude -p ... | less</code>, or in a script), it runs on plain pipes instead.</p>
@@ -165,7 +169,7 @@ git diff | claude -p &quot;review this change&quot;</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e312d00. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/claude-code.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a27783. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/claude-code.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

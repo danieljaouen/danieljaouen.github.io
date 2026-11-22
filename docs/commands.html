@@ -123,7 +123,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 164 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 165 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -203,6 +203,7 @@
 <tr><td><span class="anchor-target" id="cmd-input"></span><a href="man-input.html"><code>input</code></a></td><td>keyboards, mice, touchpads and tablets: the input devices and what each is</td><td><code>input</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-keys"></span><a href="man-keys.html"><code>keys</code></a></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-kill"></span><a href="man-kill.html"><code>kill</code></a></td><td>send a signal to a process</td><td><code>kill [-9|-STOP|-CONT|-TERM] PID...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-lepton"></span><a href="man-lepton.html"><code>lepton</code></a></td><td>run a Lepton command line; from native programs (Claude Code's bash), /usr/bin/lepton does the same through Lepton's bridge</td><td><code>lepton [-i] COMMAND [ARGS...] | lepton [-i] -c LINE</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsblk"></span><a href="man-lsblk.html"><code>lsblk</code></a></td><td>disks, USB drives and SD cards: partitions, filesystems and where they're mounted</td><td><code>lsblk</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsmod"></span><a href="man-lsmod.html"><code>lsmod</code></a></td><td>show the status of modules in the Linux kernel</td><td><code>lsmod</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-man"></span><a href="man-man.html"><code>man</code></a></td><td>show the manual page for a command</td><td><code>man [-k KEYWORD | -f NAME] [1] NAME</code></td></tr>
@@ -342,7 +343,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@e312d00.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@7a27783.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

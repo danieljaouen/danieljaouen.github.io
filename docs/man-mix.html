@@ -130,7 +130,7 @@
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Run the Mix TASK, Elixir's build tool, as on any other system: in the project in the current directory (the one with <code>mix.exs</code>), as in <code>mix compile</code>, <code>mix test</code> or <code>mix deps.get</code>. <code>mix new NAME</code> creates a project, and <code>mix help</code> lists the tasks.</p>
 <p>Mix runs in an Erlang virtual machine of its own (the image's Erlang and Elixir), not in Lepton's: a project's configuration and dependencies stay its own, and <code>mix phx.server</code> serves a Phoenix app without running it inside the OS. Hex and archives work as usual: <code>mix local.hex</code>, <code>mix archive.install hex phx_new</code>, then <code>mix phx.new NAME</code> (they are kept in <code>~/.mix</code> and <code>~/.hex</code>). Dependencies from Hex need network access; ones that compile C code (NIFs with a Makefile) can't be built, as Lepton has no C compiler.</p>
-<p>Git dependencies (a new Phoenix app has one, <code>heroicons</code>) and Phoenix's live reload need programs Mix runs itself: <code>sudo app install mix-tools</code> installs them (Alpine's git and inotifywait, on Mix's path only; at the prompt, <code>git</code> is still Lepton's). Programs Mix downloads (esbuild, Tailwind) run as they are.</p>
+<p>Git dependencies (a new Phoenix app has one, <code>heroicons</code>) and Phoenix's live reload need programs Mix runs itself: <code>sudo app install mix-tools</code> installs them (Alpine's git, inotifywait, tar, xz and zstd, on Mix's path only; at the prompt, <code>git</code> is still Lepton's). Programs Mix downloads (esbuild, Tailwind) run as they are.</p>
 <p>Mix runs as you, so the files it writes are yours. Lines typed in the terminal go to it, for Mix's questions. <code>C-c</code> stops it, as does stopping the service it runs in (<code>svc stop</code>).</p>
 <p><code>iex -S mix</code> isn't available: <code>iex</code> and <code>elixir</code> evaluate code in Lepton's own VM.</p>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
@@ -141,7 +141,7 @@ mix phx.new myapp &amp;&amp; cd myapp &amp;&amp; mix ecto.create &amp;&amp; mix 
 <p><a href="man-elixir.html">elixir(1)</a>, <a href="man-iex.html">iex(1)</a>, <a href="man-postgresql.html">postgresql(1)</a>, <a href="man-svc.html">svc(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e312d00. <a href="https://github.com/danieljaouen/lepton/blob/main/man/mix.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a27783. <a href="https://github.com/danieljaouen/lepton/blob/main/man/mix.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

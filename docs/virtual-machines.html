@@ -156,11 +156,27 @@ mkdir -p out &amp;&amp; curl -o out/lepton.iso https://github.com/danieljaouen/l
 mix compile
 mix lepton.qemu --test          # the self-test suite, in a VM inside Lepton</code></pre>
 <p>With KVM, the suite takes about as long as it does on the Mac.</p>
+<h2 id="building-and-publishing-lepton-from-lepton">Building and publishing Lepton from Lepton<a class="anchor" href="#building-and-publishing-lepton-from-lepton" aria-label="Link to this section">#</a></h2>
+<p>The whole cycle works inside Lepton, with <code>sudo app install qemu mix-tools</code> (mix-tools brings git, and tar, xz and zstd for the build's sources). Lay the repositories out as on the Mac, side by side:</p>
+<pre><code class="language-sh">cd ~/src
+git clone --recurse-submodules https://github.com/danieljaouen/lepton.git
+git clone https://github.com/danieljaouen/danieljaouen.github.io.git
+git clone https://github.com/danieljaouen/lepton.iso.git
+cd lepton
+mix lepton.iso                  # the ISO, from its sources (about 1 GB to download the first time)
+mix lepton.qemu --test          # its self-tests, in a VM
+mix lepton.publish              # the release, and the site</code></pre>
+<ul>
+<li>The ISO installs a dotfiles repository into <code>/root</code>: <code>~/.dotfiles</code>, or the one <code>LEPTON_DOTFILES</code> names.</li>
+<li>Publishing needs a GitHub token, in <code>GH_TOKEN</code>, and pushes over HTTPS. Point git at it with a <code>GIT_ASKPASS</code> script that prints <code>x-access-token</code> for the user name and the token for the password.</li>
+<li>Commits need your name and email: <code>GIT_AUTHOR_NAME</code>, <code>GIT_AUTHOR_EMAIL</code> (and <code>GIT_COMMITTER_...</code>), or <code>user.name</code> and <code>user.email</code> in <code>~/.gitconfig</code>.</li>
+<li>On the live ISO all of this is kept in memory: give the VM 6 GB or more.</li>
+</ul>
 <h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>No display: machines run on their serial consoles. Lepton as a guest works fully there; a desktop guest's screen isn't shown.</li>
 <li>arm64 guests only (<code>qemu-system-aarch64</code>).</li>
-<li><code>vm</code> is Lepton's own command, so Claude Code can't run it. It can run QEMU itself, and <code>mix lepton.qemu</code>.</li>
+<li><code>vm</code> is Lepton's own command: native programs, Claude Code's bash among them, run it as <code>lepton vm ...</code>; <code>vm console</code> needs a terminal.</li>
 </ul>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -170,7 +186,7 @@ mix lepton.qemu --test          # the self-test suite, in a VM inside Lepton</co
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e312d00. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a27783. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -178,6 +194,7 @@ mix lepton.qemu --test          # the self-test suite, in a VM inside Lepton</co
           <li><a href="#at-full-speed-nested-virtualization">At full speed: nested virtualization</a></li>
           <li><a href="#managing-machines">Managing machines</a></li>
           <li><a href="#testing-lepton-inside-lepton">Testing Lepton inside Lepton</a></li>
+          <li><a href="#building-and-publishing-lepton-from-lepton">Building and publishing Lepton from Lepton</a></li>
           <li><a href="#limits">Limits</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>
