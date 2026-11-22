@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Claude Code - Lepton OS docs</title>
+  <meta name="description" content="Run Claude Code, Anthropic's coding agent, on Lepton: install it with one command, log in, and let it work on your projects with bash, git, ripgrep, mix and elixir.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="claude-code.html" aria-current="page">Claude Code</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="claude-code">Claude Code<a class="anchor" href="#claude-code" aria-label="Link to this section">#</a></h1>
+<p><a href="https://code.claude.com/docs">Claude Code</a> is Anthropic's coding agent for the terminal: you ask it in plain words to explain, change or test your code, and it reads files, edits them and runs commands to do it. It runs on Lepton.</p>
+<p>Claude Code isn't open source, so it isn't part of Lepton. Lepton downloads Anthropic's own build for Linux on arm64 from Anthropic, the way Anthropic's installer does, and checks it against the release's checksum. Using it is subject to Anthropic's terms, and needs a Claude account (Pro, Max, Team or Enterprise) or an Anthropic Console account.</p>
+<h2 id="install-it">Install it<a class="anchor" href="#install-it" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">sudo claude-code install</code></pre>
+<p>This installs two things:</p>
+<ol>
+<li>the programs Claude Code expects of a Linux system, from Alpine: bash, git, ripgrep and util-linux (33 packages, about 14 MB to download, 39 MB installed);</li>
+<li>Claude Code itself, Anthropic's <code>linux-arm64-musl</code> build of the latest release (about 365 MB), in <code>/var/lib/lepton/claude-code</code>.</li>
+</ol>
+<p>On an installed system both are kept on the data partition. On the live ISO they are kept in memory, so give the VM at least 4 GB, and they are gone after a reboot.</p>
+<pre><code class="language-sh">claude-code                 # installed? which version?
+sudo claude-code update     # the latest release
+sudo claude-code remove     # remove it (your ~/.claude is kept)</code></pre>
+<p>Claude Code doesn't update itself on Lepton: <code>sudo claude-code update</code> does. <code>claude update</code> just says so.</p>
+<h2 id="use-it">Use it<a class="anchor" href="#use-it" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">cd ~/src/myapp
+claude</code></pre>
+<p>The first time, it asks you to pick a text style and to log in: choose your Claude account or a Console account, and it shows a link. Open the link in a browser: <a href="apps.html">Firefox</a> on Lepton's desktop, or on your Mac. Sign in, and paste the code you get back into Claude Code. Your login and settings are kept in <code>~/.claude</code>, as on any other system. Instead of logging in, you can set <code>ANTHROPIC_API_KEY</code>.</p>
+<p>Everything else works as Claude Code's documentation describes: type what you want, <code>/help</code> for its commands, <code>Esc</code> to interrupt it, <code>C-c</code> twice to quit. For one question without the interface, use print mode:</p>
+<pre><code class="language-sh">claude -p &quot;what does lib/myapp/accounts.ex do?&quot;
+git diff | claude -p &quot;review this change&quot;</code></pre>
+<h2 id="the-commands-it-runs">The commands it runs<a class="anchor" href="#the-commands-it-runs" aria-label="Link to this section">#</a></h2>
+<p>Claude Code runs commands in <strong>bash</strong>, Alpine's, not in Lepton's shell. There it has:</p>
+<ul>
+<li>bash, git, ripgrep (<code>rg</code>) and util-linux;</li>
+<li><code>mix</code> and <code>elixir</code>, the image's Elixir and Erlang, each in a VM of its own, as Lepton's own <a href="phoenix.html"><code>mix</code></a> runs: <code>mix test</code>, <code>mix compile</code> and <code>mix phx.server</code> work;</li>
+<li>busybox's versions of the usual Unix programs (<code>ls</code>, <code>grep</code>, <code>sed</code>, <code>find</code>, <code>wget</code> and so on).</li>
+</ul>
+<p>Lepton's own commands (<code>svc</code>, <code>app</code>, <code>photon</code>, Lepton's <code>git</code>, ...) run in Lepton's VM, which a native program can't reach, so Claude Code can't run them. Run those yourself at Lepton's prompt.</p>
+<p>It runs as you, with your files and your permissions. It can change the files you can change, so review what it proposes, as anywhere.</p>
+<h2 id="how-it-runs">How it runs<a class="anchor" href="#how-it-runs" aria-label="Link to this section">#</a></h2>
+<p>Claude Code's interface needs a real terminal, which a native program on Lepton doesn't get, because Lepton's terminals are Lepton's own. So <code>claude</code> runs it under util-linux's <code>script</code>, which gives it a pseudo-terminal and passes it your keys and its output. When the window changes size, Lepton tells Claude Code. When its output isn't a terminal (<code>claude -p ... | less</code>, or in a script), it runs on plain pipes instead.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-claude"><code>claude</code></a></td><td>Claude Code, Anthropic's coding agent (install it with: sudo claude-code install)</td><td><code>claude [OPTIONS] [PROMPT] | claude -p PROMPT</code></td></tr>
+<tr><td><a href="commands.html#cmd-claude-code"><code>claude-code</code></a></td><td>install, update, remove or show Claude Code (Anthropic's build, downloaded from Anthropic)</td><td><code>claude-code [status] | install | update | remove</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@5739aa1. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/claude-code.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#install-it">Install it</a></li>
+          <li><a href="#use-it">Use it</a></li>
+          <li><a href="#the-commands-it-runs">The commands it runs</a></li>
+          <li><a href="#how-it-runs">How it runs</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
