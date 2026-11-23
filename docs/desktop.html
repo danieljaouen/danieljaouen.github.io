@@ -138,6 +138,9 @@
 <tr><td>Alt+Shift+Right / Left</td><td>move the window to the next / previous <a href="usb.html">display</a></td></tr>
 <tr><td>Super+Space</td><td>the next input source: keyboard layout or Korean (<a href="keyboard.html">Languages and keyboards</a>)</td></tr>
 <tr><td>the volume keys</td><td>mute, quieter, louder (<a href="sound.html">Sound</a>)</td></tr>
+<tr><td>Print, or Super+Shift+3</td><td><a href="#screenshots">screenshot</a> of the whole desktop</td></tr>
+<tr><td>Alt+Print, or Super+Shift+5</td><td>screenshot of the focused window</td></tr>
+<tr><td>Shift+Print, or Super+Shift+4</td><td>screenshot of a region: drag it, or click a window</td></tr>
 <tr><td>Ctrl+Alt+Backspace</td><td>quit Photon</td></tr>
 <tr><td>click a window</td><td>focus it and bring it to the front</td></tr>
 <tr><td>drag the title bar (or Alt+drag anywhere)</td><td>move the window</td></tr>
@@ -175,8 +178,23 @@ xdg-open https://trylepton.app</code></pre>
 photon term le notes.txt    # a window running a command
 photon info                 # the display, clients and windows
 photon display mirror       # with two displays: mirror them (or extend)
-photon screenshot shot.png  # save the screen as a PNG
 photon stop                 # quit</code></pre>
+<h2 id="screenshots">Screenshots<a class="anchor" href="#screenshots" aria-label="Link to this section">#</a></h2>
+<p><strong>Print</strong> saves a screenshot of the whole desktop in <code>~/Pictures</code>, named for the time (<code>Screenshot-2026-11-23-153005.png</code>), and a notice at the top right says where it went. <strong>Alt+Print</strong> takes just the focused window, with its title bar, and <strong>Shift+Print</strong> lets you pick a region: drag a rectangle, or click a window to take that window (Esc cancels). Without a Print key (a Mac's keyboard), <strong>Super+Shift+3</strong>, <strong>4</strong> and <strong>5</strong> do the same, as on a Mac: whole desktop, region, window. In UTM, macOS keeps Command+Shift+3 and 4 for itself unless UTM captures the keyboard; the <code>screenshot</code> command works either way.</p>
+<p>From a shell, <code>screenshot</code> does the same, with a delay and a file name if you want them:</p>
+<pre><code class="language-sh">screenshot                  # the whole desktop, into ~/Pictures
+screenshot -w               # the focused window
+screenshot -s shot.png      # pick a region (or click a window), save it as shot.png
+screenshot -d 5             # wait five seconds first (to open a menu, say)
+screenshot -g 0,0,800x600   # a rectangle: X,Y,WIDTHxHEIGHT
+screenshot -D 2             # the second display</code></pre>
+<p>Screenshots are PNG files, and are yours (not root's), like any file you make. The pointer and the screenshot notice are left out.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-screenshot"><code>screenshot</code></a></td><td>save a screenshot of the desktop, a window or a region as a PNG (default: in ~/Pictures)</td><td><code>screenshot [-w | -s | -g X,Y,WxH | -D N] [-d SECONDS] [FILE.png]</code></td></tr>
+</tbody></table></div>
 <h2 id="the-classic-desktop">The classic desktop<a class="anchor" href="#the-classic-desktop" aria-label="Link to this section">#</a></h2>
 <p>For something more familiar, type <code>classic</code> instead of <code>photon</code>. It's Photon with a different window manager, styled after Windows 95:</p>
 <ul>
@@ -226,7 +244,7 @@ photon stop                 # quit</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@86d7780. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3505ef1. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/desktop.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -236,6 +254,8 @@ photon stop                 # quit</code></pre>
           <li><a href="#opening-files">Opening files</a></li>
           <li><a href="#the-clipboard">The clipboard</a></li>
           <li><a href="#drag-and-drop">Drag and drop</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
           <li><a href="#the-classic-desktop">The classic desktop</a></li>
           <li><a href="#more-than-one-display">More than one display</a></li>
           <li><a href="#wayland">Wayland</a></li>
