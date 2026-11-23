@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>Languages and keyboards - Lepton OS docs</title>
-  <meta name="description" content="Type Korean, Thai, Hindi, Arabic and other languages on the desktop. Choose input sources with keyboard, switch with Super+Space, and compose Hangul in Firefox.">
+  <meta name="description" content="Type accented letters (é ü ñ č) anywhere with Alt, as with Option on a Mac; Korean, Thai, Hindi, Arabic and other languages on the desktop. Choose input sources with keyboard, switch with Super+Space, and compose Hangul in Firefox.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -123,6 +123,47 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="languages-and-keyboards">Languages and keyboards<a class="anchor" href="#languages-and-keyboards" aria-label="Link to this section">#</a></h1>
+<h2 id="accents">Accents<a class="anchor" href="#accents" aria-label="Link to this section">#</a></h2>
+<p>Accented letters type as on a Mac with Option, here <strong>Alt</strong>: an accent key, then the letter. On a Mac (UTM, or SSH from a Terminal set to use Option as Meta), Option is Alt.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Keys</th><th>Text</th></tr></thead>
+<tbody>
+<tr><td>Alt+e, e</td><td>é</td></tr>
+<tr><td>Alt+u, u</td><td>ü</td></tr>
+<tr><td>Alt+n, n</td><td>ñ</td></tr>
+<tr><td><code>Jos</code> Alt+e <code>e</code></td><td>José</td></tr>
+<tr><td>Alt+e, Shift+E</td><td>É</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Key</th><th>Accent</th><th>Letters</th></tr></thead>
+<tbody>
+<tr><td>Alt+e</td><td>acute</td><td>á é í ó ú ý ć ń ś ź</td></tr>
+<tr><td>Alt+`</td><td>grave</td><td>à è ì ò ù</td></tr>
+<tr><td>Alt+i</td><td>circumflex</td><td>â ê î ô û ĉ ŝ</td></tr>
+<tr><td>Alt+u</td><td>umlaut (diaeresis)</td><td>ä ë ï ö ü ÿ</td></tr>
+<tr><td>Alt+n</td><td>tilde</td><td>ã õ ñ</td></tr>
+<tr><td>Alt+h</td><td>háček (caron)</td><td>č š ž ř ě ň ď ť</td></tr>
+<tr><td>Alt+,</td><td>cedilla, ogonek</td><td>ç ş ţ ą ę į ų</td></tr>
+<tr><td>Alt+k</td><td>ring</td><td>å ů</td></tr>
+<tr><td>Alt+m</td><td>macron</td><td>ā ē ī ō ū</td></tr>
+<tr><td>Alt+g</td><td>breve</td><td>ă ğ ŭ</td></tr>
+<tr><td>Alt+z</td><td>dot above</td><td>ż ė ċ ġ</td></tr>
+<tr><td>Alt+=</td><td>double acute</td><td>ő ű</td></tr>
+</tbody></table></div>
+<p>Shift gives the capital. Space, or the accent key again, types the accent itself (¨ ´); a letter it doesn't go on follows it (<code>Alt+e q</code> is ´q). Some characters are one key:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Key</th><th></th><th>Key</th><th></th><th>Key</th><th></th></tr></thead>
+<tbody>
+<tr><td>Alt+c</td><td>ç (Shift: Ç)</td><td>Alt+s</td><td>ß</td><td>Alt+l</td><td>ł (Shift: Ł)</td></tr>
+<tr><td>Alt+a</td><td>å (Shift: Å)</td><td>Alt+o</td><td>ø</td><td>Alt+'</td><td>æ (Shift: Æ)</td></tr>
+<tr><td>Alt+q</td><td>œ (Shift: Œ)</td><td>Alt+!</td><td>¡</td><td>Alt+?</td><td>¿</td></tr>
+<tr><td>Alt+$</td><td>€</td><td>Alt+#</td><td>£</td><td>Alt+*</td><td>°</td></tr>
+<tr><td>Alt+-</td><td>–</td><td>Alt+_</td><td>—</td><td>Alt+;</td><td>…</td></tr>
+<tr><td>Alt+[</td><td>“</td><td>Alt+{</td><td>”</td><td>Alt+] Alt+}</td><td>‘ ’</td></tr>
+<tr><td>Alt+\</td><td>«</td><td>Alt+|</td><td>»</td><td></td><td></td></tr>
+</tbody></table></div>
+<p>They work everywhere you type: the text console, terminal windows, over SSH, in tmux panes, in Claude Code and other programs, and in Firefox's text fields. <code>keyboard accents</code> lists them. A program that uses these Alt keys itself (Claude Code's Alt+T, say) gets them after <code>keyboard accents off</code>; <code>keyboard accents on</code> brings them back. The setting is kept across reboots. Alt keys that Lepton uses (Alt+b, f, d and . in the shell, Alt+v in the pager, Alt+1, 2 and 5 in tmux) stay as they are.</p>
+<h2 id="input-sources">Input sources<a class="anchor" href="#input-sources" aria-label="Link to this section">#</a></h2>
 <p>The desktop types US English until you add other input sources: a keyboard layout (Thai, Hindi, Arabic, ...) or Korean. Add them with <code>keyboard</code>:</p>
 <p>keyboard add ko th keyboard</p>
 <pre><code>* us  English (US)
@@ -135,7 +176,7 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-keyboard"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID...</code></td></tr>
+<tr><td><a href="commands.html#cmd-keyboard"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é)</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off]</code></td></tr>
 </tbody></table></div>
 <h2 id="sources">Sources<a class="anchor" href="#sources" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -173,16 +214,18 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 <h2 id="not-yet">Not yet<a class="anchor" href="#not-yet" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Japanese and Chinese input, which needs converting from kana or pinyin with a dictionary.</li>
-<li>Layouts' AltGr (third level) characters, and dead keys in Lepton's own windows.</li>
+<li>Layouts' AltGr (third level) characters and dead keys (the accents above work in every layout).</li>
 <li>Layouts on the text console (outside the desktop).</li>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@826483a. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4894339. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
+          <li><a href="#accents">Accents</a></li>
+          <li><a href="#input-sources">Input sources</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
           <li><a href="#sources">Sources</a></li>
           <li><a href="#korean">Korean</a></li>
