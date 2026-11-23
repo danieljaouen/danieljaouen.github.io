@@ -207,6 +207,7 @@ svc logs sshd                  # the host key's fingerprint, and the address to 
 <pre><code class="language-sh">ssh alice@192.168.1.23         # a shell on Lepton
 ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></pre>
 <p>The first time, <code>ssh</code> shows Lepton's host key fingerprint. Check it against the one in <code>svc logs sshd</code> before you answer yes.</p>
+<p>The connection's key exchange is post-quantum, <code>mlkem768x25519-sha256</code>, as OpenSSH 10 (the Mac's <code>ssh</code> too) prefers: it doesn't warn that the connection &quot;is not using a post-quantum key exchange algorithm&quot;.</p>
 <ul>
 <li>You log in as one of Lepton's <a href="users.html">accounts</a>, with a key in that account's <code>~/.ssh/authorized_keys</code> (one OpenSSH public key per line; options before the key are allowed and ignored). Root can log in the same way, with <code>/root/.ssh/authorized_keys</code>, which is how to reach the live ISO. An <code>authorized_keys</code> that group or others may write to is ignored.</li>
 <li>A login gets its own terminal, which follows your window's size: <code>le</code>, <code>tmux</code>, <code>top</code> and <code>sudo</code> work as on the console. Closing the connection ends everything the session started.</li>
@@ -233,7 +234,7 @@ ssh alice@192.168.1.23 uptime  # one command; its exit status is ssh's</code></p
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@3505ef1. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@58278d4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/ssh.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
