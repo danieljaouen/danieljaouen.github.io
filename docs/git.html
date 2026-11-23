@@ -139,7 +139,7 @@ cd private-repo &amp;&amp; git push</code></pre>
 	insteadOf = https://github.com/</code></pre>
 <p>GitHub's host key is built in. For other servers, connect once with <code>ssh HOST</code> to check and accept their key (git can't ask).</p>
 <h2 id="gh">gh<a class="anchor" href="#gh" aria-label="Link to this section">#</a></h2>
-<p><code>gh auth login</code> stores a token in the same <code>~/.config/gh/hosts.yml</code> format GitHub's own <code>gh</code> uses (or set <code>GH_TOKEN</code>), and <code>git push</code> over HTTPS uses it. Scopes: <code>repo</code> and <code>read:org</code>, plus <code>admin:public_key</code> for <code>gh ssh-key</code>.</p>
+<p><code>gh auth login</code> stores a token in the same <code>~/.config/gh/hosts.yml</code> format GitHub's own <code>gh</code> uses (or set <code>GH_TOKEN</code>), and git over HTTPS uses it with GitHub: <code>git push</code>, and <code>git clone</code>, <code>fetch</code> and <code>pull</code> of private repositories (only when GitHub asks for it; it is never sent to other hosts). Each user's token and SSH key are their own, in their home directory, from the shell and from <code>le</code>'s magit (<code>P p</code>, <code>F p</code>) alike. Scopes: <code>repo</code> and <code>read:org</code>, plus <code>admin:public_key</code> for <code>gh ssh-key</code>.</p>
 <pre><code class="language-sh">gh auth login
 gh repo view | list | clone OWNER/REPO | create NAME
 gh ssh-key list | add [~/.ssh/id_ed25519.pub] [-t TITLE]
@@ -159,7 +159,7 @@ gh api /user</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@1f59131. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@0926b44. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
