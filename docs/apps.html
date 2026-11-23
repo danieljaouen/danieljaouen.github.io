@@ -172,16 +172,22 @@
 </ul>
 <p>If Firefox hangs, or its window closes but it doesn't finish quitting, starting it again stops what was left behind (it would otherwise say it's already running) and opens a fresh window.</p>
 <p>Firefox plays sound on the <a href="sound.html">sound card</a> Lepton plays on, at the system volume. Set the volume with <code>volume</code>, the volume keys or the classic desktop's speaker.</p>
+<h2 id="spotify-netflix-and-other-drm-sites">Spotify, Netflix and other DRM sites<a class="anchor" href="#spotify-netflix-and-other-drm-sites" aria-label="Link to this section">#</a></h2>
+<p>Spotify's web player, Netflix, Disney+, Amazon Prime Video and other streaming sites play protected music and video, which needs Widevine, a DRM plugin from Google. Firefox downloads it by itself on x86-64 Linux, but Mozilla has no build of it for ARM64, so Lepton gets it for you:</p>
+<p>sudo widevine install</p>
+<p>and restart Firefox. It downloads Google Chrome for ARM64 Linux from Google's repository (about 140 MB), takes Widevine out of it and deletes the rest; Widevine is Google's software, under Google's terms, so it comes from Google rather than with Lepton. <code>widevine</code> says which version you have; <code>sudo widevine update</code> gets a newer one when Chrome has one.</p>
+<p>Widevine is built for glibc, and Lepton's apps use musl: it loads through gcompat (which comes with Firefox), and Lepton resolves the few relocations musl's loader doesn't do when it installs it. DRM is on in Lepton's Firefox, so sites play without asking. A Firefox installed before this needs its new packages first: <code>sudo app update firefox</code>, with Firefox closed.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
 <tr><td><a href="commands.html#cmd-app"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | reinstall NAME | update [NAME] | remove NAME</code></td></tr>
 <tr><td><a href="commands.html#cmd-firefox"><code>firefox</code></a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-widevine"><code>widevine</code></a></td><td>Widevine, the DRM plugin Firefox needs for Spotify, Netflix and other streaming sites</td><td><code>widevine [status] | install | update | remove</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7c3fba3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@705f734. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -190,6 +196,7 @@
           <li><a href="#what-gets-installed">What gets installed</a></li>
           <li><a href="#updates">Updates</a></li>
           <li><a href="#whats-different-from-firefox-elsewhere">What's different from Firefox elsewhere</a></li>
+          <li><a href="#spotify-netflix-and-other-drm-sites">Spotify, Netflix and other DRM sites</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>
       </nav>

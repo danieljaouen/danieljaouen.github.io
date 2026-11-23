@@ -134,6 +134,7 @@
 <p>Firefox is not tied to the terminal it was started from: it keeps running when that window is closed.</p>
 <p>Firefox opens the windows and tabs you had open last time, whether you quit it or powered off or rebooted with it open (it saves them every 5 seconds). Settings &gt; General &gt; &quot;Open previous windows and tabs&quot; turns this off.</p>
 <p>When Firefox is already running, <code>firefox URL</code> opens URL in a new tab of it (and so does <code>open</code>). The running Firefox receives it over a D-Bus session bus that Lepton starts with Firefox and stops when it closes. If a Firefox started without that bus (installed before it came with Firefox) is still open, <code>firefox</code> says to close it and start it again.</p>
+<p>Spotify's web player, Netflix and other streaming sites need Widevine, a DRM plugin from Google: install it with <code>sudo widevine install</code>, and restart Firefox. See <a href="man-widevine.html">widevine(1)</a>.</p>
 <h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>~/.cache/lepton/firefox.log</code>: Firefox's output.</li>
@@ -144,10 +145,10 @@
 <pre><code class="language-sh">firefox
 firefox https://trylepton.app/</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-app.html">app(1)</a>, <a href="man-photon.html">photon(1)</a>, <a href="man-classic.html">classic(1)</a>, <a href="man-www.html">www(1)</a>, <a href="https://trylepton.app/docs/apps.html">https://trylepton.app/docs/apps.html</a></p>
+<p><a href="man-app.html">app(1)</a>, <a href="man-widevine.html">widevine(1)</a>, <a href="man-photon.html">photon(1)</a>, <a href="man-classic.html">classic(1)</a>, <a href="man-www.html">www(1)</a>, <a href="https://trylepton.app/docs/apps.html">https://trylepton.app/docs/apps.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7c3fba3. <a href="https://github.com/danieljaouen/lepton/blob/main/man/firefox.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@705f734. <a href="https://github.com/danieljaouen/lepton/blob/main/man/firefox.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
