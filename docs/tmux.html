@@ -137,6 +137,8 @@
 <p><code>kill-pane</code> ends the pane's shell and everything running in it, background jobs too; <code>kill-session</code> does that for every pane.</p>
 <h2 id="copy-mode">Copy mode<a class="anchor" href="#copy-mode" aria-label="Link to this section">#</a></h2>
 <p><code>prefix [</code> enters vi copy mode: move with the vi keys, <code>v</code> starts a selection and <code>y</code> copies it to the clipboard shared with the editor, <code>pbcopy</code> and <code>pbpaste</code> (and with your computer's clipboard over OSC 52).</p>
+<h2 id="the-mouse">The mouse<a class="anchor" href="#the-mouse" aria-label="Link to this section">#</a></h2>
+<p>With <code>set -g mouse on</code> (as in your tmux.conf), a click selects the pane under it, and programs that ask for the mouse, such as <code>le</code>, get clicks, drags and the wheel in their pane.</p>
 <h2 id="moving-between-the-editor-and-panes">Moving between the editor and panes<a class="anchor" href="#moving-between-the-editor-and-panes" aria-label="Link to this section">#</a></h2>
 <p>With the Spacemacs <strong>tmux layer</strong> enabled, <code>C-h/j/k/l</code> in <code>le</code> moves between editor windows and, at an edge, on to the neighbouring tmux pane.</p>
 <p>Every binding loaded from your configuration is on the <a href="keybindings.html#tmux">key bindings page</a>.</p>
@@ -148,13 +150,14 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@b160efb. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tmux.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ebefc5b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tmux.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#sessions">Sessions</a></li>
           <li><a href="#copy-mode">Copy mode</a></li>
+          <li><a href="#the-mouse">The mouse</a></li>
           <li><a href="#moving-between-the-editor-and-panes">Moving between the editor and panes</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
         </ul>
