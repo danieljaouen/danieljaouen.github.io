@@ -144,6 +144,7 @@ sudo httpd -p 80 -s 443 -r -x http://127.0.0.1:4000   # the app on HTTPS</code><
 <p>A <strong>WebSocket</strong> (Phoenix's LiveView and channels) needs nothing more: <code>httpd</code> passes the upgrade on, and then the connection both ways until either side closes it.</p>
 <h2 id="https">HTTPS<a class="anchor" href="#https" aria-label="Link to this section">#</a></h2>
 <p><code>-s PORT</code> (<code>tls_port =</code>) adds HTTPS on PORT. The certificate is chosen by the name the browser asks for (SNI), from those <code>cert</code> keeps; <code>-c CERT -k KEY</code> give one to use for any name. <code>-r</code> (<code>redirect_https = true</code>) sends plain HTTP to HTTPS. Ports below 1024 (80, 443) need root: run it with <code>sudo</code>, or as a service.</p>
+<p>HTTPS speaks TLS 1.3 and 1.2. Over TLS 1.3 the key exchange is post-quantum, <code>X25519MLKEM768</code>, as current browsers offer it; TLS 1.2, for older clients, has no post-quantum key exchange.</p>
 <h2 id="certificates">Certificates<a class="anchor" href="#certificates" aria-label="Link to this section">#</a></h2>
 <p>Which certificate depends on who will visit:</p>
 <div class="table-wrap"><table>
@@ -246,7 +247,7 @@ root = &quot;/srv/www&quot;</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@58278d4. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/web.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@761476a. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/web.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
