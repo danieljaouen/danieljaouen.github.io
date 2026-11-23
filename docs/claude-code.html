@@ -52,6 +52,7 @@
           <ul>
           <li><a href="getting-started.html">Getting started</a></li>
           <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="accents.html">Typing accents</a></li>
           <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
           <li><a href="limitations.html">Limitations</a></li>
           </ul>
@@ -141,7 +142,7 @@ sudo claude-code remove     # remove it (your ~/.claude is kept)</code></pre>
 <pre><code class="language-sh">cd ~/src/myapp
 claude</code></pre>
 <p>The first time, it asks you to pick a text style and to log in: choose your Claude account or a Console account, and it shows a link. Open the link in a browser: <a href="apps.html">Firefox</a> on Lepton's desktop, or on your Mac. Sign in, and paste the code you get back into Claude Code. Your login and settings are kept in <code>~/.claude</code>, as on any other system. Instead of logging in, you can set <code>ANTHROPIC_API_KEY</code>.</p>
-<p>Everything else works as Claude Code's documentation describes: type what you want, <code>/help</code> for its commands, <code>Esc</code> to interrupt it, <code>C-c</code> twice to quit. Lepton's <a href="keyboard.html#accents">accent keys</a> type in it too (Alt+e e: é); for Claude Code's own Alt shortcuts (Alt+T, Alt+P), turn them off with <code>keyboard accents off</code>. For one question without the interface, use print mode:</p>
+<p>Everything else works as Claude Code's documentation describes: type what you want, <code>/help</code> for its commands, <code>Esc</code> to interrupt it, <code>C-c</code> twice to quit. Lepton's <a href="accents.html">accent keys</a> type in it too (Alt+e e: é); for Claude Code's own Alt shortcuts (Alt+T, Alt+P), turn them off with <code>keyboard accents off</code>. For one question without the interface, use print mode:</p>
 <pre><code class="language-sh">claude -p &quot;what does lib/myapp/accounts.ex do?&quot;
 git diff | claude -p &quot;review this change&quot;</code></pre>
 <h2 id="the-commands-it-runs">The commands it runs<a class="anchor" href="#the-commands-it-runs" aria-label="Link to this section">#</a></h2>
@@ -169,7 +170,7 @@ lepton -c 'vm log test | tail -5'</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@4894339. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/claude-code.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@61e8d4c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/claude-code.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
