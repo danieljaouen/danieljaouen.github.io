@@ -170,7 +170,15 @@
 <p>A folded heading ends in <code>...</code>. <code>j</code> and <code>k</code> step over folded text, and a search (<code>/</code>, <code>n</code>, <code>N</code>) that lands inside a fold opens it. Folds stay put as you edit above or below them; they last until the file is closed. <code>o</code> on a folded heading opens a line below its subtree; <code>O</code> opens one above, at the end of the entry before it, which stays folded. Lines you add while something is folded show until you fold again (<code>zm</code>, <code>TAB</code>).</p>
 <p>Bindings that name commands <code>le</code> doesn't implement are listed as &quot;not supported&quot; by <code>keys</code> and <code>SPC h d b</code>, never silently dropped.</p>
 <h2 id="git-from-the-editor">Git from the editor<a class="anchor" href="#git-from-the-editor" aria-label="Link to this section">#</a></h2>
-<p><code>SPC g s</code> opens a magit-style status buffer: stage with <code>s</code>, unstage with <code>u</code>, commit with <code>c c</code>, push with <code>P p</code>, pull with <code>F p</code>, and stash with <code>Z</code>. <code>s</code> and <code>u</code> take the file under the cursor, or on a section's heading (Unstaged changes, Untracked files, Staged changes) every file in it. As magit does, the status buffer first saves your modified buffers in the repository, so what you typed is what you stage. See <a href="git.html">git and GitHub</a>.</p>
+<p><code>SPC g s</code> opens a magit-style status buffer: stage with <code>s</code>, unstage with <code>u</code>, commit with <code>c c</code>, push with <code>P p</code>, pull with <code>F p</code>, and stash with <code>Z</code>. <code>s</code> and <code>u</code> take the file under the cursor, or on a section's heading (Unstaged changes, Untracked files, Staged changes) every file in it. As magit does, the status buffer first saves your modified buffers in the repository, so what you typed is what you stage.</p>
+<p>To commit, press <code>c c</code> (or <code>c a</code> to amend the last commit): a buffer opens for the message, in insert state. Write it, then finish as in Spacemacs:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Keys</th><th></th></tr></thead>
+<tbody>
+<tr><td><code>, c</code>, <code>, ,</code> or <code>C-c C-c</code> (also <code>:wq</code>, <code>ZZ</code>)</td><td>commit</td></tr>
+<tr><td><code>, k</code>, <code>, a</code> or <code>C-c C-k</code></td><td>cancel</td></tr>
+</tbody></table></div>
+<p><code>C-c C-c</code> and <code>C-c C-k</code> work in insert state too. Either way you are back in the status buffer, with the commit (<code>[main 1a2b3c4] Subject</code>) in the echo area; then <code>P p</code> pushes. See <a href="git.html">git and GitHub</a>.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -179,7 +187,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@6f54c3e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@1f59131. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
