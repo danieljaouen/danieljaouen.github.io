@@ -141,6 +141,14 @@ shasum -a 256 lepton.iso      # compare with the SHA-256 on trylepton.app</code>
 </ol>
 <p>UTM's window shows the console with the default display card (<code>virtio-ramfb</code>); no serial device is needed. Other cards, such as <code>virtio-gpu-pci</code> and <code>ramfb</code>, work too.</p>
 <p>You are logged in as <code>root</code> on the display console (<code>tty1</code>), on the serial port (<code>ttyAMA0</code>) if present, and on <code>hvc0</code> under Apple Virtualization. The network comes up by DHCP in the background.</p>
+<h2 id="on-an-ipad">On an iPad<a class="anchor" href="#on-an-ipad" aria-label="Link to this section">#</a></h2>
+<p>UTM runs on iPads too, but there it can't virtualize: iPadOS doesn't let apps use the processor's virtualization, so UTM emulates the CPU, which is many times slower. Lepton works, but expect minutes where a Mac takes seconds.</p>
+<ol>
+<li><strong>Create a New Virtual Machine → Emulate → Linux</strong>, architecture <strong>ARM64 (aarch64)</strong>, system <strong>QEMU virt</strong>; boot <code>lepton.iso</code>.</li>
+<li>Memory: 2048 MB (the live system runs from RAM; much more than that, and iPadOS may close UTM). Display: the default <code>virtio-ramfb</code>.</li>
+<li>Use UTM with JIT enabled if you can: UTM SE, which has no JIT, is slower still.</li>
+</ol>
+<p>After GRUB's menu, GRUB says what it loads: <strong>Loading Linux</strong>, <strong>Loading the RAM disk</strong> and <strong>Starting Lepton</strong>. The screen then stays as it is until Lepton starts the display driver: be patient. To watch the kernel at work meanwhile, pick the <strong>verbose boot</strong> entry; if something goes wrong early, its message shows there too.</p>
 <h2 id="run-it-with-qemu">Run it with QEMU<a class="anchor" href="#run-it-with-qemu" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">qemu-system-aarch64 -M virt -accel hvf -cpu host -m 2048 \
   -bios /opt/homebrew/share/qemu/edk2-aarch64-code.fd \
@@ -229,13 +237,14 @@ Where should Lepton go?
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@77229ed. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@2fee03c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#download">Download</a></li>
           <li><a href="#run-it-in-utm">Run it in UTM</a></li>
+          <li><a href="#on-an-ipad">On an iPad</a></li>
           <li><a href="#run-it-with-qemu">Run it with QEMU</a></li>
           <li><a href="#install-to-a-disk">Install to a disk</a></li>
           <li><a href="#upgrade-to-a-new-release">Upgrade to a new release</a></li>
