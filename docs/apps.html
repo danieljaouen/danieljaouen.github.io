@@ -168,6 +168,7 @@
 <li>Its clipboard is Lepton's: copy in Firefox and <code>pbpaste</code> (or Ctrl+Shift+V in a terminal window), or <code>pbcopy</code> and paste in Firefox. See <a href="desktop.html#the-clipboard">The desktop</a>.</li>
 <li>When memory runs short, it unloads tabs you haven't used for a while, and if that isn't enough, Lepton stops the largest tab (it shows as crashed; reload it). See <a href="system.html#when-memory-runs-out">When memory runs out</a>.</li>
 <li>Drag a tab along the tab bar to move it (drop it onto another tab to group them, or at the far left to pin it).</li>
+<li>It keeps your tabs: when it starts, it opens the windows and tabs you had open last time, whether you quit it or powered off or rebooted with it open. It saves them every 5 seconds, so only a tab opened in the last moments before a power-off can be missing. <code>poweroff</code> and <code>reboot</code> (and the power button) stop Firefox before writing everything to disk. To start with your home page instead, turn off <strong>Open previous windows and tabs</strong> in Firefox's Settings, under General.</li>
 </ul>
 <p>If Firefox hangs, or its window closes but it doesn't finish quitting, starting it again stops what was left behind (it would otherwise say it's already running) and opens a fresh window.</p>
 <p>Firefox plays sound on the <a href="sound.html">sound card</a> Lepton plays on, at the system volume. Set the volume with <code>volume</code>, the volume keys or the classic desktop's speaker.</p>
@@ -180,7 +181,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@761476a. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7c3fba3. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
