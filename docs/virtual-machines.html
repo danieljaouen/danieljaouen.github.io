@@ -166,7 +166,7 @@ cd lepton
 mix lepton.iso &amp;&amp; mix lepton.qemu --test &amp;&amp; mix lepton.publish</code></pre>
 <p>That builds the ISO from its sources (about 1 GB to download the first time), runs its self-tests in a VM, and only if they pass, publishes the release and the site. Mix runs in a VM of its own, which Lepton treats as a program, not as the OS: Lepton's application started there (to generate the docs) runs as it does on a Mac, without a second copy of the system's services.</p>
 <ul>
-<li>The ISO installs a dotfiles repository into <code>/root</code>: <code>~/.dotfiles</code>, or the one <code>LEPTON_DOTFILES</code> names.</li>
+<li>The ISO installs a dotfiles repository into <code>/root</code>: the one on GitHub (danieljaouen/dotfiles, fetched at each build, so a build here matches one on the Mac), or a local checkout that <code>LEPTON_DOTFILES</code> names.</li>
 <li>Publishing needs a GitHub token, in <code>GH_TOKEN</code>, and pushes over HTTPS. Point git at it with a <code>GIT_ASKPASS</code> script that prints <code>x-access-token</code> for the user name and the token for the password.</li>
 <li>Commits need your name and email: <code>GIT_AUTHOR_NAME</code>, <code>GIT_AUTHOR_EMAIL</code> (and <code>GIT_COMMITTER_...</code>), or <code>user.name</code> and <code>user.email</code> in <code>~/.gitconfig</code>.</li>
 <li>On the live ISO all of this is kept in memory: give the VM 6 GB or more.</li>
@@ -185,7 +185,7 @@ mix lepton.iso &amp;&amp; mix lepton.qemu --test &amp;&amp; mix lepton.publish</
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e515f32. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@1c30bb9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/virtual-machines.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

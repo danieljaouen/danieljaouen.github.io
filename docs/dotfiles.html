@@ -123,7 +123,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="your-dotfiles-applied">Your dotfiles, applied<a class="anchor" href="#your-dotfiles-applied" aria-label="Link to this section">#</a></h1>
-<p>Lepton is configured by a dotfiles repository, read at runtime from the files themselves rather than re-typed. The published ISO is built with <a href="https://github.com/danieljaouen/dotfiles">Daniel Jaouen's dotfiles</a>; build your own image with <code>mix lepton.iso --dotfiles PATH</code>.</p>
+<p>Lepton is configured by a dotfiles repository, read at runtime from the files themselves rather than re-typed. The published ISO is built with <a href="https://github.com/danieljaouen/dotfiles">Daniel Jaouen's dotfiles</a>, as they are on GitHub (the build fetches them); build your own image with <code>mix lepton.iso --dotfiles PATH</code>.</p>
 <p>The build installs the repository into <code>/root</code> following its own <code>locations/</code> convention (<code>*.symlink</code> → <code>~/.name</code>, <code>*.directory.symlink</code> → directories). Each program then reads its native file:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>File</th><th>Read by</th><th>What it gives you</th></tr></thead>
@@ -139,7 +139,7 @@
 <p>Anything Lepton reads but can't apply is reported, never silently dropped: unsupported editor commands show as &quot;not supported&quot; in <code>keys</code>.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e515f32. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/dotfiles.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@1c30bb9. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/dotfiles.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>
