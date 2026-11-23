@@ -153,6 +153,7 @@
 <li>the <code>SPC</code> leader with which-key popups: <code>SPC f f/s</code> files, <code>SPC b b/d</code> buffers, <code>SPC w /,-,d,m</code> windows, <code>SPC g s</code> git, <code>SPC p f</code> project files, <code>SPC s s</code> / <code>SPC /</code> search, <code>SPC t n/r</code> line numbers, <code>SPC x a r</code> align, <code>SPC q q</code> quit, <code>SPC SPC</code> M-x, <code>SPC ?</code> bindings;</li>
 <li>helm-style candidate lists;</li>
 <li>evil operators, motions and text objects with counts and <code>.</code>, visual modes, undo/redo, yank and paste, and splits;</li>
+<li>keyboard macros: <code>q</code> and a register (<code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>) records what you type, <code>q</code> stops (the mode line shows <code>[@q]</code> meanwhile), <code>@q</code> plays it back, <code>@@</code> plays the last one again, and a count repeats it (<code>5@q</code>). <code>qQ</code> (the capital) adds to macro <code>q</code>. Macros last until <code>le</code> quits;</li>
 <li>ex commands: <code>:w :q :wq :e :sp :vsp :s/// :sort :!cmd :r !cmd</code>.</li>
 </ul>
 <h2 id="org-mode-folding">Org mode: folding<a class="anchor" href="#org-mode-folding" aria-label="Link to this section">#</a></h2>
@@ -166,10 +167,10 @@
 <tr><td><code>zr</code> (<code>zR</code>)</td><td>reveal everything</td></tr>
 <tr><td><code>za</code>, <code>zc</code>, <code>zo</code></td><td>toggle, fold or open the heading the cursor is under</td></tr>
 </tbody></table></div>
-<p>A folded heading ends in <code>...</code>. <code>j</code> and <code>k</code> step over folded text, and a search (<code>/</code>, <code>n</code>, <code>N</code>) that lands inside a fold opens it. Folds stay put as you edit above or below them; they last until the file is closed.</p>
+<p>A folded heading ends in <code>...</code>. <code>j</code> and <code>k</code> step over folded text, and a search (<code>/</code>, <code>n</code>, <code>N</code>) that lands inside a fold opens it. Folds stay put as you edit above or below them; they last until the file is closed. <code>o</code> on a folded heading opens a line below its subtree; <code>O</code> opens one above, at the end of the entry before it, which stays folded. Lines you add while something is folded show until you fold again (<code>zm</code>, <code>TAB</code>).</p>
 <p>Bindings that name commands <code>le</code> doesn't implement are listed as &quot;not supported&quot; by <code>keys</code> and <code>SPC h d b</code>, never silently dropped.</p>
 <h2 id="git-from-the-editor">Git from the editor<a class="anchor" href="#git-from-the-editor" aria-label="Link to this section">#</a></h2>
-<p><code>SPC g s</code> opens a magit-style status buffer: stage with <code>s</code>, unstage with <code>u</code>, commit with <code>c c</code>, push with <code>P p</code>, pull with <code>F p</code>, and stash with <code>Z</code>. See <a href="git.html">git and GitHub</a>.</p>
+<p><code>SPC g s</code> opens a magit-style status buffer: stage with <code>s</code>, unstage with <code>u</code>, commit with <code>c c</code>, push with <code>P p</code>, pull with <code>F p</code>, and stash with <code>Z</code>. <code>s</code> and <code>u</code> take the file under the cursor, or on a section's heading (Unstaged changes, Untracked files, Staged changes) every file in it. As magit does, the status buffer first saves your modified buffers in the repository, so what you typed is what you stage. See <a href="git.html">git and GitHub</a>.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -178,7 +179,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@61e8d4c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@6f54c3e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

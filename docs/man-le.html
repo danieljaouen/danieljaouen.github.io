@@ -132,7 +132,7 @@
 <p><code>le</code> is Lepton's text editor, a work-alike of Spacemacs: evil (vi) editing with the <code>SPC</code> leader key. It opens each FILE in a buffer (a new file is created when you save). It also answers to <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code> and <code>edit</code>, so <code>$EDITOR</code> and git's commit messages open it.</p>
 <p><code>le</code> reads your configuration rather than running it: <code>~/.spacemacs</code> and <code>~/.spacemacs.d/</code> are parsed for key bindings (<code>define-key</code>, <code>evil-define-key</code>, <code>global-set-key</code>), variables (<code>setq</code>), aliases and some functions. <code>keys editor</code> lists what was loaded and marks bindings it does not support.</p>
 <h2 id="keys">KEYS<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
-<p>The vi keys work as in Vim: motions, operators and text objects with counts, <code>.</code>, visual modes, <code>u</code> and <code>C-r</code>, registers, splits. Ex commands include <code>:w</code>, <code>:q</code>, <code>:wq</code>, <code>:e FILE</code>, <code>:sp</code>, <code>:vsp</code>, <code>:s/A/B/g</code>, <code>:sort</code>, <code>:!CMD</code> and <code>:r !CMD</code>. Some Spacemacs leader keys:</p>
+<p>The vi keys work as in Vim: motions, operators and text objects with counts, <code>.</code>, visual modes, <code>u</code> and <code>C-r</code>, registers, splits, and keyboard macros (<code>qq</code> ... <code>q</code> records into register q, <code>@q</code> plays it, <code>@@</code> again, <code>5@q</code> five times, <code>qQ</code> appends). Ex commands include <code>:w</code>, <code>:q</code>, <code>:wq</code>, <code>:e FILE</code>, <code>:sp</code>, <code>:vsp</code>, <code>:s/A/B/g</code>, <code>:sort</code>, <code>:!CMD</code> and <code>:r !CMD</code>. Some Spacemacs leader keys:</p>
 <ul>
 <li><code>SPC f f</code> open a file, <code>SPC f s</code> save.</li>
 <li><code>SPC b b</code> switch buffer, <code>SPC b d</code> close buffer.</li>
@@ -154,7 +154,7 @@
 <p><a href="man-keys.html">keys(1)</a>, <a href="man-git.html">git(1)</a>, <a href="man-tmux.html">tmux(1)</a>, <a href="https://trylepton.app/docs/editor.html">https://trylepton.app/docs/editor.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@61e8d4c. <a href="https://github.com/danieljaouen/lepton/blob/main/man/le.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@6f54c3e. <a href="https://github.com/danieljaouen/lepton/blob/main/man/le.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
