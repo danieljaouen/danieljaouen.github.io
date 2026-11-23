@@ -171,9 +171,12 @@
 </ul>
 <h2 id="help-and-information">Help and information<a class="anchor" href="#help-and-information" aria-label="Link to this section">#</a></h2>
 <p><code>help</code> lists every command, and <code>help CMD</code> gives one's usage in a line or two. <code>man CMD</code> shows its manual page: what it does, every option, and examples. Every command has one, and so does each shell builtin (<code>man cd</code>, or <code>man builtins</code> for them all).</p>
+<p>To find the page for something when you don't know the command, <code>apropos</code> searches the pages' names and summaries, and with <code>-t</code> their whole text:</p>
 <pre><code class="language-sh">man ls              # the manual page, in the pager: Space, /search, q to quit
-man -k usb          # pages whose name or summary mentions usb
-man -f grep         # grep's one-line summary
+apropos usb         # pages whose name or summary mentions usb (man -k usb)
+apropos -t &quot;caps lock&quot;  # ... or whose text does, with the words around it
+apropos -a disk usb # pages that mention both
+whatis grep         # grep's one-line summary (man -f grep)
 man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 <p><code>MANWIDTH</code> sets the width pages are laid out at (by default the terminal's, up to 80 columns). The same pages are on this site: <a href="man.html">manual pages</a>.</p>
 <p><code>keys</code> shows the bindings loaded from your dotfiles, <code>neofetch</code> summarises the system, and <code>credits</code> says who made Lepton. The login message and <code>help</code> point here, to <a href="https://trylepton.app/docs/">https://trylepton.app/docs/</a>.</p>
@@ -202,13 +205,15 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 <tr><td><a href="commands.html#cmd-mix"><code>mix</code></a></td><td>Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</td><td><code>mix [TASK [ARGS...]]</code></td></tr>
 <tr><td><a href="commands.html#cmd-help"><code>help</code></a></td><td>list available commands</td><td><code>help [COMMAND]</code></td></tr>
 <tr><td><a href="commands.html#cmd-man"><code>man</code></a></td><td>show the manual page for a command</td><td><code>man [-k KEYWORD | -f NAME] [1] NAME</code></td></tr>
+<tr><td><a href="commands.html#cmd-apropos"><code>apropos</code></a></td><td>search the manual pages' names and summaries (-t: their text too)</td><td><code>apropos [-a] [-t] KEYWORD...</code></td></tr>
+<tr><td><a href="commands.html#cmd-whatis"><code>whatis</code></a></td><td>the one-line summary of a manual page</td><td><code>whatis NAME...</code></td></tr>
 <tr><td><a href="commands.html#cmd-keys"><code>keys</code></a></td><td>show keybindings loaded from the dotfiles</td><td><code>keys [editor|tmux|shell|git]</code></td></tr>
 <tr><td><a href="commands.html#cmd-neofetch"><code>neofetch</code></a></td><td>show system information</td><td><code>neofetch</code></td></tr>
 <tr><td><a href="commands.html#cmd-lepton-test"><code>lepton-test</code></a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0926b44. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e4dd2cc. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

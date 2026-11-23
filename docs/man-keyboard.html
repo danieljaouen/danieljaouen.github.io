@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>keyboard(1) - Lepton OS docs</title>
-  <meta name="description" content="input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é)">
+  <meta name="description" content="input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é); Caps Lock as Ctrl">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -125,9 +125,9 @@
       <article class="prose">
 <h1 id="keyboard1">keyboard(1)<a class="anchor" href="#keyboard1" aria-label="Link to this section">#</a></h1>
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
-<p><code>keyboard</code> - input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é)</p>
+<p><code>keyboard</code> - input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é); Caps Lock as Ctrl</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off]</code></pre>
+<pre><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off] | caps [ctrl | lock]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Choose the input sources you type with on the desktop (Photon): keyboard layouts, and Korean. With more than one, Super+Space (or a click on the classic taskbar's indicator: EN, KO, TH, ...) moves to the next one. The setting is the system's and is kept across reboots.</p>
 <p>The sources:</p>
@@ -137,6 +137,7 @@
 <li><code>th</code> Thai, <code>hi</code> Hindi (InScript), <code>bn</code> Bengali, <code>ta</code> Tamil (InScript), <code>km</code> Khmer, <code>lo</code> Lao, <code>my</code> Burmese, <code>ar</code> Arabic, <code>he</code> Hebrew, <code>vi</code> Vietnamese: the layouts of xkeyboard-config, as on other Linux desktops. At most three besides English.</li>
 </ul>
 <p>Korean composes in programs that take composed text (Firefox and other GTK programs, through Wayland's text-input protocol). In Lepton's own windows (terminal windows, <code>le</code>) the keys stay English: they don't take composed text yet. The other layouts type in every window, and terminal windows show their text (Unifont's glyphs, where Terminus has none).</p>
+<p>Caps Lock can be another Ctrl (<code>keyboard caps ctrl</code>), on the desktop and on the text console (the kernel's keymap, as <code>loadkeys</code> would set it). Kept across reboots. In a VM or over SSH the key comes from the other computer, so make it Ctrl there as well (on a Mac: System Settings, Keyboard, Keyboard Shortcuts, Modifier Keys).</p>
 <p>Accents type everywhere, not only on the desktop (the text console, terminal windows, SSH, tmux, Firefox): Alt and an accent key, then the letter, as with Option on a Mac. Alt+e acute (Alt+e e: é), Alt+<code> grave, Alt+i circumflex, Alt+u umlaut (ü), Alt+n tilde (ñ), Alt+h háček (č), Alt+, cedilla or ogonek (ç ą), Alt+k ring (å), Alt+m macron (ā), Alt+g breve (ă), Alt+z dot above (ż), Alt+= double acute (ő). Shift gives the capital; Space, or the accent key again, the accent alone. One key: Alt+c ç, Alt+s ß, Alt+l ł, Alt+o ø, Alt+' æ, Alt+q œ, Alt+$ €, Alt+# £, and more (</code>keyboard accents`).</p>
 <h2 id="commands">COMMANDS<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -148,6 +149,8 @@
 <li><code>set ID...</code>: use exactly these sources.</li>
 <li><code>accents</code>: the accent keys, and whether they are on.</li>
 <li><code>accents on</code>, <code>accents off</code>: turn them on or off (off: the Alt keys go to programs as they are, for programs that use them). Kept across reboots.</li>
+<li><code>caps</code>: what Caps Lock is.</li>
+<li><code>caps ctrl</code>: make Caps Lock another Ctrl; <code>caps lock</code>: Caps Lock again.</li>
 </ul>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">keyboard add ko
@@ -155,12 +158,13 @@ keyboard set us ko th
 keyboard use ko
 keyboard list
 keyboard accents
-keyboard accents off</code></pre>
+keyboard accents off
+keyboard caps ctrl</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
 <p><a href="man-photon.html">photon(1)</a>, <a href="man-classic.html">classic(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="https://trylepton.app/docs/accents.html">https://trylepton.app/docs/accents.html</a>, <a href="https://trylepton.app/docs/keyboard.html">https://trylepton.app/docs/keyboard.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0926b44. <a href="https://github.com/danieljaouen/lepton/blob/main/man/keyboard.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e4dd2cc. <a href="https://github.com/danieljaouen/lepton/blob/main/man/keyboard.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

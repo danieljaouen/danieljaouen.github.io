@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>Languages and keyboards - Lepton OS docs</title>
-  <meta name="description" content="Type Korean, Thai, Hindi, Arabic and other languages on the desktop. Choose input sources with keyboard, switch with Super+Space, and compose Hangul in Firefox.">
+  <meta name="description" content="Type Korean, Thai, Hindi, Arabic and other languages on the desktop. Choose input sources with keyboard, switch with Super+Space, compose Hangul in Firefox, and make Caps Lock a Ctrl.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -125,6 +125,11 @@
       <article class="prose">
 <h1 id="languages-and-keyboards">Languages and keyboards<a class="anchor" href="#languages-and-keyboards" aria-label="Link to this section">#</a></h1>
 <p>Accented letters (é ü ñ č) type everywhere with Alt, on the console as well as on the desktop: see <a href="accents.html">Typing accents</a>.</p>
+<h2 id="caps-lock-as-ctrl">Caps Lock as Ctrl<a class="anchor" href="#caps-lock-as-ctrl" aria-label="Link to this section">#</a></h2>
+<p>To make Caps Lock another Ctrl, as many Emacs and Vim users do (and as a Mac can, in System Settings: Keyboard, Keyboard Shortcuts, Modifier Keys):</p>
+<p>keyboard caps ctrl</p>
+<p>It works on the desktop, for Photon's shortcuts and every program, and on the text console, so it is the same on a PC with Lepton on its own disk as in a VM. The setting is the system's and is kept across reboots. <code>keyboard caps lock</code> makes it Caps Lock again, and <code>keyboard caps</code> says which it is.</p>
+<p>In UTM, or over SSH, the keys come from the Mac: there, Caps Lock is whatever macOS makes it, so set it on the Mac as well.</p>
 <h2 id="input-sources">Input sources<a class="anchor" href="#input-sources" aria-label="Link to this section">#</a></h2>
 <p>The desktop types US English until you add other input sources: a keyboard layout (Thai, Hindi, Arabic, ...) or Korean. Add them with <code>keyboard</code>:</p>
 <p>keyboard add ko th keyboard</p>
@@ -138,7 +143,7 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-keyboard"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é)</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off]</code></td></tr>
+<tr><td><a href="commands.html#cmd-keyboard"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é); Caps Lock as Ctrl</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off] | caps [ctrl | lock]</code></td></tr>
 </tbody></table></div>
 <h2 id="sources">Sources<a class="anchor" href="#sources" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -181,11 +186,12 @@ Korean: the Hangul key, Right Alt or Shift+Space switch between Hangul and Engli
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0926b44. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e4dd2cc. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/keyboard.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
+          <li><a href="#caps-lock-as-ctrl">Caps Lock as Ctrl</a></li>
           <li><a href="#input-sources">Input sources</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
           <li><a href="#sources">Sources</a></li>

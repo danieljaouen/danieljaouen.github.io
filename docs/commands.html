@@ -124,7 +124,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 165 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 167 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -191,6 +191,7 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
+<tr><td><span class="anchor-target" id="cmd-apropos"></span><a href="man-apropos.html"><code>apropos</code></a></td><td>search the manual pages' names and summaries (-t: their text too)</td><td><code>apropos [-a] [-t] KEYWORD...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-cal"></span><a href="man-cal.html"><code>cal</code></a></td><td>display a calendar</td><td><code>cal</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-clear"></span><a href="man-clear.html"><code>clear</code></a> · also <code>cls</code></td><td>clear the terminal screen</td><td><code>clear</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-date"></span><a href="man-date.html"><code>date</code></a></td><td>print the date and time (in the local time zone)</td><td><code>date [-u] [-I] [+FORMAT]</code></td></tr>
@@ -236,6 +237,7 @@
 <tr><td><span class="anchor-target" id="cmd-usb"></span><a href="man-usb.html"><code>usb</code></a> · also <code>lsusb</code></td><td>USB devices as a tree: hubs, their ports and what is plugged in</td><td><code>usb</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-vault"></span><a href="man-vault.html"><code>vault</code></a></td><td>the password manager: logins, notes and cards in an encrypted vault</td><td><code>vault [status] | init | unlock [-t MIN] | lock | list [-t TAG] [QUERY] | show [-r] ITEM | get ITEM [FIELD] | copy ITEM [FIELD] | otp ITEM | add [-k KIND] [-g] [-n LEN] [-p] TITLE [FIELD=VALUE...] | edit [-g] [-p] ITEM [FIELD=VALUE...] | rm ITEM | generate [-n LEN] [-S] [-c] | audit | passwd | import FILE | export [--csv] | gui</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-watch"></span><a href="man-watch.html"><code>watch</code></a></td><td>execute a program periodically, showing output fullscreen</td><td><code>watch [-n SECS] COMMAND</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-whatis"></span><a href="man-whatis.html"><code>whatis</code></a></td><td>the one-line summary of a manual page</td><td><code>whatis NAME...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-whoami"></span><a href="man-whoami.html"><code>whoami</code></a></td><td>print effective user name</td><td><code>whoami</code></td></tr>
 </tbody></table></div>
 <h2 id="network">Network<a class="anchor" href="#network" aria-label="Link to this section">#</a></h2>
@@ -333,7 +335,7 @@
 <tr><td><span class="anchor-target" id="cmd-beep"></span><a href="man-beep.html"><code>beep</code></a></td><td>play a tone (default 880 Hz for 150 ms)</td><td><code>beep [HZ [MS]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-classic"></span><a href="man-classic.html"><code>classic</code></a></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-firefox"></span><a href="man-firefox.html"><code>firefox</code></a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-keyboard"></span><a href="man-keyboard.html"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é)</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-keyboard"></span><a href="man-keyboard.html"><code>keyboard</code></a></td><td>input sources on the desktop: keyboard layouts (Thai, Hindi, Arabic, ...) and Korean; accents (Alt+e e: é); Caps Lock as Ctrl</td><td><code>keyboard [list] | use ID | next | add ID... | remove ID... | set ID... | accents [on | off] | caps [ctrl | lock]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-open"></span><a href="man-open.html"><code>open</code></a> · also <code>xdg-open</code></td><td>open files, folders and web addresses in the right app: text in le; images, PDFs, folders and pages in Firefox</td><td><code>open FILE|DIR|URL...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-photon"></span><a href="man-photon.html"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-play"></span><a href="man-play.html"><code>play</code></a></td><td>play a sound file (WAV) on the sound card; C-c stops it</td><td><code>play FILE.wav...</code></td></tr>
@@ -344,7 +346,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@0926b44.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@e4dd2cc.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
