@@ -165,7 +165,7 @@ sudo userdel -r bob         # delete an account (-r: and its home)
 id                          # who you are and your groups</code></pre>
 <p>Accounts are stored in <code>/var/lib/lepton</code> as <code>passwd</code>, <code>group</code> and <code>shadow</code>. Passwords are kept only as salted PBKDF2-SHA512 hashes, in <code>shadow</code> (mode 600). <code>/etc/passwd</code> and <code>/etc/group</code> are rebuilt from them at every boot.</p>
 <h2 id="how-far-this-goes">How far this goes<a class="anchor" href="#how-far-this-goes" aria-label="Link to this section">#</a></h2>
-<p>Accounts and sudo are enforced by Lepton's own commands, not by the kernel. Lepton's whole userland is one Erlang VM running as root, so code you run with <code>iex</code>, <code>elixir</code> or <code>mix</code> can still do anything. Think of accounts as protection against mistakes and a clear line between your files and the system, not as a wall between untrusted users.</p>
+<p>Accounts and sudo are enforced by Lepton's own commands, not by the kernel. Lepton's whole userland is one Erlang VM running as root, so code you run with <code>iex</code> or <code>elixir</code> can still do anything. (<code>mix</code> runs as you, in a VM of its own.) Think of accounts as protection against mistakes and a clear line between your files and the system, not as a wall between untrusted users. Don't share a Lepton machine with people you don't trust, or let them log in through <code>ssh</code>: see <a href="limitations.html">Limitations</a>.</p>
 <p>The files your commands create are yours, even though Lepton writes them as root. That covers redirects (<code>&gt;</code>, <code>&gt;&gt;</code>), <code>touch</code>, <code>mkdir</code>, <code>cp</code>, <code>tee</code>, <code>ln -s</code>, files saved in <code>le</code>, downloads, git repositories, rsync and ssh keys, so programs that run as you, such as Firefox, can change them. Writing to a file that already exists keeps its owner, and so do files made with <code>sudo</code>.</p>
 <p><code>su [-] [USER]</code> switches to another user in a new shell. Root may become anyone; anyone else must type that user's password. Root has no password, so become root with <code>sudo su -</code>.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
@@ -183,7 +183,7 @@ id                          # who you are and your groups</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0c6cd27. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/users.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@dd47f08. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/users.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

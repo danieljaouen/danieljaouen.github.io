@@ -123,6 +123,9 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="limitations">Limitations<a class="anchor" href="#limitations" aria-label="Link to this section">#</a></h1>
+<blockquote>
+<p><strong>Don't use Lepton where several people share one machine, or where anyone you don't trust can log in.</strong> Lepton's userland is one Erlang VM running as root. Accounts and <code>sudo</code> are enforced by Lepton's commands, not by the kernel: anyone with a shell (at the console, through <code>ssh</code>, or a native program through <code>lepton</code>) can run <code>iex</code> or <code>elixir</code> and do anything root can, including reading every user's files and password hashes. Use separate accounts to keep your own files tidy, not to keep people apart. See <a href="users.html">Users and sudo</a>.</p>
+</blockquote>
 <ul>
 <li>The live ISO keeps everything in RAM. An installed system persists <code>/root</code> and <code>/var/lib/lepton</code> only; changes elsewhere (for example <code>/etc</code>) reset at boot.</li>
 <li>Bluetooth needs a USB adapter (a Mac's built-in Bluetooth stays with macOS); no headset microphones, file transfer or phones (see <a href="bluetooth.html">Bluetooth</a>).</li>
@@ -130,7 +133,7 @@
 <li>Touchpads: no tap-to-click, two-finger scrolling or gestures yet.</li>
 <li>USB display adapters: DisplayLink's USB 2.0 chips and Generic USB Display gadgets only; newer DisplayLink docks need a closed-source driver. A USB-C hub's HDMI port (DisplayPort Alternate Mode) belongs to the Mac, not the VM. See <a href="usb.html">USB, hubs and displays</a>.</li>
 <li>Wi-Fi needs a supported adapter: virtual machines have no wireless hardware (pass a USB adapter through). WPA2 and WPA2/WPA3 networks work; WPA3-only and enterprise (802.1X) networks don't.</li>
-<li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code> and <code>elixir</code> can bypass them. Services all run as root.</li>
+<li><a href="users.html">Users and sudo</a> are enforced by Lepton's commands, not the kernel: everything runs in one Erlang VM as root, so <code>iex</code> and <code>elixir</code> can bypass them (see the warning above). Services all run as root.</li>
 <li>Services are simple ones only: no dependencies (<code>After=</code>, <code>Requires=</code>), timers, socket activation or resource limits.</li>
 <li>git: no three-way merge (pulls fast-forward only) and no rebase.</li>
 <li>SSH: keys only (no password logins, in or out), no passphrase-protected keys, no <code>ssh-agent</code>, port forwarding from Lepton's <code>ssh</code>, or <code>scp</code>/<code>sftp</code> commands on Lepton (rsync and sshfs work; from other computers, sftp, scp and sshfs reach Lepton's <code>sshd</code>).</li>
@@ -150,7 +153,7 @@
 <p>Some pages make Firefox freeze and then crash. GitHub when you're signed in is one of them. This is a known problem that isn't fixed yet. Starting Firefox again afterwards works: Lepton stops what the frozen Firefox left running.</p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@0c6cd27. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@dd47f08. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/limitations.md">Edit this page on GitHub</a>.</footer>
     </main>
   </div>
   <script>
