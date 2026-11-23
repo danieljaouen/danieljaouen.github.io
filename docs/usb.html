@@ -164,7 +164,7 @@ event2   keyboard  QEMU QEMU USB Keyboard  (USB 1-1.1)</code></pre>
 <h2 id="displays">Displays<a class="anchor" href="#displays" aria-label="Link to this section">#</a></h2>
 <p><a href="desktop.html">Photon</a> (and the classic desktop) uses every display the kernel has a framebuffer for (<code>/dev/fb0</code>, <code>/dev/fb1</code>, ...):</p>
 <ul>
-<li><strong>a second display of the VM.</strong> In UTM, add a second <strong>Display</strong> device (virtio-gpu) in the VM's settings, and UTM opens a second window. With QEMU, run <code>mix lepton.qemu --displays 2</code>.</li>
+<li><strong>a second display of the VM.</strong> In UTM, add a second <strong>Display</strong> device in the VM's settings and set its <strong>Emulated Display Card</strong> to <code>virtio-gpu-pci</code> (or <code>virtio-gpu-gl-pci</code>), not the default <code>virtio-ramfb</code>; UTM then opens a second window. With QEMU, run <code>mix lepton.qemu --displays 2</code>.  A VM can have only one ramfb display (the firmware's framebuffer), and <code>virtio-ramfb</code> is a virtio GPU plus a ramfb. With two <code>virtio-ramfb</code> displays (or two <code>ramfb</code>), QEMU refuses to start the VM, before Lepton runs: <em>duplicate fw_cfg file name: vgaroms/vgabios-ramfb.bin</em> (or <em>etc/ramfb</em>). Keep the first display as it is and change the other one's card to <code>virtio-gpu-pci</code>.</li>
 <li><strong>a USB display adapter</strong> (passed to the VM like any USB device): adapters with DisplayLink's USB 2.0 chips (DL-120, DL-160, DL-165, DL-195) through the <code>udl</code> driver, and Generic USB Display gadgets (a Raspberry Pi acting as a monitor, for example) through <code>gud</code>.</li>
 </ul>
 <p>Displays plugged in while the desktop runs join it within two seconds, and a display that goes away leaves it.</p>
@@ -189,7 +189,7 @@ photon display mirror    # the same picture on every display</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2fee03c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3bfc363. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

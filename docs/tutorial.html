@@ -238,7 +238,7 @@ sudo passwd sam</code></pre>
 <p>Give the VM 4 GB of memory for it. It plays video and sound too.</p>
 <p>More: <a href="apps.html">Firefox and other apps</a>.</p>
 <h2 id="13-more-displays">13. More displays<a class="anchor" href="#13-more-displays" aria-label="Link to this section">#</a></h2>
-<p>Give the VM a second display (UTM: add a <strong>Display</strong>), then, on the desktop:</p>
+<p>Give the VM a second display (UTM: add a <strong>Display</strong> whose card is <code>virtio-gpu-pci</code>, not <code>virtio-ramfb</code>; see <a href="usb.html#displays">displays</a>), then, on the desktop:</p>
 <pre><code class="language-sh">photon display              # the displays
 photon display mirror       # the same picture on both
 photon display extend       # one desktop across both (the default)</code></pre>
@@ -295,7 +295,7 @@ keys tmux</code></pre>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@2fee03c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tutorial.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@3bfc363. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tutorial.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
