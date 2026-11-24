@@ -125,7 +125,7 @@
       <article class="prose">
 <h1 id="git-and-github">git and GitHub<a class="anchor" href="#git-and-github" aria-label="Link to this section">#</a></h1>
 <h2 id="git">git<a class="anchor" href="#git" aria-label="Link to this section">#</a></h2>
-<p>Lepton's <code>git</code> is format-compatible with upstream git: loose and packed objects, index v2, refs, packed-refs and <code>.gitignore</code>. It talks to GitHub and other servers over HTTPS (&quot;smart HTTP&quot;) and <a href="#ssh-remotes">SSH</a> (side-band-64k packs, OFS/REF deltas).</p>
+<p>Lepton's <code>git</code> is format-compatible with upstream git: loose and packed objects, index v2, refs, packed-refs and <code>.gitignore</code> (in any directory). It talks to GitHub and other servers over HTTPS (&quot;smart HTTP&quot;) and <a href="#ssh-remotes">SSH</a> (side-band-64k packs, OFS/REF deltas).</p>
 <p>Supported subcommands: <code>init clone fetch pull push status add rm restore reset commit log show diff branch checkout switch merge stash tag remote config rev-parse ls-files ls-remote cat-file hash-object version</code>.</p>
 <p><code>~/.gitconfig</code> is honoured: <code>[include] path = .gitconfig.local</code>, all your aliases (<code>gl</code>, <code>gll</code> with <code>--pretty=format:</code> placeholders, <code>st</code>, <code>ci</code>, <code>co</code>, <code>br</code>, <code>df</code>, <code>dc</code>, <code>lg</code>, …), <code>user.name</code> / <code>user.email</code>, <code>core.pager = cat</code>, <code>core.excludesfile</code>, <code>http.sslVerify</code> and <code>url.&lt;base&gt;.insteadOf</code> / <code>pushInsteadOf</code>. The aliases are listed on the <a href="keybindings.html#git">key bindings page</a>.</p>
 <p>Limits: merges are fast-forward only (no three-way merge) and there is no rebase.</p>
@@ -159,7 +159,7 @@ gh api /user</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@3bde7ce. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ba8e758. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/git.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

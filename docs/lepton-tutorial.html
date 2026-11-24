@@ -147,27 +147,29 @@
 <pre><code class="language-sh">sudo svc start hello &amp;&amp; sleep 5 &amp;&amp; svc status hello &amp;&amp; sudo svc stop hello</code></pre>
 <h2 id="6-the-editor-le">6. The editor: le<a class="anchor" href="#6-the-editor-le" aria-label="Link to this section">#</a></h2>
 <p><code>le FILE</code> (also vim/nvim/emacs/e) is Spacemacs-style: SPC opens the leader menu (SPC f s saves, SPC f f finds a file, SPC w / splits, SPC g s is magit), <code>jk</code> leaves insert state, <code>;</code> opens the ex prompt, and C-h/j/k/l move between windows - and into tmux panes. Try: le ~/tutorial/hello.txt  (quit with SPC q q or ;q)</p>
-<h2 id="7-the-multiplexer-tmux">7. The multiplexer: tmux<a class="anchor" href="#7-the-multiplexer-tmux" aria-label="Link to this section">#</a></h2>
+<h2 id="7-more-of-le">7. More of le<a class="anchor" href="#7-more-of-le" aria-label="Link to this section">#</a></h2>
+<p>le does what Vim does: macros (qa records, q stops, @a plays), visual block (C-v; I or A types on every line), registers (&quot;ayy, &quot;ap), marks (ma, then 'a). :%s/old/new/g replaces in the file and SPC p R across the project, asking at each match (y, n, ! for all); SPC f S saves every changed file. The mouse clicks, drags and scrolls, and Ctrl+Shift+V pastes exactly what you copied. The editor guide has a tour: trylepton.app/docs/editor.html</p>
+<h2 id="8-the-multiplexer-tmux">8. The multiplexer: tmux<a class="anchor" href="#8-the-multiplexer-tmux" aria-label="Link to this section">#</a></h2>
 <p>Your prefix is C-t.  C-t v splits side by side (split-window -h), C-t s splits below, C-t h/j/k/l move between panes, C-t c opens a window, C-t C-h / C-l move between windows, C-t [ starts vi copy mode (v, y), and C-t d detaches - <code>tmux attach</code> brings it back.</p>
-<h2 id="8-git-and-github">8. git and GitHub<a class="anchor" href="#8-git-and-github" aria-label="Link to this section">#</a></h2>
+<h2 id="9-git-and-github">9. git and GitHub<a class="anchor" href="#9-git-and-github" aria-label="Link to this section">#</a></h2>
 <p>git understands your ~/.gitconfig aliases (git st, git ci, git gl...). <code>gh auth login</code> stores a GitHub token; then git push/pull and gh repo, gh issue and gh pr work over HTTPS.</p>
 <p>Try:</p>
 <pre><code class="language-sh">cd ~/tutorial &amp;&amp; git init -q &amp;&amp; git add . &amp;&amp; git ci -q -m 'first commit' &amp;&amp; git gl</code></pre>
-<h2 id="9-packages">9. Packages<a class="anchor" href="#9-packages" aria-label="Link to this section">#</a></h2>
+<h2 id="10-packages">10. Packages<a class="anchor" href="#10-packages" aria-label="Link to this section">#</a></h2>
 <p>lpm installs Elixir/Erlang packages straight from hex.pm, compiles them inside Lepton and loads them (and any Lepton commands they define). Try: lpm search json   /   sudo lpm install jason Built-in apps get updates only from the signed official list: <code>lpm official</code> shows them, <code>sudo lpm upgrade grep</code> installs one and <code>sudo lpm revert grep</code> goes back. A package can't take over a built-in.</p>
 <p>Try:</p>
 <pre><code class="language-sh">lpm list</code></pre>
-<h2 id="10-network">10. Network<a class="anchor" href="#10-network" aria-label="Link to this section">#</a></h2>
+<h2 id="11-network">11. Network<a class="anchor" href="#11-network" aria-label="Link to this section">#</a></h2>
 <p>The network comes up with DHCP. <code>ip addr</code>, <code>ping</code>, <code>curl</code> and the text browser <code>www</code> are available. With a Wi-Fi adapter, <code>wifi scan</code> lists networks and <code>sudo wifi connect NAME</code> joins one.</p>
 <p>Try:</p>
 <pre><code class="language-sh">ip addr</code></pre>
-<h2 id="11-help">11. Help<a class="anchor" href="#11-help" aria-label="Link to this section">#</a></h2>
+<h2 id="12-help">12. Help<a class="anchor" href="#12-help" aria-label="Link to this section">#</a></h2>
 <p><code>help</code> lists commands, <code>man CMD</code> describes one, <code>keys</code> shows every binding loaded from your dotfiles, and <code>lepton-test</code> runs the self-test suite. Run <code>lepton-tutorial</code> to see this again.</p>
 <p>Try:</p>
 <pre><code class="language-sh">keys tmux | head -8</code></pre>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@3bde7ce.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@ba8e758.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -178,11 +180,12 @@
           <li><a href="#4-jobs-and-processes">4. Jobs and processes</a></li>
           <li><a href="#5-services-long-running-apps">5. Services: long-running apps</a></li>
           <li><a href="#6-the-editor-le">6. The editor: le</a></li>
-          <li><a href="#7-the-multiplexer-tmux">7. The multiplexer: tmux</a></li>
-          <li><a href="#8-git-and-github">8. git and GitHub</a></li>
-          <li><a href="#9-packages">9. Packages</a></li>
-          <li><a href="#10-network">10. Network</a></li>
-          <li><a href="#11-help">11. Help</a></li>
+          <li><a href="#7-more-of-le">7. More of le</a></li>
+          <li><a href="#8-the-multiplexer-tmux">8. The multiplexer: tmux</a></li>
+          <li><a href="#9-git-and-github">9. git and GitHub</a></li>
+          <li><a href="#10-packages">10. Packages</a></li>
+          <li><a href="#11-network">11. Network</a></li>
+          <li><a href="#12-help">12. Help</a></li>
         </ul>
       </nav>
   </div>

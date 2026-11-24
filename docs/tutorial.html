@@ -169,12 +169,25 @@ le todo.txt                 # the editor</code></pre>
 wc -l todo.txt
 cp todo.txt done.txt &amp;&amp; ls</code></pre>
 <p>More: <a href="editor.html">The editor</a>, <a href="system.html">System</a>.</p>
-<h2 id="5-tmux">5. tmux<a class="anchor" href="#5-tmux" aria-label="Link to this section">#</a></h2>
+<h2 id="5-more-of-the-editor">5. More of the editor<a class="anchor" href="#5-more-of-the-editor" aria-label="Link to this section">#</a></h2>
+<p><code>le</code> does what Vim does, and a few things Spacemacs does:</p>
+<ul>
+<li><strong>Macros</strong>: <code>qa</code> records, <code>q</code> stops, <code>@a</code> plays (<code>100@a</code> stops at the last line by itself).</li>
+<li><strong>Visual block</strong>: <code>C-v</code> selects columns; <code>I</code> or <code>A</code> types on every line at once, <code>d</code>, <code>y</code>, <code>p</code> cut and paste blocks.</li>
+<li><strong>Registers</strong>: <code>&quot;ayy</code> copies into register a, <code>&quot;ap</code> pastes it.</li>
+<li><strong>Marks</strong>: <code>ma</code> marks the place, <code>'a</code> goes back to it.</li>
+<li><strong>Replace everywhere</strong>: <code>:%s/old/new/g</code> in the file; <code>SPC p R</code> across the project, asking at each match (<code>y</code>, <code>n</code>, <code>!</code> for all); <code>SPC f S</code> saves every changed file.</li>
+<li><strong>Mouse and paste</strong>: click to move, drag to select, the wheel scrolls; Ctrl+Shift+V pastes exactly what you copied.</li>
+</ul>
+<pre><code class="language-sh">printf 'apple one\nbanana two\ncherry three\n' &gt; ~/fruit.txt
+le ~/fruit.txt              # then try: gg C-v jj I# Esc</code></pre>
+<p>More: <a href="editor.html#a-tour-beyond-the-basics">A tour of le</a>.</p>
+<h2 id="6-tmux">6. tmux<a class="anchor" href="#6-tmux" aria-label="Link to this section">#</a></h2>
 <p><code>tmux</code> splits your screen into windows and panes, with your <code>~/.tmux.conf</code>. The prefix is <strong>C-t</strong>.</p>
 <pre><code class="language-sh">tmux</code></pre>
 <p>Then try <strong>C-t c</strong> (a new window: it asks for a name), <strong>C-t n</strong> (the next one), <strong>C-t v</strong> and <strong>C-t s</strong> (split the pane side by side, or top and bottom), and <strong>C-t d</strong> to detach. <code>tmux attach</code> brings it back.</p>
 <p>More: <a href="tmux.html">tmux</a>.</p>
-<h2 id="6-the-network-and-wi-fi">6. The network and Wi-Fi<a class="anchor" href="#6-the-network-and-wi-fi" aria-label="Link to this section">#</a></h2>
+<h2 id="7-the-network-and-wi-fi">7. The network and Wi-Fi<a class="anchor" href="#7-the-network-and-wi-fi" aria-label="Link to this section">#</a></h2>
 <p>The VM's network works by itself.</p>
 <pre><code class="language-sh">ip addr
 ping -c 3 example.com
@@ -185,7 +198,7 @@ www example.com             # a text web browser</code></pre>
 sudo wifi connect MyNetwork     # asks for the passphrase
 wifi</code></pre>
 <p>More: <a href="networking.html">Networking</a>.</p>
-<h2 id="7-git-github-and-ssh">7. git, GitHub and SSH<a class="anchor" href="#7-git-github-and-ssh" aria-label="Link to this section">#</a></h2>
+<h2 id="8-git-github-and-ssh">8. git, GitHub and SSH<a class="anchor" href="#8-git-github-and-ssh" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">ssh-keygen                      # your key, ~/.ssh/id_ed25519
 gh auth login                   # a GitHub token
 gh ssh-key add                  # upload your key
@@ -195,7 +208,7 @@ echo &quot;hi&quot; &gt;&gt; README.md
 git add README.md &amp;&amp; git commit -m &quot;Hello from Lepton&quot; &amp;&amp; git push</code></pre>
 <p><code>ssh you@server</code> logs in to your own machines with the same key.</p>
 <p>More: <a href="git.html">git and GitHub</a>, <a href="ssh.html">SSH</a>.</p>
-<h2 id="8-elixir-and-packages">8. Elixir and packages<a class="anchor" href="#8-elixir-and-packages" aria-label="Link to this section">#</a></h2>
+<h2 id="9-elixir-and-packages">9. Elixir and packages<a class="anchor" href="#9-elixir-and-packages" aria-label="Link to this section">#</a></h2>
 <p>Lepton's commands are written in Elixir, and you can write your own.</p>
 <pre><code class="language-sh">iex                                           # Elixir, interactive (C-d or exit to leave)
 elixir -e 'IO.puts Enum.sum(1..100)'
@@ -203,7 +216,7 @@ lpm search json
 sudo lpm install jason
 elixir -e 'IO.puts Jason.encode!(%{hello: &quot;lepton&quot;})'</code></pre>
 <p>More: <a href="packages.html">Packages</a>.</p>
-<h2 id="9-services">9. Services<a class="anchor" href="#9-services" aria-label="Link to this section">#</a></h2>
+<h2 id="10-services">10. Services<a class="anchor" href="#10-services" aria-label="Link to this section">#</a></h2>
 <p><code>svc</code> keeps programs running in the background and starts them at boot.</p>
 <pre><code class="language-sh">sudo svc new clock 'while true; do date; sleep 60; done'
 sudo svc enable --now clock
@@ -211,14 +224,14 @@ svc
 svc logs clock -f               # C-c to stop following
 sudo svc stop clock</code></pre>
 <p>More: <a href="services.html">Services</a>.</p>
-<h2 id="10-users-and-sudo">10. Users and sudo<a class="anchor" href="#10-users-and-sudo" aria-label="Link to this section">#</a></h2>
+<h2 id="11-users-and-sudo">11. Users and sudo<a class="anchor" href="#11-users-and-sudo" aria-label="Link to this section">#</a></h2>
 <p>Your account runs administrative commands with <code>sudo</code>, which asks for your password.</p>
 <pre><code class="language-sh">whoami
 id
 sudo useradd --sudo -c &quot;Sam Smith&quot; sam     # another account, which may use sudo
 sudo passwd sam</code></pre>
 <p>More: <a href="users.html">Users and sudo</a>.</p>
-<h2 id="11-the-desktop">11. The desktop<a class="anchor" href="#11-the-desktop" aria-label="Link to this section">#</a></h2>
+<h2 id="12-the-desktop">12. The desktop<a class="anchor" href="#12-the-desktop" aria-label="Link to this section">#</a></h2>
 <p>Lepton has a graphical desktop, Photon, with two looks. From the VM's window (not an SSH session):</p>
 <pre><code class="language-sh">classic                         # Windows 95-style, with a Start menu</code></pre>
 <ul>
@@ -229,7 +242,7 @@ sudo passwd sam</code></pre>
 </ul>
 <p><code>photon</code> starts Photon's own, plainer look. In a terminal window, <code>photon info</code> lists the windows. <strong>Print</strong> saves a screenshot in <code>~/Pictures</code> (<strong>Super+Shift+3</strong> on a Mac keyboard), and so does <code>screenshot</code> in a terminal window.</p>
 <p>More: <a href="desktop.html">The desktop</a>.</p>
-<h2 id="12-firefox">12. Firefox<a class="anchor" href="#12-firefox" aria-label="Link to this section">#</a></h2>
+<h2 id="13-firefox">13. Firefox<a class="anchor" href="#13-firefox" aria-label="Link to this section">#</a></h2>
 <p>Firefox runs on the desktop. The first time, it is downloaded and installed (about 266 MB):</p>
 <ul>
 <li>double-click <strong>Firefox</strong> on the classic desktop, or</li>
@@ -237,14 +250,14 @@ sudo passwd sam</code></pre>
 </ul>
 <p>Give the VM 4 GB of memory for it. It plays video and sound too.</p>
 <p>More: <a href="apps.html">Firefox and other apps</a>.</p>
-<h2 id="13-more-displays">13. More displays<a class="anchor" href="#13-more-displays" aria-label="Link to this section">#</a></h2>
+<h2 id="14-more-displays">14. More displays<a class="anchor" href="#14-more-displays" aria-label="Link to this section">#</a></h2>
 <p>Give the VM a second display (UTM: add a <strong>Display</strong> whose card is <code>virtio-gpu-pci</code>, not <code>virtio-ramfb</code>; see <a href="usb.html#displays">displays</a>), then, on the desktop:</p>
 <pre><code class="language-sh">photon display              # the displays
 photon display mirror       # the same picture on both
 photon display extend       # one desktop across both (the default)</code></pre>
 <p><strong>Alt+Shift+Right</strong> moves a window to the next display.</p>
 <p>More: <a href="usb.html#displays">USB, hubs and displays</a>.</p>
-<h2 id="14-usb-devices-drives-and-sd-cards">14. USB devices, drives and SD cards<a class="anchor" href="#14-usb-devices-drives-and-sd-cards" aria-label="Link to this section">#</a></h2>
+<h2 id="15-usb-devices-drives-and-sd-cards">15. USB devices, drives and SD cards<a class="anchor" href="#15-usb-devices-drives-and-sd-cards" aria-label="Link to this section">#</a></h2>
 <p>Plug devices into the Mac and pass them to the VM from UTM's <strong>USB</strong> menu. Hubs, keyboards and mice work as soon as they appear.</p>
 <pre><code class="language-sh">usb                         # the USB devices, as a tree of hubs and ports
 input                       # keyboards, mice, tablets</code></pre>
@@ -254,7 +267,7 @@ ls /media
 cp ~/notes/todo.txt /media/MYSTICK/
 eject /media/MYSTICK        # then unplug it</code></pre>
 <p>More: <a href="usb.html">USB, hubs and displays</a>, <a href="storage.html">USB drives and SD cards</a>.</p>
-<h2 id="15-sound">15. Sound<a class="anchor" href="#15-sound" aria-label="Link to this section">#</a></h2>
+<h2 id="16-sound">16. Sound<a class="anchor" href="#16-sound" aria-label="Link to this section">#</a></h2>
 <p>Give the VM a sound device (UTM: <strong>Sound</strong>), then:</p>
 <pre><code class="language-sh">sound test                  # three notes
 volume                      # Volume: 50% on HDA Intel
@@ -264,7 +277,7 @@ volume unmute
 beep 440 500</code></pre>
 <p>On the desktop, the volume keys work, and the classic desktop's speaker opens a volume control.</p>
 <p>More: <a href="sound.html">Sound</a>.</p>
-<h2 id="16-bluetooth">16. Bluetooth<a class="anchor" href="#16-bluetooth" aria-label="Link to this section">#</a></h2>
+<h2 id="17-bluetooth">17. Bluetooth<a class="anchor" href="#17-bluetooth" aria-label="Link to this section">#</a></h2>
 <p>With a USB Bluetooth adapter passed to the VM, put a keyboard, mouse or pair of headphones in pairing mode, then:</p>
 <pre><code class="language-sh">bluetooth scan
 sudo bluetooth pair &quot;MX Keys&quot;   # by name or address
@@ -272,12 +285,12 @@ bluetooth</code></pre>
 <p>The first time, this installs Bluetooth support (about 8 MB). Pairing a keyboard shows a number: type it on the Bluetooth keyboard and press Enter. Paired headphones become where sound plays.</p>
 <p>On the classic desktop, click the Bluetooth rune in the tray for the same things.</p>
 <p>More: <a href="bluetooth.html">Bluetooth</a>.</p>
-<h2 id="17-your-dotfiles">17. Your dotfiles<a class="anchor" href="#17-your-dotfiles" aria-label="Link to this section">#</a></h2>
+<h2 id="18-your-dotfiles">18. Your dotfiles<a class="anchor" href="#18-your-dotfiles" aria-label="Link to this section">#</a></h2>
 <p>Lepton reads real configuration files: your <code>~/.zshrc</code>, <code>~/.spacemacs</code>, <code>~/.tmux.conf</code>, starship prompt and <code>~/.gitconfig</code>.</p>
 <pre><code class="language-sh">keys                        # every key binding that was loaded
 keys tmux</code></pre>
 <p>More: <a href="dotfiles.html">Your dotfiles, applied</a>.</p>
-<h2 id="18-upgrade-to-a-new-release">18. Upgrade to a new release<a class="anchor" href="#18-upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
+<h2 id="19-upgrade-to-a-new-release">19. Upgrade to a new release<a class="anchor" href="#19-upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
 <p>When a new release comes out:</p>
 <ol>
 <li>Download the new ISO and choose it for the VM's <strong>CD/DVD</strong> drive.</li>
@@ -295,7 +308,7 @@ keys tmux</code></pre>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@3bde7ce. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tutorial.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ba8e758. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tutorial.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -304,20 +317,21 @@ keys tmux</code></pre>
           <li><a href="#2-install-it-on-a-disk">2. Install it on a disk</a></li>
           <li><a href="#3-the-shell">3. The shell</a></li>
           <li><a href="#4-files-and-the-editor">4. Files and the editor</a></li>
-          <li><a href="#5-tmux">5. tmux</a></li>
-          <li><a href="#6-the-network-and-wi-fi">6. The network and Wi-Fi</a></li>
-          <li><a href="#7-git-github-and-ssh">7. git, GitHub and SSH</a></li>
-          <li><a href="#8-elixir-and-packages">8. Elixir and packages</a></li>
-          <li><a href="#9-services">9. Services</a></li>
-          <li><a href="#10-users-and-sudo">10. Users and sudo</a></li>
-          <li><a href="#11-the-desktop">11. The desktop</a></li>
-          <li><a href="#12-firefox">12. Firefox</a></li>
-          <li><a href="#13-more-displays">13. More displays</a></li>
-          <li><a href="#14-usb-devices-drives-and-sd-cards">14. USB devices, drives and SD cards</a></li>
-          <li><a href="#15-sound">15. Sound</a></li>
-          <li><a href="#16-bluetooth">16. Bluetooth</a></li>
-          <li><a href="#17-your-dotfiles">17. Your dotfiles</a></li>
-          <li><a href="#18-upgrade-to-a-new-release">18. Upgrade to a new release</a></li>
+          <li><a href="#5-more-of-the-editor">5. More of the editor</a></li>
+          <li><a href="#6-tmux">6. tmux</a></li>
+          <li><a href="#7-the-network-and-wi-fi">7. The network and Wi-Fi</a></li>
+          <li><a href="#8-git-github-and-ssh">8. git, GitHub and SSH</a></li>
+          <li><a href="#9-elixir-and-packages">9. Elixir and packages</a></li>
+          <li><a href="#10-services">10. Services</a></li>
+          <li><a href="#11-users-and-sudo">11. Users and sudo</a></li>
+          <li><a href="#12-the-desktop">12. The desktop</a></li>
+          <li><a href="#13-firefox">13. Firefox</a></li>
+          <li><a href="#14-more-displays">14. More displays</a></li>
+          <li><a href="#15-usb-devices-drives-and-sd-cards">15. USB devices, drives and SD cards</a></li>
+          <li><a href="#16-sound">16. Sound</a></li>
+          <li><a href="#17-bluetooth">17. Bluetooth</a></li>
+          <li><a href="#18-your-dotfiles">18. Your dotfiles</a></li>
+          <li><a href="#19-upgrade-to-a-new-release">19. Upgrade to a new release</a></li>
           <li><a href="#where-next">Where next</a></li>
         </ul>
       </nav>

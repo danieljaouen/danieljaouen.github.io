@@ -158,10 +158,35 @@
 <li>marks, as in Vim: <code>m</code> and a letter marks the place, <code>'</code> and the letter goes back to its line (`<code> </code> `<code> and the letter: to the very place), and both work after an operator (</code>d'a<code> deletes down to mark a). Marks move with their text as lines are added or removed above them. Lowercase marks belong to their file, uppercase ones (</code>mA<code>) take you back to their file from anywhere; </code>''<code> returns to where the last jump left from, </code>'&lt;<code> and </code>'&gt;<code> are the last visual selection, and </code>:marks<code> lists them. They last until </code>le` quits;</li>
 <li>registers, as in Vim: <code>&quot;</code> and a letter before a yank, delete, change or paste uses that register (<code>&quot;ayy</code> yanks the line into a, <code>&quot;ap</code> pastes it, in visual mode too); <code>&quot;A</code> (the capital) adds to register a, <code>&quot;_</code> deletes without keeping the text, <code>&quot;0</code> holds the last yank, <code>&quot;+</code> and <code>&quot;*</code> are the clipboard, and <code>:reg</code> lists them. Every yank and delete still goes to the unnamed register and the clipboard, as before;</li>
 <li>pasting from the terminal (Ctrl+Shift+V in a terminal window, Cmd-V over SSH) puts the text in as it is, newlines and indentation included, with no auto-indent added: at the cursor in insert mode, before it in normal mode, in place of a visual selection, and on one line in a prompt. One <code>u</code> takes it back;</li>
-<li>replacing across the project, as Spacemacs' projectile: <code>SPC p R</code> asks for the text and what replaces it (<code>SPC p %</code>: a regexp, with <code>\1</code> and so on in the replacement), then goes to each match in the project's files in turn, highlighted, and asks: <code>y</code> replaces it, <code>n</code> skips it, <code>!</code> replaces it and all the rest, <code>.</code> replaces it and stops, <code>q</code> stops. The files it changed stay open and unsaved: <code>:wa</code> (or <code>SPC f S</code>) saves them;</li>
+<li>replacing across the project, as Spacemacs' projectile: <code>SPC p R</code> asks for the text and what replaces it (<code>SPC p %</code>: a regexp, with <code>\1</code> and so on in the replacement), then goes to each match in the project's files in turn, highlighted, and asks: <code>y</code> replaces it, <code>n</code> skips it, <code>!</code> replaces it and all the rest, <code>.</code> replaces it and stops, <code>q</code> stops. The files it changed stay open and unsaved: <code>:wa</code> (or <code>SPC f S</code>) saves them. The project's files are, in a git repository, the ones git sees: what <code>.gitignore</code> (in any directory), <code>.git/info/exclude</code> and your global excludes leave out is left alone, and so is <code>.git</code>; dotfiles git tracks (<code>.formatter.exs</code>, <code>.github/</code>) are in. <code>SPC p f</code> and <code>SPC /</code> use the same files. For the files git ignores, <code>SPC s R</code> (<code>SPC s %</code>: a regexp) replaces in a directory you name (the file's own, to start with): every file under it, ignored and hidden ones included, never <code>.git</code>;</li>
 <li>ex commands: <code>:w :q :wq :e :sp :vsp :s/// :sort :!cmd :r !cmd</code>;</li>
 <li>the mouse: a click puts the cursor there (and selects that window; on a mode line, just the window), a drag selects text as <code>v</code> does, and the wheel scrolls the window under the pointer three lines. It works in Lepton's terminal windows, in <code>tmux</code> with <code>mouse on</code> (your tmux.conf has it), and over SSH from terminals that report the mouse (Terminal and iTerm2 on the Mac do).</li>
 </ul>
+<h2 id="a-tour-beyond-the-basics">A tour: beyond the basics<a class="anchor" href="#a-tour-beyond-the-basics" aria-label="Link to this section">#</a></h2>
+<p>Try each of these on a practice file. Make it, and open it:</p>
+<pre><code class="language-sh">printf 'apple one\nbanana two\ncherry three\n' &gt; ~/fruit.txt
+le ~/fruit.txt</code></pre>
+<p>After each exercise, <code>u</code> (undo, as many times as it takes) brings the file back for the next one.</p>
+<h3 id="repeat-yourself-macros">Repeat yourself: macros<a class="anchor" href="#repeat-yourself-macros" aria-label="Link to this section">#</a></h3>
+<p><code>qa</code> starts recording into register a. Type <code>I- </code> (insert <code>- </code> at the start of the line), <strong>Esc</strong>, then <code>j</code> (down a line), and <code>q</code> to stop. <code>100@a</code> plays it a hundred times, but it stops by itself at the last line, where <code>j</code> can't go any further:</p>
+<pre><code>- apple one
+- banana two
+- cherry three</code></pre>
+<h3 id="columns-visual-block">Columns: visual block<a class="anchor" href="#columns-visual-block" aria-label="Link to this section">#</a></h3>
+<p><code>gg</code>, then <code>C-v</code> starts a block; <code>jj</code> stretches it over three lines. <code>I# </code> and <strong>Esc</strong> puts <code># </code> on all three, at the block's column. Undo, then try <code>C-v jj $ A;</code> and <strong>Esc</strong>: <code>$</code> reaches each line's end, so <code>A</code> appends <code>;</code> to every line. With <code>w</code> first, <code>C-v jj e U</code> upper-cases the second word of each line (<code>ONE</code>, <code>TWO</code>, <code>THREE</code>). <code>d</code> deletes a block, <code>y</code> copies it and <code>p</code> puts it back as a block; on an empty line (after <code>o</code> and <strong>Esc</strong>) a block pastes as lines of its own.</p>
+<h3 id="keep-several-things-registers">Keep several things: registers<a class="anchor" href="#keep-several-things-registers" aria-label="Link to this section">#</a></h3>
+<p><code>&quot;ayy</code> copies the line into register a; <code>j&quot;byy</code> copies the next one into b. Now <code>G&quot;ap</code> and <code>&quot;bp</code> paste them at the end, each from its own register, whatever you copied or deleted in between. <code>:reg</code> lists them; <code>&quot;A</code> adds to a, <code>&quot;_dd</code> deletes a line without keeping it, and <code>&quot;+p</code> pastes the clipboard.</p>
+<h3 id="come-back-marks">Come back: marks<a class="anchor" href="#come-back-marks" aria-label="Link to this section">#</a></h3>
+<p>On <code>banana</code>, <code>ma</code> marks the place. <code>G</code> goes to the end; <code>'a</code> comes back to the line (`<code> </code>a `<code> to the very spot), and </code>''<code> returns to where you jumped from. Marks work as motions too: from the last line, </code>d'a<code> deletes up to banana's line. </code>mA<code> (a capital) marks a place in this file that </code>'A<code> finds from any other file; </code>:marks` lists them.</p>
+<h3 id="find-and-replace">Find and replace<a class="anchor" href="#find-and-replace" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>In this file: <code>:%s/a/A/g</code> replaces every <code>a</code>.</li>
+<li>In the whole project: <code>SPC p R</code> asks for the text, then its replacement, and goes to each match in turn: <code>y</code> replaces it, <code>n</code> skips it, <code>!</code> replaces all the rest (in every file), <code>.</code> this one and stop, <code>q</code> stop. <code>SPC p %</code> takes a regexp (<code>\bfoo\b</code> for the word foo, <code>\1</code> in the replacement for a group). What <code>.gitignore</code> leaves out is left alone.</li>
+<li>In a directory, ignored files and all: <code>SPC s R</code> (<code>SPC s %</code>).</li>
+<li>The files changed stay unsaved: <code>SPC f S</code> (or <code>C-x s</code>, or <code>:wa</code>) saves them all.</li>
+</ul>
+<h3 id="mouse-and-pasting">Mouse and pasting<a class="anchor" href="#mouse-and-pasting" aria-label="Link to this section">#</a></h3>
+<p>In a terminal window (or tmux, or over SSH from your Mac) a click puts the cursor where you click, a drag selects, and the wheel scrolls. Ctrl+Shift+V (Cmd-V over SSH) pastes text exactly as you copied it, indentation and all, and one <code>u</code> takes it back.</p>
 <h2 id="org-mode-folding">Org mode: folding<a class="anchor" href="#org-mode-folding" aria-label="Link to this section">#</a></h2>
 <p>In <code>.org</code> files, headings (<code>* </code>, <code>** </code>, ...) fold as in Spacemacs:</p>
 <div class="table-wrap"><table>
@@ -193,13 +218,14 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@3bde7ce. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@ba8e758. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
         <ul>
           <li><a href="#read-from-your-configuration">Read from your configuration</a></li>
           <li><a href="#spacemacs-defaults">Spacemacs defaults</a></li>
+          <li><a href="#a-tour-beyond-the-basics">A tour: beyond the basics</a></li>
           <li><a href="#org-mode-folding">Org mode: folding</a></li>
           <li><a href="#git-from-the-editor">Git from the editor</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>
