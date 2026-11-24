@@ -150,7 +150,7 @@ usb2  xHCI Host Controller (root hub, 4 ports) [5 Gbit/s]</code></pre>
 <p>Most devices need only the standard HID driver. Lepton also has the drivers for Apple keyboards, Magic Mouse and Magic Trackpad, Logitech's Unifying and Bolt receivers, Microsoft, Lenovo, Cherry, ASUS and Elan devices, Wacom tablets and multi-touch touchpads, and loads them when one appears.</p>
 <ul>
 <li><strong>Mice</strong>: the wheel scrolls, a tilting or second wheel scrolls sideways, and every button (side buttons too) reaches the program under the pointer.</li>
-<li><strong>Touchpads</strong> move the pointer as you slide one finger. Click by pressing the pad (or its buttons). Tap-to-click and two-finger scrolling aren't supported yet.</li>
+<li><strong>Touchpads</strong> work as on a Mac: one finger moves the pointer, a tap clicks (a two-finger tap right-clicks, a three-finger tap middle-clicks), two fingers scroll (up and down, and sideways), and pressing the pad clicks (with two fingers on it, a right click). Scrolling follows <code>mouse scroll</code> (natural by default). Laptops' built-in touchpads and touchscreens, which sit on an I2C bus rather than USB, work too: HID over I2C (most of them, described by ACPI or the device tree), and Elan, Cypress, Atmel and Synaptics ones. Their drivers, and those of the I2C controllers of Qualcomm, Rockchip, NVIDIA Tegra and Raspberry Pi machines, load at startup when the hardware is there. (A virtual machine has none: UTM and QEMU give a USB pointer.)</li>
 <li><strong>Tablets and touchscreens</strong> map their surface onto the display.</li>
 <li><strong>Keyboards</strong>: every key, with the US layout. The volume keys set the volume (see <a href="sound.html">Sound</a>).</li>
 </ul>
@@ -189,7 +189,7 @@ photon display mirror    # the same picture on every display</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@b337b4c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@28d3238. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/usb.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
