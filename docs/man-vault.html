@@ -127,7 +127,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>vault</code> - the password manager: logins, notes and cards in an encrypted vault</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>vault [status] | init | unlock [-t MIN] | lock | list [-t TAG] [QUERY] | show [-r] ITEM | get ITEM [FIELD] | copy ITEM [FIELD] | otp ITEM | add [-k KIND] [-g] [-n LEN] [-p] TITLE [FIELD=VALUE...] | edit [-g] [-p] ITEM [FIELD=VALUE...] | rm ITEM | generate [-n LEN] [-S] [-c] | audit | passwd | import FILE | export [--csv] | gui</code></pre>
+<pre><code>vault [status] | init | unlock [-t MIN] | lock | list [-t TAG] [QUERY] | show [-r] ITEM | get ITEM [FIELD] | copy ITEM [FIELD] | otp ITEM | add [-k KIND] [-g] [-n LEN] [-p] TITLE [FIELD=VALUE...] | edit [-g] [-p] ITEM [FIELD=VALUE...] | rm ITEM | generate [-n LEN] [-S] [-c] | audit | passwd | upgrade | import FILE | export [--csv] | gui</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>A password manager. It keeps logins, secure notes and cards in a vault, encrypted with a master password: AES-256-GCM, with the key made by PBKDF2-HMAC-SHA256 (600,000 iterations). The classic desktop's <strong>Passwords</strong> window works on the same vault, and unlocking it in one unlocks it in the other.</p>
 <p>When the vault is locked, <code>vault</code> asks for the master password first. It reads it from the terminal, or, with no terminal, as the first line of standard input. The vault locks itself after 10 minutes without use.</p>
@@ -155,7 +155,8 @@
 <li><code>rm ITEM</code> (also <code>delete</code>): delete an item.</li>
 <li><code>generate [-n LEN] [-S] [-c]</code> (also <code>gen</code>): print a random password, or copy it with <code>-c</code>.</li>
 <li><code>audit</code>: list weak and reused passwords. Exits 1 if it finds any.</li>
-<li><code>passwd</code>: change the master password.</li>
+<li><code>passwd</code>: change the master password (an older vault moves to Argon2id).</li>
+<li><code>upgrade</code>: make the master password's key with Argon2id (64 MiB, 3 passes) instead of PBKDF2, for a vault made before Lepton 1.25; the master password stays the same. <code>vault status</code> says which a vault uses.</li>
 <li><code>import FILE</code>: add the items from a CSV export (1Password, Bitwarden, Chrome, Firefox, Safari or LastPass) or from <code>vault export</code> (JSON). With <code>-</code> as FILE, it reads standard input.</li>
 <li><code>export [--csv]</code>: write every item to standard output, as JSON or CSV. The export isn't encrypted.</li>
 <li><code>gui</code>: open the Passwords window (on the desktop).</li>
@@ -193,7 +194,7 @@ vault audit</code></pre>
 <p><a href="man-pbcopy.html">pbcopy(1)</a>, <a href="https://trylepton.app/docs/passwords.html">https://trylepton.app/docs/passwords.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@98903e2. <a href="https://github.com/danieljaouen/lepton/blob/main/man/vault.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@f41d532. <a href="https://github.com/danieljaouen/lepton/blob/main/man/vault.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
