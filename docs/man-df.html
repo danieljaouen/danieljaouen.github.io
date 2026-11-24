@@ -127,20 +127,23 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>df</code> - report file system space usage</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>df [-h]</code></pre>
+<pre><code>df [-h] [FILE...]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>List the mounted file systems with their size, space used and available, percentage used and mount point. Sizes are in KiB unless <code>-h</code> is given.</p>
+<p>List the mounted file systems with their size, space used and available, percentage used and mount point, as the kernel reports them for each one. Sizes are in KiB (1K-blocks) unless <code>-h</code> is given.</p>
+<p>With FILEs, list only the file systems they are on.</p>
+<p>An installed system's data partition is mounted on <code>/persist</code> and also appears at <code>/home</code>, <code>/root</code>, <code>/var/lib/lepton</code> and <code>/var/log</code>; it is listed once, at <code>/persist</code> (name one of the others to see it there). The live system's root (<code>/</code>) lives in memory, so its size and use are the machine's memory.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>-h</code>: print sizes in human-readable units.</li>
+<li><code>-h</code>: print sizes in human-readable units (K, M, G).</li>
 </ul>
-<h2 id="bugs">BUGS<a class="anchor" href="#bugs" aria-label="Link to this section">#</a></h2>
-<p>Lepton's root file system lives in memory, so sizes are reported from the machine's memory rather than from each device.</p>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">df -h          # every file system
+df -h ~        # the one your home directory is on</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
 <p><a href="man-du.html">du(1)</a>, <a href="man-mount.html">mount(1)</a>, <a href="man-lsblk.html">lsblk(1)</a>, <a href="man-free.html">free(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@3bfc363. <a href="https://github.com/danieljaouen/lepton/blob/main/man/df.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@d4f1afa. <a href="https://github.com/danieljaouen/lepton/blob/main/man/df.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -149,7 +152,7 @@
           <li><a href="#synopsis">SYNOPSIS</a></li>
           <li><a href="#description">DESCRIPTION</a></li>
           <li><a href="#options">OPTIONS</a></li>
-          <li><a href="#bugs">BUGS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
           <li><a href="#see-also">SEE ALSO</a></li>
         </ul>
       </nav>
