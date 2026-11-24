@@ -131,7 +131,9 @@
 <li>zsh-autosuggestions: a dim suggestion from history, accepted with <code>→</code>, <code>C-f</code> or <code>C-e</code>;</li>
 <li>zsh-syntax-highlighting: each command (the first, and each after <code>|</code>, <code>&amp;&amp;</code>, <code>||</code> or <code>;</code>) turns green when it exists and red when it doesn't;</li>
 <li><code>C-r</code> searches history, <code>Tab</code> completes commands and paths, and <code>C-x C-e</code> edits the line in <code>$EDITOR</code>;</li>
-<li>Alt types accents: Alt+e then <code>e</code> is é, Alt+u then <code>u</code> is ü (see <a href="accents.html">Typing accents</a>).</li>
+<li>Alt types accents: Alt+e then <code>e</code> is é, Alt+u then <code>u</code> is ü (see <a href="accents.html">Typing accents</a>);</li>
+<li>pasting (bracketed paste, as zsh does it): pasted lines go into the command line, newlines and all, and nothing runs until you press Return, which runs them together. This works in Lepton's terminal windows, in <code>tmux</code>, and over SSH from terminals that support it (macOS's Terminal and iTerm2 do);</li>
+<li><strong>Shift+Enter</strong> (or Alt+Enter) starts a new line in the command instead of running it, as in zsh; Return runs it all. Over SSH from a Mac, use Option+Enter with &quot;Use Option as Meta key&quot; on, since macOS's Terminal sends Shift+Enter as a plain Return.</li>
 </ul>
 <p><code>bindkey</code> lists every binding; the <a href="keybindings.html">key bindings page</a> shows them too. History is appended after every command (<code>inc_append_history</code>) to <code>~/.lsh_history</code>.</p>
 <h2 id="your-zshrc">Your ~/.zshrc<a class="anchor" href="#your-zshrc" aria-label="Link to this section">#</a></h2>
@@ -184,7 +186,7 @@ done</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@f35610b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/shell.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@8559373. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/shell.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
