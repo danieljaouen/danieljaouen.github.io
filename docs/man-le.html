@@ -65,6 +65,7 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="typst.html">Typst</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -129,7 +130,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>le</code>, <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code> - the Lepton editor (Spacemacs keybindings from your dotfiles)</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>le [FILE...]</code></pre>
+<pre><code>le [--typst] [FILE...]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p><code>le</code> is Lepton's text editor, a work-alike of Spacemacs: evil (vi) editing with the <code>SPC</code> leader key. It opens each FILE in a buffer (a new file is created when you save). It also answers to <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code> and <code>edit</code>, so <code>$EDITOR</code> and git's commit messages open it.</p>
 <p><code>le</code> reads your configuration rather than running it: <code>~/.spacemacs</code> and <code>~/.spacemacs.d/</code> are parsed for key bindings (<code>define-key</code>, <code>evil-define-key</code>, <code>global-set-key</code>), variables (<code>setq</code>), aliases and some functions. <code>keys editor</code> lists what was loaded and marks bindings it does not support.</p>
@@ -150,6 +151,17 @@
 <p>With the Spacemacs tmux layer, <code>C-h</code>, <code>C-j</code>, <code>C-k</code> and <code>C-l</code> move between windows and on into neighbouring tmux panes.</p>
 <p>A paste from the terminal (bracketed paste) goes in exactly as copied, without auto-indent, in any mode.</p>
 <p>Options (<code>-...</code>) and <code>+LINE</code> arguments are accepted and ignored.</p>
+<h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>--typst</code>: Typst mode for the files given, and with none, a new <code>~/Documents/untitled.typ</code> begun with a few lines to start from (the desktop's Typst Editor). Any <code>.typ</code> file is in Typst mode anyway.</li>
+</ul>
+<h2 id="typst">TYPST<a class="anchor" href="#typst" aria-label="Link to this section">#</a></h2>
+<p>In <code>.typ</code> files, Typst's markup is highlighted, and with the <code>typst</code> app installed (<code>sudo app install typst</code>):</p>
+<ul>
+<li>saving compiles the file into a PDF beside it (<code>SPC m w</code> turns that off and on);</li>
+<li><code>SPC m c</code> compiles; on an error, the cursor goes to it, the echo area says what it is, and typst's whole report is in the <code>*typst*</code> buffer;</li>
+<li><code>SPC m p</code> compiles and opens the PDF (in Firefox, on the desktop).</li>
+</ul>
 <h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>~/.spacemacs</code>, <code>~/.spacemacs.d/*.el</code>: configuration.</li>
@@ -160,7 +172,7 @@
 <p><a href="man-keys.html">keys(1)</a>, <a href="man-git.html">git(1)</a>, <a href="man-tmux.html">tmux(1)</a>, <a href="https://trylepton.app/docs/editor.html">https://trylepton.app/docs/editor.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@7a696f2. <a href="https://github.com/danieljaouen/lepton/blob/main/man/le.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@9b4e34c. <a href="https://github.com/danieljaouen/lepton/blob/main/man/le.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -169,6 +181,8 @@
           <li><a href="#synopsis">SYNOPSIS</a></li>
           <li><a href="#description">DESCRIPTION</a></li>
           <li><a href="#keys">KEYS</a></li>
+          <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#typst">TYPST</a></li>
           <li><a href="#files">FILES</a></li>
           <li><a href="#see-also">SEE ALSO</a></li>
         </ul>

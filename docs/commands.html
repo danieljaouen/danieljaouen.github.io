@@ -65,6 +65,7 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="typst.html">Typst</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -126,7 +127,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 173 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 174 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -274,11 +275,12 @@
 <tr><td><span class="anchor-target" id="cmd-gh"></span><a href="man-gh.html"><code>gh</code></a></td><td>GitHub CLI (repos, issues, PRs, auth)</td><td><code>gh auth login|status|token|logout | repo view|list|clone|create | ssh-key list|add | config get|set git_protocol | issue list|view|create | pr list|view | browse | api PATH</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-git"></span><a href="man-git.html"><code>git</code></a></td><td>distributed version control, with HTTPS and SSH remotes (Elixir implementation)</td><td><code>git COMMAND [ARGS]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-iex"></span><a href="man-iex.html"><code>iex</code></a></td><td>interactive Elixir (loads ~/.iex.exs)</td><td><code>iex</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-le"></span><a href="man-le.html"><code>le</code></a> · also <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-le"></span><a href="man-le.html"><code>le</code></a> · also <code>vi</code>, <code>vim</code>, <code>nvim</code>, <code>emacs</code>, <code>emacsclient</code>, <code>spacemacs</code>, <code>edit</code></td><td>the Lepton editor (Spacemacs keybindings from your dotfiles)</td><td><code>le [--typst] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lepton-test"></span><a href="man-lepton-test.html"><code>lepton-test</code></a></td><td>run the Lepton self-test suite (ExUnit, inside the OS)</td><td><code>lepton-test [--only TAG] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-lsh"></span><a href="man-lsh.html"><code>lsh</code></a> · also <code>sh</code>, <code>zsh</code>, <code>bash</code></td><td>the Lepton shell</td><td><code>lsh [-c COMMANDS | SCRIPT [ARG...]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-mix"></span><a href="man-mix.html"><code>mix</code></a></td><td>Elixir's build tool, in a VM of its own: projects, Hex, Phoenix (mix phx.new, mix phx.server)</td><td><code>mix [TASK [ARGS...]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-tmux"></span><a href="man-tmux.html"><code>tmux</code></a></td><td>terminal multiplexer (key table from ~/.tmux.conf)</td><td><code>tmux [new [-s NAME] | attach [-t NAME] | ls | kill-session -t NAME | list-keys]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-typst"></span><a href="man-typst.html"><code>typst</code></a></td><td>Typst, the typesetting system: typst compile, watch, init, fonts (installs as the typst app)</td><td><code>typst compile FILE.typ [OUT.pdf] | watch FILE.typ | init TEMPLATE | fonts | query | ... (typst --help)</code></td></tr>
 </tbody></table></div>
 <h2 id="administration">Administration<a class="anchor" href="#administration" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -334,7 +336,7 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><span class="anchor-target" id="cmd-app"></span><a href="man-app.html"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | reinstall NAME | update [NAME] | remove NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-app"></span><a href="man-app.html"><code>app</code></a></td><td>native Linux apps (from Alpine's packages): list, install, update, remove</td><td><code>app [list] | install NAME | reinstall NAME | update [NAME] | update-all | remove NAME</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-beep"></span><a href="man-beep.html"><code>beep</code></a></td><td>play a tone (default 880 Hz for 150 ms)</td><td><code>beep [HZ [MS]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-classic"></span><a href="man-classic.html"><code>classic</code></a></td><td>the classic desktop: Photon with a Windows 95-style window manager</td><td><code>classic</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-firefox"></span><a href="man-firefox.html"><code>firefox</code></a></td><td>the Firefox web browser (installs it the first time; needs Photon)</td><td><code>firefox [URL...]</code></td></tr>
@@ -359,7 +361,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@7a696f2.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@9b4e34c.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
