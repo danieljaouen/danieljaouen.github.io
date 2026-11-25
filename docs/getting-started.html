@@ -187,6 +187,14 @@ Where should Lepton go?
 <li><strong><code>LEPTON-OS</code></strong> (512 MiB, FAT16, the EFI system partition): Lepton itself, meaning GRUB, the kernel and the initramfs. The installed system boots into RAM from it.</li>
 <li><strong><code>LEPTON-DATA</code></strong> (ext2, the rest of the disk): everything you make. <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, apps such as Firefox, packages, services, Wi-Fi networks, Bluetooth pairings, settings, logs) live here. Your home starts with the image's dotfiles.</li>
 </ul>
+<h3 id="more-room-later">More room later<a class="anchor" href="#more-room-later" aria-label="Link to this section">#</a></h3>
+<p>To give Lepton more space, make its disk bigger and start it again: <code>LEPTON-DATA</code> and its file system grow into the new space at boot, your files staying as they are.</p>
+<ol>
+<li><code>sudo poweroff</code>, and in UTM, <strong>clone the VM</strong> first if you'd like a copy to go back to (right-click it → Clone).</li>
+<li>In the VM's settings: <strong>Drives</strong> → the disk → <strong>Resize</strong>, and give the new size. (QEMU: <code>qemu-img resize disk.qcow2 64G</code>.) A VM's disk only takes room on your Mac as Lepton fills it.</li>
+<li>Start Lepton. <code>df -h /home</code> shows the new size.</li>
+</ol>
+<p>It grows when <code>LEPTON-DATA</code> is the last partition on the disk (as the installer makes it); a disk shared with another system, whose partitions come after Lepton's, is left as it is. The boot option <code>lepton.nogrow=1</code> skips growing.</p>
 <p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system (add <code>--login NAME:PASSWORD</code> with <code>--run</code> to script it).</p>
 <h2 id="upgrade-to-a-new-release">Upgrade to a new release<a class="anchor" href="#upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
 <p>Because Lepton and your data are on separate partitions, a new release replaces only Lepton. <a href="updating.html">Updating Lepton</a> has the steps in full, for UTM, QEMU and from inside Lepton; in short:</p>
@@ -240,7 +248,7 @@ Where should Lepton go?
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@9b4e34c. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4695083. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
