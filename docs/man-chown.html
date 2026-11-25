@@ -132,16 +132,17 @@
 <p>Change the owner of each FILE to USER, and its group to GROUP when one is given (otherwise to USER's own group). Only root may change owners: use <code>sudo chown ...</code>.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>-R</code>: change directories and everything in them, recursively.</li>
+<li><code>-R</code>: change directories and everything in them, recursively. Symbolic links aren't followed: the links themselves change (also ones that point nowhere), not what they point at. A file it can't change is named, and the rest are changed anyway (the exit status is then 1).</li>
 </ul>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">sudo chown alice notes.txt
-sudo chown -R alice:alice /persist/shared</code></pre>
+sudo chown -R alice:alice /persist/shared
+sudo chown -R $USER:$USER ~      # your home directory, all of it yours</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
 <p><a href="man-chmod.html">chmod(1)</a>, <a href="man-id.html">id(1)</a>, <a href="man-sudo.html">sudo(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@899c506. <a href="https://github.com/danieljaouen/lepton/blob/main/man/chown.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@e793a33. <a href="https://github.com/danieljaouen/lepton/blob/main/man/chown.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
