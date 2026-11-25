@@ -195,6 +195,7 @@ Where should Lepton go?
 <li>Start Lepton. <code>df -h /home</code> shows the new size.</li>
 </ol>
 <p>It grows when <code>LEPTON-DATA</code> is the last partition on the disk (as the installer makes it); a disk shared with another system, whose partitions come after Lepton's, is left as it is. The boot option <code>lepton.nogrow=1</code> skips growing.</p>
+<p>Before that, at every start, <code>LEPTON-DATA</code>'s file system is checked if it wasn't left cleanly (Lepton crashed, or the VM was stopped from outside) or the kernel once found something wrong with it: <code>e2fsck</code> repairs it, before anything uses it. (A file system marked with errors can't grow until it has been checked.) What it found is in <code>/var/log/messages</code>.</p>
 <p>With QEMU: <code>qemu-img create -f qcow2 disk.qcow2 8G</code>, then <code>mix lepton.qemu --disk disk.qcow2</code> to install and <code>mix lepton.qemu --no-cd --disk disk.qcow2</code> to boot the installed system (add <code>--login NAME:PASSWORD</code> with <code>--run</code> to script it).</p>
 <h2 id="upgrade-to-a-new-release">Upgrade to a new release<a class="anchor" href="#upgrade-to-a-new-release" aria-label="Link to this section">#</a></h2>
 <p>Because Lepton and your data are on separate partitions, a new release replaces only Lepton. <a href="updating.html">Updating Lepton</a> has the steps in full, for UTM, QEMU and from inside Lepton; in short:</p>
@@ -248,7 +249,7 @@ Where should Lepton go?
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@4695083. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4dcd71e. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/getting-started.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
