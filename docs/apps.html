@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec" open>
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html" aria-current="page">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -148,7 +150,7 @@
 <tr><td><code>sudo app remove NAME</code></td><td>remove it</td></tr>
 <tr><td><code>firefox [URL...]</code></td><td>start Firefox (installing it first, as root)</td></tr>
 </tbody></table></div>
-<p>The other apps are ones Lepton runs in the background rather than opening in a window: <code>bluetooth</code>, <a href="bluetooth.html">Bluetooth</a>'s programs (BlueZ, D-Bus and bluez-alsa: 37 packages, about 8 MB to download), and <code>postgresql</code>, the <a href="postgresql.html">PostgreSQL</a> database server (26 packages, about 18 MB to download, 49 MB installed), which <code>sudo postgresql setup</code> installs and starts; and <code>mix-tools</code>, the programs <code>mix</code> runs: git, for git dependencies, inotifywait, for Phoenix's live reload, and tar, xz and zstd, for building Lepton itself (about 11 MB). They are on the path of <code>mix</code> only; at the prompt, <code>git</code> is still Lepton's own. <code>claude-code</code> holds what <a href="claude-code.html">Claude Code</a> needs (bash, git, ripgrep, util-linux: about 14 MB), which <code>sudo claude-code install</code> installs along with Claude Code itself; and <code>qemu</code>, QEMU for <a href="virtual-machines.html">virtual machines</a> (about 31 MB).</p>
+<p>The other apps are ones Lepton runs in the background rather than opening in a window: <code>bluetooth</code>, <a href="bluetooth.html">Bluetooth</a>'s programs (BlueZ, D-Bus and bluez-alsa: 37 packages, about 8 MB to download), and <code>postgresql</code>, the <a href="postgresql.html">PostgreSQL</a> database server (26 packages, about 18 MB to download, 49 MB installed), which <code>sudo postgresql setup</code> installs and starts; and <code>mix-tools</code>, the programs <code>mix</code> runs: git, for git dependencies, inotifywait, for Phoenix's live reload, and tar, xz and zstd, for building Lepton itself (about 11 MB). They are on the path of <code>mix</code> only; at the prompt, <code>git</code> is still Lepton's own. <code>claude-code</code> holds what <a href="claude-code.html">Claude Code</a> needs (bash, git, ripgrep, util-linux: about 14 MB), which <code>sudo claude-code install</code> installs along with Claude Code itself; <code>qemu</code>, QEMU for <a href="virtual-machines.html">virtual machines</a> (about 31 MB); and <code>ffmpeg</code>, FFmpeg, which decodes what the <a href="media.html">media player and the radio</a> play (110 packages, about 47 MB to download, 110 MB installed).</p>
 <h2 id="updates">Updates<a class="anchor" href="#updates" aria-label="Link to this section">#</a></h2>
 <p>Firefox keeps itself up to date. Alpine rebuilds it for every Firefox release, about every four weeks, and sooner for security fixes. Every 10 days, starting Firefox also checks for a newer build. If there is one, Lepton downloads it in the background, next to the one you're using. The next time you start Firefox, the new version takes over before the window opens. If its setup fails, the old version stays.</p>
 <p>To update right away, close Firefox and run <code>sudo app update firefox</code>. If Firefox is running, the update waits for its next start. Firefox's own updater is turned off in Alpine's build, so these are the only updates.</p>
@@ -187,7 +189,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a23a6be. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a696f2. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/apps.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

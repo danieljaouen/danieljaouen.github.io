@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -328,7 +330,9 @@
 &quot;C-x&quot; prefix_ctrl_x</code></pre>
 <h2 id="shell-aliases">Shell aliases<a class="anchor" href="#shell-aliases" aria-label="Link to this section">#</a></h2>
 <p><code>alias</code>: from <code>~/.zshrc</code> and the oh-my-zsh git plugin.</p>
-<pre><code>a='ansible'
+<pre><code>..='cd ..'
+...='cd ../..'
+a='ansible'
 ap='ansible-playbook'
 api='ansible-playbook -i'
 apik='ansible-playbook --ask-sudo-pass -i'
@@ -355,9 +359,31 @@ drr='docker run'
 drs='docker search'
 e='emacsclient'
 fd='fab dev'
+g='git'
+ga='git add'
+gaa='git add --all'
+gb='git branch'
+gba='git branch -a'
+gbd='git branch -d'
 gc='git commit -m'
+gcb='git checkout -b'
+gcm='git checkout main'
+gcmsg='git commit -m'
+gco='git checkout'
+gd='git diff'
+gdca='git diff --cached'
+gf='git fetch'
+gl='git pull'
+glo='git log --oneline'
+glog='git log --oneline --graph'
+gm='git merge'
 gp='git'
 gpu='git'
+grs='git restore'
+gst='git status'
+gsta='git stash'
+gstp='git stash pop'
+gsw='git switch'
 gx='guix'
 gxd='guix describe'
 gxgc='guix gc'
@@ -372,6 +398,7 @@ gxsh='guix shell'
 gxu='guix upgrade'
 h='hg'
 hc='hg commit -m'
+history-stat='history | awk &quot;{print \$2}&quot; | sort | uniq -c | sort -rn | head'
 hm='hg commit -m 'merge.''
 hp='hg'
 hpu='hg'
@@ -391,11 +418,15 @@ hqst='hg qst'
 hup='hg up'
 hx='helix'
 l='ls -lah'
+la='ls -A'
+ll='ls -l'
 m='mix'
 mc='mix compile'
 mcf='mix compile --all --force'
+md='mkdir -p'
 mdg='mix deps.get'
 mn='mix new'
+mt='mix test'
 mute='vol 0'
 nv='nvim'
 open='xdg-open'
@@ -410,6 +441,7 @@ pmsdb='python manage.py syncdb'
 pmsi='python manage.py schemamigration --initial'
 pmsm='python manage.py schemamigration --auto'
 pmsp='python manage.py shell_plus'
+rd='rmdir'
 re='rebar'
 rn='rails new'
 rr='rbenv rehash'
@@ -437,7 +469,7 @@ vim='le'</code></pre>
   git ush    -&gt; git push</code></pre>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@a23a6be.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@7a696f2.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

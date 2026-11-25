@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>play(1) - Lepton OS docs</title>
-  <meta name="description" content="play a sound file (WAV) on the sound card; C-c stops it">
+  <meta name="description" content="the media player: videos (in a window, on the desktop) and music, files or addresses (needs the ffmpeg app)">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -125,20 +127,45 @@
       <article class="prose">
 <h1 id="play1">play(1)<a class="anchor" href="#play1" aria-label="Link to this section">#</a></h1>
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
-<p><code>play</code> - play a sound file (WAV) on the sound card; C-c stops it</p>
+<p><code>play</code> - the media player: videos (in a window, on the desktop) and music, files or addresses (needs the ffmpeg app)</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>play FILE.wav...</code></pre>
+<pre><code>play [--no-video] [--start TIME] [FILE|URL...]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Play each WAV FILE in turn on the sound card, at the current volume. Ctrl-C stops playing.</p>
+<p>Play videos and music: files, folders, playlists (<code>.m3u</code>, <code>.pls</code>) and addresses (<code>https://...</code>, HLS streams). On the desktop, a video opens in a window of its own; in a terminal, a line shows what plays and where it is. Several files play one after another (a folder: the media in it).</p>
+<p>FFmpeg decodes (it's an app: <code>sudo app install ffmpeg</code> installs it, about 47 MB). WAV files need no FFmpeg: when every file is one, Lepton plays them itself, one after another, at the current volume (Ctrl-C stops). Lepton plays the sound itself, on the sound card <code>volume</code> sets (the system volume applies), and draws the pictures itself. Nearly any format plays: MP4, MKV, WebM, MOV, AVI; MP3, AAC, FLAC, Ogg, Opus, WAV.</p>
+<p>With no files and a terminal, <code>play</code> lists the folders and media in the current folder (or <code>~/Videos</code>, or <code>~/Music</code>) to choose from: Enter plays a file and those after it, or opens a folder; Backspace goes up. This is the desktop's Media Player.</p>
+<h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>--no-video</code> (<code>-n</code>): the sound only, no window.</li>
+<li><code>--start TIME</code> (<code>-s</code>): start TIME into the first file: seconds, <code>M:SS</code> or <code>H:MM:SS</code>.</li>
+</ul>
+<h2 id="keys">KEYS<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
+<p>In the terminal and in the window:</p>
+<ul>
+<li>Space: pause, play again.</li>
+<li>Left, Right: 5 seconds back or on; Up, Down: a minute.</li>
+<li><code>9</code>, <code>0</code> (or <code>-</code>, <code>+</code>): the volume (the system's); <code>m</code>: mute.</li>
+<li><code>n</code>, <code>p</code>: the next or previous file (terminal).</li>
+<li><code>q</code>, Esc: stop (in the window: close it).</li>
+</ul>
+<p>In the window, also: <code>f</code> or a double click fills the screen (Esc returns); a click on the picture pauses; a click on the bar's progress line goes there.</p>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">play movie.mp4
+play ~/Music/album
+play --start 1:30 talk.webm
+play --no-video concert.mkv
+play https://example.com/stream.m3u8</code></pre>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
-<p>0 when everything played, 1 if a file could not be played, 130 if stopped with Ctrl-C.</p>
-<h2 id="bugs">BUGS<a class="anchor" href="#bugs" aria-label="Link to this section">#</a></h2>
-<p>Only WAV files are supported. While Firefox is playing sound, the device may be in use.</p>
+<p>0 when everything played, 1 if a file couldn't be played, 2 for a mistake in the command, 130 if WAV files were stopped with Ctrl-C.</p>
+<h2 id="files">FILES<a class="anchor" href="#files" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>~/.cache/lepton/ffmpeg.log</code>: what FFmpeg said about files it couldn't play.</li>
+</ul>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-beep.html">beep(1)</a>, <a href="man-volume.html">volume(1)</a>, <a href="man-sound.html">sound(1)</a></p>
+<p><a href="man-radio.html">radio(1)</a>, <a href="man-volume.html">volume(1)</a>, <a href="man-beep.html">beep(1)</a>, <a href="man-sound.html">sound(1)</a>, <a href="man-app.html">app(1)</a>, <a href="https://trylepton.app/docs/media.html">https://trylepton.app/docs/media.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a23a6be. <a href="https://github.com/danieljaouen/lepton/blob/main/man/play.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a696f2. <a href="https://github.com/danieljaouen/lepton/blob/main/man/play.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -146,8 +173,11 @@
           <li><a href="#name">NAME</a></li>
           <li><a href="#synopsis">SYNOPSIS</a></li>
           <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#keys">KEYS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
           <li><a href="#exit-status">EXIT STATUS</a></li>
-          <li><a href="#bugs">BUGS</a></li>
+          <li><a href="#files">FILES</a></li>
           <li><a href="#see-also">SEE ALSO</a></li>
         </ul>
       </nav>

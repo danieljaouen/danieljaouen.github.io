@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -153,7 +155,7 @@
 <li>the <code>SPC</code> leader with which-key popups: <code>SPC f f/s</code> files (<code>SPC f S</code> or <code>C-x s</code> saves every changed one), <code>SPC b b/d</code> buffers, <code>SPC w /,-,d,m</code> windows, <code>SPC g s</code> git, <code>SPC p f</code> project files, <code>SPC s s</code> search the buffer, <code>SPC s p</code> / <code>SPC /</code> search the project (<code>RET</code> on a result opens its file at that line; motions such as <code>w</code> and <code>b</code> move in the results), <code>SPC t n/r</code> line numbers, <code>SPC x a r</code> align, <code>SPC q q</code> quit, <code>SPC SPC</code> M-x, <code>SPC ?</code> bindings;</li>
 <li>helm-style candidate lists;</li>
 <li>evil operators, motions and text objects with counts and <code>.</code>, visual modes, undo/redo, yank and paste, and splits;</li>
-<li>keyboard macros: <code>q</code> and a register (<code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>) records what you type, <code>q</code> stops (the mode line shows <code>[@q]</code> meanwhile), <code>@q</code> plays it back, <code>@@</code> plays the last one again, and a count repeats it (<code>5@q</code>). <code>qQ</code> (the capital) adds to macro <code>q</code>. As in Vim, a motion that can't move (<code>j</code> on the last line, <code>f</code> without its character) stops the macro and its count, so <code>100@q</code> with a <code>j</code> in it ends at the last line. Macros last until <code>le</code> quits;</li>
+<li>keyboard macros: <code>q</code> and a register (<code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>) records what you type, <code>q</code> stops (the mode line shows <code>[@q]</code> meanwhile), <code>@q</code> plays it back, <code>@@</code> plays the last one again, and a count repeats it (<code>5@q</code>). <code>qQ</code> (the capital) adds to macro <code>q</code>. As in Vim, a motion that can't move (<code>j</code> on the last line, <code>f</code> without its character) stops the macro and its count, so <code>100@q</code> with a <code>j</code> in it ends at the last line. Macros are kept across sessions: each one is saved when you stop recording, to <code>~/.local/state/le/macros</code> (<code>$XDG_STATE_HOME/le/macros</code> if set), and <code>le</code> loads them when it starts. Recording a register again replaces its macro there too; <code>qQ</code> adds to the one last saved. Other registers are kept, so a macro recorded in another <code>le</code> meanwhile is found when you play it. The file holds one macro a line, its register and its keys (<code>a [&quot;I&quot;, &quot;-&quot;, &quot; &quot;, &quot;ESC&quot;, &quot;j&quot;]</code>): edit it to change or delete one, or record an empty one (<code>qaq</code>);</li>
 <li>visual block (<code>C-v</code>), as in Vim: a rectangle of text, its columns as they show (tabs and wide characters too). <code>d</code>/<code>x</code> delete it, <code>y</code> copies it (and <code>p</code>/<code>P</code> put it back as a block beside the lines below, or as lines of their own on an empty line, which stays after them), <code>c</code> changes it, <code>I</code> inserts before it and <code>A</code> appends after it on every line (<code>$</code> first: at each line's end), <code>r</code> replaces each character, <code>~</code>/<code>u</code>/<code>U</code> change the case, <code>o</code>/<code>O</code> move to another corner, and <code>&gt;</code>, <code>&lt;</code> and <code>:</code> work on its lines;</li>
 <li>marks, as in Vim: <code>m</code> and a letter marks the place, <code>'</code> and the letter goes back to its line (<code>`</code> and the letter: to the very place), and both work after an operator (<code>d'a</code> deletes down to mark a). Marks move with their text as lines are added or removed above them. Lowercase marks belong to their file, uppercase ones (<code>mA</code>) take you back to their file from anywhere; <code>''</code> returns to where the last jump left from, <code>'&lt;</code> and <code>'&gt;</code> are the last visual selection, and <code>:marks</code> lists them. They last until <code>le</code> quits;</li>
 <li>registers, as in Vim: <code>&quot;</code> and a letter before a yank, delete, change or paste uses that register (<code>&quot;ayy</code> yanks the line into a, <code>&quot;ap</code> pastes it, in visual mode too); <code>&quot;A</code> (the capital) adds to register a, <code>&quot;_</code> deletes without keeping the text, <code>&quot;0</code> holds the last yank, <code>&quot;+</code> and <code>&quot;*</code> are the clipboard, and <code>:reg</code> lists them. Every yank and delete still goes to the unnamed register and the clipboard, as before;</li>
@@ -172,6 +174,7 @@ le ~/fruit.txt</code></pre>
 <pre><code>- apple one
 - banana two
 - cherry three</code></pre>
+<p>Macros are saved: quit <code>le</code>, start it again, and <code>@a</code> is still there.</p>
 <h3 id="columns-visual-block">Columns: visual block<a class="anchor" href="#columns-visual-block" aria-label="Link to this section">#</a></h3>
 <p><code>gg</code>, then <code>C-v</code> starts a block; <code>jj</code> stretches it over three lines. <code>I# </code> and <strong>Esc</strong> puts <code># </code> on all three, at the block's column. Undo, then try <code>C-v jj $ A;</code> and <strong>Esc</strong>: <code>$</code> reaches each line's end, so <code>A</code> appends <code>;</code> to every line. With <code>w</code> first, <code>C-v jj e U</code> upper-cases the second word of each line (<code>ONE</code>, <code>TWO</code>, <code>THREE</code>). <code>d</code> deletes a block, <code>y</code> copies it and <code>p</code> puts it back as a block; on an empty line (after <code>o</code> and <strong>Esc</strong>) a block pastes as lines of its own.</p>
 <h3 id="keep-several-things-registers">Keep several things: registers<a class="anchor" href="#keep-several-things-registers" aria-label="Link to this section">#</a></h3>
@@ -187,6 +190,9 @@ le ~/fruit.txt</code></pre>
 </ul>
 <h3 id="mouse-and-pasting">Mouse and pasting<a class="anchor" href="#mouse-and-pasting" aria-label="Link to this section">#</a></h3>
 <p>In a terminal window (or tmux, or over SSH from your Mac) a click puts the cursor where you click, a drag selects, and the wheel scrolls. Ctrl+Shift+V (Cmd-V over SSH) pastes text exactly as you copied it, indentation and all, and one <code>u</code> takes it back.</p>
+<h2 id="big-files-and-many-buffers">Big files and many buffers<a class="anchor" href="#big-files-and-many-buffers" aria-label="Link to this section">#</a></h2>
+<p><code>le</code> keeps a buffer's lines in chunks: an edit copies the chunk it changes, not the file, and undo's 200 steps share the rest. A 50 MB file (660,000 lines) opens in a quarter of a second, and typing, <code>dd</code> and <code>u</code> stay at a few milliseconds a key; searching all of it takes about a third of a second. Hundreds of buffers are fine too: with 1,000 files open, keys still take well under a millisecond, and the buffer list (<code>SPC b b</code>) filters as you type.</p>
+<p>Word completion in a big file looks at the two megabytes around the cursor, nearest first, rather than at the whole file.</p>
 <h2 id="org-mode-folding">Org mode: folding<a class="anchor" href="#org-mode-folding" aria-label="Link to this section">#</a></h2>
 <p>In <code>.org</code> files, headings (<code>* </code>, <code>** </code>, ...) fold as in Spacemacs:</p>
 <div class="table-wrap"><table>
@@ -218,7 +224,7 @@ le ~/fruit.txt</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a23a6be. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a696f2. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/editor.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -226,6 +232,7 @@ le ~/fruit.txt</code></pre>
           <li><a href="#read-from-your-configuration">Read from your configuration</a></li>
           <li><a href="#spacemacs-defaults">Spacemacs defaults</a></li>
           <li><a href="#a-tour-beyond-the-basics">A tour: beyond the basics</a></li>
+          <li><a href="#big-files-and-many-buffers">Big files and many buffers</a></li>
           <li><a href="#org-mode-folding">Org mode: folding</a></li>
           <li><a href="#git-from-the-editor">Git from the editor</a></li>
           <li><a href="#commands-on-this-page">Commands on this page</a></li>

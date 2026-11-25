@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -124,7 +126,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 171 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 173 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -340,17 +342,24 @@
 <tr><td><span class="anchor-target" id="cmd-mouse"></span><a href="man-mouse.html"><code>mouse</code></a></td><td>the mouse on the desktop: natural or traditional scrolling</td><td><code>mouse [scroll [natural | traditional]]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-open"></span><a href="man-open.html"><code>open</code></a> · also <code>xdg-open</code></td><td>open files, folders and web addresses in the right app: text in le; images, PDFs, folders and pages in Firefox</td><td><code>open FILE|DIR|URL...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-photon"></span><a href="man-photon.html"><code>photon</code></a></td><td>the graphical desktop (Photon, a Wayland compositor) and its terminal windows</td><td><code>photon [start] | term [COMMAND...] | info | display [extend|mirror] | screenshot FILE.png | stop</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-play"></span><a href="man-play.html"><code>play</code></a></td><td>play a sound file (WAV) on the sound card; C-c stops it</td><td><code>play FILE.wav...</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-screenshot"></span><a href="man-screenshot.html"><code>screenshot</code></a></td><td>save a screenshot of the desktop, a window or a region as a PNG (default: in ~/Pictures)</td><td><code>screenshot [-w | -s | -g X,Y,WxH | -D N] [-d SECONDS] [FILE.png]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sound"></span><a href="man-sound.html"><code>sound</code></a></td><td>sound cards: list them, choose where sound plays, play a test tone</td><td><code>sound [list] | use N | use bluetooth | use auto | test</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-volume"></span><a href="man-volume.html"><code>volume</code></a></td><td>the sound volume: show it, set it (0-100, +N, -N), mute or unmute</td><td><code>volume [N | +N | -N | up | down | mute | unmute | toggle]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-widevine"></span><a href="man-widevine.html"><code>widevine</code></a></td><td>Widevine, the DRM plugin Firefox needs for Spotify, Netflix and other streaming sites</td><td><code>widevine [status] | install | update | remove</code></td></tr>
 </tbody></table></div>
+<h2 id="media">Media<a class="anchor" href="#media" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><span class="anchor-target" id="cmd-play"></span><a href="man-play.html"><code>play</code></a></td><td>the media player: videos (in a window, on the desktop) and music, files or addresses (needs the ffmpeg app)</td><td><code>play [--no-video] [--start TIME] [FILE|URL...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-radio"></span><a href="man-radio.html"><code>radio</code></a></td><td>internet radio: your stations, a search of 50,000 more, the song playing (needs the ffmpeg app)</td><td><code>radio [STATION|URL] | list | search WORDS... | add NAME URL | rm NAME</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-torrent"></span><a href="man-torrent.html"><code>torrent</code></a></td><td>BitTorrent: download from magnet links and .torrent files, and share back while they stay added</td><td><code>torrent [add [-d DIR] [--peer HOST:PORT] MAGNET|FILE|URL | list | stop T | start T | rm [--delete] T | info FILE | create [-o FILE] [-t TRACKER]... PATH]</code></td></tr>
+</tbody></table></div>
 <h2 id="shell-builtins">Shell builtins<a class="anchor" href="#shell-builtins" aria-label="Link to this section">#</a></h2>
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@a23a6be.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@7a696f2.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
@@ -365,6 +374,7 @@
           <li><a href="#vm">VM</a></li>
           <li><a href="#printing">Printing</a></li>
           <li><a href="#desktop">Desktop</a></li>
+          <li><a href="#media">Media</a></li>
           <li><a href="#shell-builtins">Shell builtins</a></li>
         </ul>
       </nav>

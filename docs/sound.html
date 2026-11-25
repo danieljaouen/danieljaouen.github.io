@@ -89,6 +89,7 @@
           <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
           <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
           <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
           </ul>
         </details>
         <details class="docs-sec" open>
@@ -97,6 +98,7 @@
           <li><a href="desktop.html">The desktop (Photon)</a></li>
           <li><a href="keyboard.html">Languages and keyboards</a></li>
           <li><a href="sound.html" aria-current="page">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="passwords.html">Passwords</a></li>
@@ -132,6 +134,7 @@ volume mute         # mute (unmute, toggle)
 sound test          # three notes, to check you can hear it
 play song.wav       # play a WAV file (C-c stops it)
 beep 440 500        # a 440 Hz tone for half a second</code></pre>
+<p>MP3, FLAC, Ogg and the rest, videos and internet radio: see <a href="media.html">Videos, music and radio</a> (<code>play</code> and <code>radio</code>, with FFmpeg).</p>
 <p>The volume and mute are remembered, on an installed system across restarts too.</p>
 <h2 id="on-the-desktop">On the desktop<a class="anchor" href="#on-the-desktop" aria-label="Link to this section">#</a></h2>
 <p>The volume keys on a keyboard (mute, volume down, volume up) work on the desktop, in <a href="desktop.html">Photon</a> and the classic desktop.</p>
@@ -159,12 +162,12 @@ beep 440 500        # a 440 Hz tone for half a second</code></pre>
 <tbody>
 <tr><td><a href="commands.html#cmd-volume"><code>volume</code></a></td><td>the sound volume: show it, set it (0-100, +N, -N), mute or unmute</td><td><code>volume [N | +N | -N | up | down | mute | unmute | toggle]</code></td></tr>
 <tr><td><a href="commands.html#cmd-sound"><code>sound</code></a></td><td>sound cards: list them, choose where sound plays, play a test tone</td><td><code>sound [list] | use N | use bluetooth | use auto | test</code></td></tr>
-<tr><td><a href="commands.html#cmd-play"><code>play</code></a></td><td>play a sound file (WAV) on the sound card; C-c stops it</td><td><code>play FILE.wav...</code></td></tr>
+<tr><td><a href="commands.html#cmd-play"><code>play</code></a></td><td>the media player: videos (in a window, on the desktop) and music, files or addresses (needs the ffmpeg app)</td><td><code>play [--no-video] [--start TIME] [FILE|URL...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-beep"><code>beep</code></a></td><td>play a tone (default 880 Hz for 150 ms)</td><td><code>beep [HZ [MS]]</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@a23a6be. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/sound.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7a696f2. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/sound.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
