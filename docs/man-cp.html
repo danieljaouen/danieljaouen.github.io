@@ -65,6 +65,7 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html">Archives and big files</a></li>
           <li><a href="typst.html">Typst</a></li>
           </ul>
         </details>
@@ -103,6 +104,7 @@
           <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
           <li><a href="passwords.html">Passwords</a></li>
           </ul>
         </details>
@@ -134,6 +136,7 @@
 <pre><code>cp [-rv] SOURCE... DEST</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Copy SOURCE to DEST, or several SOURCEs into the directory DEST. When DEST is an existing directory, each SOURCE is copied into it under its own name; otherwise DEST is the name of the copy (and only one SOURCE is allowed).</p>
+<p>A link to a file copies the file; with <code>-r</code>, links inside folders are copied as links. Files are copied in 8 MiB pieces and written out every 64 MiB, so big files (many gigabytes) copy without stalling the system, and Ctrl+C stops a copy part way. The space is checked first: a copy that doesn't fit where it goes, or that would leave the machine less than 512 MiB of memory on <code>/</code> (which is in memory), fails with &quot;No space left on device&quot; before anything is written.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>-r</code>, <code>-R</code>, <code>-a</code>: copy directories recursively.</li>
@@ -147,10 +150,10 @@
 cp -r ~/.config/le /tmp/le-backup
 cp *.png ~/Pictures/</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-mv.html">mv(1)</a>, <a href="man-ln.html">ln(1)</a>, <a href="man-rm.html">rm(1)</a>, <a href="man-rsync.html">rsync(1)</a></p>
+<p><a href="man-mv.html">mv(1)</a>, <a href="man-ln.html">ln(1)</a>, <a href="man-rm.html">rm(1)</a>, <a href="man-rsync.html">rsync(1)</a>, <a href="man-tar.html">tar(1)</a>, <a href="https://trylepton.app/docs/archives.html">https://trylepton.app/docs/archives.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@83ff862. <a href="https://github.com/danieljaouen/lepton/blob/main/man/cp.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@2b6de6b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/cp.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

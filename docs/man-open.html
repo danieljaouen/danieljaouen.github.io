@@ -65,6 +65,7 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html">Archives and big files</a></li>
           <li><a href="typst.html">Typst</a></li>
           </ul>
         </details>
@@ -103,6 +104,7 @@
           <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
           <li><a href="passwords.html">Passwords</a></li>
           </ul>
         </details>
@@ -141,6 +143,7 @@
 <li>a web address (<code>http:</code>, <code>https:</code>, <code>file:</code>, <code>ftp:</code>): Firefox.</li>
 <li>videos and music (MP4, MKV, WebM, MPEG, MP3, FLAC, ...): the Media Player, in a window of its own on the desktop (<code>play</code>, the video in its window); without the desktop, <code>play</code> in this terminal.</li>
 <li><code>.torrent</code> files and <code>magnet:</code> links: Torrents (<code>torrent open</code>: added, and the Torrents window opened on the desktop).</li>
+<li>SNES games (<code>.sfc</code>, <code>.smc</code>): the SNES emulator (<code>snes</code>), from a terminal window of its own on the desktop.</li>
 </ul>
 <p>A file is recognised by its contents as well as its name, so an image without an extension still opens in Firefox. With several arguments, the text files open together in one <code>le</code>, and everything else opens in Firefox. Firefox needs the desktop (<code>photon</code> or <code>classic</code>), and is installed the first time, as with <code>firefox</code>. If Firefox is already running, everything opens in new tabs of it, <code>open .</code> included.</p>
 <p><code>xdg-open</code> is the same command, as Linux and the dotfiles call it.</p>
@@ -149,15 +152,16 @@
 open photo.jpg paper.pdf
 open holiday.mp4
 open ubuntu.iso.torrent
+open game.sfc
 open .
 xdg-open https://trylepton.app</code></pre>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>0 if everything was opened. 1 if a file doesn't exist, isn't a kind <code>open</code> knows, or its app couldn't start. 2 without arguments.</p>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-le.html">le(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="man-play.html">play(1)</a>, <a href="man-torrent.html">torrent(1)</a>, <a href="https://trylepton.app/docs/desktop.html#opening-files">https://trylepton.app/docs/desktop.html#opening-files</a></p>
+<p><a href="man-le.html">le(1)</a>, <a href="man-firefox.html">firefox(1)</a>, <a href="man-play.html">play(1)</a>, <a href="man-torrent.html">torrent(1)</a>, <a href="man-snes.html">snes(1)</a>, <a href="https://trylepton.app/docs/desktop.html#opening-files">https://trylepton.app/docs/desktop.html#opening-files</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@83ff862. <a href="https://github.com/danieljaouen/lepton/blob/main/man/open.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@2b6de6b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/open.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

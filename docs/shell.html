@@ -65,6 +65,7 @@
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html">Archives and big files</a></li>
           <li><a href="typst.html">Typst</a></li>
           </ul>
         </details>
@@ -103,6 +104,7 @@
           <li><a href="media.html">Videos, music and radio</a></li>
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
           <li><a href="passwords.html">Passwords</a></li>
           </ul>
         </details>
@@ -134,7 +136,7 @@
 <ul>
 <li>zsh-autosuggestions: a dim suggestion from history, accepted with <code>→</code>, <code>C-f</code> or <code>C-e</code>;</li>
 <li>zsh-syntax-highlighting: each command (the first, and each after <code>|</code>, <code>&amp;&amp;</code>, <code>||</code> or <code>;</code>) turns green when it exists and red when it doesn't;</li>
-<li><code>C-r</code> searches history, <code>Tab</code> completes commands and paths, and <code>C-x C-e</code> edits the line in <code>$EDITOR</code>;</li>
+<li><code>C-r</code> searches history, <code>Tab</code> completes commands and paths, and <code>C-x C-e</code> edits the line in <code>$EDITOR</code>; names with spaces or quotes complete as the shell reads them: <code>cat My\ Do</code>, Tab, gives <code>cat My\ Documents/</code>, and inside quotes (<code>cat &quot;My Do</code>) they stay quoted and the quote is closed after a file;</li>
 <li>Alt types accents: Alt+e then <code>e</code> is é, Alt+u then <code>u</code> is ü (see <a href="accents.html">Typing accents</a>);</li>
 <li>pasting (bracketed paste, as zsh does it): pasted lines go into the command line, newlines and all, and nothing runs until you press Return, which runs them together. This works in Lepton's terminal windows, in <code>tmux</code>, and over SSH from terminals that support it (macOS's Terminal and iTerm2 do);</li>
 <li><strong>Shift+Enter</strong> (or Alt+Enter) starts a new line in the command instead of running it, as in zsh; Return runs it all. Over SSH from a Mac, use Option+Enter with &quot;Use Option as Meta key&quot; on, since macOS's Terminal sends Shift+Enter as a plain Return.</li>
@@ -190,7 +192,7 @@ done</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@83ff862. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/shell.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@2b6de6b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/shell.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

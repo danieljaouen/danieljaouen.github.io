@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Archives and big files - Lepton OS docs</title>
+  <meta name="description" content="tar and unzip for .tar, .tar.gz and .zip files, and copying big files with cp and mv.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="accents.html">Typing accents</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html" aria-current="page">Archives and big files</a></li>
+          <li><a href="typst.html">Typst</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
+          <li><a href="gpg.html">Encryption and signatures (gpg)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="archives-and-big-files">Archives and big files<a class="anchor" href="#archives-and-big-files" aria-label="Link to this section">#</a></h1>
+<h2 id="tar">tar<a class="anchor" href="#tar" aria-label="Link to this section">#</a></h2>
+<p><code>tar</code> makes, lists and unpacks tar archives, plain (<code>.tar</code>) or compressed with gzip (<code>.tar.gz</code>, <code>.tgz</code>), as GNU tar does. The first argument may leave out its dash, as in <code>tar xzf</code>:</p>
+<pre><code class="language-sh">tar czf notes.tgz notes/          # make notes.tgz from the folder notes
+tar tvf notes.tgz                 # list it, with sizes and dates
+tar xf notes.tgz                  # unpack it here (gzip is recognised: -z is optional)
+tar xf release.tar.gz -C ~/src    # unpack into ~/src
+tar xf release.tar.gz --strip-components=1   # without the top folder
+tar caf backup.tar.gz ~/Documents # -a: compressed or not by the name
+tar xOf notes.tgz notes/todo.txt  # a member to the screen (-O)</code></pre>
+<p>Name members after the archive to unpack just those (a folder brings everything in it; <code>*</code> and <code>?</code> work too). <code>--exclude=PATTERN</code> leaves files out when making one, <code>-k</code> keeps files that are already there.</p>
+<p>Archives from elsewhere unpack safely: a leading <code>/</code> is taken off the names, and a member whose name climbs out with <code>..</code> is skipped. Long names, symbolic links and permissions are kept both ways; the files you unpack are yours. Archives compressed with xz, bzip2 or zstd (<code>.tar.xz</code>, <code>.tar.bz2</code>, <code>.tar.zst</code>) aren't supported yet: tar says which it found.</p>
+<h2 id="unzip">unzip<a class="anchor" href="#unzip" aria-label="Link to this section">#</a></h2>
+<p><code>unzip</code> lists, tests and unpacks <code>.zip</code> files, as Info-ZIP's <code>unzip</code>:</p>
+<pre><code class="language-sh">unzip photos.zip                  # unpack here
+unzip photos.zip -d ~/Pictures    # unpack into a folder
+unzip -l photos.zip               # list
+unzip -t photos.zip               # check every file's CRC
+unzip -p notes.zip todo.txt       # a file to the screen
+unzip photos.zip '*.jpg' -x 'thumbs/*'</code></pre>
+<p>When a file is already there, <code>unzip</code> asks (<code>[y]es, [n]o, [A]ll, [N]one</code>); <code>-o</code> replaces without asking and <code>-n</code> never replaces. <code>-j</code> leaves out the folders, <code>-q</code> the messages. Files are read from the archive as they're unpacked, so a big zip doesn't need to fit in memory. Stored and deflated files are supported (what nearly every zip holds), zip64 archives too; encrypted ones aren't.</p>
+<h2 id="copying-big-files">Copying big files<a class="anchor" href="#copying-big-files" aria-label="Link to this section">#</a></h2>
+<p><code>cp</code> and <code>mv</code> (between file systems) copy in 8 MiB pieces, writing each 64 MiB to the disk as they go, so copying files of many gigabytes keeps the system responsive, and Ctrl+C stops a copy part way.</p>
+<p>They check for space first. <code>/</code> (and so <code>/tmp</code>) is in memory on Lepton: a copy there that would leave the machine less than 512 MiB of memory is refused with &quot;No space left on device&quot; rather than filling memory. Big files belong in your home folder, which is on the disk.</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-tar"><code>tar</code></a></td><td>create, list and extract tar archives (gzip-compressed too: .tar.gz, .tgz), as GNU tar</td><td><code>tar -c|-x|-t [-v] [-z] [-a] [-k] [-O] [-f ARCHIVE] [-C DIR] [--strip-components=N] [--exclude=PATTERN] [FILE...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-unzip"><code>unzip</code></a></td><td>list, test and extract .zip archives, as Info-ZIP's unzip</td><td><code>unzip [-l | -v | -t | -p | -Z1] [-o | -n] [-q] [-j] [-d DIR] ZIPFILE [MEMBER...] [-x MEMBER...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-cp"><code>cp</code></a></td><td>copy files and directories</td><td><code>cp [-rv] SOURCE... DEST</code></td></tr>
+<tr><td><a href="commands.html#cmd-mv"><code>mv</code></a></td><td>move (rename) files</td><td><code>mv [-v] SOURCE... DEST</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@2b6de6b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/archives.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#tar">tar</a></li>
+          <li><a href="#unzip">unzip</a></li>
+          <li><a href="#copying-big-files">Copying big files</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
