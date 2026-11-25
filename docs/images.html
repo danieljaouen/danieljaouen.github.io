@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>Editing images - Lepton OS docs</title>
+  <meta name="description" content="ImageMagick (magick, convert, identify, mogrify): crop, resize, rotate and convert images from the command line.">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="accents.html">Typing accents</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html">Archives and big files</a></li>
+          <li><a href="typst.html">Typst</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
+          <li><a href="gpg.html">Encryption and signatures (gpg)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec" open>
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
+          <li><a href="images.html" aria-current="page">Editing images</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="editing-images">Editing images<a class="anchor" href="#editing-images" aria-label="Link to this section">#</a></h1>
+<p>Lepton edits images with <a href="https://imagemagick.org">ImageMagick</a> 7: <code>magick</code>, and its tools as commands of their own (<code>convert</code>, <code>identify</code>, <code>mogrify</code>, <code>composite</code>, <code>montage</code>, <code>compare</code>). It's the <code>imagemagick</code> app, installed the first time you use one of them (it asks), or with <code>sudo app install imagemagick</code> (about 21 MB to download, 58 MB installed).</p>
+<p>It reads and writes PNG, JPEG, GIF, WebP, TIFF, BMP, JPEG XL, JPEG 2000 and dozens more, and reads HEIC (iPhone photos). SVG and PDF aren't included. To look at the result, <code>open</code> it (Firefox shows images).</p>
+<h2 id="crop">Crop<a class="anchor" href="#crop" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">magick photo.jpg -crop 800x600+100+50 +repage cropped.jpg   # 800x600, from 100 across and 50 down
+magick photo.jpg -gravity center -crop 1:1 +repage square.jpg  # the middle square
+magick photo.jpg -gravity center -crop 80%x80%+0+0 +repage zoomed.jpg
+magick scan.png -trim +repage trimmed.png                    # cut off the plain border
+magick photo.jpg -shave 20x20 shaved.jpg                    # 20 pixels off every side</code></pre>
+<p><code>+repage</code> forgets where the cut came from, so the new image starts at 0,0 (without it, some formats keep the old canvas).</p>
+<h2 id="resize-rotate-flip">Resize, rotate, flip<a class="anchor" href="#resize-rotate-flip" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">magick photo.jpg -resize 1024x1024 smaller.jpg    # fit within 1024x1024, keeping its shape
+magick photo.jpg -resize 50% half.jpg
+magick photo.jpg -resize 640x480! stretched.jpg   # exactly, shape or not
+magick photo.jpg -thumbnail 200x200^ -gravity center -extent 200x200 thumb.jpg
+magick photo.jpg -rotate 90 turned.jpg
+magick photo.jpg -auto-orient upright.jpg         # as the camera held it (EXIF)
+magick photo.jpg -flop mirrored.jpg               # left to right (-flip: top to bottom)</code></pre>
+<h2 id="convert-and-adjust">Convert and adjust<a class="anchor" href="#convert-and-adjust" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">magick IMG_0042.HEIC photo.jpg                    # iPhone photo to JPEG
+magick photo.png -quality 85 photo.jpg
+magick photo.jpg -strip clean.jpg                 # without its metadata (location too)
+magick photo.jpg -colorspace Gray grey.jpg
+magick photo.jpg -brightness-contrast 10x15 brighter.jpg
+magick photo.jpg -blur 0x3 soft.jpg
+magick photo.jpg -fill white -pointsize 36 -gravity south -annotate +0+20 'Lepton' captioned.jpg</code></pre>
+<h2 id="many-at-once">Many at once<a class="anchor" href="#many-at-once" aria-label="Link to this section">#</a></h2>
+<p><code>mogrify</code> changes images in place, or writes them beside the originals in another format with <code>-format</code>:</p>
+<pre><code class="language-sh">mogrify -resize 1600x1600 -quality 85 *.jpg      # in place: keep copies first
+mogrify -format webp *.png                        # photo.png -&gt; photo.webp beside it
+mogrify -path small -thumbnail 300x300 *.jpg      # into the folder small</code></pre>
+<h2 id="look-combine-compare">Look, combine, compare<a class="anchor" href="#look-combine-compare" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">identify photo.jpg                                # format, size, colours
+identify -format '%wx%h\n' *.jpg
+montage *.jpg -tile 4x -geometry 200x200+4+4 sheet.jpg   # a contact sheet
+composite -gravity southeast logo.png photo.jpg marked.jpg
+compare -metric AE a.png b.png diff.png           # the number of pixels that differ</code></pre>
+<p>An image can go to standard output, to pipe on: <code>magick photo.jpg png:-</code>. Text is drawn in DejaVu (Sans, Serif, Mono; ImageMagick's Helvetica, Arial, Times and Courier are those too).</p>
+<h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><a href="commands.html#cmd-magick"><code>magick</code></a></td><td>ImageMagick: convert, crop, resize, rotate and edit images (installs as the imagemagick app)</td><td><code>magick INPUT [OPTIONS...] OUTPUT | magick TOOL ... (magick -help)</code></td></tr>
+<tr><td><a href="commands.html#cmd-convert"><code>convert</code></a></td><td>ImageMagick's convert: read an image, change it, write it (magick)</td><td><code>convert INPUT [OPTIONS...] OUTPUT</code></td></tr>
+<tr><td><a href="commands.html#cmd-identify"><code>identify</code></a></td><td>ImageMagick's identify: an image's format, size and more (magick)</td><td><code>identify [-verbose] [-format FMT] IMAGE...</code></td></tr>
+<tr><td><a href="commands.html#cmd-mogrify"><code>mogrify</code></a></td><td>ImageMagick's mogrify: change images in place, or into another format (magick)</td><td><code>mogrify [OPTIONS...] IMAGE...</code></td></tr>
+<tr><td><a href="commands.html#cmd-composite"><code>composite</code></a></td><td>ImageMagick's composite: lay one image over another (magick)</td><td><code>composite [OPTIONS...] OVERLAY BASE OUTPUT</code></td></tr>
+<tr><td><a href="commands.html#cmd-montage"><code>montage</code></a></td><td>ImageMagick's montage: images side by side, as a contact sheet (magick)</td><td><code>montage [OPTIONS...] IMAGE... OUTPUT</code></td></tr>
+<tr><td><a href="commands.html#cmd-compare"><code>compare</code></a></td><td>ImageMagick's compare: where two images differ, and by how much (magick)</td><td><code>compare [-metric M] IMAGE1 IMAGE2 [DIFF]</code></td></tr>
+</tbody></table></div>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@9026a17. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/images.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#crop">Crop</a></li>
+          <li><a href="#resize-rotate-flip">Resize, rotate, flip</a></li>
+          <li><a href="#convert-and-adjust">Convert and adjust</a></li>
+          <li><a href="#many-at-once">Many at once</a></li>
+          <li><a href="#look-combine-compare">Look, combine, compare</a></li>
+          <li><a href="#commands-on-this-page">Commands on this page</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

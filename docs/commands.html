@@ -105,6 +105,7 @@
           <li><a href="apps.html">Firefox and other apps</a></li>
           <li><a href="printing.html">Printing</a></li>
           <li><a href="snes.html">SNES games</a></li>
+          <li><a href="images.html">Editing images</a></li>
           <li><a href="passwords.html">Passwords</a></li>
           </ul>
         </details>
@@ -130,7 +131,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 180 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 187 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -361,6 +362,13 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
+<tr><td><span class="anchor-target" id="cmd-compare"></span><a href="man-compare.html"><code>compare</code></a></td><td>ImageMagick's compare: where two images differ, and by how much (magick)</td><td><code>compare [-metric M] IMAGE1 IMAGE2 [DIFF]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-composite"></span><a href="man-composite.html"><code>composite</code></a></td><td>ImageMagick's composite: lay one image over another (magick)</td><td><code>composite [OPTIONS...] OVERLAY BASE OUTPUT</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-convert"></span><a href="man-convert.html"><code>convert</code></a></td><td>ImageMagick's convert: read an image, change it, write it (magick)</td><td><code>convert INPUT [OPTIONS...] OUTPUT</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-identify"></span><a href="man-identify.html"><code>identify</code></a></td><td>ImageMagick's identify: an image's format, size and more (magick)</td><td><code>identify [-verbose] [-format FMT] IMAGE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-magick"></span><a href="man-magick.html"><code>magick</code></a></td><td>ImageMagick: convert, crop, resize, rotate and edit images (installs as the imagemagick app)</td><td><code>magick INPUT [OPTIONS...] OUTPUT | magick TOOL ... (magick -help)</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-mogrify"></span><a href="man-mogrify.html"><code>mogrify</code></a></td><td>ImageMagick's mogrify: change images in place, or into another format (magick)</td><td><code>mogrify [OPTIONS...] IMAGE...</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-montage"></span><a href="man-montage.html"><code>montage</code></a></td><td>ImageMagick's montage: images side by side, as a contact sheet (magick)</td><td><code>montage [OPTIONS...] IMAGE... OUTPUT</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-play"></span><a href="man-play.html"><code>play</code></a></td><td>the media player: videos (in a window, on the desktop) and music, files or addresses (needs the ffmpeg app)</td><td><code>play [--no-video] [--start TIME] [FILE|URL...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-radio"></span><a href="man-radio.html"><code>radio</code></a></td><td>internet radio: your stations, a search of 50,000 more, the song playing (needs the ffmpeg app)</td><td><code>radio [STATION|URL] | list | search WORDS... | add NAME URL | rm NAME</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-snes"></span><a href="man-snes.html"><code>snes</code></a></td><td>the SNES emulator: Super Nintendo games (.sfc, .smc ROMs) in a window on the desktop (needs the snes app)</td><td><code>snes [ROM]</code></td></tr>
@@ -370,7 +378,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@2b6de6b.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@9026a17.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
