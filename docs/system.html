@@ -138,7 +138,7 @@
 <p>For long-running apps that should survive logouts and restart when they fail, use <a href="services.html">services</a>.</p>
 <h2 id="storage-and-persistence">Storage and persistence<a class="anchor" href="#storage-and-persistence" aria-label="Link to this section">#</a></h2>
 <p>The live ISO runs entirely from RAM: nothing you do is kept. An <a href="getting-started.html#install-to-a-disk">installed</a> system keeps <code>/home</code> (your files), <code>/root</code> and <code>/var/lib/lepton</code> (accounts, packages, services, logs and settings) on its data partition; everything else, including <code>/etc</code>, resets at boot. It keeps <code>/var/log</code> too (see <a href="#logs">logs</a>).</p>
-<p><code>df</code> shows each file system's size and free space (<code>df -h ~</code>: the disk your files are on), <code>du</code> what files take, <code>ncdu</code> lets you browse that, largest first, and delete what you don't need, <code>free</code> the memory and <code>mount</code> what is mounted.</p>
+<p><code>df</code> shows each file system's size and free space (<code>df -h ~</code>: the disk your files are on), <code>du</code> what files take, <code>ncdu</code> lets you browse that, largest first, and delete what you don't need, <code>cloc</code> counts lines of code by language (as cloc does: <code>cloc --vcs=git .</code>), <code>free</code> the memory and <code>mount</code> what is mounted.</p>
 <h2 id="when-memory-runs-out">When memory runs out<a class="anchor" href="#when-memory-runs-out" aria-label="Link to this section">#</a></h2>
 <p>Lepton has no swap, so the memory the VM has is all there is. Firefox uses most of it: each tab is a program of its own. When memory runs short:</p>
 <ol>
@@ -197,6 +197,8 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 <tr><td><a href="commands.html#cmd-pkill"><code>pkill</code></a></td><td>signal processes by name</td><td><code>pkill PATTERN</code></td></tr>
 <tr><td><a href="commands.html#cmd-df"><code>df</code></a></td><td>report file system space usage</td><td><code>df [-h] [FILE...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-du"><code>du</code></a></td><td>estimate file space usage</td><td><code>du [-sh] [FILE...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-ncdu"><code>ncdu</code></a></td><td>browse disk usage: what takes the space, largest first (q to quit)</td><td><code>ncdu [-x] [DIR]</code></td></tr>
+<tr><td><a href="commands.html#cmd-cloc"><code>cloc</code></a></td><td>count lines of code: blank, comment and code lines by language, as cloc counts them</td><td><code>cloc [--by-file] [--json | --csv | --md] [--include-lang=L,...] [--exclude-dir=D,...] [--vcs=git] [-q] PATH...</code></td></tr>
 <tr><td><a href="commands.html#cmd-free"><code>free</code></a></td><td>display amount of free and used memory</td><td><code>free [-h] [-m]</code></td></tr>
 <tr><td><a href="commands.html#cmd-mount"><code>mount</code></a></td><td>mount a filesystem / list mounts</td><td><code>mount [-t TYPE] [-o OPTS] SOURCE DIR</code></td></tr>
 <tr><td><a href="commands.html#cmd-poweroff"><code>poweroff</code></a></td><td>power off the machine (flushes the disk first) (needs <a href="users.html">sudo</a>)</td><td><code>poweroff</code></td></tr>
@@ -217,7 +219,7 @@ man ls | grep -- -h # plain text when it isn't a terminal</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@140c78b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@7787604. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/system.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
