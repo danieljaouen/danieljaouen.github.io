@@ -130,7 +130,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>torrent</code> - BitTorrent: download from magnet links and .torrent files, and share back while they stay added</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>torrent [add [-d DIR] [--peer HOST:PORT] MAGNET|FILE|URL | list | stop T | start T | rm [--delete] T | info FILE | create [-o FILE] [-t TRACKER]... PATH]</code></pre>
+<pre><code>torrent [add [-d DIR] [--peer HOST:PORT] MAGNET|FILE|URL | open MAGNET|FILE | list | stop T | start T | rm [--delete] T | info FILE | create [-o FILE] [-t TRACKER]... PATH]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Download with BitTorrent, from magnet links and <code>.torrent</code> files, and share back what you have while the torrent stays added (seeding).</p>
 <p>Downloads run in Lepton itself: they go on after the command ends, and after you log out. In a terminal, <code>torrent</code> shows yours, with their progress, speeds and peers, updated each second (this is the desktop's Torrents). Torrents that were running start again the next time you use <code>torrent</code> (after a restart, say), checking what's already on disk first.</p>
@@ -139,6 +139,7 @@
 <ul>
 <li><code>torrent</code>: the list, updated live (in a terminal); else as <code>list</code>.</li>
 <li><code>torrent add [-d DIR] [--peer HOST:PORT] MAGNET|FILE|URL...</code>: add a torrent: a magnet link (quote it: it holds <code>&amp;</code>), a <code>.torrent</code> file, or the address of one. Files go into DIR (default <code>~/Downloads</code>). <code>--peer</code> names a peer to try (one on your network, say).</li>
+<li><code>torrent open MAGNET|FILE</code>: add it (into <code>~/Downloads</code>), say so in a notice on the desktop, and open the Torrents window there (unless it's open). Firefox runs this for magnet links and <code>.torrent</code> files.</li>
 <li><code>torrent list</code>: each torrent, its number, id, progress and state.</li>
 <li><code>torrent stop T</code>, <code>torrent start T</code>: stop one (it stays listed), start it again. T is its number in the list, the start of its id, or part of its name.</li>
 <li><code>torrent rm [--delete] T</code>: remove one; with <code>--delete</code>, its files too.</li>
@@ -170,7 +171,7 @@ torrent create -t udp://tracker.opentrackr.org:1337/announce ~/Photos/trip</code
 <p><a href="man-play.html">play(1)</a>, <a href="https://trylepton.app/docs/torrents.html">https://trylepton.app/docs/torrents.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@8b163b4. <a href="https://github.com/danieljaouen/lepton/blob/main/man/torrent.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@99d33e1. <a href="https://github.com/danieljaouen/lepton/blob/main/man/torrent.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
