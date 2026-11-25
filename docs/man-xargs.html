@@ -127,25 +127,27 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>xargs</code> - build and execute command lines from standard input</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>xargs [-n N] [CMD [ARG...]]</code></pre>
+<pre><code>xargs [-0] [-n N] [-I STR] [CMD [ARG...]]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Read words (separated by white space) from standard input and run CMD with them added as arguments. CMD defaults to <code>echo</code>. All words are passed to one run of CMD unless <code>-n</code> limits the number.</p>
+<p>Read items from standard input and run CMD with them added as arguments. CMD defaults to <code>echo</code>. All items are passed to one run of CMD unless <code>-n</code> limits the number.</p>
+<p>Items are separated by blanks and newlines, as GNU xargs does: quotes (<code>'my file'</code>, <code>&quot;my file&quot;</code>) or a backslash (<code>my\ file</code>) keep blanks in one. For names that may hold anything, use <code>find -print0</code> and <code>xargs -0</code>.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><code>-n N</code>: pass at most N words to each run of CMD.</li>
-<li><code>-I STRING</code>: replace STRING in CMD's arguments with the words instead of adding them at the end. Combine with <code>-n 1</code> to run CMD once per word.</li>
+<li><code>-0</code>: items end in NUL bytes (as <code>find -print0</code> writes them): blanks, quotes and newlines in them are kept as they are.</li>
+<li><code>-n N</code>: pass at most N items to each run of CMD.</li>
+<li><code>-I STRING</code>: each input line is one item, and CMD runs once per item, with STRING in its arguments replaced by the item.</li>
 </ul>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>The highest exit status of the runs of CMD.</p>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
-<pre><code class="language-sh">find . -name '*.tmp' | xargs rm
-ls *.wav | xargs -n 1 play
-cat hosts | xargs -n 1 -I {} ping -c 1 {}</code></pre>
+<pre><code class="language-sh">find . -name '*.tmp' -print0 | xargs -0 rm
+ls *.txt | xargs -n 1 wc -l
+cat hosts.txt | xargs -I @ ping -c 1 @</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-find.html">find(1)</a>, <a href="man-lsh.html">lsh(1)</a></p>
+<p><a href="man-find.html">find(1)</a>, <a href="man-echo.html">echo(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e793a33. <a href="https://github.com/danieljaouen/lepton/blob/main/man/xargs.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fe0c324. <a href="https://github.com/danieljaouen/lepton/blob/main/man/xargs.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

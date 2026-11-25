@@ -127,7 +127,7 @@
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
 <p><code>find</code> - search for files in a directory hierarchy</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>find [PATH...] [-name GLOB] [-type f|d] [-maxdepth N]</code></pre>
+<pre><code>find [PATH...] [-name GLOB] [-iname GLOB] [-type f|d|l] [-user NAME] [-group NAME] [-maxdepth N] [-mindepth N] [-xdev] [-print0]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Walk the directory tree under each PATH (the current directory by default) and print the path of every file and directory that matches all of the tests given. With no tests, everything is printed. Directories are visited in name order; symbolic links are not followed.</p>
 <h2 id="tests">TESTS<a class="anchor" href="#tests" aria-label="Link to this section">#</a></h2>
@@ -135,19 +135,24 @@
 <li><code>-name GLOB</code>: the file's name (not its directory) matches GLOB, where <code>*</code> matches anything, <code>?</code> one character and <code>[...]</code> one of a set. Quote GLOB so the shell does not expand it.</li>
 <li><code>-iname GLOB</code>: like <code>-name</code>, ignoring case.</li>
 <li><code>-type f|d|l</code>: a regular file, a directory, or a symbolic link.</li>
+<li><code>-user NAME|UID</code>, <code>-group NAME|GID</code>: owned by that user or group.</li>
 <li><code>-maxdepth N</code>: descend at most N levels below PATH.</li>
 <li><code>-mindepth N</code>: do not print anything less than N levels below PATH.</li>
+<li><code>-xdev</code> (or <code>-mount</code>): don't descend into other file systems.</li>
+<li><code>-print0</code>: end each path with a NUL byte rather than a newline, for <code>xargs -0</code>: names with spaces (or newlines) stay whole.</li>
 </ul>
-<p>Other tests and actions of GNU or BSD <code>find</code> are not supported and are ignored.</p>
+<p>Other tests and actions of GNU or BSD <code>find</code> are not supported: <code>find</code> says so and exits with status 1, rather than printing everything.</p>
 <h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">find . -name '*.ex'
 find ~ -maxdepth 2 -type d
+find ~ -user root              # anything in your home that isn't yours
+find . -name '*.log' -print0 | xargs -0 rm    # any names, spaces and all
 find /persist -iname '*.PNG' | xargs ls -l</code></pre>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
 <p><a href="man-ls.html">ls(1)</a>, <a href="man-tree.html">tree(1)</a>, <a href="man-grep.html">grep(1)</a>, <a href="man-xargs.html">xargs(1)</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e793a33. <a href="https://github.com/danieljaouen/lepton/blob/main/man/find.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@fe0c324. <a href="https://github.com/danieljaouen/lepton/blob/main/man/find.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

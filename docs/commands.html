@@ -140,7 +140,7 @@
 <tr><td><span class="anchor-target" id="cmd-echo"></span><a href="man-echo.html"><code>echo</code></a></td><td>display a line of text</td><td><code>echo [-n] [-e] [STRING...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-expr"></span><a href="man-expr.html"><code>expr</code></a></td><td>evaluate expressions</td><td><code>expr INT +|-|*|/|% INT</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-false"></span><a href="man-false.html"><code>false</code></a></td><td>do nothing, unsuccessfully</td><td><code>false</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-find"></span><a href="man-find.html"><code>find</code></a></td><td>search for files in a directory hierarchy</td><td><code>find [PATH...] [-name GLOB] [-type f|d] [-maxdepth N]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-find"></span><a href="man-find.html"><code>find</code></a></td><td>search for files in a directory hierarchy</td><td><code>find [PATH...] [-name GLOB] [-iname GLOB] [-type f|d|l] [-user NAME] [-group NAME] [-maxdepth N] [-mindepth N] [-xdev] [-print0]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ln"></span><a href="man-ln.html"><code>ln</code></a></td><td>make links between files</td><td><code>ln [-s] TARGET LINK</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-ls"></span><a href="man-ls.html"><code>ls</code></a></td><td>list directory contents</td><td><code>ls [-1aAlhRrtSdF] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-mkdir"></span><a href="man-mkdir.html"><code>mkdir</code></a></td><td>make directories</td><td><code>mkdir [-p] DIR...</code></td></tr>
@@ -186,7 +186,7 @@
 <tr><td><span class="anchor-target" id="cmd-tr"></span><a href="man-tr.html"><code>tr</code></a></td><td>translate or delete characters</td><td><code>tr [-d] SET1 [SET2]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-uniq"></span><a href="man-uniq.html"><code>uniq</code></a></td><td>report or omit repeated lines</td><td><code>uniq [-cdu] [FILE]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-wc"></span><a href="man-wc.html"><code>wc</code></a></td><td>print newline, word, and byte counts</td><td><code>wc [-lwcm] [FILE...]</code></td></tr>
-<tr><td><span class="anchor-target" id="cmd-xargs"></span><a href="man-xargs.html"><code>xargs</code></a></td><td>build and execute command lines from standard input</td><td><code>xargs [-n N] [CMD [ARG...]]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-xargs"></span><a href="man-xargs.html"><code>xargs</code></a></td><td>build and execute command lines from standard input</td><td><code>xargs [-0] [-n N] [-I STR] [CMD [ARG...]]</code></td></tr>
 </tbody></table></div>
 <h2 id="system">System<a class="anchor" href="#system" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
@@ -350,7 +350,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@e793a33.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@fe0c324.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
