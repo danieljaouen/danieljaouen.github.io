@@ -79,6 +79,7 @@
           <li><a href="system.html">System</a></li>
           <li><a href="time.html">Time and time zones</a></li>
           <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
+          <li><a href="gpg.html">Encryption and signatures (gpg)</a></li>
           </ul>
         </details>
         <details class="docs-sec">
@@ -127,7 +128,7 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="command-reference">Command reference<a class="anchor" href="#command-reference" aria-label="Link to this section">#</a></h1>
-<p>All 174 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
+<p>All 176 commands that ship with Lepton, generated from the command registry. Each name links to its <a href="man.html">manual page</a>. Inside Lepton, <code>help</code> lists them and <code>man COMMAND</code> shows one. Packages can add more (<a href="packages.html#packages-that-add-commands">packages</a>).</p>
 <h2 id="files-and-basics">Files and basics<a class="anchor" href="#files-and-basics" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -171,6 +172,7 @@
 <tr><td><span class="anchor-target" id="cmd-base64"></span><a href="man-base64.html"><code>base64</code></a></td><td>base64 encode/decode data</td><td><code>base64 [-d] [FILE]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-cut"></span><a href="man-cut.html"><code>cut</code></a></td><td>remove sections from each line</td><td><code>cut -d DELIM -f FIELDS | -c CHARS [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-diff"></span><a href="man-diff.html"><code>diff</code></a></td><td>compare files line by line (unified format)</td><td><code>diff [-u] FILE1 FILE2</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-gpg"></span><a href="man-gpg.html"><code>gpg</code></a> · also <code>gpg2</code></td><td>OpenPGP encryption and signing, as GnuPG: keys (make, list, import, export), encrypt, decrypt, sign, verify</td><td><code>gpg [-e -r NAME | -c | -s | --clearsign | -b | -d | --verify | -k | -K | --import | --export | --quick-gen-key UID ...] [-a] [-o FILE] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-grep"></span><a href="man-grep.html"><code>grep</code></a></td><td>print lines that match patterns</td><td><code>grep [-ivnclrHhoqEFw] PATTERN [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-head"></span><a href="man-head.html"><code>head</code></a></td><td>output the first part of files</td><td><code>head [-n N] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-hexdump"></span><a href="man-hexdump.html"><code>hexdump</code></a> · also <code>xxd</code></td><td>display file contents in hexadecimal</td><td><code>hexdump [FILE]</code></td></tr>
@@ -182,6 +184,7 @@
 <tr><td><span class="anchor-target" id="cmd-sha1sum"></span><a href="man-sha1sum.html"><code>sha1sum</code></a></td><td>compute SHA1 message digest</td><td><code>sha1sum [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sha256sum"></span><a href="man-sha256sum.html"><code>sha256sum</code></a></td><td>compute SHA256 message digest</td><td><code>sha256sum [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sha512sum"></span><a href="man-sha512sum.html"><code>sha512sum</code></a></td><td>compute SHA512 message digest</td><td><code>sha512sum [FILE...]</code></td></tr>
+<tr><td><span class="anchor-target" id="cmd-shasum"></span><a href="man-shasum.html"><code>shasum</code></a></td><td>print or check SHA checksums (SHA-1, -224, -256, -384, -512, -512/224, -512/256), as macOS's shasum</td><td><code>shasum [-a 1|224|256|384|512|512224|512256] [-b | -t] [--tag] [-c [-s] [-q] [-w]] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-sort"></span><a href="man-sort.html"><code>sort</code></a></td><td>sort lines of text files</td><td><code>sort [-rnuf] [-k N] [-t SEP] [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-strings"></span><a href="man-strings.html"><code>strings</code></a></td><td>print printable character sequences in files</td><td><code>strings [FILE...]</code></td></tr>
 <tr><td><span class="anchor-target" id="cmd-tac"></span><a href="man-tac.html"><code>tac</code></a></td><td>concatenate and print files in reverse</td><td><code>tac [FILE...]</code></td></tr>
@@ -361,7 +364,7 @@
 <p>These run inside the shell itself (<a href="shell.html#builtins">the shell</a>, <a href="man-builtins.html">builtins(1)</a>): <code>cd</code> <code>pwd</code> <code>export</code> <code>unset</code> <code>alias</code> <code>unalias</code> <code>history</code> <code>exit</code> <code>logout</code> <code>source</code> <code>.</code> <code>jobs</code> <code>fg</code> <code>bg</code> <code>wait</code> <code>type</code> <code>which</code> <code>read</code> <code>eval</code> <code>shift</code> <code>set</code> <code>setopt</code> <code>unsetopt</code> <code>bindkey</code> <code>hash</code> <code>rehash</code> <code>umask</code> <code>local</code> <code>dirs</code> <code>pushd</code> <code>popd</code> <code>exec</code> <code>builtin</code> <code>command</code> <code>return</code> <code>break</code> <code>continue</code>.</p>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@99d33e1.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@140c78b.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
