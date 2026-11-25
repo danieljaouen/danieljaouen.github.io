@@ -137,7 +137,7 @@
 <pre><code>magick INPUT [OPTIONS...] OUTPUT | magick TOOL ... (magick -help)</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>ImageMagick 7: read images, change them, write them. <code>magick INPUT OPTIONS... OUTPUT</code> applies the options in order; the output's name picks its format (<code>.png</code>, <code>.jpg</code>, <code>.webp</code>, <code>.tif</code>, ...), or a prefix does (<code>png:-</code>, standard output). <code>magick TOOL ...</code> runs one of its tools, which are also commands of their own: <a href="man-convert.html">convert(1)</a>, <a href="man-identify.html">identify(1)</a>, <a href="man-mogrify.html">mogrify(1)</a>, <a href="man-composite.html">composite(1)</a>, <a href="man-montage.html">montage(1)</a>, <a href="man-compare.html">compare(1)</a>.</p>
-<p>It's the <code>imagemagick</code> app (<code>sudo app install imagemagick</code>; the commands offer to install it). It runs as you, in this folder; Ctrl-C stops it. PNG, JPEG, GIF, WebP, TIFF, BMP, JPEG XL, JPEG 2000 and more are read and written, HEIC is read; SVG and PDF aren't included. Text is drawn in DejaVu.</p>
+<p>It's the <code>imagemagick</code> app (<code>sudo app install imagemagick</code>; the commands offer to install it). It runs as you, in this folder; Ctrl-C stops it. PNG, JPEG, GIF, WebP, TIFF, BMP, JPEG XL, JPEG 2000, PDF, PostScript and more are read and written; SVG and HEIC are read. PDF goes through Ghostscript (<code>-density DPI</code> before a PDF or SVG sets how finely it's drawn; <code>paper.pdf[0]</code> is its first page). Text is drawn in DejaVu.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <p>A few of hundreds (<code>magick -help</code>, and <a href="https://imagemagick.org/script/command-line-options.php">https://imagemagick.org/script/command-line-options.php</a>):</p>
 <ul>
@@ -152,6 +152,9 @@
 <pre><code class="language-sh">magick photo.jpg -crop 800x600+100+50 +repage cropped.jpg
 magick photo.jpg -resize 50% -quality 85 half.jpg
 magick IMG_0042.HEIC photo.jpg
+magick -density 150 paper.pdf[0] page1.png
+magick logo.svg logo.png
+magick scan1.jpg scan2.jpg scans.pdf
 magick photo.jpg -gravity center -crop 1:1 +repage -resize 512x512 avatar.png</code></pre>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>ImageMagick's: 0 on success, 1 on an error (said on standard error). 1 if the app isn't installed.</p>
@@ -159,7 +162,7 @@ magick photo.jpg -gravity center -crop 1:1 +repage -resize 512x512 avatar.png</c
 <p><a href="man-convert.html">convert(1)</a>, <a href="man-identify.html">identify(1)</a>, <a href="man-mogrify.html">mogrify(1)</a>, <a href="man-composite.html">composite(1)</a>, <a href="man-montage.html">montage(1)</a>, <a href="man-compare.html">compare(1)</a>, <a href="man-open.html">open(1)</a>, <a href="https://trylepton.app/docs/images.html">https://trylepton.app/docs/images.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@fb20f41. <a href="https://github.com/danieljaouen/lepton/blob/main/man/magick.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@71a9889. <a href="https://github.com/danieljaouen/lepton/blob/main/man/magick.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

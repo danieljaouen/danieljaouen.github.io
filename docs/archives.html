@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>Archives and big files - Lepton OS docs</title>
-  <meta name="description" content="tar and unzip for .tar, .tar.gz and .zip files, and copying big files with cp and mv.">
+  <meta name="description" content="tar and unzip for .tar (gzip, bzip2, xz, zstd) and .zip files, and copying big files with cp and mv.">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -132,16 +132,19 @@
       <article class="prose">
 <h1 id="archives-and-big-files">Archives and big files<a class="anchor" href="#archives-and-big-files" aria-label="Link to this section">#</a></h1>
 <h2 id="tar">tar<a class="anchor" href="#tar" aria-label="Link to this section">#</a></h2>
-<p><code>tar</code> makes, lists and unpacks tar archives, plain (<code>.tar</code>) or compressed with gzip (<code>.tar.gz</code>, <code>.tgz</code>), as GNU tar does. The first argument may leave out its dash, as in <code>tar xzf</code>:</p>
+<p><code>tar</code> makes, lists and unpacks tar archives, plain (<code>.tar</code>) or compressed with gzip (<code>.tar.gz</code>, <code>.tgz</code>), bzip2 (<code>.tar.bz2</code>), xz (<code>.tar.xz</code>) or zstd (<code>.tar.zst</code>), as GNU tar does. The first argument may leave out its dash, as in <code>tar xzf</code>:</p>
 <pre><code class="language-sh">tar czf notes.tgz notes/          # make notes.tgz from the folder notes
 tar tvf notes.tgz                 # list it, with sizes and dates
 tar xf notes.tgz                  # unpack it here (gzip is recognised: -z is optional)
 tar xf release.tar.gz -C ~/src    # unpack into ~/src
 tar xf release.tar.gz --strip-components=1   # without the top folder
 tar caf backup.tar.gz ~/Documents # -a: compressed or not by the name
+tar xf linux-6.18.tar.xz          # any compression is recognised when reading
+tar cJf photos.tar.xz Pictures/   # -j bzip2, -J xz, --zstd zstd
 tar xOf notes.tgz notes/todo.txt  # a member to the screen (-O)</code></pre>
 <p>Name members after the archive to unpack just those (a folder brings everything in it; <code>*</code> and <code>?</code> work too). <code>--exclude=PATTERN</code> leaves files out when making one, <code>-k</code> keeps files that are already there.</p>
-<p>Archives from elsewhere unpack safely: a leading <code>/</code> is taken off the names, and a member whose name climbs out with <code>..</code> is skipped. Long names, symbolic links and permissions are kept both ways; the files you unpack are yours. Archives compressed with xz, bzip2 or zstd (<code>.tar.xz</code>, <code>.tar.bz2</code>, <code>.tar.zst</code>) aren't supported yet: tar says which it found.</p>
+<p>Archives from elsewhere unpack safely: a leading <code>/</code> is taken off the names, and a member whose name climbs out with <code>..</code> is skipped. Long names, symbolic links and permissions are kept both ways; the files you unpack are yours.</p>
+<p>gzip is built into Lepton and bzip2 comes with it (busybox's). xz and zstd are the <code>compressors</code> app (about 2 MB), which <code>tar</code> offers to install the first time it needs them; reading a <code>.tar.xz</code> works even without it.</p>
 <h2 id="unzip">unzip<a class="anchor" href="#unzip" aria-label="Link to this section">#</a></h2>
 <p><code>unzip</code> lists, tests and unpacks <code>.zip</code> files, as Info-ZIP's <code>unzip</code>:</p>
 <pre><code class="language-sh">unzip photos.zip                  # unpack here
@@ -158,14 +161,14 @@ unzip photos.zip '*.jpg' -x 'thumbs/*'</code></pre>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
 <tbody>
-<tr><td><a href="commands.html#cmd-tar"><code>tar</code></a></td><td>create, list and extract tar archives (gzip-compressed too: .tar.gz, .tgz), as GNU tar</td><td><code>tar -c|-x|-t [-v] [-z] [-a] [-k] [-O] [-f ARCHIVE] [-C DIR] [--strip-components=N] [--exclude=PATTERN] [FILE...]</code></td></tr>
+<tr><td><a href="commands.html#cmd-tar"><code>tar</code></a></td><td>create, list and extract tar archives, compressed too (.tar.gz, .tar.bz2, .tar.xz, .tar.zst), as GNU tar</td><td><code>tar -c|-x|-t [-v] [-z | -j | -J | --zstd] [-a] [-k] [-O] [-f ARCHIVE] [-C DIR] [--strip-components=N] [--exclude=PATTERN] [FILE...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-unzip"><code>unzip</code></a></td><td>list, test and extract .zip archives, as Info-ZIP's unzip</td><td><code>unzip [-l | -v | -t | -p | -Z1] [-o | -n] [-q] [-j] [-d DIR] ZIPFILE [MEMBER...] [-x MEMBER...]</code></td></tr>
 <tr><td><a href="commands.html#cmd-cp"><code>cp</code></a></td><td>copy files and directories</td><td><code>cp [-rv] SOURCE... DEST</code></td></tr>
 <tr><td><a href="commands.html#cmd-mv"><code>mv</code></a></td><td>move (rename) files</td><td><code>mv [-v] SOURCE... DEST</code></td></tr>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@fb20f41. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/archives.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@71a9889. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/archives.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

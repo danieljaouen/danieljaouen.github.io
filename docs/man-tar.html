@@ -12,7 +12,7 @@
   </script>
   <!-- End Google Tag Manager -->
   <title>tar(1) - Lepton OS docs</title>
-  <meta name="description" content="create, list and extract tar archives (gzip-compressed too: .tar.gz, .tgz), as GNU tar">
+  <meta name="description" content="create, list and extract tar archives, compressed too (.tar.gz, .tar.bz2, .tar.xz, .tar.zst), as GNU tar">
   <meta name="theme-color" content="#1b1d1e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/style.css">
@@ -132,13 +132,13 @@
       <article class="prose">
 <h1 id="tar1">tar(1)<a class="anchor" href="#tar1" aria-label="Link to this section">#</a></h1>
 <h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
-<p><code>tar</code> - create, list and extract tar archives (gzip-compressed too: .tar.gz, .tgz), as GNU tar</p>
+<p><code>tar</code> - create, list and extract tar archives, compressed too (.tar.gz, .tar.bz2, .tar.xz, .tar.zst), as GNU tar</p>
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
-<pre><code>tar -c|-x|-t [-v] [-z] [-a] [-k] [-O] [-f ARCHIVE] [-C DIR] [--strip-components=N] [--exclude=PATTERN] [FILE...]</code></pre>
+<pre><code>tar -c|-x|-t [-v] [-z | -j | -J | --zstd] [-a] [-k] [-O] [-f ARCHIVE] [-C DIR] [--strip-components=N] [--exclude=PATTERN] [FILE...]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Make (<code>-c</code>), list (<code>-t</code>) or unpack (<code>-x</code>) a tar archive, as GNU tar. Archives may be compressed with gzip (<code>.tar.gz</code>, <code>.tgz</code>): <code>-z</code> compresses when making one, and reading recognises gzip by itself. The first argument may leave out its dash (<code>tar xzf FILE</code>).</p>
+<p>Make (<code>-c</code>), list (<code>-t</code>) or unpack (<code>-x</code>) a tar archive, as GNU tar. Archives may be compressed with gzip (<code>.tar.gz</code>, <code>.tgz</code>), bzip2 (<code>.tar.bz2</code>), xz (<code>.tar.xz</code>) or zstd (<code>.tar.zst</code>): <code>-z</code>, <code>-j</code>, <code>-J</code> and <code>--zstd</code> (or <code>-a</code>, by the name) compress when making one, and reading recognises the compression by itself. The first argument may leave out its dash (<code>tar xzf FILE</code>).</p>
 <p>Members named after the archive are the only ones listed or unpacked (a folder brings everything in it; <code>*</code>, <code>?</code> and <code>[...]</code> match). When unpacking, a leading <code>/</code> is taken off the names, and members with <code>..</code> in their names are skipped. Long names (pax and GNU), symbolic links, hard links, permissions and modification times are kept.</p>
-<p>Archives compressed with xz, bzip2 or zstd are recognised and refused.</p>
+<p>gzip is Lepton's own and bzip2 is busybox's, always there. xz and zstd are the <code>compressors</code> app's (about 2 MB; tar offers to install it), but busybox reads <code>.tar.xz</code> without it.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>-c</code>, <code>--create</code>: make an archive of the FILEs (folders with everything in them).</li>
@@ -146,7 +146,10 @@
 <li><code>-t</code>, <code>--list</code>: list the members (with <code>-v</code>: as <code>ls -l</code>).</li>
 <li><code>-f ARCHIVE</code>, <code>--file=ARCHIVE</code>: the archive (<code>-</code>: standard input or output, the default).</li>
 <li><code>-z</code>, <code>--gzip</code>: compress with gzip.</li>
-<li><code>-a</code>, <code>--auto-compress</code>: compress by the archive's name (<code>.tar.gz</code>, <code>.tgz</code>).</li>
+<li><code>-j</code>, <code>--bzip2</code>: compress with bzip2.</li>
+<li><code>-J</code>, <code>--xz</code>: compress with xz.</li>
+<li><code>--zstd</code>: compress with zstd.</li>
+<li><code>-a</code>, <code>--auto-compress</code>: compress by the archive's name (<code>.tar.gz</code>, <code>.tgz</code>, <code>.tar.bz2</code>, <code>.tbz2</code>, <code>.tar.xz</code>, <code>.txz</code>, <code>.tar.zst</code>, <code>.tzst</code>).</li>
 <li><code>-C DIR</code>, <code>--directory=DIR</code>: work in DIR (unpack into it; name files from it).</li>
 <li><code>-v</code>, <code>--verbose</code>: print each member's name (twice: as <code>-tv</code> does).</li>
 <li><code>-O</code>, <code>--to-stdout</code>: unpack to standard output.</li>
@@ -160,6 +163,8 @@
 tar tvf notes.tgz
 tar xf release.tar.gz -C ~/src --strip-components=1
 tar caf backup.tar.gz --exclude='*.log' ~/Documents
+tar xf linux-6.18.tar.xz
+tar cJf photos.tar.xz Pictures/
 tar xOf notes.tgz notes/todo.txt</code></pre>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>0 on success. 2 if a file couldn't be read or written, a member wasn't found, the archive is damaged, or for a usage error.</p>
@@ -167,7 +172,7 @@ tar xOf notes.tgz notes/todo.txt</code></pre>
 <p><a href="man-unzip.html">unzip(1)</a>, <a href="man-cp.html">cp(1)</a>, <a href="https://trylepton.app/docs/archives.html">https://trylepton.app/docs/archives.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@fb20f41. <a href="https://github.com/danieljaouen/lepton/blob/main/man/tar.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@71a9889. <a href="https://github.com/danieljaouen/lepton/blob/main/man/tar.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

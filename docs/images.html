@@ -131,8 +131,8 @@
     <main id="main" class="docs-main">
       <article class="prose">
 <h1 id="editing-images">Editing images<a class="anchor" href="#editing-images" aria-label="Link to this section">#</a></h1>
-<p>Lepton edits images with <a href="https://imagemagick.org">ImageMagick</a> 7: <code>magick</code>, and its tools as commands of their own (<code>convert</code>, <code>identify</code>, <code>mogrify</code>, <code>composite</code>, <code>montage</code>, <code>compare</code>). It's the <code>imagemagick</code> app, installed the first time you use one of them (it asks), or with <code>sudo app install imagemagick</code> (about 21 MB to download, 58 MB installed).</p>
-<p>It reads and writes PNG, JPEG, GIF, WebP, TIFF, BMP, JPEG XL, JPEG 2000 and dozens more, and reads HEIC (iPhone photos). SVG and PDF aren't included. To look at the result, <code>open</code> it (Firefox shows images).</p>
+<p>Lepton edits images with <a href="https://imagemagick.org">ImageMagick</a> 7: <code>magick</code>, and its tools as commands of their own (<code>convert</code>, <code>identify</code>, <code>mogrify</code>, <code>composite</code>, <code>montage</code>, <code>compare</code>). It's the <code>imagemagick</code> app, installed the first time you use one of them (it asks), or with <code>sudo app install imagemagick</code> (about 46 MB to download, 140 MB installed, 60 MB of it Ghostscript, for PDF).</p>
+<p>It reads and writes PNG, JPEG, GIF, WebP, TIFF, BMP, JPEG XL, JPEG 2000, PDF, PostScript and dozens more, and reads SVG and HEIC (iPhone photos). To look at the result, <code>open</code> it (Firefox shows images and PDFs). (Installed before SVG and PDF came in? The next <code>magick</code> fetches them for the one after; <code>sudo app update imagemagick</code> brings them now.)</p>
 <h2 id="crop">Crop<a class="anchor" href="#crop" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">magick photo.jpg -crop 800x600+100+50 +repage cropped.jpg   # 800x600, from 100 across and 50 down
 magick photo.jpg -gravity center -crop 1:1 +repage square.jpg  # the middle square
@@ -150,6 +150,9 @@ magick photo.jpg -auto-orient upright.jpg         # as the camera held it (EXIF)
 magick photo.jpg -flop mirrored.jpg               # left to right (-flip: top to bottom)</code></pre>
 <h2 id="convert-and-adjust">Convert and adjust<a class="anchor" href="#convert-and-adjust" aria-label="Link to this section">#</a></h2>
 <pre><code class="language-sh">magick IMG_0042.HEIC photo.jpg                    # iPhone photo to JPEG
+magick -density 300 logo.svg -resize 512x512 logo.png   # SVG, drawn sharp at any size
+magick -density 150 paper.pdf[0] page1.png        # a PDF's first page as an image
+magick scan1.jpg scan2.jpg scans.pdf              # images into one PDF
 magick photo.png -quality 85 photo.jpg
 magick photo.jpg -strip clean.jpg                 # without its metadata (location too)
 magick photo.jpg -colorspace Gray grey.jpg
@@ -182,7 +185,7 @@ compare -metric AE a.png b.png diff.png           # the number of pixels that di
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@fb20f41. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/images.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@71a9889. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/images.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
