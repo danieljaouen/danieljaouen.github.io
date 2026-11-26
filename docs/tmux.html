@@ -142,6 +142,7 @@
 <h2 id="sessions">Sessions<a class="anchor" href="#sessions" aria-label="Link to this section">#</a></h2>
 <p>Sessions keep running after you detach with <code>prefix d</code>. Reattach with <code>tmux attach</code> (or <code>tmux attach -t NAME</code>); <code>tmux ls</code> lists them.</p>
 <p><code>kill-pane</code> ends the pane's shell and everything running in it, background jobs too; <code>kill-session</code> does that for every pane.</p>
+<p>Inside a session, <code>tmux</code> won't start another one in the same terminal (&quot;sessions should be nested with care&quot;), as tmux won't. To nest one on purpose, run <code>TMUX= tmux</code> (or <code>unset TMUX</code> first); <code>tmux new -d</code> (in the background) is always allowed. With the same prefix at both levels, press it twice for the inner session (<code>C-t C-t c</code>), when your <code>~/.tmux.conf</code> binds the prefix to <code>send-prefix</code>.</p>
 <h2 id="copy-mode">Copy mode<a class="anchor" href="#copy-mode" aria-label="Link to this section">#</a></h2>
 <p><code>prefix [</code> enters vi copy mode: move with the vi keys (<code>{</code> and <code>}</code> by paragraph, to the blank line before or after), <code>v</code> starts a selection and <code>y</code> copies it to the clipboard shared with the editor, <code>pbcopy</code> and <code>pbpaste</code> (and with your computer's clipboard over OSC 52).</p>
 <h2 id="the-mouse">The mouse<a class="anchor" href="#the-mouse" aria-label="Link to this section">#</a></h2>
@@ -157,7 +158,7 @@
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@c27e2ed. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tmux.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4d68475. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/tmux.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

@@ -144,7 +144,7 @@
 <li><code>dirs</code>: print the current directory and the directory stack.</li>
 <li><code>export [NAME[=VALUE]...]</code>: set environment variables, which commands started by the shell see. A NAME without a value is set to the empty string if it is not set already. With no arguments, print every variable.</li>
 <li><code>local [NAME[=VALUE]...]</code>: the same as <code>export</code> (lsh has no functions).</li>
-<li><code>unset NAME...</code>: remove variables.</li>
+<li><code>unset NAME...</code>: remove variables (<code>unset TMUX</code>, not <code>unset $TMUX</code>: a name that isn't a variable's is an error).</li>
 <li><code>alias [NAME[=VALUE]...]</code>: define aliases, words replaced by VALUE when they start a command (<code>alias ll='ls -l'</code>). <code>alias NAME</code> prints one alias; with no arguments, print them all, including those from <code>~/.zshrc</code> and <code>/etc/lshrc</code>.</li>
 <li><code>unalias [-a] NAME...</code>: remove aliases (all of them with <code>-a</code>).</li>
 <li><code>history [N]</code>: print the command history (the last N commands).</li>
@@ -171,7 +171,7 @@
 <p><a href="man-lsh.html">lsh(1)</a>, <a href="man-help.html">help(1)</a>, <a href="man-test.html">test(1)</a>, <a href="https://trylepton.app/docs/shell.html">https://trylepton.app/docs/shell.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@c27e2ed. <a href="https://github.com/danieljaouen/lepton/blob/main/man/builtins.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4d68475. <a href="https://github.com/danieljaouen/lepton/blob/main/man/builtins.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
