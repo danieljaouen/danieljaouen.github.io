@@ -62,6 +62,7 @@
           <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="fzf.html">Fuzzy finding (fzf)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
@@ -136,7 +137,7 @@
 <h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
 <pre><code>snes [ROM]</code></pre>
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
-<p>Play a Super Nintendo (Super Famicom) game from its ROM file (<code>.sfc</code>, <code>.smc</code>) in a window on the desktop. Without a ROM, choose one from your files: Enter plays a game or opens a folder, Backspace goes up, <code>q</code> quits. This is what the desktop's SNES (Start menu and icon) opens.</p>
+<p>Play a Super Nintendo (Super Famicom) game from its ROM file (<code>.sfc</code>, <code>.smc</code>) in a window on the desktop. Without a ROM, choose one from your files: Enter (or a double click) plays a game or opens a folder, Backspace goes up, a click selects, the wheel scrolls, <code>/</code> finds a game in any folder below by typing parts of its name (<a href="man-fzf.html">fzf(1)</a>), <code>q</code> quits. This is what the desktop's SNES (Start menu and icon) opens.</p>
 <p>The emulation is bsnes's (the <code>snes</code> app: <code>sudo app install snes</code>; <code>snes</code> offers to install it when it's missing). It needs the desktop (<code>photon</code> or <code>classic</code>).</p>
 <h2 id="keys">KEYS<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -162,10 +163,10 @@ snes</code></pre>
 <h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
 <p>0 when the window is closed. 1 if the ROM doesn't exist, the app isn't installed, there's no desktop, or the game couldn't start. 2 for a bad option.</p>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-open.html">open(1)</a>, <a href="man-app.html">app(1)</a>, <a href="https://trylepton.app/docs/snes.html">https://trylepton.app/docs/snes.html</a></p>
+<p><a href="man-open.html">open(1)</a>, <a href="man-fzf.html">fzf(1)</a>, <a href="man-app.html">app(1)</a>, <a href="https://trylepton.app/docs/snes.html">https://trylepton.app/docs/snes.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e282462. <a href="https://github.com/danieljaouen/lepton/blob/main/man/snes.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4b5334b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/snes.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

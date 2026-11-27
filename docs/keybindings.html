@@ -62,6 +62,7 @@
           <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="fzf.html">Fuzzy finding (fzf)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
@@ -318,13 +319,14 @@
 &quot;M-DEL&quot; backward_kill_word
 &quot;M-d&quot; kill_word
 &quot;C-y&quot; yank
-&quot;C-t&quot; transpose_chars
+&quot;C-t&quot; fzf_file
 &quot;C-l&quot; clear_screen
 &quot;C-p&quot; up_history
 &quot;&lt;up&gt;&quot; up_history
 &quot;C-n&quot; down_history
 &quot;&lt;down&gt;&quot; down_history
-&quot;C-r&quot; history_search
+&quot;C-r&quot; fzf_history
+&quot;M-c&quot; fzf_cd
 &quot;TAB&quot; complete
 &quot;RET&quot; accept_line
 &quot;M-RET&quot; newline
@@ -474,7 +476,7 @@ vim='le'</code></pre>
   git ush    -&gt; git push</code></pre>
 
       </article>
-      <footer class="docs-foot">Generated from the source of lepton@e282462.</footer>
+      <footer class="docs-foot">Generated from the source of lepton@4b5334b.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

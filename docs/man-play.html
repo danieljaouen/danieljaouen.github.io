@@ -62,6 +62,7 @@
           <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="fzf.html">Fuzzy finding (fzf)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
@@ -138,7 +139,7 @@
 <h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
 <p>Play videos and music: files, folders, playlists (<code>.m3u</code>, <code>.pls</code>) and addresses (<code>https://...</code>, HLS streams). On the desktop, a video opens in a window of its own; in a terminal, a line shows what plays and where it is. Several files play one after another (a folder: the media in it).</p>
 <p>FFmpeg decodes (it's an app: <code>sudo app install ffmpeg</code> installs it, about 47 MB). WAV files need no FFmpeg: when every file is one, Lepton plays them itself, one after another, at the current volume (Ctrl-C stops). Lepton plays the sound itself, on the sound card <code>volume</code> sets (the system volume applies), and draws the pictures itself. Nearly any format plays: MP4, MKV, WebM, MOV, AVI; MP3, AAC, FLAC, Ogg, Opus, WAV.</p>
-<p>With no files and a terminal, <code>play</code> lists the folders and media in the current folder (or <code>~/Videos</code>, or <code>~/Music</code>) to choose from: Enter plays a file and those after it, or opens a folder; Backspace goes up. This is the desktop's Media Player.</p>
+<p>With no files and a terminal, <code>play</code> lists the folders and media in the current folder (or <code>~/Videos</code>, or <code>~/Music</code>) to choose from: Enter (or a double click) plays a file and those after it, or opens a folder; Backspace goes up; a click selects and the wheel scrolls. <code>/</code> finds media in every folder below by typing parts of the name (<a href="man-fzf.html">fzf(1)</a>); Tab there marks several to play just those. This is the desktop's Media Player.</p>
 <h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><code>--no-video</code> (<code>-n</code>): the sound only, no window.</li>
@@ -167,10 +168,10 @@ play https://example.com/stream.m3u8</code></pre>
 <li><code>~/.cache/lepton/ffmpeg.log</code>: what FFmpeg said about files it couldn't play.</li>
 </ul>
 <h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
-<p><a href="man-radio.html">radio(1)</a>, <a href="man-volume.html">volume(1)</a>, <a href="man-beep.html">beep(1)</a>, <a href="man-sound.html">sound(1)</a>, <a href="man-app.html">app(1)</a>, <a href="https://trylepton.app/docs/media.html">https://trylepton.app/docs/media.html</a></p>
+<p><a href="man-radio.html">radio(1)</a>, <a href="man-fzf.html">fzf(1)</a>, <a href="man-volume.html">volume(1)</a>, <a href="man-beep.html">beep(1)</a>, <a href="man-sound.html">sound(1)</a>, <a href="man-app.html">app(1)</a>, <a href="https://trylepton.app/docs/media.html">https://trylepton.app/docs/media.html</a></p>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e282462. <a href="https://github.com/danieljaouen/lepton/blob/main/man/play.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4b5334b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/play.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

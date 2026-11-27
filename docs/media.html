@@ -62,6 +62,7 @@
           <ul>
           <li><a href="shell.html">The shell (lsh)</a></li>
           <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="fzf.html">Fuzzy finding (fzf)</a></li>
           <li><a href="tmux.html">The multiplexer (tmux)</a></li>
           <li><a href="git.html">git and GitHub</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
@@ -142,7 +143,7 @@ play ~/Music/album
 play --start 1:30 talk.webm</code></pre>
 <p>On the desktop, a video opens in a window, with a bar under it: the position, a progress line to click, the volume. In a terminal (or for music), a line shows what plays:</p>
 <pre><code>▶ [2/12] Nina Simone - Feeling Good  1:12 / 2:57 [========------------] vol 60%</code></pre>
-<p>Several files play one after another; a folder plays the media in it. <code>play</code> alone, in a terminal, lists the folders and media files where you are (or in <code>~/Videos</code>, or <code>~/Music</code>): Enter plays one and those after it. That's what the Start menu's Media Player opens.</p>
+<p>Several files play one after another; a folder plays the media in it. <code>play</code> alone, in a terminal, lists the folders and media files where you are (or in <code>~/Videos</code>, or <code>~/Music</code>): Enter (or a double click) plays one and those after it, a click selects, the wheel scrolls. <code>/</code> finds media in every folder below by typing parts of a name, as <a href="fzf.html">fzf</a> does; Tab there marks several to play. That's what the Start menu's Media Player opens.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -164,7 +165,7 @@ play --start 1:30 talk.webm</code></pre>
 <p>A click on the picture pauses; a click on the progress line goes there. When a video ends, its window stays, on its last picture: Space (or a click) plays it again; closing the window ends it, and <code>play</code> goes on to the next file. <code>open video.mp4</code> opens a video (or music) in the Media Player too.</p>
 <h2 id="internet-radio-radio">Internet radio: radio<a class="anchor" href="#internet-radio-radio" aria-label="Link to this section">#</a></h2>
 <p><code>radio</code>, in a terminal (or Radio, on the Start menu), shows your stations; a few listener-supported ones are there to begin with. Enter plays one; the song playing shows at the bottom, and changes as the next starts. Space stops it, and plays again.</p>
-<p><code>/</code> searches <a href="https://www.radio-browser.info">Radio Browser</a>'s directory of about 50,000 stations, by name and by genre: try <code>jazz</code>, <code>bbc</code> or <code>lofi</code>. Tab switches between your stations and what was found; <code>a</code> adds the one chosen to yours, <code>d</code> removes one of yours. What happened shows on the bottom line for a few seconds, then the keys are back.</p>
+<p><code>/</code> searches <a href="https://www.radio-browser.info">Radio Browser</a>'s directory of about 50,000 stations, by name and by genre: try <code>jazz</code>, <code>bbc</code> or <code>lofi</code>. Tab switches between your stations and what was found; <code>a</code> adds the one chosen to yours, <code>d</code> removes one of yours. The mouse works too: a click selects a station, a double click plays it, the wheel scrolls, and a click on a tab shows it. What happened shows on the bottom line for a few seconds, then the keys are back.</p>
 <p>From the command line:</p>
 <pre><code>radio groove                  # play one of yours (the start of its name)
 radio search ambient          # what Radio Browser knows
@@ -188,7 +189,7 @@ radio list</code></pre>
 </ul>
 
       </article>
-      <footer class="docs-foot">Documents lepton@e282462. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/media.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@4b5334b. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/media.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>

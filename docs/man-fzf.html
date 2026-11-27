@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXNK6NF7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>fzf(1) - Lepton OS docs</title>
+  <meta name="description" content="a fuzzy finder: choose lines (or files) by typing parts of them, as fzf">
+  <meta name="theme-color" content="#1b1d1e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2366d9ef'/%3E%3Cpath d='M22 14v32h20' stroke='%231b1d1e' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script>try { var t = localStorage.getItem("lepton-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body class="docs">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Lepton OS home"><span class="logo" aria-hidden="true">L</span> Lepton&nbsp;OS</a>
+      <nav aria-label="Site">
+        <ul class="nav-links">
+          <li><a href="tutorial.html" aria-current="false">Tutorial</a></li>
+          <li><a href="index.html" aria-current="false">Docs</a></li>
+          <li><a href="../#download">Download</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/danieljaouen/lepton">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="wrap docs-grid">
+    <nav class="docs-nav" aria-label="Documentation">
+      <details class="docs-nav-all" open>
+        <summary>Contents</summary>
+        <p class="docs-nav-title"><a href="index.html">Documentation</a></p>
+        <ul>
+          <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+        <details class="docs-sec">
+          <summary>Getting started</summary>
+          <ul>
+          <li><a href="getting-started.html">Getting started</a></li>
+          <li><a href="updating.html">Updating Lepton</a></li>
+          <li><a href="accents.html">Typing accents</a></li>
+          <li><a href="dotfiles.html">Your dotfiles, applied</a></li>
+          <li><a href="limitations.html">Limitations</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Working in the shell</summary>
+          <ul>
+          <li><a href="shell.html">The shell (lsh)</a></li>
+          <li><a href="editor.html">The editor (le)</a></li>
+          <li><a href="fzf.html">Fuzzy finding (fzf)</a></li>
+          <li><a href="tmux.html">The multiplexer (tmux)</a></li>
+          <li><a href="git.html">git and GitHub</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="archives.html">Archives and big files</a></li>
+          <li><a href="typst.html">Typst</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>System and services</summary>
+          <ul>
+          <li><a href="services.html">Services (svc)</a></li>
+          <li><a href="cron.html">Scheduled jobs (cron)</a></li>
+          <li><a href="postgresql.html">Databases (PostgreSQL)</a></li>
+          <li><a href="packages.html">Packages (lpm)</a></li>
+          <li><a href="users.html">Users and sudo</a></li>
+          <li><a href="system.html">System</a></li>
+          <li><a href="time.html">Time and time zones</a></li>
+          <li><a href="virtual-machines.html">Virtual machines (vm)</a></li>
+          <li><a href="gpg.html">Encryption and signatures (gpg)</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Networking and the web</summary>
+          <ul>
+          <li><a href="ssh.html">SSH</a></li>
+          <li><a href="rsync.html">Syncing files (rsync)</a></li>
+          <li><a href="networking.html">Networking</a></li>
+          <li><a href="phoenix.html">Hosting a Phoenix application</a></li>
+          <li><a href="web.html">Web server and HTTPS (httpd)</a></li>
+          <li><a href="proxy.html">Proxies</a></li>
+          <li><a href="torrents.html">Torrents</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Desktop and apps</summary>
+          <ul>
+          <li><a href="desktop.html">The desktop (Photon)</a></li>
+          <li><a href="keyboard.html">Languages and keyboards</a></li>
+          <li><a href="sound.html">Sound</a></li>
+          <li><a href="media.html">Videos, music and radio</a></li>
+          <li><a href="apps.html">Firefox and other apps</a></li>
+          <li><a href="printing.html">Printing</a></li>
+          <li><a href="snes.html">SNES games</a></li>
+          <li><a href="images.html">Editing images</a></li>
+          <li><a href="passwords.html">Passwords</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Hardware</summary>
+          <ul>
+          <li><a href="usb.html">USB, hubs and displays</a></li>
+          <li><a href="storage.html">USB drives and SD cards</a></li>
+          <li><a href="bluetooth.html">Bluetooth</a></li>
+          </ul>
+        </details>
+        <details class="docs-sec">
+          <summary>Reference</summary>
+          <ul>
+          <li><a href="commands.html">Command reference</a></li>
+          <li><a href="man.html">Manual pages</a></li>
+          <li><a href="keybindings.html">Key bindings</a></li>
+          <li><a href="lepton-tutorial.html">lepton-tutorial</a></li>
+          </ul>
+        </details>
+      </details>
+    </nav>
+    <main id="main" class="docs-main">
+      <article class="prose">
+<h1 id="fzf1">fzf(1)<a class="anchor" href="#fzf1" aria-label="Link to this section">#</a></h1>
+<h2 id="name">NAME<a class="anchor" href="#name" aria-label="Link to this section">#</a></h2>
+<p><code>fzf</code> - a fuzzy finder: choose lines (or files) by typing parts of them, as fzf</p>
+<h2 id="synopsis">SYNOPSIS<a class="anchor" href="#synopsis" aria-label="Link to this section">#</a></h2>
+<pre><code>fzf [-m] [-q QUERY] [-e] [-i | +i] [--reverse] [--prompt STR] [--header STR] [--tac] [--no-sort] [-1] [-0] [--print-query] [-f QUERY]</code></pre>
+<h2 id="description">DESCRIPTION<a class="anchor" href="#description" aria-label="Link to this section">#</a></h2>
+<p>A fuzzy finder, as junegunn's fzf. <code>fzf</code> reads lines from a pipe (or, with nothing piped in, takes the files under the current folder), shows them full screen, and narrows them as you type: the letters you type must come in order, not together, so <code>mdsrc</code> finds <code>music/david/source.mp3</code>. The best matches are at the bottom, nearest the prompt. Enter prints the line chosen; Esc prints nothing.</p>
+<pre><code class="language-sh">vim $(fzf)
+git branch | fzf | xargs git switch</code></pre>
+<p>The query is fzf's extended search:</p>
+<ul>
+<li><code>word</code>: fuzzy; words separated by spaces must all match.</li>
+<li><code>'word</code>: exactly this text. <code>^word</code>: at the start. <code>word$</code>: at the end.</li>
+<li><code>!word</code>: leaves out the lines that have it.</li>
+<li><code>a | b</code>: either.</li>
+</ul>
+<p>A word with a capital letter in it is matched with case, one without ignores it (smart case). Matches are ranked as fzf ranks them: letters at the start of a word (after <code>/</code>, <code>-</code>, <code>_</code>, a space ...) and letters that come together count most, then shorter lines.</p>
+<p>Files are found as fzf's own walker finds them: hidden ones included, <code>.git</code> and <code>node_modules</code> left out, symbolic links not followed into. <code>$FZF_DEFAULT_COMMAND</code>, if set, is run for the list instead, and <code>$FZF_DEFAULT_OPTS</code> holds options that come before the ones given.</p>
+<p>The shell has fzf's key bindings: <code>C-r</code> chooses a line from history, <code>C-t</code> puts in files and folders, <code>M-c</code> (Esc, then <code>c</code>) goes to a folder. See <a href="man-lsh.html">lsh(1)</a>.</p>
+<h2 id="keys">KEYS<a class="anchor" href="#keys" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Typing narrows; Backspace, <code>C-u</code> (all), <code>C-w</code> (a word) take back; Left, Right, <code>C-a</code>, <code>C-e</code> move in the query.</li>
+<li>Up and Down (or <code>C-p</code>/<code>C-k</code>, <code>C-n</code>/<code>C-j</code>), Page Up, Page Down: choose.</li>
+<li>Tab (with <code>-m</code>): mark this line too and go on; Shift+Tab: mark and go back. Enter then prints the marked lines.</li>
+<li>Enter: choose. Esc, <code>C-c</code>, <code>C-g</code>: give up (exit status 130).</li>
+<li>The mouse: a click selects a line, a double click chooses it, the wheel moves.</li>
+</ul>
+<h2 id="options">OPTIONS<a class="anchor" href="#options" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>-m</code>, <code>--multi</code>: Tab marks several lines.</li>
+<li><code>-q QUERY</code>, <code>--query=QUERY</code>: start with this query.</li>
+<li><code>-e</code>, <code>--exact</code>: words match exactly (<code>'word</code> is fuzzy then).</li>
+<li><code>-i</code>: ignore case; <code>+i</code>: match case; <code>--smart-case</code> (the default).</li>
+<li><code>--reverse</code>, <code>--layout=reverse</code>: the prompt at the top, the best match under it.</li>
+<li><code>--prompt=STR</code> (<code>&gt; </code>), <code>--header=STR</code>: the prompt, and a line under it.</li>
+<li><code>--tac</code>: the last line first. <code>--no-sort</code>, <code>+s</code>: keep the lines in their order. <code>--tiebreak=index</code>, <code>--scheme=history</code>: equal matches in their order, not by length.</li>
+<li><code>-1</code>, <code>--select-1</code>: with only one match, choose it without asking. <code>-0</code>, <code>--exit-0</code>: with none, quit without asking.</li>
+<li><code>--print-query</code>: print the query first. <code>--print0</code>: end lines with NUL.</li>
+<li><code>-f QUERY</code>, <code>--filter=QUERY</code>: no screen; print the lines that match, best first.</li>
+</ul>
+<p>fzf's other options (<code>--height</code>, <code>--preview</code>, <code>--bind</code>, <code>--color</code>, ...) are accepted and change nothing: the list always fills the screen.</p>
+<h2 id="exit-status">EXIT STATUS<a class="anchor" href="#exit-status" aria-label="Link to this section">#</a></h2>
+<p>0 when a line was chosen (or <code>-f</code> found some), 1 when none matched, 2 for an error, 130 when you gave up.</p>
+<h2 id="examples">EXAMPLES<a class="anchor" href="#examples" aria-label="Link to this section">#</a></h2>
+<pre><code class="language-sh">fzf                              # a file under here
+vim &quot;$(fzf -q .md$)&quot;
+ps | fzf --header='a process' -m
+cat ~/.lsh_history | fzf --tac --no-sort
+ls | fzf -f doc                  # without the screen</code></pre>
+<h2 id="see-also">SEE ALSO<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<p><a href="man-lsh.html">lsh(1)</a>, <a href="man-grep.html">grep(1)</a>, <a href="man-find.html">find(1)</a>, <a href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a></p>
+
+      </article>
+      <footer class="docs-foot">Documents lepton@4b5334b. <a href="https://github.com/danieljaouen/lepton/blob/main/man/fzf.md">Edit this page on GitHub</a>.</footer>
+    </main>
+      <nav class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">On this page</p>
+        <ul>
+          <li><a href="#name">NAME</a></li>
+          <li><a href="#synopsis">SYNOPSIS</a></li>
+          <li><a href="#description">DESCRIPTION</a></li>
+          <li><a href="#keys">KEYS</a></li>
+          <li><a href="#options">OPTIONS</a></li>
+          <li><a href="#exit-status">EXIT STATUS</a></li>
+          <li><a href="#examples">EXAMPLES</a></li>
+          <li><a href="#see-also">SEE ALSO</a></li>
+        </ul>
+      </nav>
+  </div>
+  <script>
+    // The contents list starts collapsed on phones.
+    if (matchMedia("(max-width: 820px)").matches) document.querySelector(".docs-nav-all").open = false;
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try { localStorage.setItem("lepton-theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
