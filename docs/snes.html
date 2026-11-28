@@ -172,7 +172,7 @@ snes                      # choose a game from your files</code></pre>
 <p>Which pads: those that are ordinary USB or Bluetooth game controllers (most, including PlayStation pads, the F310 with its switch on D, and the SNES-style ones), and XInput pads: Xbox 360 pads and the many made like them, such as Logitech's F310 and F710 with their switch on X and 8BitDo's in X mode. Linux has a driver for XInput pads that Lepton's kernel doesn't include, so Lepton reads them from USB itself (built with the snes app's compiler, like the emulator's frontend). Xbox One and Series pads, and Nintendo's, aren't supported yet.</p>
 <h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
 <p>The games themselves are yours to bring: Lepton doesn't come with any.</p>
-<p>Full screen, or a window much bigger than the first one, shows fewer pictures a second (about 33 on a 1280x800 screen) while the game itself runs at full speed: a virtual machine's display copies every changed line to its window on your computer, and more than that made it fall behind until the whole picture hung.</p>
+<p>In a virtual machine the picture is at most three times the SNES's (768x672): full screen, or a bigger window, shows it that size in the middle, black around it. UTM's display stopped showing a bigger moving picture (the screen kept its old one while the game played on); on a computer of its own, the picture fills the screen. A picture bigger than the first window's also comes fewer times a second (about 40 at 3x), while the game itself runs at full speed.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -181,7 +181,7 @@ snes                      # choose a game from your files</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@d815719. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/snes.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@91584ea. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/snes.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
