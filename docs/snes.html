@@ -159,7 +159,7 @@ snes                      # choose a game from your files</code></pre>
 <tr><td>F5, F9</td><td>save the game's state, load it back</td></tr>
 <tr><td>1 to 9</td><td>choose the state's slot first (slot 1 to start with)</td></tr>
 <tr><td>F11 (or a double click)</td><td>full screen, and back</td></tr>
-<tr><td>Esc</td><td>close</td></tr>
+<tr><td>Esc</td><td>leave full screen; in a window, close</td></tr>
 </tbody></table></div>
 <h2 id="saves">Saves<a class="anchor" href="#saves" aria-label="Link to this section">#</a></h2>
 <p>A game's own saves (the cartridge's battery RAM) are kept in <code>~/.local/share/snes</code>, as <code>GAME.srm</code>, written a couple of seconds after the game saves and again when you close it, so you can go on where you left off. Save states (F5) go beside them, <code>GAME.state1</code> to <code>GAME.state9</code>: a snapshot of the whole console, at any moment.</p>
@@ -172,6 +172,7 @@ snes                      # choose a game from your files</code></pre>
 <p>Which pads: those that are ordinary USB or Bluetooth game controllers (most, including PlayStation pads, the F310 with its switch on D, and the SNES-style ones), and XInput pads: Xbox 360 pads and the many made like them, such as Logitech's F310 and F710 with their switch on X and 8BitDo's in X mode. Linux has a driver for XInput pads that Lepton's kernel doesn't include, so Lepton reads them from USB itself (built with the snes app's compiler, like the emulator's frontend). Xbox One and Series pads, and Nintendo's, aren't supported yet.</p>
 <h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
 <p>The games themselves are yours to bring: Lepton doesn't come with any.</p>
+<p>Full screen, or a window much bigger than the first one, shows fewer pictures a second (about 33 on a 1280x800 screen) while the game itself runs at full speed: a virtual machine's display copies every changed line to its window on your computer, and more than that made it fall behind until the whole picture hung.</p>
 <h2 id="commands-on-this-page">Commands on this page<a class="anchor" href="#commands-on-this-page" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Command</th><th>What it does</th><th>Usage</th></tr></thead>
@@ -180,7 +181,7 @@ snes                      # choose a game from your files</code></pre>
 </tbody></table></div>
 
       </article>
-      <footer class="docs-foot">Documents lepton@594d00d. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/snes.md">Edit this page on GitHub</a>.</footer>
+      <footer class="docs-foot">Documents lepton@d815719. <a href="https://github.com/danieljaouen/lepton/blob/main/docs/snes.md">Edit this page on GitHub</a>.</footer>
     </main>
       <nav class="docs-toc" aria-label="On this page">
         <p class="docs-toc-title">On this page</p>
